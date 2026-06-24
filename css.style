@@ -1,1 +1,328 @@
+/* =========================
+   VELO GLOBAL
+========================= */
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#0a0a0a;
+color:white;
+overflow-x:hidden;
+transition:.3s;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(0,0,0,.92);
+backdrop-filter:blur(10px);
+z-index:1000;
+border-bottom:1px solid rgba(255,215,0,.08);
+}
+
+.logo-wrapper{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+}
+
+.velo-logo{
+height:55px;
+transition:.4s ease;
+}
+
+.velo-logo.float{
+transform:translateY(-6px);
+}
+
+.brand-name{
+font-size:26px;
+font-weight:700;
+letter-spacing:3px;
+color:#fff;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu-btn{
+position:absolute;
+left:25px;
+font-size:28px;
+cursor:pointer;
+color:white;
+transition:.3s;
+}
+
+.menu-btn:hover{
+color:#d4af37;
+}
+
+#overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+display:none;
+z-index:1200;
+}
+
+#sidebar{
+position:fixed;
+top:0;
+left:-320px;
+width:320px;
+height:100%;
+background:#111;
+padding:30px;
+transition:.4s;
+z-index:1300;
+overflow-y:auto;
+}
+
+.sidebar-logo{
+font-size:30px;
+font-weight:700;
+color:#d4af37;
+margin-bottom:20px;
+}
+
+.sidebar-links{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.sidebar-links a{
+text-decoration:none;
+color:white;
+padding:12px;
+border-radius:12px;
+background:#181818;
+transition:.3s;
+}
+
+.sidebar-links a:hover{
+background:#d4af37;
+color:black;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+padding-top:140px;
+padding-bottom:90px;
+text-align:center;
+width:100%;
+}
+
+.hero h1{
+font-size:80px;
+font-weight:800;
+letter-spacing:5px;
+color:white;
+}
+
+.hero h1 span{
+color:#d4af37;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+margin-top:20px;
+font-size:18px;
+line-height:1.8;
+color:#bfbfbf;
+}
+
+.hero-btn{
+display:inline-block;
+margin-top:35px;
+padding:14px 32px;
+background:#d4af37;
+color:black;
+font-weight:700;
+text-decoration:none;
+border-radius:50px;
+transition:.3s;
+}
+
+.hero-btn:hover{
+transform:translateY(-3px);
+}
+
+/* =========================
+   NIGHTSHIFT CARDS
+========================= */
+
+.slider-section{
+padding:40px 0;
+}
+
+.slider-title{
+text-align:center;
+font-size:38px;
+margin-bottom:25px;
+}
+
+.slider-title span{
+color:#d4af37;
+}
+
+.card-slider{
+display:flex;
+gap:20px;
+overflow-x:auto;
+scrollbar-width:none;
+padding:20px;
+}
+
+.card-slider::-webkit-scrollbar{
+display:none;
+}
+
+.drop-card{
+min-width:300px;
+background:#111;
+border-radius:25px;
+overflow:hidden;
+border:1px solid rgba(255,215,0,.1);
+transition:.35s;
+cursor:pointer;
+}
+
+.drop-card:hover{
+transform:translateY(-8px);
+border-color:#d4af37;
+}
+
+.drop-card img{
+width:100%;
+height:280px;
+object-fit:cover;
+}
+
+.drop-content{
+padding:20px;
+}
+
+.drop-content h3{
+font-size:24px;
+margin-bottom:10px;
+}
+
+.drop-content p{
+color:#c9c9c9;
+line-height:1.7;
+}
+
+.drop-btn{
+display:inline-block;
+margin-top:15px;
+padding:10px 18px;
+border-radius:30px;
+background:#d4af37;
+color:black;
+text-decoration:none;
+font-weight:700;
+}
+
+/* =========================
+   MEMBERSHIP SECTION
+========================= */
+
+.membership{
+padding:90px 20px;
+text-align:center;
+}
+
+.membership h2{
+font-size:50px;
+margin-bottom:15px;
+}
+
+.membership h2 span{
+color:#d4af37;
+}
+
+.membership p{
+max-width:700px;
+margin:auto;
+color:#c4c4c4;
+line-height:1.8;
+}
+
+.membership-btn{
+margin-top:30px;
+display:inline-block;
+padding:15px 35px;
+background:#d4af37;
+color:black;
+font-weight:700;
+border-radius:50px;
+text-decoration:none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+margin-top:80px;
+padding:40px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.08);
+color:#888;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:48px;
+}
+
+.hero p{
+font-size:15px;
+padding:0 20px;
+}
+
+.brand-name{
+font-size:20px;
+}
+
+.drop-card{
+min-width:270px;
+}
+
+.membership h2{
+font-size:34px;
+}
+
+}
