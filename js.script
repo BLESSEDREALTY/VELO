@@ -1,1 +1,101 @@
+/* =========================
+VELO MAIN SCRIPT
+========================= */
 
+/* MENU */
+
+function openMenu() {
+document.getElementById("sidebar").style.left = "0";
+document.getElementById("overlay").style.display = "block";
+}
+
+function closeMenu() {
+document.getElementById("sidebar").style.left = "-320px";
+document.getElementById("overlay").style.display = "none";
+}
+
+/* AUTO SLIDER */
+
+const slider = document.querySelector(".card-slider");
+
+let scrollAmount = 0;
+
+function autoSlide() {
+
+if (!slider) return;
+
+scrollAmount += 320;
+
+if (
+scrollAmount >=
+slider.scrollWidth -
+slider.clientWidth
+) {
+scrollAmount = 0;
+}
+
+slider.scrollTo({
+left: scrollAmount,
+behavior: "smooth"
+});
+
+}
+
+setInterval(autoSlide, 4000);
+
+/* SMOOTH BUTTONS */
+
+document.querySelectorAll("a").forEach(link => {
+
+link.addEventListener("click", function() {
+
+document.body.style.opacity = "0.96";
+
+setTimeout(() => {
+
+document.body.style.opacity = "1";
+
+}, 300);
+
+});
+
+});
+
+/* SIMPLE PRELOADER EFFECT */
+
+window.addEventListener("load", () => {
+
+document.body.classList.add("loaded");
+
+});
+
+/* HERO FADE */
+
+const hero = document.querySelector(".hero");
+
+window.addEventListener("scroll", () => {
+
+let value = window.scrollY;
+
+if(hero){
+
+hero.style.opacity =
+1 - value / 900;
+
+}
+
+});
+
+/* LOGO FLOAT */
+
+const logo = document.querySelector(".velo-logo");
+
+if(logo){
+
+setInterval(() => {
+
+logo.classList.toggle("float");
+
+}, 2000);
+
+}
