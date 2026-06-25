@@ -1,1 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>VELO Registration</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#0a0a0a;
+color:white;
+}
+
+.hero{
+padding:70px 20px;
+text-align:center;
+background:linear-gradient(to bottom,#000,#111);
+}
+
+.hero img{
+width:120px;
+margin-bottom:20px;
+}
+
+.hero h1{
+font-size:45px;
+font-weight:800;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+margin-top:15px;
+color:#ccc;
+line-height:1.8;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:30px 20px;
+}
+
+.card{
+background:#111;
+padding:30px;
+border-radius:25px;
+margin-bottom:30px;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.card h2{
+margin-bottom:20px;
+color:#FFD700;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:15px;
+margin-top:12px;
+border:none;
+border-radius:15px;
+background:#1a1a1a;
+color:white;
+}
+
+button{
+width:100%;
+padding:16px;
+margin-top:20px;
+border:none;
+background:#FFD700;
+color:black;
+font-weight:700;
+border-radius:15px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.benefits{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.benefit{
+background:#171717;
+padding:20px;
+border-radius:18px;
+}
+
+.benefit h3{
+color:#FFD700;
+margin-bottom:10px;
+}
+
+.payment-box{
+background:#171717;
+padding:25px;
+border-radius:20px;
+margin-top:20px;
+}
+
+.price{
+font-size:45px;
+font-weight:800;
+color:#FFD700;
+}
+
+.notice{
+margin-top:15px;
+padding:15px;
+background:#202020;
+border-left:4px solid gold;
+border-radius:10px;
+}
+
+footer{
+background:black;
+padding:30px;
+text-align:center;
+margin-top:50px;
+color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<section class="hero">
+
+<img src="velo_logo.jpg">
+
+<h1>VELO MEMBERSHIP</h1>
+
+<p>
+Register today and become part of the VELO movement.
+Gain exclusive access to future drops, rewards and member-only benefits.
+</p>
+
+</section>
+
+<div class="container">
+
+<!-- SIGN IN -->
+
+<div class="card">
+
+<h2>Sign In</h2>
+
+<input type="email" placeholder="Email Address">
+
+<input type="password" placeholder="Password">
+
+<button>
+Sign In
+</button>
+
+</div>
+
+<!-- REGISTER -->
+
+<div class="card">
+
+<h2>Create Account</h2>
+
+<input type="text" placeholder="Full Name">
+
+<input type="text" placeholder="Username">
+
+<input type="email" placeholder="Email Address">
+
+<input type="tel" placeholder="Phone Number">
+
+<input type="password" placeholder="Password">
+
+<input type="password" placeholder="Confirm Password">
+
+</div>
+
+<!-- BENEFITS -->
+
+<div class="card">
+
+<h2>Membership Benefits</h2>
+
+<div class="benefits">
+
+<div class="benefit">
+<h3>⚡ Early Access</h3>
+<p>Get access before public release.</p>
+</div>
+
+<div class="benefit">
+<h3>🔥 Limited Editions</h3>
+<p>Priority access to Founder pieces.</p>
+</div>
+
+<div class="benefit">
+<h3>🎁 Giveaways</h3>
+<p>Special member rewards.</p>
+</div>
+
+<div class="benefit">
+<h3>🗳 Vote</h3>
+<p>Help influence future collections.</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- PAYMENT -->
+
+<div class="card">
+
+<h2>Membership Payment</h2>
+
+<div class="payment-box">
+
+<div class="price">
+₦5,000
+</div>
+
+<p style="margin-top:10px;">
+or $3.99 USD
+</p>
+
+<div class="notice">
+
+<b>Bank Name:</b> VELO BANK<br><br>
+
+<b>Account Name:</b> VELO UNIVERSE LTD<br><br>
+
+<b>Account Number:</b> 0000000000
+
+</div>
+
+<input type="file">
+
+<textarea placeholder="Optional Payment Note"></textarea>
+
+<button>
+Submit Registration
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 VELO™ — Built For The Night Shift
+
+</footer>
+
+</body>
+</html>
