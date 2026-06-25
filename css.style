@@ -326,3 +326,66 @@ font-size:34px;
 }
 
 }
+
+/* =========================
+IMAGE QUALITY
+========================= */
+
+img{
+display:block;
+max-width:100%;
+}
+
+/* =========================
+SMOOTH PAGE LOAD
+========================= */
+
+body.loaded{
+animation:fadeIn .7s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(10px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* =========================
+CARD SHADOW
+========================= */
+
+.drop-card{
+box-shadow:
+0 10px 25px rgba(0,0,0,.3);
+}
+
+/* =========================
+BUTTON EFFECT
+========================= */
+
+.hero-btn,
+.drop-btn,
+.membership-btn{
+
+transition:
+all .3s ease;
+
+}
+
+.hero-btn:hover,
+.drop-btn:hover,
+.membership-btn:hover{
+
+transform:translateY(-4px);
+box-shadow:
+0 8px 20px rgba(212,175,55,.35);
+
+}
