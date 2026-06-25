@@ -99,3 +99,79 @@ logo.classList.toggle("float");
 }, 2000);
 
 }
+
+/* =========================
+IMAGE FALLBACK
+========================= */
+
+document.querySelectorAll("img").forEach(img => {
+
+img.onerror = function(){
+
+this.src = "images/placeholder.jpg";
+
+};
+
+});
+
+/* =========================
+CARD DRAG SLIDER
+========================= */
+
+const sliderContainer =
+document.querySelector(".card-slider");
+
+if(sliderContainer){
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+sliderContainer.addEventListener("mousedown",(e)=>{
+isDown = true;
+startX = e.pageX - sliderContainer.offsetLeft;
+scrollLeft = sliderContainer.scrollLeft;
+});
+
+sliderContainer.addEventListener("mouseleave",()=>{
+isDown = false;
+});
+
+sliderContainer.addEventListener("mouseup",()=>{
+isDown = false;
+});
+
+sliderContainer.addEventListener("mousemove",(e)=>{
+if(!isDown) return;
+
+e.preventDefault();
+
+const x = e.pageX - sliderContainer.offsetLeft;
+const walk = (x - startX) * 2;
+
+sliderContainer.scrollLeft =
+scrollLeft - walk;
+
+});
+
+}
+
+/* =========================
+ACTIVE PAGE HIGHLIGHT
+========================= */
+
+const currentPage =
+window.location.pathname.split("/").pop();
+
+document.querySelectorAll("a").forEach(link=>{
+
+const linkPage =
+link.getAttribute("href");
+
+if(linkPage === currentPage){
+
+link.style.color = "#d4af37";
+
+}
+
+});
