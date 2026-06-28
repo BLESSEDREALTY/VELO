@@ -1,6 +1,9 @@
-/* =========================
-   VELO GLOBAL
-========================= */
+/*==================================================
+VELO v2.0
+Designed by Gamer-X + ChatGPT
+==================================================*/
+
+/* RESET */
 
 *{
 margin:0;
@@ -12,12 +15,172 @@ html{
 scroll-behavior:smooth;
 }
 
+/* ROOT COLORS */
+
+:root{
+
+--gold:#D4AF37;
+--gold2:#FFD86A;
+--black:#0A0A0A;
+--black2:#111111;
+--black3:#1B1B1B;
+
+--white:#FFFFFF;
+
+--grey:#B8B8B8;
+
+--transition:.35s ease;
+
+}
+
+/* BODY */
+
 body{
-font-family:'Poppins',sans-serif;
-background:#0a0a0a;
-color:white;
+
+font-family:'Montserrat',sans-serif;
+
+background:var(--black);
+
+color:var(--white);
+
 overflow-x:hidden;
-transition:.3s;
+
+line-height:1.7;
+
+transition:.4s;
+
+}
+
+/* LINKS */
+
+a{
+
+text-decoration:none;
+
+color:white;
+
+transition:var(--transition);
+
+}
+
+/* LISTS */
+
+ul{
+
+list-style:none;
+
+}
+
+/* IMAGES */
+
+img{
+
+display:block;
+
+max-width:100%;
+
+height:auto;
+
+}
+
+/* SECTIONS */
+
+section{
+
+padding:90px 8%;
+
+}
+
+/* CONTAINER */
+
+.container{
+
+width:min(1200px,100%);
+
+margin:auto;
+
+}
+
+/* HEADINGS */
+
+h1{
+
+font-size:5rem;
+
+font-weight:800;
+
+letter-spacing:5px;
+
+}
+
+h2{
+
+font-size:2.7rem;
+
+font-weight:700;
+
+margin-bottom:20px;
+
+}
+
+h3{
+
+font-size:1.5rem;
+
+}
+
+p{
+
+font-size:1rem;
+
+color:var(--grey);
+
+}
+
+/* GOLD TEXT */
+
+.gold{
+
+color:var(--gold);
+
+}
+
+/* SELECTION */
+
+::selection{
+
+background:var(--gold);
+
+color:black;
+
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+
+width:9px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#111;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--gold);
+
+border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:var(--gold2);
+
 }
 
 /* =========================
