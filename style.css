@@ -757,3 +757,955 @@ box-shadow:
 0 8px 20px rgba(212,175,55,.35);
 
 }
+
+/*==================================================
+VELO ENTRY EDITION — CINEMATIC SYSTEM
+==================================================*/
+
+/* FIX FOR BROKEN SECTION COMMENT
+================================================== */
+
+/* ENTRY PAGE */
+
+body.entryPage{
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(212,175,55,.08),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #080808 0%,
+            #0d0d0d 45%,
+            #070707 100%
+        );
+
+    color:var(--white);
+}
+
+
+/*==================================================
+ENTRY VIDEO BACKGROUND
+==================================================*/
+
+.entryVideoBackground{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:-3;
+
+    opacity:.48;
+
+    filter:
+        brightness(.55)
+        contrast(1.08)
+        saturate(.75);
+
+    pointer-events:none;
+}
+
+
+/* CINEMATIC OVERLAY */
+
+.entryVideoOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(5,5,5,.68) 0%,
+            rgba(8,8,8,.48) 35%,
+            rgba(8,8,8,.72) 75%,
+            rgba(5,5,5,.94) 100%
+        );
+
+    z-index:-2;
+
+    pointer-events:none;
+}
+
+
+/* SUBTLE GOLD ATMOSPHERE */
+
+.entryPage::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:600px;
+    height:600px;
+
+    top:-250px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212,175,55,.10),
+            transparent 68%
+        );
+
+    filter:blur(30px);
+
+    pointer-events:none;
+
+    z-index:-1;
+}
+
+
+/*==================================================
+ENTRY HERO
+==================================================*/
+
+.entryHero{
+
+    position:relative;
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:
+        140px 8%
+        100px;
+
+    overflow:hidden;
+}
+
+
+.entryHeroContent{
+
+    width:min(850px,100%);
+
+    position:relative;
+
+    z-index:2;
+
+    animation:
+        entryHeroReveal
+        1s ease both;
+}
+
+
+.entryHeroContent h1{
+
+    font-size:clamp(
+        3rem,
+        8vw,
+        6.5rem
+    );
+
+    letter-spacing:
+        clamp(3px,1vw,9px);
+
+    line-height:1;
+
+    margin-bottom:25px;
+
+    text-shadow:
+        0 10px 50px rgba(0,0,0,.8);
+}
+
+
+.entryHeroContent h3{
+
+    color:var(--gold2);
+
+    font-size:
+        clamp(
+            1.1rem,
+            2vw,
+            1.6rem
+        );
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    margin-bottom:25px;
+}
+
+
+.entryHeroContent p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:1.9;
+
+    color:#d0d0d0;
+
+}
+
+
+/*==================================================
+GOLD BUTTON
+==================================================*/
+
+.entryPage .buyBtn{
+
+    display:inline-block;
+
+    margin-top:35px;
+
+    padding:
+        15px 34px;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold2),
+            var(--gold)
+        );
+
+    color:#080808;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(212,175,55,.20);
+
+    transition:
+        all .35s ease;
+}
+
+
+.entryPage .buyBtn:hover{
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 18px 45px
+        rgba(212,175,55,.38);
+}
+
+
+/*==================================================
+PRODUCT SHOWCASE
+==================================================*/
+
+.entryPage .productShowcase{
+
+    position:relative;
+
+    max-width:1100px;
+
+    margin:auto;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.015)
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.12);
+
+    border-radius:30px;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.45);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.entryPage .productShowcase img{
+
+    width:100%;
+
+    max-height:700px;
+
+    object-fit:contain;
+
+    margin:auto;
+
+    border-radius:20px;
+}
+
+
+/*==================================================
+STORY
+==================================================*/
+
+.entryPage .storySection{
+
+    max-width:950px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+
+.entryPage .storySection p{
+
+    font-size:1.08rem;
+
+    line-height:2;
+
+    color:#c6c6c6;
+}
+
+
+/*==================================================
+COLOUR CARDS
+==================================================*/
+
+.entryPage .colorGrid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px,1fr)
+        );
+
+    gap:25px;
+
+    max-width:1100px;
+
+    margin:auto;
+}
+
+
+.entryPage .colorCard{
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0c0c0c
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.10);
+
+    border-radius:22px;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+
+.entryPage .colorCard:hover{
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(212,175,55,.55);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.45);
+}
+
+
+.entryPage .colorCard img{
+
+    width:100%;
+
+    aspect-ratio:1 / 1;
+
+    object-fit:cover;
+}
+
+
+.entryPage .colorCard h3{
+
+    padding:18px;
+
+    font-size:1.05rem;
+}
+
+
+/*==================================================
+SPECIFICATIONS
+==================================================*/
+
+.entryPage .specBox{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px,1fr)
+        );
+
+    gap:15px;
+}
+
+
+.entryPage .specItem{
+
+    padding:22px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    border-radius:18px;
+
+    transition:.3s;
+}
+
+
+.entryPage .specItem:hover{
+
+    border-color:
+        rgba(212,175,55,.35);
+
+    background:
+        rgba(212,175,55,.045);
+}
+
+
+.entryPage .specItem span{
+
+    display:block;
+
+    color:#888;
+
+    font-size:.85rem;
+
+    margin-bottom:5px;
+}
+
+
+.entryPage .specItem strong{
+
+    color:white;
+}
+
+
+/*==================================================
+SIZE GUIDE
+==================================================*/
+
+.entryPage .sizeSection{
+
+    max-width:900px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+
+.entryPage .sizeSection table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    background:#101010;
+}
+
+
+.entryPage .sizeSection th{
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            #b8941f
+        );
+
+    color:#050505;
+
+    padding:16px;
+
+    font-weight:800;
+}
+
+
+.entryPage .sizeSection td{
+
+    padding:16px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+
+    color:#d0d0d0;
+}
+
+
+.entryPage .sizeSection tr:hover td{
+
+    background:
+        rgba(212,175,55,.045);
+}
+
+
+/*==================================================
+VIP PRICE
+==================================================*/
+
+.entryPage .priceSection{
+
+    text-align:center;
+}
+
+
+.entryPage .priceCard{
+
+    width:min(400px,100%);
+
+    margin:35px auto 0;
+
+    padding:35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171717,
+            #0c0c0c
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.28);
+
+    border-radius:25px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.45);
+}
+
+
+.entryPage .old-price{
+
+    margin-top:15px;
+
+    color:#777;
+
+    font-size:1.1rem;
+}
+
+
+.entryPage .old-price s{
+
+    text-decoration:
+        line-through;
+
+    text-decoration-thickness:2px;
+
+    text-decoration-color:#999;
+}
+
+
+.entryPage .price{
+
+    color:var(--gold2);
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    margin-top:3px;
+}
+
+
+.entryPage .priceCard span{
+
+    display:block;
+
+    margin-top:8px;
+
+    color:white;
+
+    font-weight:800;
+
+    letter-spacing:.3px;
+}
+
+
+/*==================================================
+RESERVE YOURS
+==================================================*/
+
+.entryPage .preOrderSection{
+
+    max-width:800px;
+
+    margin:auto;
+
+    text-align:center;
+
+    padding:
+        70px 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.015)
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.15);
+
+    border-radius:30px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.4);
+}
+
+
+.entryPage #entryPreorderForm{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:30px;
+}
+
+
+.entryPage #entryPreorderForm input,
+.entryPage #entryPreorderForm select,
+.entryPage #entryPreorderForm textarea{
+
+    width:100%;
+
+    padding:16px 18px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:14px;
+
+    background:#0d0d0d;
+
+    color:white;
+
+    font-family:inherit;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+
+.entryPage #entryPreorderForm input:focus,
+.entryPage #entryPreorderForm select:focus,
+.entryPage #entryPreorderForm textarea:focus{
+
+    border-color:
+        var(--gold);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(212,175,55,.08);
+}
+
+
+/*==================================================
+FULFILMENT OPTIONS
+==================================================*/
+
+.fulfillment-section{
+
+    margin-top:10px;
+
+    text-align:left;
+}
+
+
+.fulfillment-section h3{
+
+    font-size:1rem;
+
+    color:#ddd;
+
+    margin-bottom:12px;
+}
+
+
+.fulfillment-options{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+}
+
+
+.fulfillment-option{
+
+    cursor:pointer;
+
+    padding:18px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:15px;
+
+    background:#0d0d0d;
+
+    transition:.3s;
+}
+
+
+.fulfillment-option:hover{
+
+    border-color:
+        rgba(212,175,55,.45);
+}
+
+
+.fulfillment-option input{
+
+    display:none;
+}
+
+
+.fulfillment-option:has(input:checked){
+
+    border-color:
+        var(--gold);
+
+    background:
+        rgba(212,175,55,.08);
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(212,175,55,.2);
+}
+
+
+.pickup-info,
+.delivery-location{
+
+    margin-top:15px;
+
+    padding:20px;
+
+    border-radius:16px;
+
+    background:
+        rgba(212,175,55,.055);
+
+    border:
+        1px solid
+        rgba(212,175,55,.16);
+
+    text-align:left;
+}
+
+
+.pickup-info h4{
+
+    color:var(--gold2);
+
+    margin-bottom:7px;
+}
+
+
+/* RESERVE BUTTON */
+
+.entryPage #entryPreorderForm button{
+
+    margin-top:10px;
+
+    padding:17px;
+
+    border:0;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold2),
+            var(--gold)
+        );
+
+    color:#080808;
+
+    font-family:inherit;
+
+    font-weight:800;
+
+    font-size:1rem;
+
+    cursor:pointer;
+
+    transition:.35s;
+}
+
+
+.entryPage #entryPreorderForm button:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(212,175,55,.28);
+}
+
+
+/*==================================================
+CLOSING SECTION
+==================================================*/
+
+.entryPage .closingSection{
+
+    text-align:center;
+
+    padding:
+        130px 8%;
+}
+
+
+.entryPage .closingSection h2{
+
+    font-size:
+        clamp(2rem,5vw,4rem);
+
+    letter-spacing:3px;
+
+    color:white;
+}
+
+
+.entryPage .closingSection p{
+
+    color:var(--gold);
+
+    font-weight:700;
+
+    letter-spacing:4px;
+}
+
+
+/*==================================================
+ENTRY ANIMATION
+==================================================*/
+
+@keyframes entryHeroReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/*==================================================
+MOBILE
+==================================================*/
+
+@media(max-width:768px){
+
+    .entryHero{
+
+        min-height:90vh;
+
+        padding:
+            120px 22px 70px;
+    }
+
+    .entryPage .productShowcase{
+
+        border-radius:20px;
+    }
+
+    .entryPage .preOrderSection{
+
+        padding:
+            55px 18px;
+    }
+
+    .fulfillment-options{
+
+        grid-template-columns:1fr;
+    }
+
+    .entryPage .price{
+
+        font-size:2.5rem;
+    }
+
+}
