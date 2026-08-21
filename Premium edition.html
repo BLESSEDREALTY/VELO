@@ -1,300 +1,1207 @@
+VELO PREMIUM EDITION — UPDATED HTML
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>VELO | Premium Edition</title>
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 
 <style>
 
-body{
+/* ==================================================
+VELO PREMIUM EDITION — CINEMATIC SYSTEM
+================================================== */
+
+
+/* ==================================================
+PAGE ATMOSPHERE
+================================================== */
+
+body.premiumPage{
+
     margin:0;
+
     padding:0;
+
     background:#070707;
+
     color:white;
-    font-family:Arial, Helvetica, sans-serif;
+
+    font-family:'Montserrat', Arial, Helvetica, sans-serif;
+
+    overflow-x:hidden;
+
 }
 
-.hero{
-    min-height:100vh;
-    padding:60px 25px;
-}
 
-.logo{
-    width:180px;
-    margin:auto;
-    display:block;
-}
+/* ==================================================
+CINEMATIC VIDEO BACKGROUND
+================================================== */
 
-.small-title{
-    color:#8cff00;
-    letter-spacing:4px;
-    text-transform:uppercase;
-    text-align:center;
-    margin-top:30px;
-}
+.premiumVideoBackground{
 
-.main-title{
-    text-align:center;
-    font-size:3rem;
-    font-weight:900;
-    margin-top:10px;
-}
+    position:fixed;
 
-.subtitle{
-    text-align:center;
-    color:#bdbdbd;
-    max-width:700px;
-    margin:auto;
-    margin-top:20px;
-    line-height:1.8;
-}
+    inset:0;
 
-.price-box{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    margin-top:40px;
-    flex-wrap:wrap;
-}
-
-.price-card{
-    background:#101010;
-    border:1px solid #1d1d1d;
-    padding:20px;
-    border-radius:20px;
-    min-width:220px;
-    text-align:center;
-}
-
-.old-price{
-    text-decoration:line-through;
-    color:#888;
-}
-
-. Pre-order-price{
-    font-size:2rem;
-    color:#8cff00;
-    font-weight:bold;
-}
-    
-.launch-price{
-    font-size:2rem;
-    color:#8cff00;
-    font-weight:bold;
-}
-
-.section{
-    padding:80px 25px;
-}
-
-.section-title{
-    text-align:center;
-    font-size:2rem;
-    margin-bottom:40px;
-}
-
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-.product-card{
-    background:#101010;
-    border-radius:20px;
-    overflow:hidden;
-    border:1px solid #202020;
-}
-
-.product-card img{
     width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:-3;
+
+    opacity:.42;
+
+    filter:
+        brightness(.48)
+        contrast(1.08)
+        saturate(.72);
+
+    pointer-events:none;
+
+}
+
+
+/* ==================================================
+CINEMATIC OVERLAY
+================================================== */
+
+.premiumVideoOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(5,5,5,.72) 0%,
+            rgba(8,8,8,.48) 30%,
+            rgba(8,8,8,.68) 62%,
+            rgba(5,5,5,.95) 100%
+        );
+
+    z-index:-2;
+
+    pointer-events:none;
+
+}
+
+
+/* ==================================================
+SUBTLE GOLD ATMOSPHERE
+================================================== */
+
+body.premiumPage::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:650px;
+
+    height:650px;
+
+    top:-300px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(212,175,55,.09),
+            transparent 68%
+        );
+
+    filter:blur(35px);
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+
+/* ==================================================
+CONTENT LAYER
+================================================== */
+
+body.premiumPage > *:not(.premiumVideoBackground):not(.premiumVideoOverlay){
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+/* ==================================================
+PREMIUM HERO
+================================================== */
+
+.premiumPage .hero{
+
+    min-height:100vh;
+
+    padding:
+        140px 25px
+        100px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+
+.premiumPage .logo{
+
+    width:180px;
+
+    margin:auto;
+
     display:block;
+
+    filter:
+        drop-shadow(
+            0 15px 40px
+            rgba(0,0,0,.7)
+        );
+
+    transition:.4s ease;
+
 }
 
-.product-info{
-    padding:20px;
+
+.premiumPage .logo:hover{
+
+    transform:scale(1.04);
+
+    filter:
+        drop-shadow(
+            0 18px 50px
+            rgba(212,175,55,.22)
+        );
+
 }
 
-.product-info h3{
-    margin-top:0;
+
+/* ==================================================
+SMALL TITLE
+================================================== */
+
+.premiumPage .small-title{
+
+    color:var(--gold2);
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    text-align:center;
+
+    margin-top:30px;
+
+    font-weight:600;
+
 }
 
-.specs{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+/* ==================================================
+MAIN TITLE
+================================================== */
+
+.premiumPage .main-title{
+
+    text-align:center;
+
+    font-size:
+        clamp(
+            3rem,
+            8vw,
+            6rem
+        );
+
+    font-weight:800;
+
+    letter-spacing:4px;
+
+    margin-top:10px;
+
+    text-shadow:
+        0 15px 55px
+        rgba(0,0,0,.8);
+
+}
+
+
+/* ==================================================
+SUBTITLE
+================================================== */
+
+.premiumPage .subtitle{
+
+    text-align:center;
+
+    color:#d0d0d0;
+
+    max-width:700px;
+
+    margin:auto;
+
+    margin-top:20px;
+
+    line-height:1.9;
+
+}
+
+
+/* ==================================================
+PRICE AREA
+================================================== */
+
+.premiumPage .price-box{
+
+    display:flex;
+
+    justify-content:center;
+
     gap:20px;
+
+    margin-top:40px;
+
+    flex-wrap:wrap;
+
 }
 
-.spec{
-    background:#101010;
+
+.premiumPage .price-card{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.015)
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.16);
+
     padding:25px;
-    border-radius:15px;
-}
 
-.buy-section{
+    border-radius:22px;
+
+    min-width:220px;
+
     text-align:center;
+
+    box-shadow:
+        0 20px 55px
+        rgba(0,0,0,.4);
+
+    backdrop-filter:blur(10px);
+
+    transition:.35s ease;
+
 }
 
-.buy-btn{
-    display:inline-block;
-    padding:18px 40px;
-    background:#8cff00;
-    color:black;
+
+.premiumPage .price-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:
+        rgba(212,175,55,.45);
+
+    box-shadow:
+        0 25px 65px
+        rgba(0,0,0,.55);
+
+}
+
+
+.premiumPage .old-price{
+
+    text-decoration:line-through;
+
+    color:#888;
+
+}
+
+
+/* FIXED ORIGINAL TYPO:
+   . Pre-order-price -> .Pre-order-price
+*/
+
+.premiumPage .Pre-order-price{
+
+    font-size:2rem;
+
+    color:var(--gold2);
+
     font-weight:bold;
-    text-decoration:none;
-    border-radius:50px;
-    margin-top:25px;
+
 }
 
-.footer{
+
+.premiumPage .launch-price{
+
+    font-size:2rem;
+
+    color:var(--gold2);
+
+    font-weight:bold;
+
+}
+
+
+/* ==================================================
+SECTIONS
+================================================== */
+
+.premiumPage .section{
+
+    padding:90px 25px;
+
+    position:relative;
+
+}
+
+
+.premiumPage .section-title{
+
     text-align:center;
-    padding:40px;
+
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            3rem
+        );
+
+    margin-bottom:45px;
+
+    text-shadow:
+        0 8px 30px
+        rgba(0,0,0,.7);
+
+}
+
+
+/* ==================================================
+GALLERY
+================================================== */
+
+.premiumPage .gallery{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px,1fr)
+        );
+
+    gap:25px;
+
+    max-width:1150px;
+
+    margin:auto;
+
+}
+
+
+.premiumPage .product-card{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24,24,24,.94),
+            rgba(10,10,10,.94)
+        );
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(212,175,55,.10);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.4);
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+}
+
+
+.premiumPage .product-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:
+        rgba(212,175,55,.45);
+
+    box-shadow:
+        0 25px 55px
+        rgba(0,0,0,.55);
+
+}
+
+
+.premiumPage .product-card img{
+
+    width:100%;
+
+    display:block;
+
+}
+
+
+.premiumPage .product-info{
+
+    padding:22px;
+
+}
+
+
+.premiumPage .product-info h3{
+
+    margin-top:0;
+
+    margin-bottom:8px;
+
+}
+
+
+/* ==================================================
+SPECIFICATIONS
+================================================== */
+
+.premiumPage .specs{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px,1fr)
+        );
+
+    gap:20px;
+
+    max-width:1100px;
+
+    margin:auto;
+
+}
+
+
+.premiumPage .spec{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.012)
+        );
+
+    padding:25px;
+
+    border-radius:18px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    transition:.35s ease;
+
+}
+
+
+.premiumPage .spec:hover{
+
+    transform:translateY(-5px);
+
+    border-color:
+        rgba(212,175,55,.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212,175,55,.065),
+            rgba(255,255,255,.015)
+        );
+
+}
+
+
+.premiumPage .spec h3{
+
+    color:white;
+
+}
+
+
+.premiumPage .spec p{
+
+    color:#c6c6c6;
+
+    line-height:1.8;
+
+}
+
+
+/* ==================================================
+BUY SECTION
+================================================== */
+
+.premiumPage .buy-section{
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(212,175,55,.065),
+            transparent 60%
+        );
+
+}
+
+
+.premiumPage .buy-btn{
+
+    display:inline-block;
+
+    padding:18px 40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold2),
+            var(--gold)
+        );
+
+    color:#080808;
+
+    font-weight:800;
+
+    text-decoration:none;
+
+    border-radius:50px;
+
+    margin-top:25px;
+
+    letter-spacing:1px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(212,175,55,.20);
+
+    transition:.35s ease;
+
+}
+
+
+.premiumPage .buy-btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 18px 45px
+        rgba(212,175,55,.38);
+
+}
+
+
+/* ==================================================
+FOOTER
+================================================== */
+
+.premiumPage .footer{
+
+    text-align:center;
+
+    padding:50px;
+
     color:#777;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+    background:#050505;
+
+}
+
+
+/* ==================================================
+MOBILE
+================================================== */
+
+@media(max-width:768px){
+
+    .premiumPage .hero{
+
+        min-height:90vh;
+
+        padding:
+            120px 20px
+            70px;
+
+    }
+
+
+    .premiumPage .main-title{
+
+        font-size:
+            clamp(
+                2.8rem,
+                12vw,
+                4.5rem
+            );
+
+    }
+
+
+    .premiumPage .subtitle{
+
+        font-size:.95rem;
+
+    }
+
+
+    .premiumPage .price-card{
+
+        width:100%;
+
+        max-width:320px;
+
+    }
+
+
+    .premiumVideoBackground{
+
+        opacity:.34;
+
+        filter:
+            brightness(.42)
+            contrast(1.05)
+            saturate(.65);
+
+    }
+
 }
 
 </style>
+
 </head>
 
-<body>
+
+<body class="premiumPage">
+
+
+<!-- ==================================================
+CINEMATIC VIDEO BACKGROUND
+================================================== -->
+
+<video
+    class="premiumVideoBackground"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+>
+
+    <source
+        src="20260821_012137144.mp4"
+        type="video/mp4"
+    >
+
+</video>
+
+
+<div class="premiumVideoOverlay"></div>
+
+
+<!-- ==================================================
+MENU BUTTON
+================================================== -->
+
+<div
+class="menu-btn"
+onclick="openMenu()"
+>
+☰
+</div>
+
+
+<!-- ==================================================
+SIDEBAR
+================================================== -->
+
+<div id="sidebar">
+
+
+<div class="sidebar-header">
+
+
+<img
+src="Screenshot_20260623-092953.jpg"
+alt="Velo logo"
+>
+
+
+<h2>
+VELO
+</h2>
+
+
+<div
+class="close-btn"
+onclick="closeMenu()"
+>
+✕
+</div>
+
+
+</div>
+
+
+<nav class="sidebar-links">
+
+
+<a href="index.html">
+Home
+</a>
+
+
+<a href="nightshift.html">
+Nightshift Collection
+</a>
+
+
+<a href="entry.html">
+Entry Edition
+</a>
+
+
+<a href="premium.html">
+Premium Edition
+</a>
+
+
+<a href="Premium sports edition.html">
+Premium Sport+
+</a>
+
+
+<a href="founders.html">
+Founder's Genesis
+</a>
+
+
+<a href="membership.html">
+Membership
+</a>
+
+
+<a href="register.html">
+Register / Sign In
+</a>
+
+
+<a href="wait-list.html">
+Waitlist
+</a>
+
+
+<a href="#">
+About VELO
+</a>
+
+
+<a href="#">
+Size Guide
+</a>
+
+
+<a href="#">
+FAQs
+</a>
+
+
+<a href="#">
+Contact
+</a>
+
+
+</nav>
+
+
+</div>
+
+
+<!-- ==================================================
+OVERLAY
+================================================== -->
+
+<div
+id="overlay"
+onclick="closeMenu()"
+></div>
+
+
+<!-- ==================================================
+HERO
+================================================== -->
 
 <section class="hero">
 
-<img src="Screenshot_20260623-092953.jpg" class="logo" alt="VELO Logo">
+
+<img
+src="Screenshot_20260623-092953.jpg"
+class="logo"
+alt="VELO Logo"
+>
+
 
 <div class="small-title">
+
 NIGHTSHIFT DROP 01
+
 </div>
 
+
 <h1 class="main-title">
+
 PREMIUM EDITION
+
 </h1>
 
+
 <p class="subtitle">
+
 Built for people who move differently.
 Premium heavyweight construction.
 Premium detailing.
 Premium identity.
 This isn't made for everyone.
+
 </p>
+
 
 <div class="price-box">
 
-<div class="price-card">
-<h3>Pre-order NOW</h3>
-<p class="old-price">₦28,000</p>
-<p class="Pre-order-price">₦26,000</p>
-</div>
-    
-<div class="price-card">
-<h3>Launch Week</h3>
-<p class="old-price">₦28,000</p>
-<p class="launch-price">₦24,000</p>
-</div>
 
 <div class="price-card">
-<h3>Standard Price</h3>
-<p class="launch-price">₦20,000</p>
-</div>
+
+<h3>
+Pre-order NOW
+</h3>
+
+<p class="old-price">
+₦28,000
+</p>
+
+<p class="Pre-order-price">
+₦26,000
+</p>
 
 </div>
+
+
+<div class="price-card">
+
+<h3>
+Launch Week
+</h3>
+
+<p class="old-price">
+₦28,000
+</p>
+
+<p class="launch-price">
+₦24,000
+</p>
+
+</div>
+
+
+<div class="price-card">
+
+<h3>
+Standard Price
+</h3>
+
+<p class="launch-price">
+₦20,000
+</p>
+
+</div>
+
+
+</div>
+
 
 </section>
 
+
+<!-- ==================================================
+PREMIUM COLLECTION
+================================================== -->
+
 <section class="section">
 
+
 <h2 class="section-title">
+
 Premium Collection
+
 </h2>
+
 
 <div class="gallery">
 
-<div class="product-card">
-<img src="images/premium_edition.jpg" alt="">
-<div class="product-info">
-<h3>Black / Gold</h3>
-<p>MOVE DIFFERENT. Statement piece.</p>
-</div>
-</div>
 
 <div class="product-card">
-<img src="images/premium_edition.jpg" alt="">
+
+<img
+src="images/premium_edition.jpg"
+alt=""
+>
+
 <div class="product-info">
-<h3>Navy Blue</h3>
-<p>NIGHTSHIFT Division graphic.</p>
-</div>
+
+<h3>
+Black / Gold
+</h3>
+
+<p>
+MOVE DIFFERENT. Statement piece.
+</p>
+
 </div>
 
-<div class="product-card">
-<img src="images/premium_edition.jpg" alt="">
-<div class="product-info">
-<h3>Cream Premium</h3>
-<p>NOT FOR THE CROWD.</p>
-</div>
 </div>
 
+
 <div class="product-card">
-<img src="images/premium_edition.jpg" alt="">
+
+<img
+src="images/premium_edition.jpg"
+alt=""
+>
+
 <div class="product-info">
-<h3>Charcoal Grey</h3>
-<p>Midnight Schedule series.</p>
+
+<h3>
+Navy Blue
+</h3>
+
+<p>
+NIGHTSHIFT Division graphic.
+</p>
+
 </div>
+
 </div>
+
+
+<div class="product-card">
+
+<img
+src="images/premium_edition.jpg"
+alt=""
+>
+
+<div class="product-info">
+
+<h3>
+Cream Premium
+</h3>
+
+<p>
+NOT FOR THE CROWD.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="product-card">
+
+<img
+src="images/premium_edition.jpg"
+alt=""
+>
+
+<div class="product-info">
+
+<h3>
+Charcoal Grey
+</h3>
+
+<p>
+Midnight Schedule series.
+</p>
+
+</div>
+
+</div>
+
 
 </div>
 
 </section>
+
+
+<!-- ==================================================
+PREMIUM SPECIFICATIONS
+================================================== -->
 
 <section class="section">
 
+
 <h2 class="section-title">
+
 Premium Specifications
+
 </h2>
+
 
 <div class="specs">
 
-<div class="spec">
-<h3>280 GSM</h3>
-<p>Heavyweight premium cotton construction.</p>
-</div>
 
 <div class="spec">
-<h3>Oversized Fit</h3>
-<p>Modern relaxed silhouette.</p>
+
+<h3>
+280 GSM
+</h3>
+
+<p>
+Heavyweight premium cotton construction.
+</p>
+
 </div>
 
-<div class="spec">
-<h3>Premium Printing</h3>
-<p>Durable screen print designed for long-term wear.</p>
-</div>
 
 <div class="spec">
-<h3>Limited Production</h3>
-<p>Only 50 pieces produced worldwide.</p>
+
+<h3>
+Oversized Fit
+</h3>
+
+<p>
+Modern relaxed silhouette.
+</p>
+
 </div>
+
+
+<div class="spec">
+
+<h3>
+Premium Printing
+</h3>
+
+<p>
+Durable screen print designed for long-term wear.
+</p>
+
+</div>
+
+
+<div class="spec">
+
+<h3>
+Limited Production
+</h3>
+
+<p>
+Only 50 pieces produced worldwide.
+</p>
+
+</div>
+
 
 </div>
 
 </section>
+
+
+<!-- ==================================================
+BUY
+================================================== -->
 
 <section class="section buy-section">
 
+
 <h2>
+
 Become Part Of The VELOVERSE
+
 </h2>
 
+
 <p>
+
 When these sell out, they don't return.
+
 </p>
 
-<a href="waitlist.html" class="buy-btn">
+
+<a
+href="waitlist.html"
+class="buy-btn"
+>
+
 JOIN WAITLIST
+
 </a>
 
+
 </section>
+
+
+<!-- ==================================================
+FOOTER
+================================================== -->
 
 <footer class="footer">
 
@@ -302,5 +1209,10 @@ VELO® — MOVE DIFFERENT.
 
 </footer>
 
+
+<script src="script.js"></script>
+
+
 </body>
-</html>
+
+    </html> 
