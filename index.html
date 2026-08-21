@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,12 +12,454 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+<!-- ==================================================
+VELO HOMEPAGE — CINEMATIC ATMOSPHERE
+================================================== -->
+
+<style>
+
+/* ==================================================
+CINEMATIC VIDEO BACKGROUND
+================================================== */
+
+.homeVideoBackground{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:-3;
+
+    opacity:.42;
+
+    filter:
+        brightness(.48)
+        contrast(1.08)
+        saturate(.72);
+
+    pointer-events:none;
+}
+
+
+/* ==================================================
+CINEMATIC VIDEO OVERLAY
+================================================== */
+
+.homeVideoOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(5,5,5,.72) 0%,
+            rgba(8,8,8,.48) 28%,
+            rgba(8,8,8,.66) 58%,
+            rgba(5,5,5,.94) 100%
+        );
+
+    z-index:-2;
+
+    pointer-events:none;
+}
+
+
+/* ==================================================
+SOULFUL VELO ATMOSPHERE
+================================================== */
+
+body.homepage{
+
+    background:
+
+        radial-gradient(
+            circle at 50% 8%,
+            rgba(212,175,55,.10),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(8,8,8,.15),
+            rgba(7,7,7,.72)
+        );
+
+    position:relative;
+
+    color:var(--white);
+}
+
+
+/* ==================================================
+SUBTLE GOLD ATMOSPHERE
+================================================== */
+
+body.homepage::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:650px;
+    height:650px;
+
+    top:-300px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212,175,55,.09),
+            transparent 68%
+        );
+
+    filter:blur(35px);
+
+    pointer-events:none;
+
+    z-index:-1;
+}
+
+
+/* ==================================================
+HOMEPAGE CONTENT LAYER
+================================================== */
+
+body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
+
+    position:relative;
+
+    z-index:1;
+}
+
+
+/* ==================================================
+HERO ATMOSPHERE
+================================================== */
+
+.homepage .hero{
+
+    position:relative;
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding-top:140px;
+
+    padding-bottom:100px;
+
+}
+
+
+/* HERO LOGO */
+
+.homepage .hero-image img{
+
+    width:min(190px,45vw);
+
+    margin:auto;
+
+    filter:
+        drop-shadow(
+            0 15px 40px
+            rgba(0,0,0,.65)
+        );
+
+    transition:.4s ease;
+}
+
+
+.homepage .hero-image img:hover{
+
+    transform:scale(1.04);
+
+    filter:
+        drop-shadow(
+            0 18px 50px
+            rgba(212,175,55,.20)
+        );
+}
+
+
+/* HERO TITLE */
+
+.homepage .hero h1{
+
+    margin-top:25px;
+
+    text-shadow:
+        0 15px 55px
+        rgba(0,0,0,.8);
+}
+
+
+/* HERO MOTTO */
+
+.homepage .motto{
+
+    color:var(--gold2);
+
+    font-size:1.2rem;
+
+    font-weight:600;
+
+    letter-spacing:4px;
+
+    margin-top:8px;
+}
+
+
+/* HERO SUBTEXT */
+
+.homepage .sub-text{
+
+    max-width:700px;
+
+    margin-top:15px;
+
+    color:#d0d0d0;
+
+    line-height:1.9;
+}
+
+
+/* ==================================================
+SOULFUL BUTTONS
+================================================== */
+
+.homepage .primary-btn,
+.homepage .secondary-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        background .35s ease;
+}
+
+
+.homepage .primary-btn:hover,
+.homepage .secondary-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(212,175,55,.22);
+}
+
+
+/* ==================================================
+SECTIONS
+================================================== */
+
+.homepage section:not(.hero){
+
+    position:relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.012)
+        );
+
+    border-top:
+        1px solid
+        rgba(212,175,55,.07);
+
+}
+
+
+/* ==================================================
+SECTION HEADINGS
+================================================== */
+
+.homepage section h2{
+
+    text-shadow:
+        0 8px 30px
+        rgba(0,0,0,.7);
+}
+
+
+/* ==================================================
+DROP CARDS
+================================================== */
+
+.homepage .drop-card{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24,24,24,.94),
+            rgba(10,10,10,.94)
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.10);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.35);
+
+}
+
+
+.homepage .drop-card:hover{
+
+    border-color:
+        rgba(212,175,55,.55);
+
+    box-shadow:
+        0 22px 55px
+        rgba(0,0,0,.55);
+}
+
+
+/* ==================================================
+WHY VELO
+================================================== */
+
+.homepage .why-box{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.012)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+    transition:.35s ease;
+}
+
+
+.homepage .why-box:hover{
+
+    transform:translateY(-6px);
+
+    border-color:
+        rgba(212,175,55,.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212,175,55,.07),
+            rgba(255,255,255,.018)
+        );
+}
+
+
+/* ==================================================
+MEMBERSHIP ATMOSPHERE
+================================================== */
+
+.homepage .membership-preview{
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(212,175,55,.07),
+            transparent 60%
+        );
+}
+
+
+/* ==================================================
+FOOTER
+================================================== */
+
+.homepage footer{
+
+    position:relative;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(7,7,7,.85),
+            #050505
+        );
+
+}
+
+
+/* ==================================================
+MOBILE
+================================================== */
+
+@media(max-width:768px){
+
+    .homeVideoBackground{
+
+        opacity:.34;
+
+        filter:
+            brightness(.42)
+            contrast(1.05)
+            saturate(.65);
+
+    }
+
+    .homepage .hero{
+
+        padding-top:120px;
+
+        min-height:92vh;
+
+    }
+
+    .homepage .motto{
+
+        font-size:.95rem;
+
+        letter-spacing:2.5px;
+
+    }
+
+}
+
+</style>
+
 </head>
 
+
 <body class="homepage">
-  
-  </-- ==================================================
-     CINEMATIC VIDEO BACKGROUND
+
+
+<!-- ==================================================
+CINEMATIC VIDEO BACKGROUND
 ================================================== -->
 
 <video
@@ -26,15 +468,599 @@
     muted
     loop
     playsinline
+    preload="auto"
+    aria-hidden="true"
 >
-    <source src="20260821_012137144.mp4" type="video/mp4">
+
+    <source
+        src="20260821_012137144.mp4"
+        type="video/mp4"
+    >
+
 </video>
+
 
 <div class="homeVideoOverlay"></div>
 
-  
 
-<!-- MENU BUTTON -->
+<!-- ==================================================
+MENU BUTTON
+================================================== -->
+
+<div class="menu-btn" onclick="openMenu()">
+☰
+</div>
+
+
+<div class="cart-btn">
+
+🛒
+
+<span id="cart-count">0</span>
+
+</div>
+
+
+<!-- ==================================================
+SIDEBAR
+================================================== -->
+
+<div id="sidebar">
+
+<div class="sidebar-header">
+
+<img
+src="Screenshot_20260623-092953.jpg"
+alt="Velo logo"
+>
+
+<h2>VELO</h2>
+
+<div
+class="close-btn"
+onclick="closeMenu()"
+>
+✕
+</div>
+
+</div>
+
+
+<nav class="sidebar-links">
+
+<a href="index.html">
+Home
+</a>
+
+<a href="nightshift.html">
+Nightshift Collection
+</a>
+
+<a href="entry.html">
+Entry Edition
+</a>
+
+<a href="premium.html">
+Premium Edition
+</a>
+
+<a href="Premium sports edition.html">
+Premium Sport+
+</a>
+
+<a href="founders.html">
+Founder's Genesis
+</a>
+
+<a href="membership.html">
+Membership
+</a>
+
+<a href="register.html">
+Register / Sign In
+</a>
+
+<a href="wait-list.html">
+Waitlist
+</a>
+
+<a href="#">
+About VELO
+</a>
+
+<a href="#">
+Size Guide
+</a>
+
+<a href="#">
+FAQs
+</a>
+
+<a href="#">
+Contact
+</a>
+
+</nav>
+
+</div>
+
+
+<!-- ==================================================
+OVERLAY
+================================================== -->
+
+<div
+id="overlay"
+onclick="closeMenu()"
+></div>
+
+
+<!-- ==================================================
+HERO
+================================================== -->
+
+<section class="hero">
+
+
+<div class="hero-image">
+
+<img
+src="Screenshot_20260623-092953.jpg"
+alt="VELO logo"
+>
+
+</div>
+
+
+<h1>
+VELO
+</h1>
+
+
+<p class="motto">
+
+Velocity. Vision. Victory.
+
+</p>
+
+
+<p class="sub-text">
+
+Premium Nigerian Streetwear Built For The Ones Moving Different.
+
+</p>
+
+
+<div class="hero-buttons">
+
+
+<a
+href="nightshift.html"
+class="primary-btn"
+>
+
+SHOP NIGHTSHIFT
+
+</a>
+
+
+<a
+href="entry.html"
+class="primary-btn"
+>
+
+SHOP ENTRY EDITION
+
+</a>
+
+
+<a
+href="premium.html"
+class="primary-btn"
+>
+
+SHOP PREMIUM EDITION
+
+</a>
+
+
+<a
+href="premium+.html"
+class="primary-btn"
+>
+
+SHOP PREMIUM+ SPORTS EDITION
+
+</a>
+
+
+<a
+href="founders.html"
+class="primary-btn"
+>
+
+SHOP FOUNDER'S EDITION
+
+</a>
+
+
+<a
+href="waitlist.html"
+class="secondary-btn"
+>
+
+JOIN WAITLIST
+
+</a>
+
+
+<a
+href="register.html"
+class="primary-btn"
+>
+
+BECOME A MEMBER
+
+</a>
+
+
+</div>
+
+
+</section>
+
+
+<!-- ==================================================
+SLIDER
+================================================== -->
+
+<section class="slider-section">
+
+
+<h2>
+Current Drop
+</h2>
+
+
+<div class="card-slider">
+
+
+<a
+href="nightshift.html"
+class="drop-card"
+>
+
+
+<img
+src="Screenshot_20260623-091910.jpg"
+alt="Nightshift"
+>
+
+
+<div class="drop-content">
+
+<h3>
+NIGHTSHIFT
+</h3>
+
+<p>
+Explore The Entire Collection
+</p>
+
+</div>
+
+
+</a>
+
+
+<a
+href="Entry edition.html"
+class="drop-card"
+>
+
+
+<img
+src="1782202333116.jpg"
+alt="Entry"
+>
+
+
+<div class="drop-content">
+
+<h3>
+ENTRY
+</h3>
+
+<p>
+Built For Everyday Movement
+</p>
+
+</div>
+
+
+</a>
+
+
+<a
+href="Premium edition.html"
+class="drop-card"
+>
+
+
+<img
+src="1782202425163.jpg"
+alt="Premium"
+>
+
+
+<div class="drop-content">
+
+<h3>
+PREMIUM
+</h3>
+
+<p>
+Luxury Street Essentials
+</p>
+
+</div>
+
+
+</a>
+
+
+<a
+href="sport.html"
+class="drop-card"
+>
+
+<h3>
+SPORT+
+</h3>
+
+<p>
+Performance Meets Streetwear
+</p>
+
+</a>
+
+
+<a
+href="Founder's edition.html"
+class="drop-card"
+>
+
+
+<img
+src="1782202486288.jpg"
+alt="Founder"
+>
+
+
+<div class="drop-content">
+
+<h3>
+FOUNDERS
+</h3>
+
+<p>
+Genesis 20 Collection
+</p>
+
+</div>
+
+
+</a>
+
+
+<a
+href="nightshift.html"
+class="drop-card"
+>
+
+<h3>
+DROP 01
+</h3>
+
+<p>
+130 Pieces Only
+</p>
+
+</a>
+
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+WHY VELO
+================================================== -->
+
+<section class="why-velo">
+
+
+<h2>
+Why VELO
+</h2>
+
+
+<div class="why-grid">
+
+
+<div class="why-box">
+
+
+<h3>
+Premium Quality
+</h3>
+
+
+<p>
+
+Heavyweight fabrics.
+Built to last.
+
+</p>
+
+
+</div>
+
+
+<div class="why-box">
+
+
+<h3>
+Limited Drops
+</h3>
+
+
+<p>
+
+No endless restocks.
+When it's gone, it's gone.
+
+</p>
+
+
+</div>
+
+
+<div class="why-box">
+
+
+<h3>
+Nigerian Made
+</h3>
+
+
+<p>
+
+Designed for our culture.
+Built for the world.
+
+</p>
+
+
+</div>
+
+
+<div class="why-box">
+
+
+<h3>
+Future Focused
+</h3>
+
+
+<p>
+
+Not trends.
+Legacy.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ==================================================
+MEMBERSHIP
+================================================== -->
+
+<section class="membership-preview">
+
+
+<h2>
+Become A VELO Member
+</h2>
+
+
+<p>
+
+Get Early Access To Drops,
+Special Pricing,
+Priority Releases,
+And Community Rewards.
+
+</p>
+
+
+<a
+href="membership.html"
+class="primary-btn"
+>
+
+Explore Membership
+
+</a>
+
+
+</section>
+
+
+<!-- ==================================================
+FOOTER
+================================================== -->
+
+<footer>
+
+
+<h2>
+VELO
+</h2>
+
+
+<p>
+
+Velocity. Vision. Victory.
+
+</p>
+
+
+<div class="footer-links">
+
+
+<a href="#">
+Instagram
+</a>
+
+
+<a href="#">
+TikTok
+</a>
+
+
+<a href="#">
+WhatsApp
+</a>
+
+
+</div>
+
+
+<p class="copyright">
+
+© 2026 VELO
+
+</p>
+
+
+</footer>
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+  </html><!-- MENU BUTTON -->
 
 <div class="menu-btn" onclick="openMenu()">
 ☰
