@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,96 +8,968 @@
 
 <title>VELO | NIGHTSHIFT</title>
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* ==================================================
+VELO NIGHTSHIFT — CINEMATIC SYSTEM
+================================================== */
+
+body.nightshiftPage{
+
+    margin:0;
+
+    background:#070707;
+
+    color:white;
+
+    font-family:'Montserrat',Arial,Helvetica,sans-serif;
+
+    overflow-x:hidden;
+
+}
+
+
+/* ==================================================
+CINEMATIC VIDEO BACKGROUND
+================================================== */
+
+.nightshiftVideoBackground{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:-3;
+
+    opacity:.42;
+
+    filter:
+        brightness(.48)
+        contrast(1.08)
+        saturate(.72);
+
+    pointer-events:none;
+
+}
+
+
+/* ==================================================
+CINEMATIC OVERLAY
+================================================== */
+
+.nightshiftVideoOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(5,5,5,.74) 0%,
+            rgba(8,8,8,.48) 30%,
+            rgba(8,8,8,.68) 65%,
+            rgba(5,5,5,.96) 100%
+        );
+
+    z-index:-2;
+
+    pointer-events:none;
+
+}
+
+
+/* ==================================================
+GOLD ATMOSPHERE
+================================================== */
+
+body.nightshiftPage::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    top:-320px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(212,175,55,.10),
+            transparent 68%
+        );
+
+    filter:blur(35px);
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+
+/* ==================================================
+CONTENT LAYER
+================================================== */
+
+body.nightshiftPage > *:not(.nightshiftVideoBackground):not(.nightshiftVideoOverlay){
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+/* ==================================================
+HEADER
+================================================== */
+
+.nightshiftPage header{
+
+    background:rgba(7,7,7,.72);
+
+    backdrop-filter:blur(16px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+
+}
+
+
+/* ==================================================
+HERO
+================================================== */
+
+.nightshiftPage .hero{
+
+    min-height:100vh;
+
+    padding:
+        140px 8%
+        100px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+
+.nightshiftPage .hero h1{
+
+    font-size:
+        clamp(
+            4rem,
+            10vw,
+            8rem
+        );
+
+    font-weight:800;
+
+    letter-spacing:
+        clamp(4px,1vw,10px);
+
+    line-height:1;
+
+    margin-bottom:25px;
+
+    text-shadow:
+        0 15px 60px
+        rgba(0,0,0,.9);
+
+}
+
+
+.nightshiftPage .hero h1 span{
+
+    color:var(--gold);
+
+}
+
+
+.nightshiftPage .hero p{
+
+    max-width:750px;
+
+    margin:auto;
+
+    color:#d0d0d0;
+
+    font-size:1.05rem;
+
+    line-height:2;
+
+}
+
+
+/* ==================================================
+HERO BUTTON
+================================================== */
+
+.nightshiftPage .hero-btn{
+
+    display:inline-block;
+
+    margin-top:30px;
+
+    padding:
+        15px 34px;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold2),
+            var(--gold)
+        );
+
+    color:#080808;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(212,175,55,.20);
+
+    transition:.35s ease;
+
+}
+
+
+.nightshiftPage .hero-btn:hover{
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 18px 45px
+        rgba(212,175,55,.38);
+
+}
+
+
+/* ==================================================
+EDITION SECTIONS
+================================================== */
+
+.nightshiftPage .edition-section{
+
+    padding:
+        110px 8%;
+
+    position:relative;
+
+}
+
+
+.nightshiftPage .dark-section{
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.12),
+            rgba(10,10,10,.35)
+        );
+
+}
+
+
+/* ==================================================
+EDITION CONTAINER
+================================================== */
+
+.nightshiftPage .edition-container{
+
+    width:min(1200px,100%);
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:60px;
+
+    align-items:center;
+
+}
+
+
+/* ==================================================
+EDITION IMAGE
+================================================== */
+
+.nightshiftPage .edition-image{
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.012)
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.13);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.55);
+
+    transition:
+        transform .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
+
+}
+
+
+.nightshiftPage .edition-image:hover{
+
+    transform:translateY(-7px);
+
+    border-color:
+        rgba(212,175,55,.40);
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.65);
+
+}
+
+
+.nightshiftPage .edition-image img{
+
+    width:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+}
+
+
+/* ==================================================
+EDITION INFO
+================================================== */
+
+.nightshiftPage .edition-info{
+
+    padding:15px;
+
+}
+
+
+.nightshiftPage .edition-info h2{
+
+    font-size:
+        clamp(
+            2.3rem,
+            5vw,
+            4rem
+        );
+
+    margin:
+        12px 0 20px;
+
+    letter-spacing:2px;
+
+}
+
+
+.nightshiftPage .edition-info p{
+
+    color:#c8c8c8;
+
+    line-height:1.9;
+
+    max-width:600px;
+
+}
+
+
+/* ==================================================
+BADGES
+================================================== */
+
+.nightshiftPage .edition-badge{
+
+    display:inline-block;
+
+    padding:
+        8px 18px;
+
+    border:
+        1px solid
+        rgba(212,175,55,.45);
+
+    border-radius:50px;
+
+    color:var(--gold2);
+
+    font-size:.78rem;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+}
+
+
+.nightshiftPage .founders-badge{
+
+    border-color:
+        rgba(212,175,55,.65);
+
+}
+
+
+/* ==================================================
+COLOUR ROW
+================================================== */
+
+.nightshiftPage .colour-row{
+
+    display:flex;
+
+    gap:12px;
+
+    margin:
+        20px 0 25px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.nightshiftPage .colour{
+
+    width:38px;
+
+    height:38px;
+
+    border-radius:50%;
+
+    border:
+        2px solid
+        rgba(255,255,255,.18);
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.4);
+
+}
+
+
+.nightshiftPage .colour.black{
+
+    background:#050505;
+
+}
+
+
+.nightshiftPage .colour.ash{
+
+    background:#777;
+
+}
+
+
+.nightshiftPage .colour.cream{
+
+    background:#e4dccb;
+
+}
+
+
+.nightshiftPage .colour.denim{
+
+    background:#334d6d;
+
+}
+
+
+.nightshiftPage .colour.white{
+
+    background:#fff;
+
+}
+
+
+/* ==================================================
+FEATURE LIST
+================================================== */
+
+.nightshiftPage .edition-info ul{
+
+    margin:
+        25px 0;
+
+    padding:0;
+
+    list-style:none;
+
+}
+
+
+.nightshiftPage .edition-info li{
+
+    position:relative;
+
+    padding:
+        9px 0 9px 22px;
+
+    color:#d0d0d0;
+
+}
+
+
+.nightshiftPage .edition-info li::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:50%;
+
+    width:6px;
+
+    height:6px;
+
+    transform:
+        translateY(-50%);
+
+    border-radius:50%;
+
+    background:var(--gold);
+
+    box-shadow:
+        0 0 10px
+        rgba(212,175,55,.45);
+
+}
+
+
+/* ==================================================
+MEMBERSHIP CTA
+================================================== */
+
+.nightshiftPage .membership{
+
+    padding:
+        130px 8%;
+
+    text-align:center;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(212,175,55,.065),
+            transparent 60%
+        );
+
+}
+
+
+.nightshiftPage .membership h2{
+
+    font-size:
+        clamp(
+            2.2rem,
+            5vw,
+            4rem
+        );
+
+    letter-spacing:2px;
+
+}
+
+
+.nightshiftPage .membership h2 span{
+
+    color:var(--gold);
+
+}
+
+
+.nightshiftPage .membership p{
+
+    max-width:700px;
+
+    margin:
+        15px auto;
+
+    color:#c6c6c6;
+
+    line-height:1.9;
+
+}
+
+
+.nightshiftPage .membership-btn{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:
+        16px 38px;
+
+    border-radius:50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold2),
+            var(--gold)
+        );
+
+    color:#080808;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    transition:.35s ease;
+
+}
+
+
+.nightshiftPage .membership-btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 18px 45px
+        rgba(212,175,55,.35);
+
+}
+
+
+/* ==================================================
+FOOTER
+================================================== */
+
+.nightshiftPage footer{
+
+    background:#050505;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.07);
+
+}
+
+
+/* ==================================================
+MOBILE
+================================================== */
+
+@media(max-width:768px){
+
+    .nightshiftPage .hero{
+
+        min-height:90vh;
+
+        padding:
+            120px 22px
+            70px;
+
+    }
+
+
+    .nightshiftPage .edition-section{
+
+        padding:
+            80px 20px;
+
+    }
+
+
+    .nightshiftPage .edition-container{
+
+        grid-template-columns:1fr;
+
+        gap:35px;
+
+    }
+
+
+    .nightshiftPage .edition-container.reverse{
+
+        display:flex;
+
+        flex-direction:column-reverse;
+
+    }
+
+
+    .nightshiftPage .edition-info{
+
+        padding:0;
+
+    }
+
+
+    .nightshiftPage .edition-info h2{
+
+        font-size:2.4rem;
+
+    }
+
+
+    .nightshiftVideoBackground{
+
+        opacity:.32;
+
+        filter:
+            brightness(.42)
+            contrast(1.05)
+            saturate(.65);
+
+    }
+
+}
+
+</style>
 
 </head>
 
-<body>
 
-<!-- SIDEBAR -->
+<body class="nightshiftPage">
+
+
+<!-- ==================================================
+CINEMATIC VIDEO BACKGROUND
+================================================== -->
+
+<video
+    class="nightshiftVideoBackground"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+>
+
+    <source
+        src="20260821_012137144.mp4"
+        type="video/mp4"
+    >
+
+</video>
+
+
+<div class="nightshiftVideoOverlay"></div>
+
+
+<!-- ==================================================
+MENU BUTTON
+================================================== -->
+
+<div
+class="menu-btn"
+onclick="openMenu()"
+>
+☰
+</div>
+
+
+<!-- ==================================================
+SIDEBAR
+================================================== -->
 
 <div id="sidebar">
 
 <div class="sidebar-header">
 
-<img src="Screenshot_20260623-092953.jpg" alt="Velo logo">
+<img
+src="Screenshot_20260623-092953.jpg"
+alt="Velo logo"
+>
 
 <h2>VELO</h2>
 
-<div class="close-btn" onclick="closeMenu()">✕</div>
+<div
+class="close-btn"
+onclick="closeMenu()"
+>
+✕
+</div>
 
 </div>
 
+
 <nav class="sidebar-links">
 
-<a href="index.html">Home</a>
+<a href="index.html">
+Home
+</a>
 
-<a href="Nightshift.html">Nightshift Collection</a>
+<a href="nightshift.html">
+Nightshift Collection
+</a>
 
-<a href="Entry edition.html">Entry Edition</a>
+<a href="entry.html">
+Entry Edition
+</a>
 
-<a href="Premium edition.html">Premium Edition</a>
+<a href="premium.html">
+Premium Edition
+</a>
 
-<a href="Premium sports edition.html">Premium Sport+</a>
+<a href="Premium sports edition.html">
+Premium Sport+
+</a>
 
-<a href="Founder's edition.html">Founder's Genesis</a>
+<a href="founders.html">
+Founder's Genesis
+</a>
 
-<a href="membership.html">Membership</a>
+<a href="membership.html">
+Membership
+</a>
 
-<a href="register.html">Register / Sign In</a>
+<a href="register.html">
+Register / Sign In
+</a>
 
-<a href="Wait-list.html">Waitlist</a>
+<a href="wait-list.html">
+Waitlist
+</a>
 
-<a href="#">About VELO</a>
+<a href="#">
+About VELO
+</a>
 
-<a href="#">Size Guide</a>
+<a href="#">
+Size Guide
+</a>
 
-<a href="#">FAQs</a>
+<a href="#">
+FAQs
+</a>
 
-<a href="#">Contact</a>
+<a href="#">
+Contact
+</a>
 
 </nav>
 
 </div>
-  
+
+
+<!-- ==================================================
+HEADER
+================================================== -->
+
 <header>
 
 <div class="logo-wrapper">
-<img src="images/velo-logo.png" class="velo-logo" alt="VELO Logo">
-<div class="brand-name">VELO</div>
+
+<img
+src="images/velo-logo.png"
+class="velo-logo"
+alt="VELO Logo"
+>
+
+<div class="brand-name">
+VELO
+</div>
+
 </div>
 
 </header>
 
-<!-- HERO -->
+
+<!-- ==================================================
+HERO
+================================================== -->
 
 <section class="hero">
 
-<h1>NIGHT<span>SHIFT</span></h1>
+<h1>
+NIGHT<span>SHIFT</span>
+</h1>
 
 <p>
+
 Built for the ones still moving when the city sleeps.
 For dream chasers. Late workers. Creators. Hustlers.
 NIGHTSHIFT is VELO's first statement to the world.
+
 </p>
 
-<a href="#entry" class="hero-btn">
+<a
+href="#entry"
+class="hero-btn"
+>
 Explore Collection
 </a>
 
 </section>
 
-<!-- ENTRY -->
 
-<section id="entry" class="edition-section">
+<!-- ==================================================
+ENTRY
+================================================== -->
+
+<section
+id="entry"
+class="edition-section"
+>
 
 <div class="edition-container">
 
+
 <div class="edition-image">
-<img src="images/nightshift-entry.jpg" alt="Entry Edition">
+
+<img
+src="images/nightshift-entry.jpg"
+alt="Entry Edition"
+>
+
 </div>
+
 
 <div class="edition-info">
 
@@ -104,17 +977,25 @@ Explore Collection
 ENTRY EDITION
 </span>
 
-<h2>Nightshift Entry</h2>
+<h2>
+Nightshift Entry
+</h2>
 
 <p>
+
 Minimal.
 Clean.
 Daily wearable.
 
 The Entry Edition introduces the NIGHTSHIFT identity through premium oversized silhouettes and subtle branding.
+
 </p>
 
-<h3>Available Colours</h3>
+
+<h3>
+Available Colours
+</h3>
+
 
 <div class="colour-row">
 
@@ -128,21 +1009,36 @@ The Entry Edition introduces the NIGHTSHIFT identity through premium oversized s
 
 </div>
 
+
 <ul>
 
-<li>220 GSM Heavy Cotton</li>
+<li>
+220 GSM Heavy Cotton
+</li>
 
-<li>Oversized Street Fit</li>
+<li>
+Oversized Street Fit
+</li>
 
-<li>Drop Shoulder Cut</li>
+<li>
+Drop Shoulder Cut
+</li>
 
-<li>Premium Neck Rib</li>
+<li>
+Premium Neck Rib
+</li>
 
-<li>V-Slash Front Branding</li>
+<li>
+V-Slash Front Branding
+</li>
 
 </ul>
 
-<a href="entry-edition.html" class="hero-btn">
+
+<a
+href="entry-edition.html"
+class="hero-btn"
+>
 View Entry Edition
 </a>
 
@@ -152,15 +1048,28 @@ View Entry Edition
 
 </section>
 
-<!-- PREMIUM -->
 
-<section id="premium" class="edition-section dark-section">
+<!-- ==================================================
+PREMIUM
+================================================== -->
+
+<section
+id="premium"
+class="edition-section dark-section"
+>
 
 <div class="edition-container reverse">
 
+
 <div class="edition-image">
-<img src="images/nightshift-premium.jpg" alt="Premium Edition">
+
+<img
+src="images/nightshift-premium.jpg"
+alt="Premium Edition"
+>
+
 </div>
+
 
 <div class="edition-info">
 
@@ -168,17 +1077,25 @@ View Entry Edition
 PREMIUM EDITION
 </span>
 
-<h2>Nightshift Premium</h2>
+<h2>
+Nightshift Premium
+</h2>
 
 <p>
+
 For those who want more detail.
 More presence.
 More prestige.
 
 Gold accents and elevated finishing create a stronger luxury streetwear statement.
+
 </p>
 
-<h3>Available Colours</h3>
+
+<h3>
+Available Colours
+</h3>
+
 
 <div class="colour-row">
 
@@ -194,21 +1111,36 @@ Gold accents and elevated finishing create a stronger luxury streetwear statemen
 
 </div>
 
+
 <ul>
 
-<li>280 GSM Premium Fabric</li>
+<li>
+280 GSM Premium Fabric
+</li>
 
-<li>Gold VELO Detailing</li>
+<li>
+Gold VELO Detailing
+</li>
 
-<li>Premium Packaging</li>
+<li>
+Premium Packaging
+</li>
 
-<li>Luxury Oversized Fit</li>
+<li>
+Luxury Oversized Fit
+</li>
 
-<li>Collector Drop</li>
+<li>
+Collector Drop
+</li>
 
 </ul>
 
-<a href="premium-edition.html" class="hero-btn">
+
+<a
+href="premium-edition.html"
+class="hero-btn"
+>
 View Premium Edition
 </a>
 
@@ -218,15 +1150,28 @@ View Premium Edition
 
 </section>
 
-<!-- SPORT -->
 
-<section id="sport" class="edition-section">
+<!-- ==================================================
+SPORT
+================================================== -->
+
+<section
+id="sport"
+class="edition-section"
+>
 
 <div class="edition-container">
 
+
 <div class="edition-image">
-<img src="images/nightshift-sport.jpg" alt="Sport Edition">
+
+<img
+src="images/nightshift-sport.jpg"
+alt="Sport Edition"
+>
+
 </div>
+
 
 <div class="edition-info">
 
@@ -234,31 +1179,53 @@ View Premium Edition
 SPORT EDITION
 </span>
 
-<h2>Nightshift Sport+</h2>
+<h2>
+Nightshift Sport+
+</h2>
 
 <p>
+
 Streetwear meets athletic culture.
 
 Engineered for movement while preserving the oversized VELO silhouette.
+
 </p>
 
-<h3>Features</h3>
+
+<h3>
+Features
+</h3>
+
 
 <ul>
 
-<li>Moisture Control Fabric</li>
+<li>
+Moisture Control Fabric
+</li>
 
-<li>Sport Side Panels</li>
+<li>
+Sport Side Panels
+</li>
 
-<li>Breathable Construction</li>
+<li>
+Breathable Construction
+</li>
 
-<li>Premium Street Fit</li>
+<li>
+Premium Street Fit
+</li>
 
-<li>Training + Casual Wear</li>
+<li>
+Training + Casual Wear
+</li>
 
 </ul>
 
-<a href="premium-sport.html" class="hero-btn">
+
+<a
+href="premium-sport.html"
+class="hero-btn"
+>
 View Sport Edition
 </a>
 
@@ -268,15 +1235,28 @@ View Sport Edition
 
 </section>
 
-<!-- FOUNDERS -->
 
-<section id="founders" class="edition-section founders-section">
+<!-- ==================================================
+FOUNDERS
+================================================== -->
+
+<section
+id="founders"
+class="edition-section founders-section"
+>
 
 <div class="edition-container reverse">
 
+
 <div class="edition-image">
-<img src="images/nightshift-founders.jpg" alt="Founders Edition">
+
+<img
+src="images/nightshift-founders.jpg"
+alt="Founders Edition"
+>
+
 </div>
+
 
 <div class="edition-info">
 
@@ -284,9 +1264,12 @@ View Sport Edition
 FOUNDER'S GENESIS 20
 </span>
 
-<h2>Genesis Collection</h2>
+<h2>
+Genesis Collection
+</h2>
 
 <p>
+
 Only 20 pieces worldwide.
 
 Hand numbered.
@@ -294,9 +1277,14 @@ Certified.
 Never restocked.
 
 The most exclusive NIGHTSHIFT garment ever produced.
+
 </p>
 
-<h3>Colours</h3>
+
+<h3>
+Colours
+</h3>
+
 
 <div class="colour-row">
 
@@ -306,21 +1294,36 @@ The most exclusive NIGHTSHIFT garment ever produced.
 
 </div>
 
+
 <ul>
 
-<li>350 GSM Luxury Weight</li>
+<li>
+350 GSM Luxury Weight
+</li>
 
-<li>Genesis Certificate</li>
+<li>
+Genesis Certificate
+</li>
 
-<li>Individually Numbered</li>
+<li>
+Individually Numbered
+</li>
 
-<li>Collector Packaging</li>
+<li>
+Collector Packaging
+</li>
 
-<li>1/20 – 20/20 Only</li>
+<li>
+1/20 – 20/20 Only
+</li>
 
 </ul>
 
-<a href="founders-edition.html" class="hero-btn">
+
+<a
+href="founders-edition.html"
+class="hero-btn"
+>
 View Founders Edition
 </a>
 
@@ -330,32 +1333,56 @@ View Founders Edition
 
 </section>
 
-<!-- FINAL CTA -->
+
+<!-- ==================================================
+FINAL CTA
+================================================== -->
 
 <section class="membership">
 
 <h2>
-Join The <span>NIGHTSHIFT</span>
+
+Join The
+<span>NIGHTSHIFT</span>
+
 </h2>
 
+
 <p>
+
 Become one of the first supporters of VELO.
 Get early access, exclusive drops, private offers and future collaborations.
+
 </p>
 
-<a href="waitlist.html" class="membership-btn">
+
+<a
+href="waitlist.html"
+class="membership-btn"
+>
+
 Join Waitlist
+
 </a>
 
 </section>
 
+
+<!-- ==================================================
+FOOTER
+================================================== -->
+
 <footer>
 
-<p>© 2026 VELO. All Rights Reserved.</p>
+<p>
+© 2026 VELO. All Rights Reserved.
+</p>
 
 </footer>
 
-<script src="js/script.js"></script>
+
+<script src="script.js"></script>
 
 </body>
-  </html>
+
+</html>
