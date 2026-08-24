@@ -3,266 +3,217 @@ VELO v2.0
 Designed by Gamer-X + ChatGPT
 ==================================================*/
 
-/* RESET */
+/*==================================================
+RESET
+==================================================*/
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
-
-/* ROOT COLORS */
 
 :root{
 
---gold:#D4AF37;
---gold2:#FFD86A;
---black:#0A0A0A;
---black2:#111111;
---black3:#1B1B1B;
+    --gold:#D4AF37;
+    --gold2:#FFD86A;
 
---white:#FFFFFF;
+    --black:#0A0A0A;
+    --black2:#111111;
+    --black3:#1B1B1B;
 
---grey:#B8B8B8;
+    --white:#FFFFFF;
 
---transition:.35s ease;
+    --grey:#B8B8B8;
 
+    --transition:.35s ease;
 }
-
-/* BODY */
 
 body{
 
-font-family:'Montserrat',sans-serif;
+    font-family:'Montserrat',sans-serif;
 
-background:var(--black);
+    background:var(--black);
 
-color:var(--white);
+    color:var(--white);
 
-overflow-x:hidden;
+    overflow-x:hidden;
 
-line-height:1.7;
+    line-height:1.7;
 
-transition:.4s;
-
+    transition:.4s;
 }
-
-/* LINKS */
 
 a{
 
-text-decoration:none;
+    text-decoration:none;
 
-color:white;
+    color:white;
 
-transition:var(--transition);
-
+    transition:var(--transition);
 }
-
-/* LISTS */
 
 ul{
-
-list-style:none;
-
+    list-style:none;
 }
-
-/* IMAGES */
 
 img{
 
-display:block;
+    display:block;
 
-max-width:100%;
+    max-width:100%;
 
-height:auto;
-
+    height:auto;
 }
-
-/* SECTIONS */
 
 section{
 
-padding:90px 8%;
-
+    padding:90px 8%;
 }
-
-/* CONTAINER */
 
 .container{
 
-width:min(1200px,100%);
+    width:min(1200px,100%);
 
-margin:auto;
-
+    margin:auto;
 }
-
-/* HEADINGS */
 
 h1{
 
-font-size:5rem;
+    font-size:5rem;
 
-font-weight:800;
+    font-weight:800;
 
-letter-spacing:5px;
-
+    letter-spacing:5px;
 }
 
 h2{
 
-font-size:2.7rem;
+    font-size:2.7rem;
 
-font-weight:700;
+    font-weight:700;
 
-margin-bottom:20px;
-
+    margin-bottom:20px;
 }
 
 h3{
-
-font-size:1.5rem;
-
+    font-size:1.5rem;
 }
 
 p{
 
-font-size:1rem;
+    font-size:1rem;
 
-color:var(--grey);
-
+    color:var(--grey);
 }
-
-/* GOLD TEXT */
 
 .gold{
-
-color:var(--gold);
-
+    color:var(--gold);
 }
-
-/* SELECTION */
 
 ::selection{
 
-background:var(--gold);
+    background:var(--gold);
 
-color:black;
-
+    color:black;
 }
 
-/* SCROLLBAR */
-
 ::-webkit-scrollbar{
-
-width:9px;
-
+    width:9px;
 }
 
 ::-webkit-scrollbar-track{
-
-background:#111;
-
+    background:#111;
 }
 
 ::-webkit-scrollbar-thumb{
 
-background:var(--gold);
+    background:var(--gold);
 
-border-radius:50px;
-
+    border-radius:50px;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-
-background:var(--gold2);
-
+    background:var(--gold2);
 }
 
-/* =========================
+
 /*==================================================
 HEADER
 ==================================================*/
 
 header{
 
-position:fixed;
+    position:fixed;
 
-top:0;
-left:0;
+    top:0;
+    left:0;
 
-width:100%;
+    width:100%;
 
-height:85px;
+    height:85px;
 
-display:flex;
+    display:flex;
 
-justify-content:center;
+    justify-content:center;
 
-align-items:center;
+    align-items:center;
 
-padding:0 40px;
+    padding:0 40px;
 
-background:rgba(8,8,8,.88);
+    background:rgba(8,8,8,.88);
 
-backdrop-filter:blur(16px);
+    backdrop-filter:blur(16px);
 
-border-bottom:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid rgba(255,255,255,.05);
 
-z-index:999;
+    z-index:999;
 
-transition:.35s ease;
-
+    transition:.35s ease;
 }
 
 header.scrolled{
 
-background:#0b0b0b;
+    background:#0b0b0b;
 
-box-shadow:0 8px 30px rgba(0,0,0,.45);
-
+    box-shadow:0 8px 30px rgba(0,0,0,.45);
 }
 
 .logo-wrapper{
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:15px;
-
+    gap:15px;
 }
 
 .velo-logo{
 
-height:60px;
+    height:60px;
 
-transition:.4s;
+    transition:.4s;
 
-cursor:pointer;
-
+    cursor:pointer;
 }
 
 .velo-logo:hover{
-
-transform:scale(1.05);
-
+    transform:scale(1.05);
 }
 
 .brand-name{
 
-font-size:28px;
+    font-size:28px;
 
-font-weight:800;
+    font-weight:800;
 
-letter-spacing:4px;
+    letter-spacing:4px;
 
-color:white;
-
+    color:white;
 }
 
 
@@ -272,46 +223,120 @@ MENU BUTTON
 
 .menu-btn{
 
-position:fixed;
+    position:fixed;
 
-top:28px;
+    top:28px;
 
-left:28px;
+    left:28px;
 
-width:48px;
+    width:48px;
 
-height:48px;
+    height:48px;
 
-display:flex;
+    display:flex;
 
-justify-content:center;
+    justify-content:center;
 
-align-items:center;
+    align-items:center;
 
-font-size:30px;
+    font-size:30px;
 
-border-radius:12px;
+    border-radius:12px;
 
-background:rgba(255,255,255,.05);
+    background:rgba(255,255,255,.05);
 
-backdrop-filter:blur(8px);
+    backdrop-filter:blur(8px);
 
-cursor:pointer;
+    cursor:pointer;
 
-z-index:2000;
+    z-index:2000;
 
-transition:.35s;
-
+    transition:.35s;
 }
 
 .menu-btn:hover{
 
-background:var(--gold);
+    background:var(--gold);
 
-color:black;
+    color:black;
 
-transform:rotate(90deg);
+    transform:rotate(90deg);
+}
 
+
+/*==================================================
+CART
+==================================================*/
+
+.cart-btn{
+
+    position:fixed;
+
+    top:28px;
+
+    right:28px;
+
+    width:48px;
+
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(8px);
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    z-index:2000;
+
+    transition:.35s;
+}
+
+.cart-btn:hover{
+
+    background:var(--gold);
+
+    color:#000;
+
+    transform:translateY(-2px);
+}
+
+#cart-count{
+
+    position:absolute;
+
+    top:-6px;
+
+    right:-6px;
+
+    min-width:20px;
+
+    height:20px;
+
+    padding:0 5px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:var(--gold);
+
+    color:#050505;
+
+    border-radius:50px;
+
+    font-size:11px;
+
+    font-weight:800;
 }
 
 
@@ -321,26 +346,23 @@ OVERLAY
 
 #overlay{
 
-position:fixed;
+    position:fixed;
 
-top:0;
+    top:0;
+    left:0;
 
-left:0;
+    width:100%;
+    height:100%;
 
-width:100%;
+    background:rgba(0,0,0,.65);
 
-height:100%;
+    display:none;
 
-background:rgba(0,0,0,.65);
+    opacity:0;
 
-display:none;
+    transition:.35s;
 
-opacity:0;
-
-transition:.35s;
-
-z-index:1499;
-
+    z-index:1499;
 }
 
 
@@ -350,630 +372,835 @@ SIDEBAR
 
 #sidebar{
 
-position:fixed;
+    position:fixed;
 
-top:0;
+    top:0;
 
-left:-340px;
+    left:-340px;
 
-width:320px;
+    width:320px;
 
-height:100vh;
+    height:100vh;
 
-background:#101010;
+    background:#101010;
 
-padding:35px;
+    padding:35px;
 
-overflow-y:auto;
+    overflow-y:auto;
 
-transition:.45s ease;
+    transition:.45s ease;
 
-box-shadow:15px 0 40px rgba(0,0,0,.45);
+    box-shadow:15px 0 40px rgba(0,0,0,.45);
 
-z-index:1500;
-
+    z-index:1500;
 }
-
-
-/*==================================================
-CLOSE BUTTON
-==================================================*/
 
 .close-btn{
 
-font-size:28px;
+    font-size:28px;
 
-cursor:pointer;
+    cursor:pointer;
 
-margin-bottom:25px;
+    margin-bottom:25px;
 
-transition:.3s;
-
+    transition:.3s;
 }
 
 .close-btn:hover{
 
-color:var(--gold);
+    color:var(--gold);
 
-transform:rotate(90deg);
-
+    transform:rotate(90deg);
 }
-
-
-/*==================================================
-SIDEBAR LOGO
-==================================================*/
 
 .sidebar-logo{
 
-text-align:center;
+    text-align:center;
 
-margin-bottom:30px;
-
+    margin-bottom:30px;
 }
 
 .sidebar-logo img{
 
-width:70px;
+    width:70px;
 
-margin:auto;
+    margin:auto;
 
-margin-bottom:10px;
-
+    margin-bottom:10px;
 }
 
 .sidebar-logo h2{
 
-font-size:26px;
+    font-size:26px;
 
-letter-spacing:3px;
+    letter-spacing:3px;
 
-margin:0;
-
+    margin:0;
 }
 
 .sidebar-logo p{
 
-font-size:13px;
+    font-size:13px;
 
-color:var(--grey);
-
+    color:var(--grey);
 }
-
-
-/*==================================================
-SIDEBAR LINKS
-==================================================*/
 
 #sidebar a{
 
-display:block;
+    display:block;
 
-padding:16px 18px;
+    padding:16px 18px;
 
-margin-bottom:12px;
+    margin-bottom:12px;
 
-border-radius:14px;
+    border-radius:14px;
 
-background:#171717;
+    background:#171717;
 
-font-size:15px;
+    font-size:15px;
 
-font-weight:500;
+    font-weight:500;
 
-color:white;
+    color:white;
 
-transition:.35s;
-
+    transition:.35s;
 }
 
 #sidebar a:hover{
 
-background:var(--gold);
+    background:var(--gold);
 
-color:black;
+    color:black;
 
-padding-left:28px;
-
+    padding-left:28px;
 }
 
-
-/*==================================================
-SCROLLBAR
-==================================================*/
-
 #sidebar::-webkit-scrollbar{
-
-width:5px;
-
+    width:5px;
 }
 
 #sidebar::-webkit-scrollbar-thumb{
 
-background:var(--gold);
+    background:var(--gold);
 
-border-radius:30px;
-
+    border-radius:30px;
 }
-/* =========================
-   HERO
-========================= */
+
+
+/*==================================================
+GENERAL HERO
+==================================================*/
 
 .hero{
-padding-top:140px;
-padding-bottom:90px;
-text-align:center;
-width:100%;
+
+    padding-top:140px;
+
+    padding-bottom:90px;
+
+    text-align:center;
+
+    width:100%;
 }
 
 .hero h1{
-font-size:80px;
-font-weight:800;
-letter-spacing:5px;
-color:white;
+
+    font-size:80px;
+
+    font-weight:800;
+
+    letter-spacing:5px;
+
+    color:white;
 }
 
 .hero h1 span{
-color:#d4af37;
+    color:var(--gold);
 }
 
 .hero p{
-max-width:700px;
-margin:auto;
-margin-top:20px;
-font-size:18px;
-line-height:1.8;
-color:#bfbfbf;
+
+    max-width:700px;
+
+    margin:auto;
+
+    margin-top:20px;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    color:#bfbfbf;
 }
 
 .hero-btn{
-display:inline-block;
-margin-top:35px;
-padding:14px 32px;
-background:#d4af37;
-color:black;
-font-weight:700;
-text-decoration:none;
-border-radius:50px;
-transition:.3s;
+
+    display:inline-block;
+
+    margin-top:35px;
+
+    padding:14px 32px;
+
+    background:var(--gold);
+
+    color:black;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    border-radius:50px;
+
+    transition:.3s;
 }
 
 .hero-btn:hover{
-transform:translateY(-3px);
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(212,175,55,.28);
 }
 
-/* =========================
-   NIGHTSHIFT CARDS
-========================= */
+
+/*==================================================
+NIGHTSHIFT CARDS
+==================================================*/
 
 .slider-section{
-padding:40px 0;
+
+    padding:40px 0;
 }
 
 .slider-title{
-text-align:center;
-font-size:38px;
-margin-bottom:25px;
+
+    text-align:center;
+
+    font-size:38px;
+
+    margin-bottom:25px;
 }
 
 .slider-title span{
-color:#d4af37;
+    color:var(--gold);
 }
 
 .card-slider{
-display:flex;
-gap:20px;
-overflow-x:auto;
-scrollbar-width:none;
-padding:20px;
+
+    display:flex;
+
+    gap:20px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+
+    padding:20px;
 }
 
 .card-slider::-webkit-scrollbar{
-display:none;
+    display:none;
 }
 
 .drop-card{
-min-width:300px;
-background:#111;
-border-radius:25px;
-overflow:hidden;
-border:1px solid rgba(255,215,0,.1);
-transition:.35s;
-cursor:pointer;
+
+    min-width:300px;
+
+    background:#111;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,215,0,.1);
+
+    transition:.35s;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.3);
 }
 
 .drop-card:hover{
-transform:translateY(-8px);
-border-color:#d4af37;
+
+    transform:translateY(-8px);
+
+    border-color:var(--gold);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.5);
 }
 
 .drop-card img{
-width:100%;
-height:280px;
-object-fit:cover;
+
+    width:100%;
+
+    height:280px;
+
+    object-fit:cover;
 }
 
 .drop-content{
-padding:20px;
+    padding:20px;
 }
 
 .drop-content h3{
-font-size:24px;
-margin-bottom:10px;
+
+    font-size:24px;
+
+    margin-bottom:10px;
 }
 
 .drop-content p{
-color:#c9c9c9;
-line-height:1.7;
+
+    color:#c9c9c9;
+
+    line-height:1.7;
 }
 
 .drop-btn{
-display:inline-block;
-margin-top:15px;
-padding:10px 18px;
-border-radius:30px;
-background:#d4af37;
-color:black;
-text-decoration:none;
-font-weight:700;
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    background:var(--gold);
+
+    color:black;
+
+    text-decoration:none;
+
+    font-weight:700;
 }
 
-/* =========================
-   MEMBERSHIP SECTION
-========================= */
+
+/*==================================================
+MEMBERSHIP SECTION
+==================================================*/
 
 .membership{
-padding:90px 20px;
-text-align:center;
+
+    padding:90px 20px;
+
+    text-align:center;
 }
 
 .membership h2{
-font-size:50px;
-margin-bottom:15px;
+
+    font-size:50px;
+
+    margin-bottom:15px;
 }
 
 .membership h2 span{
-color:#d4af37;
+    color:var(--gold);
 }
 
 .membership p{
-max-width:700px;
-margin:auto;
-color:#c4c4c4;
-line-height:1.8;
+
+    max-width:700px;
+
+    margin:auto;
+
+    color:#c4c4c4;
+
+    line-height:1.8;
 }
 
 .membership-btn{
-margin-top:30px;
-display:inline-block;
-padding:15px 35px;
-background:#d4af37;
-color:black;
-font-weight:700;
-border-radius:50px;
-text-decoration:none;
+
+    margin-top:30px;
+
+    display:inline-block;
+
+    padding:15px 35px;
+
+    background:var(--gold);
+
+    color:black;
+
+    font-weight:700;
+
+    border-radius:50px;
+
+    text-decoration:none;
 }
 
-/* =========================
-   FOOTER
-========================= */
+
+/*==================================================
+FOOTER
+==================================================*/
 
 footer{
-margin-top:80px;
-padding:40px;
-text-align:center;
-border-top:1px solid rgba(255,255,255,.08);
-color:#888;
+
+    margin-top:80px;
+
+    padding:40px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    color:#888;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
 
-@media(max-width:768px){
-
-.hero h1{
-font-size:48px;
-}
-
-.hero p{
-font-size:15px;
-padding:0 20px;
-}
-
-.brand-name{
-font-size:20px;
-}
-
-.drop-card{
-min-width:270px;
-}
-
-.membership h2{
-font-size:34px;
-}
-
-}
-
-/* =========================
-IMAGE QUALITY
-========================= */
-
-img{
-display:block;
-max-width:100%;
-}
-
-/* =========================
+/*==================================================
 SMOOTH PAGE LOAD
-========================= */
+==================================================*/
 
 body.loaded{
-animation:fadeIn .7s ease;
+    animation:fadeIn .7s ease;
 }
 
 @keyframes fadeIn{
 
-from{
-opacity:0;
-transform:translateY(10px);
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
 }
 
-to{
-opacity:1;
-transform:translateY(0);
-}
 
-}
-
-/* =========================
-CARD SHADOW
-========================= */
-
-.drop-card{
-box-shadow:
-0 10px 25px rgba(0,0,0,.3);
-}
-
-/* =========================
+/*==================================================
 BUTTON EFFECT
-========================= */
+==================================================*/
 
 .hero-btn,
 .drop-btn,
 .membership-btn{
 
-transition:
-all .3s ease;
-
+    transition:
+        all .3s ease;
 }
 
 .hero-btn:hover,
 .drop-btn:hover,
 .membership-btn:hover{
 
-transform:translateY(-4px);
-box-shadow:
-0 8px 20px rgba(212,175,55,.35);
+    transform:translateY(-4px);
 
+    box-shadow:
+        0 8px 20px
+        rgba(212,175,55,.35);
 }
 
+
 /*==================================================
-VELO ENTRY EDITION — CINEMATIC SYSTEM
+VELO HOMEPAGE — CINEMATIC SYSTEM
 ==================================================*/
 
-/* FIX FOR BROKEN SECTION COMMENT
-================================================== */
+/*
+   IMPORTANT:
+   The homepage video is fixed behind the entire
+   page. It is NOT part of the normal document flow.
+*/
 
-/* ENTRY PAGE */
+body.homepage{
 
-body.entryPage{
+    position:relative;
+
     background:
-        radial-gradient(
-            circle at 50% 10%,
-            rgba(212,175,55,.08),
-            transparent 35%
-        ),
-        linear-gradient(
-            180deg,
-            #080808 0%,
-            #0d0d0d 45%,
-            #070707 100%
-        );
+        #070707;
 
     color:var(--white);
+
+    min-height:100vh;
 }
 
 
 /*==================================================
-ENTRY VIDEO BACKGROUND
+HOMEPAGE VIDEO
 ==================================================*/
 
-.entryVideoBackground{
+.homeVideoBackground{
 
     position:fixed;
 
     inset:0;
 
-    width:100%;
-    height:100%;
+    width:100vw;
+
+    height:100vh;
 
     object-fit:cover;
 
-    z-index:-3;
+    object-position:center;
 
-    opacity:.48;
+    z-index:-10;
+
+    opacity:.42;
 
     filter:
-        brightness(.55)
+        brightness(.48)
         contrast(1.08)
-        saturate(.75);
+        saturate(.72);
 
     pointer-events:none;
 }
 
 
-/* CINEMATIC OVERLAY */
+/*==================================================
+HOMEPAGE VIDEO OVERLAY
+==================================================*/
 
-.entryVideoOverlay{
+.homeVideoOverlay{
 
     position:fixed;
 
     inset:0;
 
+    width:100vw;
+
+    height:100vh;
+
     background:
 
         linear-gradient(
             180deg,
-            rgba(5,5,5,.68) 0%,
-            rgba(8,8,8,.48) 35%,
-            rgba(8,8,8,.72) 75%,
-            rgba(5,5,5,.94) 100%
+            rgba(4,4,4,.72) 0%,
+            rgba(7,7,7,.48) 30%,
+            rgba(7,7,7,.68) 62%,
+            rgba(4,4,4,.95) 100%
         );
 
-    z-index:-2;
+    z-index:-9;
 
     pointer-events:none;
 }
 
 
-/* SUBTLE GOLD ATMOSPHERE */
+/*==================================================
+HOMEPAGE ATMOSPHERE
+==================================================*/
 
-.entryPage::before{
+body.homepage::before{
 
     content:"";
 
     position:fixed;
 
-    width:600px;
-    height:600px;
-
-    top:-250px;
-    left:50%;
-
-    transform:translateX(-50%);
+    inset:0;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(212,175,55,.10),
-            transparent 68%
-        );
 
-    filter:blur(30px);
+        radial-gradient(
+            circle at 50% 8%,
+            rgba(212,175,55,.09),
+            transparent 32%
+        );
 
     pointer-events:none;
 
-    z-index:-1;
+    z-index:-8;
 }
 
 
 /*==================================================
-ENTRY HERO
+HOMEPAGE CONTENT LAYER
 ==================================================*/
 
-.entryHero{
+body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
 
     position:relative;
 
+    z-index:1;
+}
+
+
+/*==================================================
+HOMEPAGE HERO
+==================================================*/
+
+.homepage .hero{
+
     min-height:100vh;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
 
     padding:
         140px 8%
         100px;
 
-    overflow:hidden;
-}
+    display:flex;
 
+    flex-direction:column;
 
-.entryHeroContent{
+    justify-content:center;
 
-    width:min(850px,100%);
+    align-items:center;
+
+    text-align:center;
 
     position:relative;
 
-    z-index:2;
+    overflow:hidden;
 
-    animation:
-        entryHeroReveal
-        1s ease both;
-}
-
-
-.entryHeroContent h1{
-
-    font-size:clamp(
-        3rem,
-        8vw,
-        6.5rem
-    );
-
-    letter-spacing:
-        clamp(3px,1vw,9px);
-
-    line-height:1;
-
-    margin-bottom:25px;
-
-    text-shadow:
-        0 10px 50px rgba(0,0,0,.8);
-}
-
-
-.entryHeroContent h3{
-
-    color:var(--gold2);
-
-    font-size:
-        clamp(
-            1.1rem,
-            2vw,
-            1.6rem
-        );
-
-    font-weight:600;
-
-    letter-spacing:1px;
-
-    margin-bottom:25px;
-}
-
-
-.entryHeroContent p{
-
-    max-width:650px;
-
-    margin:auto;
-
-    line-height:1.9;
-
-    color:#d0d0d0;
-
+    background:transparent;
 }
 
 
 /*==================================================
-GOLD BUTTON
+HERO LOGO
 ==================================================*/
 
-.entryPage .buyBtn{
+.homepage .hero-image{
 
-    display:inline-block;
+    position:relative;
 
-    margin-top:35px;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:5px;
+}
+
+.homepage .hero-image img{
+
+    width:min(190px,45vw);
+
+    height:auto;
+
+    margin:auto;
+
+    filter:
+        drop-shadow(
+            0 15px 40px
+            rgba(0,0,0,.72)
+        );
+
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+}
+
+.homepage .hero-image img:hover{
+
+    transform:scale(1.04);
+
+    filter:
+        drop-shadow(
+            0 18px 50px
+            rgba(212,175,55,.20)
+        );
+}
+
+
+/*==================================================
+VELO HERO WORDMARK
+==================================================*/
+
+.homepage .hero h1{
+
+    margin-top:18px;
+
+    font-size:
+        clamp(
+            3.2rem,
+            10vw,
+            7rem
+        );
+
+    line-height:.95;
+
+    letter-spacing:
+        clamp(
+            5px,
+            1.5vw,
+            14px
+        );
+
+    font-weight:800;
+
+    color:#fff;
+
+    text-shadow:
+        0 15px 55px
+        rgba(0,0,0,.85);
+}
+
+
+/*==================================================
+PRIMARY SLOGAN
+==================================================*/
+
+.homepage .hero .motto{
+
+    margin-top:18px;
+
+    color:#fff;
+
+    font-size:
+        clamp(
+            1.15rem,
+            2.8vw,
+            1.8rem
+        );
+
+    font-weight:800;
+
+    letter-spacing:
+        clamp(
+            3px,
+            .8vw,
+            8px
+        );
+
+    text-transform:uppercase;
+
+    text-shadow:
+        0 8px 30px
+        rgba(0,0,0,.8);
+
+    position:relative;
+}
+
+
+/*
+   Gold accent line beneath the primary slogan.
+*/
+
+.homepage .hero .motto::after{
+
+    content:"";
+
+    display:block;
+
+    width:
+        clamp(
+            55px,
+            10vw,
+            100px
+        );
+
+    height:2px;
+
+    margin:12px auto 0;
+
+    background:var(--gold);
+
+    box-shadow:
+        0 0 15px
+        rgba(212,175,55,.35);
+}
+
+
+/*==================================================
+SECONDARY SLOGAN
+==================================================*/
+
+/*
+   The HTML currently uses the motto element for
+   Velocity. Vision. Victory.
+
+   The homepage keeps the original wording intact,
+   while visually establishing the primary brand
+   hierarchy through the hero treatment.
+*/
+
+.homepage .sub-text{
+
+    max-width:700px;
+
+    margin-top:20px;
+
+    color:#c8c8c8;
+
+    font-size:
+        clamp(
+            .85rem,
+            1.7vw,
+            1.05rem
+        );
+
+    line-height:1.9;
+
+    letter-spacing:.4px;
+
+    text-shadow:
+        0 5px 25px
+        rgba(0,0,0,.75);
+}
+
+
+/*==================================================
+HERO BUTTON GROUP
+==================================================*/
+
+.homepage .hero-buttons{
+
+    width:min(1000px,100%);
+
+    margin-top:38px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:13px;
+}
+
+
+/*==================================================
+HOMEPAGE BUTTONS
+==================================================*/
+
+.homepage .primary-btn,
+.homepage .secondary-btn{
+
+    position:relative;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-height:48px;
 
     padding:
-        15px 34px;
+        13px 24px;
 
     border-radius:50px;
+
+    font-size:.82rem;
+
+    font-weight:800;
+
+    letter-spacing:.7px;
+
+    overflow:hidden;
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        background .35s ease,
+        color .35s ease;
+}
+
+.homepage .primary-btn{
 
     background:
         linear-gradient(
@@ -984,151 +1211,186 @@ GOLD BUTTON
 
     color:#080808;
 
-    font-weight:800;
-
-    letter-spacing:1px;
-
     box-shadow:
-        0 12px 35px
-        rgba(212,175,55,.20);
-
-    transition:
-        all .35s ease;
+        0 10px 30px
+        rgba(212,175,55,.13);
 }
 
+.homepage .secondary-btn{
 
-.entryPage .buyBtn:hover{
+    background:
+        rgba(255,255,255,.06);
 
-    transform:
-        translateY(-5px);
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    color:white;
+
+    backdrop-filter:blur(8px);
+}
+
+.homepage .primary-btn:hover{
+
+    transform:translateY(-4px);
 
     box-shadow:
-        0 18px 45px
-        rgba(212,175,55,.38);
+        0 15px 40px
+        rgba(212,175,55,.30);
+}
+
+.homepage .secondary-btn:hover{
+
+    transform:translateY(-4px);
+
+    background:
+        rgba(212,175,55,.12);
+
+    border-color:
+        rgba(212,175,55,.5);
+
+    box-shadow:
+        0 15px 40px
+        rgba(212,175,55,.15);
 }
 
 
 /*==================================================
-PRODUCT SHOWCASE
+HOMEPAGE SECTIONS
 ==================================================*/
 
-.entryPage .productShowcase{
+.homepage section:not(.hero){
 
     position:relative;
-
-    max-width:1100px;
-
-    margin:auto;
-
-    text-align:center;
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.015)
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.012)
         );
 
-    border:
+    border-top:
         1px solid
-        rgba(212,175,55,.12);
+        rgba(212,175,55,.07);
 
-    border-radius:30px;
-
-    box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.45);
-
-    backdrop-filter:
-        blur(10px);
+    backdrop-filter:blur(2px);
 }
 
+.homepage section h2{
 
-.entryPage .productShowcase img{
-
-    width:100%;
-
-    max-height:700px;
-
-    object-fit:contain;
-
-    margin:auto;
-
-    border-radius:20px;
+    text-shadow:
+        0 8px 30px
+        rgba(0,0,0,.75);
 }
 
 
 /*==================================================
-STORY
+CURRENT DROP / SHOWROOM
 ==================================================*/
 
-.entryPage .storySection{
+.homepage .slider-section{
 
-    max-width:950px;
+    padding:
+        100px 5%;
+}
 
-    margin:auto;
+.homepage .slider-section > h2{
 
     text-align:center;
-}
 
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            3.2rem
+        );
 
-.entryPage .storySection p{
+    letter-spacing:
+        clamp(
+            1px,
+            .5vw,
+            4px
+        );
 
-    font-size:1.08rem;
+    margin-bottom:30px;
 
-    line-height:2;
-
-    color:#c6c6c6;
+    color:#fff;
 }
 
 
 /*==================================================
-COLOUR CARDS
+SHOWROOM CARD STRIP
 ==================================================*/
 
-.entryPage .colorGrid{
+.homepage .card-slider{
+
+    width:min(1400px,100%);
+
+    margin:auto;
 
     display:grid;
 
     grid-template-columns:
         repeat(
-            auto-fit,
-            minmax(220px,1fr)
+            3,
+            minmax(0,1fr)
         );
 
-    gap:25px;
+    gap:22px;
 
-    max-width:1100px;
+    overflow:visible;
 
-    margin:auto;
+    padding:10px 0;
 }
 
 
-.entryPage .colorCard{
+/*==================================================
+SHOWROOM CARDS
+==================================================*/
 
-    overflow:hidden;
+.homepage .drop-card{
+
+    min-width:0;
+
+    width:100%;
+
+    min-height:360px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+    position:relative;
 
     background:
         linear-gradient(
             145deg,
-            #151515,
-            #0c0c0c
+            rgba(24,24,24,.96),
+            rgba(8,8,8,.96)
         );
 
     border:
         1px solid
         rgba(212,175,55,.10);
 
-    border-radius:22px;
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 18px 50px
+        rgba(0,0,0,.40);
 
     transition:
-        transform .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
+        transform .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
 }
 
-
-.entryPage .colorCard:hover{
+.homepage .drop-card:hover{
 
     transform:
         translateY(-8px);
@@ -1137,575 +1399,136 @@ COLOUR CARDS
         rgba(212,175,55,.55);
 
     box-shadow:
-        0 20px 45px
-        rgba(0,0,0,.45);
-}
-
-
-.entryPage .colorCard img{
-
-    width:100%;
-
-    aspect-ratio:1 / 1;
-
-    object-fit:cover;
-}
-
-
-.entryPage .colorCard h3{
-
-    padding:18px;
-
-    font-size:1.05rem;
+        0 25px 65px
+        rgba(0,0,0,.58);
 }
 
 
 /*==================================================
-SPECIFICATIONS
+SHOWROOM CARD IMAGE
 ==================================================*/
 
-.entryPage .specBox{
+.homepage .drop-card img{
 
-    max-width:1000px;
+    width:100%;
 
-    margin:auto;
+    height:300px;
 
-    display:grid;
+    object-fit:cover;
 
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(220px,1fr)
-        );
+    transition:
+        transform .6s ease,
+        filter .6s ease;
+}
 
-    gap:15px;
+.homepage .drop-card:hover img{
+
+    transform:scale(1.035);
+
+    filter:
+        brightness(.92);
 }
 
 
-.entryPage .specItem{
+/*==================================================
+SHOWROOM CARD CONTENT
+==================================================*/
+
+.homepage .drop-content{
+
+    position:relative;
+
+    z-index:2;
 
     padding:22px;
 
     background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid
-        rgba(255,255,255,.06);
-
-    border-radius:18px;
-
-    transition:.3s;
-}
-
-
-.entryPage .specItem:hover{
-
-    border-color:
-        rgba(212,175,55,.35);
-
-    background:
-        rgba(212,175,55,.045);
-}
-
-
-.entryPage .specItem span{
-
-    display:block;
-
-    color:#888;
-
-    font-size:.85rem;
-
-    margin-bottom:5px;
-}
-
-
-.entryPage .specItem strong{
-
-    color:white;
-}
-
-
-/*==================================================
-SIZE GUIDE
-==================================================*/
-
-.entryPage .sizeSection{
-
-    max-width:900px;
-
-    margin:auto;
-
-    text-align:center;
-}
-
-
-.entryPage .sizeSection table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    overflow:hidden;
-
-    border-radius:18px;
-
-    background:#101010;
-}
-
-
-.entryPage .sizeSection th{
-
-    background:
         linear-gradient(
-            135deg,
-            var(--gold),
-            #b8941f
+            180deg,
+            rgba(7,7,7,.05),
+            rgba(7,7,7,.96)
+        );
+}
+
+.homepage .drop-content h3{
+
+    font-size:
+        clamp(
+            1.1rem,
+            2vw,
+            1.55rem
         );
 
-    color:#050505;
-
-    padding:16px;
-
-    font-weight:800;
-}
-
-
-.entryPage .sizeSection td{
-
-    padding:16px;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.06);
-
-    color:#d0d0d0;
-}
-
-
-.entryPage .sizeSection tr:hover td{
-
-    background:
-        rgba(212,175,55,.045);
-}
-
-
-/*==================================================
-VIP PRICE
-==================================================*/
-
-.entryPage .priceSection{
-
-    text-align:center;
-}
-
-
-.entryPage .priceCard{
-
-    width:min(400px,100%);
-
-    margin:35px auto 0;
-
-    padding:35px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #171717,
-            #0c0c0c
-        );
-
-    border:
-        1px solid
-        rgba(212,175,55,.28);
-
-    border-radius:25px;
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.45);
-}
-
-
-.entryPage .old-price{
-
-    margin-top:15px;
-
-    color:#777;
-
-    font-size:1.1rem;
-}
-
-
-.entryPage .old-price s{
-
-    text-decoration:
-        line-through;
-
-    text-decoration-thickness:2px;
-
-    text-decoration-color:#999;
-}
-
-
-.entryPage .price{
-
-    color:var(--gold2);
-
-    font-size:3rem;
-
-    font-weight:800;
-
-    margin-top:3px;
-}
-
-
-.entryPage .priceCard span{
-
-    display:block;
-
-    margin-top:8px;
-
-    color:white;
-
-    font-weight:800;
-
-    letter-spacing:.3px;
-}
-
-
-/*==================================================
-RESERVE YOURS
-==================================================*/
-
-.entryPage .preOrderSection{
-
-    max-width:800px;
-
-    margin:auto;
-
-    text-align:center;
-
-    padding:
-        70px 30px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.045),
-            rgba(255,255,255,.015)
-        );
-
-    border:
-        1px solid
-        rgba(212,175,55,.15);
-
-    border-radius:30px;
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.4);
-}
-
-
-.entryPage #entryPreorderForm{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:15px;
-
-    margin-top:30px;
-}
-
-
-.entryPage #entryPreorderForm input,
-.entryPage #entryPreorderForm select,
-.entryPage #entryPreorderForm textarea{
-
-    width:100%;
-
-    padding:16px 18px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    border-radius:14px;
-
-    background:#0d0d0d;
-
-    color:white;
-
-    font-family:inherit;
-
-    outline:none;
-
-    transition:.3s;
-}
-
-
-.entryPage #entryPreorderForm input:focus,
-.entryPage #entryPreorderForm select:focus,
-.entryPage #entryPreorderForm textarea:focus{
-
-    border-color:
-        var(--gold);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(212,175,55,.08);
-}
-
-
-/*==================================================
-FULFILMENT OPTIONS
-==================================================*/
-
-.fulfillment-section{
-
-    margin-top:10px;
-
-    text-align:left;
-}
-
-
-.fulfillment-section h3{
-
-    font-size:1rem;
-
-    color:#ddd;
-
-    margin-bottom:12px;
-}
-
-
-.fulfillment-options{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:12px;
-}
-
-
-.fulfillment-option{
-
-    cursor:pointer;
-
-    padding:18px;
-
-    text-align:center;
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    border-radius:15px;
-
-    background:#0d0d0d;
-
-    transition:.3s;
-}
-
-
-.fulfillment-option:hover{
-
-    border-color:
-        rgba(212,175,55,.45);
-}
-
-
-.fulfillment-option input{
-
-    display:none;
-}
-
-
-.fulfillment-option:has(input:checked){
-
-    border-color:
-        var(--gold);
-
-    background:
-        rgba(212,175,55,.08);
-
-    box-shadow:
-        inset 0 0 0 1px
-        rgba(212,175,55,.2);
-}
-
-
-.pickup-info,
-.delivery-location{
-
-    margin-top:15px;
-
-    padding:20px;
-
-    border-radius:16px;
-
-    background:
-        rgba(212,175,55,.055);
-
-    border:
-        1px solid
-        rgba(212,175,55,.16);
-
-    text-align:left;
-}
-
-
-.pickup-info h4{
-
-    color:var(--gold2);
+    letter-spacing:2px;
 
     margin-bottom:7px;
 }
 
+.homepage .drop-content p{
 
-/* RESERVE BUTTON */
+    color:#c8c8c8;
 
-.entryPage #entryPreorderForm button{
+    font-size:.9rem;
 
-    margin-top:10px;
-
-    padding:17px;
-
-    border:0;
-
-    border-radius:50px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--gold2),
-            var(--gold)
-        );
-
-    color:#080808;
-
-    font-family:inherit;
-
-    font-weight:800;
-
-    font-size:1rem;
-
-    cursor:pointer;
-
-    transition:.35s;
+    line-height:1.6;
 }
 
 
-.entryPage #entryPreorderForm button:hover{
+/*
+   Text-only cards such as SPORT+ and DROP 01
+   receive a centered editorial treatment.
+*/
 
-    transform:
-        translateY(-3px);
+.homepage .drop-card:not(:has(img)){
 
-    box-shadow:
-        0 12px 30px
-        rgba(212,175,55,.28);
-}
-
-
-/*==================================================
-CLOSING SECTION
-==================================================*/
-
-.entryPage .closingSection{
+    justify-content:center;
 
     text-align:center;
 
-    padding:
-        130px 8%;
+    padding:35px;
 }
 
+.homepage .drop-card:not(:has(img)) h3{
 
-.entryPage .closingSection h2{
+    color:#fff;
 
-    font-size:
-        clamp(2rem,5vw,4rem);
+    font-size:1.6rem;
 
     letter-spacing:3px;
 
-    color:white;
+    margin-bottom:10px;
 }
 
+.homepage .drop-card:not(:has(img)) p{
 
-.entryPage .closingSection p{
-
-    color:var(--gold);
-
-    font-weight:700;
-
-    letter-spacing:4px;
+    color:#aaa;
 }
 
 
 /*==================================================
-ENTRY ANIMATION
+WHY VELO
 ==================================================*/
 
-@keyframes entryHeroReveal{
+.homepage .why-velo{
 
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(25px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
-    }
-
+    padding:
+        100px 8%;
 }
 
+.homepage .why-velo > h2{
 
-/*==================================================
-MOBILE
-==================================================*/
+    text-align:center;
 
-@media(max-width:768px){
-
-    .entryHero{
-
-        min-height:90vh;
-
-        padding:
-            120px 22px 70px;
-    }
-
-    .entryPage .productShowcase{
-
-        border-radius:20px;
-    }
-
-    .entryPage .preOrderSection{
-
-        padding:
-            55px 18px;
-    }
-
-    .fulfillment-options{
-
-        grid-template-columns:1fr;
-    }
-
-    .entryPage .price{
-
-        font-size:2.5rem;
-    }
-
+    margin-bottom:45px;
 }
+
+.homepage .why-grid{
+
+    width:min(1100px,100%);
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+   
