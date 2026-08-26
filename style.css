@@ -1,3 +1,11 @@
+/* =========================================================
+   VELO HOMEPAGE — FINAL CORRECTION LAYER
+   DO NOT DELETE THE EXISTING VELO CSS ABOVE THIS SECTION.
+   This layer only overrides the homepage elements requested.
+   ========================================================= */
+
+
+/* =========================================================
    HEADER CONTROLS
    MENU — LEFT
    NOTIFICATION — BETWEEN MENU/CART
@@ -968,4 +976,172 @@
             145deg,
             rgba(250, 248, 240, .96),
             rgba(224, 220, 208, .94)
-        ) !im
+        ) !important;
+
+    color: #0a0a0a !important;
+
+    border:
+        1px solid rgba(255, 255, 255, .65) !important;
+
+    box-shadow:
+        0 35px 100px rgba(0, 0, 0, .65) !important;
+
+    transform:
+        translateY(18px) scale(.97) !important;
+
+    transition:
+        transform .4s ease !important;
+}
+
+.homepage .velo-entry-popup.active .velo-popup-card {
+    transform:
+        translateY(0) scale(1) !important;
+}
+
+.homepage .velo-popup-card h2 {
+    color: #111 !important;
+}
+
+.homepage .velo-popup-card p {
+    color: #555 !important;
+}
+
+.homepage .velo-popup-close {
+    color: #111 !important;
+}
+
+.homepage .velo-popup-logo {
+    color: #111 !important;
+
+    letter-spacing: -1px !important;
+
+    gap: 0 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .homepage .menu-btn {
+        top: 14px !important;
+        left: 14px !important;
+
+        width: 46px !important;
+        height: 46px !important;
+    }
+
+    .homepage .notification-btn {
+        top: 14px !important;
+        right: 70px !important;
+
+        width: 46px !important;
+        height: 46px !important;
+    }
+
+    .homepage .cart-btn {
+        top: 14px !important;
+        right: 14px !important;
+
+        width: 46px !important;
+        min-width: 46px !important;
+        height: 46px !important;
+    }
+
+    .homepage .hero {
+        padding:
+            105px 16px 65px !important;
+    }
+
+    .homepage .hero::before {
+        width: 94%;
+        height: 72%;
+
+        border-radius: 24px;
+    }
+
+    .homepage .veloWordmark {
+        font-size:
+            clamp(3rem, 16vw, 5rem) !important;
+
+        letter-spacing:
+            -.08em !important;
+    }
+
+    .homepage .product-display {
+        padding:
+            60px 14px 75px !important;
+    }
+
+    .homepage .product-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 12px !important;
+    }
+
+    .homepage .product-card {
+        border-radius: 13px !important;
+    }
+
+    .homepage .product-card-info {
+        padding:
+            11px 11px 13px !important;
+    }
+
+    .homepage .product-card-info h3 {
+        font-size: .82rem !important;
+    }
+
+    .homepage .product-card-info p {
+        font-size: .66rem !important;
+    }
+
+    .homepage .velo-filters {
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        flex-wrap: nowrap;
+
+        padding-bottom: 5px;
+
+        scrollbar-width: none;
+    }
+
+    .homepage .velo-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .homepage .velo-filter {
+        flex: 0 0 auto;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .homepage .product-grid {
+        gap: 9px !important;
+    }
+
+    .homepage .product-card-info span {
+        font-size: .53rem !important;
+    }
+
+    .homepage .product-card-info h3 {
+        font-size: .74rem !important;
+    }
+
+    .homepage .product-card-info p {
+        font-size: .59rem !important;
+    }
+
+}
