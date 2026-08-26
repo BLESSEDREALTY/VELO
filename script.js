@@ -1,549 +1,1301 @@
-/* =========================================================
-   VELO — MAIN SCRIPT
-   FINAL HOMEPAGE BEHAVIOUR
-   ========================================================= */
+/* =========================
+VELO MAIN SCRIPT
+Designed by Gamer-X + ChatGPT
+Preserved + Enhanced
+========================= */
 
 
-/* =========================================================
-   DOM READY
-   ========================================================= */
+/* ==================================================
+   MENU
+================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* =====================================================
-       ELEMENTS
-       ===================================================== */
+function openMenu() {
 
     const sidebar = document.getElementById("sidebar");
     const overlay = document.getElementById("overlay");
-    const menuButton = document.querySelector(".menu-btn");
 
-    const popup = document.getElementById("veloEntryPopup");
-    const popupClose = document.getElementById("veloPopupClose");
-    const popupContinue = document.getElementById("veloPopupContinue");
+    if (!sidebar) return;
 
-    const cartCount = document.getElementById("cart-count");
+    sidebar.style.left = "0";
 
+    if (overlay) {
+        overlay.style.display = "block";
 
-    /* =====================================================
-       MENU
-       ===================================================== */
-
-    window.openMenu = function () {
-
-        if (!sidebar || !overlay) return;
-
-        sidebar.classList.add("active");
-        overlay.classList.add("active");
-
-        document.body.classList.add("menu-open");
-
-    };
-
-
-    window.closeMenu = function () {
-
-        if (!sidebar || !overlay) return;
-
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
-
-        document.body.classList.remove("menu-open");
-
-    };
-
-
-    /* =====================================================
-       MENU BUTTON
-       ===================================================== */
-
-    if (menuButton) {
-
-        menuButton.addEventListener("click", (event) => {
-
-            event.preventDefault();
-
-            if (sidebar && sidebar.classList.contains("active")) {
-                window.closeMenu();
-            } else {
-                window.openMenu();
-            }
-
+        requestAnimationFrame(() => {
+            overlay.style.opacity = "1";
         });
-
-
-        menuButton.addEventListener("keydown", (event) => {
-
-            if (
-                event.key === "Enter" ||
-                event.key === " "
-            ) {
-
-                event.preventDefault();
-
-                if (
-                    sidebar &&
-                    sidebar.classList.contains("active")
-                ) {
-
-                    window.closeMenu();
-
-                } else {
-
-                    window.openMenu();
-
-                }
-
-            }
-
-        });
-
     }
 
+    document.body.classList.add("menu-open");
+}
 
-    /* =====================================================
-       OVERLAY CLOSE
-       ===================================================== */
+
+function closeMenu() {
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    if (sidebar) {
+        sidebar.style.left = "-340px";
+    }
 
     if (overlay) {
 
-        overlay.addEventListener("click", () => {
-
-            window.closeMenu();
-
-        });
-
-    }
-
-
-    /* =====================================================
-       SIDEBAR CLOSE BUTTON
-       ===================================================== */
-
-    const closeButton = document.querySelector(".close-btn");
-
-    if (closeButton) {
-
-        closeButton.addEventListener("click", () => {
-
-            window.closeMenu();
-
-        });
-
-    }
-
-
-    /* =====================================================
-       CLOSE MENU WHEN A SIDEBAR LINK IS SELECTED
-       ===================================================== */
-
-    if (sidebar) {
-
-        sidebar.querySelectorAll("a").forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                window.closeMenu();
-
-            });
-
-        });
-
-    }
-
-
-    /* =====================================================
-       ESCAPE KEY
-       ===================================================== */
-
-    document.addEventListener("keydown", (event) => {
-
-        if (event.key === "Escape") {
-
-            if (
-                sidebar &&
-                sidebar.classList.contains("active")
-            ) {
-
-                window.closeMenu();
-
-            }
-
-            if (
-                popup &&
-                popup.classList.contains("active")
-            ) {
-
-                closeVeloPopup();
-
-            }
-
-        }
-
-    });
-
-
-    /* =====================================================
-       VELO ENTRY POPUP
-       ===================================================== */
-
-    function openVeloPopup() {
-
-        if (!popup) return;
-
-        popup.classList.add("active");
-
-        document.body.classList.add("popup-open");
-
-    }
-
-
-    function closeVeloPopup() {
-
-        if (!popup) return;
-
-        popup.classList.remove("active");
-
-        document.body.classList.remove("popup-open");
-
-    }
-
-
-    /* =====================================================
-       POPUP CLOSE BUTTON
-       ===================================================== */
-
-    if (popupClose) {
-
-        popupClose.addEventListener(
-            "click",
-            closeVeloPopup
-        );
-
-    }
-
-
-    /* =====================================================
-       POPUP CONTINUE BROWSING
-       ===================================================== */
-
-    if (popupContinue) {
-
-        popupContinue.addEventListener(
-            "click",
-            closeVeloPopup
-        );
-
-    }
-
-
-    /* =====================================================
-       CLICK OUTSIDE POPUP CARD
-       ===================================================== */
-
-    if (popup) {
-
-        popup.addEventListener("click", (event) => {
-
-            if (event.target === popup) {
-
-                closeVeloPopup();
-
-            }
-
-        });
-
-    }
-
-
-    /* =====================================================
-       POPUP OPEN ON HOMEPAGE ENTRY
-       ===================================================== */
-
-    if (popup) {
+        overlay.style.opacity = "0";
 
         setTimeout(() => {
 
-            openVeloPopup();
-
-        }, 650);
-
-    }
-
-
-    /* =====================================================
-       CART COUNT
-       ===================================================== */
-
-    function updateCartCount() {
-
-        if (!cartCount) return;
-
-        let count = 0;
-
-        try {
-
-            const cart =
-                JSON.parse(
-                    localStorage.getItem("veloCart")
-                );
-
-            if (Array.isArray(cart)) {
-
-                count = cart.reduce(
-                    (total, item) => {
-
-                        return total +
-                            Number(
-                                item.quantity || 1
-                            );
-
-                    },
-                    0
-                );
-
+            if (!document.body.classList.contains("menu-open")) {
+                overlay.style.display = "none";
             }
 
-        } catch (error) {
-
-            count = 0;
-
-        }
-
-        cartCount.textContent = count;
-
+        }, 350);
     }
 
+    document.body.classList.remove("menu-open");
+}
 
-    updateCartCount();
+
+/* ==================================================
+   MENU BUTTON / CLOSE BUTTON / OVERLAY
+================================================== */
+
+const menuButton =
+    document.querySelector(
+        ".menu-btn, #menu-btn, [data-menu-button]"
+    );
+
+const closeButton =
+    document.querySelector(
+        ".close-btn, #close-menu, [data-close-menu]"
+    );
+
+const pageOverlay =
+    document.getElementById("overlay");
 
 
-    /* =====================================================
-       KEEP CART COUNT UPDATED
-       ===================================================== */
+if (menuButton) {
 
-    window.addEventListener(
-        "storage",
-        updateCartCount
+    menuButton.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        openMenu();
+
+    });
+
+}
+
+
+if (closeButton) {
+
+    closeButton.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        closeMenu();
+
+    });
+
+}
+
+
+if (pageOverlay) {
+
+    pageOverlay.addEventListener("click", function() {
+
+        closeMenu();
+
+    });
+
+}
+
+
+/* ==================================================
+   CLOSE MENU WHEN A SIDEBAR LINK IS SELECTED
+================================================== */
+
+const sidebarLinks =
+    document.querySelectorAll("#sidebar a");
+
+sidebarLinks.forEach(link => {
+
+    link.addEventListener("click", function() {
+
+        closeMenu();
+
+    });
+
+});
+
+
+/* ==================================================
+   ESCAPE KEY
+================================================== */
+
+document.addEventListener("keydown", function(e) {
+
+    if (e.key !== "Escape") return;
+
+    closeMenu();
+
+    closeNotifications();
+
+    closeFilter();
+
+    closeLoginPopup();
+
+});
+
+
+/* ==================================================
+   NOTIFICATION BELL
+================================================== */
+
+const notificationButton =
+    document.querySelector(
+        "#notification-btn, .notification-btn, [data-notification-button]"
+    );
+
+const notificationPanel =
+    document.querySelector(
+        "#notification-panel, .notification-panel, [data-notification-panel]"
     );
 
 
-    /* =====================================================
-       IMAGE FALLBACK
-       ===================================================== */
+function openNotifications() {
 
-    document.querySelectorAll("img").forEach(img => {
+    if (!notificationPanel) return;
 
-        img.addEventListener("error", function () {
+    notificationPanel.classList.add("active");
 
-            if (
-                this.dataset.fallbackApplied === "true"
-            ) {
+    notificationPanel.style.display = "block";
 
-                return;
+    document.body.classList.add("notifications-open");
+
+}
+
+
+function closeNotifications() {
+
+    if (!notificationPanel) return;
+
+    notificationPanel.classList.remove("active");
+
+    notificationPanel.style.display = "none";
+
+    document.body.classList.remove("notifications-open");
+
+}
+
+
+if (notificationButton) {
+
+    notificationButton.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        if (!notificationPanel) return;
+
+        const isOpen =
+            notificationPanel.classList.contains("active");
+
+        if (isOpen) {
+
+            closeNotifications();
+
+        } else {
+
+            closeMenu();
+
+            openNotifications();
+
+        }
+
+    });
+
+}
+
+
+/* ==================================================
+   NOTIFICATION CLOSE BUTTON
+================================================== */
+
+const notificationClose =
+    document.querySelector(
+        "#notification-close, .notification-close, [data-close-notifications]"
+    );
+
+
+if (notificationClose) {
+
+    notificationClose.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        closeNotifications();
+
+    });
+
+}
+
+
+/* ==================================================
+   CART BUTTON
+================================================== */
+
+const cartButton =
+    document.querySelector(
+        "#cart-btn, .cart-btn, [data-cart-button]"
+    );
+
+const cartPanel =
+    document.querySelector(
+        "#cart-panel, .cart-panel, [data-cart-panel]"
+    );
+
+
+if (cartButton) {
+
+    cartButton.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        /*
+           If a cart panel exists, open it.
+           If the cart is a separate page,
+           the HTML link continues to work normally.
+        */
+
+        if (cartPanel) {
+
+            const isOpen =
+                cartPanel.classList.contains("active");
+
+            if (isOpen) {
+
+                cartPanel.classList.remove("active");
+
+                cartPanel.style.display = "none";
+
+            } else {
+
+                closeMenu();
+
+                closeNotifications();
+
+                cartPanel.classList.add("active");
+
+                cartPanel.style.display = "block";
 
             }
 
-            this.dataset.fallbackApplied = "true";
+        }
 
-            this.src = "images/placeholder.jpg";
+    });
 
-        });
+}
+
+
+/* ==================================================
+   FILTER SYSTEM
+================================================== */
+
+const filterButton =
+    document.querySelector(
+        "#filter-btn, .filter-btn, [data-filter-button]"
+    );
+
+const filterPanel =
+    document.querySelector(
+        "#filter-panel, .filter-panel, [data-filter-panel]"
+    );
+
+
+function openFilter() {
+
+    if (!filterPanel) return;
+
+    filterPanel.classList.add("active");
+
+    filterPanel.style.display = "block";
+
+}
+
+
+function closeFilter() {
+
+    if (!filterPanel) return;
+
+    filterPanel.classList.remove("active");
+
+    filterPanel.style.display = "none";
+
+}
+
+
+if (filterButton) {
+
+    filterButton.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        const isOpen =
+            filterPanel &&
+            filterPanel.classList.contains("active");
+
+        if (isOpen) {
+
+            closeFilter();
+
+        } else {
+
+            openFilter();
+
+        }
+
+    });
+
+}
+
+
+/* ==================================================
+   FILTER CLOSE BUTTON
+================================================== */
+
+const filterClose =
+    document.querySelector(
+        "#filter-close, .filter-close, [data-close-filter]"
+    );
+
+
+if (filterClose) {
+
+    filterClose.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        closeFilter();
+
+    });
+
+}
+
+
+/* ==================================================
+   SEARCH
+================================================== */
+
+const searchInput =
+    document.querySelector(
+        "#product-search, #search-input, .search-input, [data-product-search]"
+    );
+
+
+const searchButton =
+    document.querySelector(
+        "#search-btn, .search-btn, [data-search-button]"
+    );
+
+
+function getProductCards() {
+
+    return document.querySelectorAll(
+        ".product-card, .item-card, .shop-card, .drop-card, [data-product]"
+    );
+
+}
+
+
+function filterProducts() {
+
+    if (!searchInput) return;
+
+    const searchValue =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+    const cards =
+        getProductCards();
+
+    cards.forEach(card => {
+
+        const searchableText =
+            card.textContent.toLowerCase();
+
+        if (
+            searchValue === "" ||
+            searchableText.includes(searchValue)
+        ) {
+
+            card.style.display = "";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        filterProducts
+    );
+
+}
+
+
+if (searchButton) {
+
+    searchButton.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        filterProducts();
+
+    });
+
+}
+
+
+/* ==================================================
+   PRODUCT FILTER SELECTS
+================================================== */
+
+const filterSelects =
+    document.querySelectorAll(
+        "#filter-panel select, .filter-panel select, [data-filter-panel] select"
+    );
+
+
+function applyProductFilters() {
+
+    const cards =
+        getProductCards();
+
+    if (!cards.length) return;
+
+    const selectedFilters = {};
+
+    filterSelects.forEach(select => {
+
+        const value =
+            select.value.trim().toLowerCase();
+
+        const name =
+            (
+                select.name ||
+                select.id ||
+                ""
+            ).toLowerCase();
+
+        if (
+            value &&
+            value !== "all" &&
+            !value.includes("all ")
+        ) {
+
+            selectedFilters[name] = value;
+
+        }
 
     });
 
 
-    /* =====================================================
-       PAGE LOAD
-       ===================================================== */
+    const searchValue =
+        searchInput
+            ? searchInput.value.trim().toLowerCase()
+            : "";
 
-    window.addEventListener("load", () => {
 
-        document.body.classList.add("loaded");
+    cards.forEach(card => {
+
+        const text =
+            card.textContent.toLowerCase();
+
+        let visible = true;
+
+
+        /* SEARCH */
+
+        if (
+            searchValue &&
+            !text.includes(searchValue)
+        ) {
+
+            visible = false;
+
+        }
+
+
+        /* FILTERS */
+
+        Object.keys(selectedFilters).forEach(key => {
+
+            if (!visible) return;
+
+            const filterValue =
+                selectedFilters[key];
+
+            /*
+               Look first at matching data attributes.
+               If none exist, fall back to card text.
+            */
+
+            const dataValue =
+                card.getAttribute(
+                    "data-" + key
+                );
+
+            if (dataValue) {
+
+                if (
+                    !dataValue
+                        .toLowerCase()
+                        .includes(filterValue)
+                ) {
+
+                    visible = false;
+
+                }
+
+            } else if (
+                !text.includes(filterValue)
+            ) {
+
+                visible = false;
+
+            }
+
+        });
+
+
+        card.style.display =
+            visible ? "" : "none";
 
     });
 
+}
 
-    /* =====================================================
-       HERO FADE
-       ===================================================== */
 
-    const hero =
-        document.querySelector(".homepage .hero");
+filterSelects.forEach(select => {
 
-    if (hero) {
+    select.addEventListener(
+        "change",
+        applyProductFilters
+    );
 
-        let ticking = false;
+});
 
-        window.addEventListener("scroll", () => {
 
-            if (ticking) return;
+/* ==================================================
+   AUTO SLIDER
+================================================== */
 
-            window.requestAnimationFrame(() => {
+const slider =
+    document.querySelector(".card-slider");
 
-                const scrollY = window.scrollY;
+let scrollAmount = 0;
 
-                /*
-                   Keep the hero visible longer.
-                   It should fade gradually rather than
-                   disappearing immediately.
-                */
+let autoSlideTimer = null;
 
-                const opacity =
-                    Math.max(
-                        0,
-                        1 - scrollY / 1100
-                    );
+let sliderIsBeingDragged = false;
 
-                hero.style.opacity = opacity;
 
-                ticking = false;
+function autoSlide() {
 
-            });
+    if (!slider) return;
 
-            ticking = true;
+    /*
+       Do not fight the user while they are
+       manually dragging/swiping the cards.
+    */
 
-        });
+    if (sliderIsBeingDragged) return;
+
+    /*
+       On the new homepage grid, there may be no
+       horizontal overflow. In that case, simply stop.
+    */
+
+    if (
+        slider.scrollWidth <=
+        slider.clientWidth
+    ) {
+
+        return;
 
     }
 
 
-    /* =====================================================
-       PREVENT BODY SCROLL WHEN MENU / POPUP IS OPEN
-       ===================================================== */
+    const step =
+        Math.min(
+            320,
+            slider.clientWidth
+        );
 
-    document.body.addEventListener(
-        "wheel",
-        (event) => {
 
-            if (
-                document.body.classList.contains("menu-open") ||
-                document.body.classList.contains("popup-open")
-            ) {
+    scrollAmount += step;
+
+
+    if (
+        scrollAmount >=
+        slider.scrollWidth -
+        slider.clientWidth
+    ) {
+
+        scrollAmount = 0;
+
+    }
+
+
+    slider.scrollTo({
+
+        left: scrollAmount,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+if (slider) {
+
+    autoSlideTimer =
+        setInterval(
+            autoSlide,
+            4000
+        );
+
+}
+
+
+/* ==================================================
+   PAUSE AUTO SLIDER DURING USER INTERACTION
+================================================== */
+
+if (slider) {
+
+    slider.addEventListener(
+        "mouseenter",
+        () => {
+
+            sliderIsBeingDragged = true;
+
+        }
+    );
+
+
+    slider.addEventListener(
+        "mouseleave",
+        () => {
+
+            sliderIsBeingDragged = false;
+
+        }
+    );
+
+
+    slider.addEventListener(
+        "touchstart",
+        () => {
+
+            sliderIsBeingDragged = true;
+
+        },
+        { passive: true }
+    );
+
+
+    slider.addEventListener(
+        "touchend",
+        () => {
+
+            setTimeout(() => {
+
+                sliderIsBeingDragged = false;
+
+            }, 500);
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   SMOOTH BUTTONS
+================================================== */
+
+document
+    .querySelectorAll("a")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            function() {
 
                 /*
-                   Allow scrolling inside the sidebar itself.
+                   Keep the original subtle transition.
+                   Do not interfere with buttons that
+                   perform JavaScript actions.
+                */
+
+                document.body.style.opacity =
+                    "0.96";
+
+                setTimeout(() => {
+
+                    document.body.style.opacity =
+                        "1";
+
+                }, 300);
+
+            }
+        );
+
+    });
+
+
+/* ==================================================
+   SIMPLE PRELOADER EFFECT
+================================================== */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        document.body.classList.add(
+            "loaded"
+        );
+
+    }
+);
+
+
+/* ==================================================
+   HERO FADE
+================================================== */
+
+const hero =
+    document.querySelector(".hero");
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        const value =
+            window.scrollY;
+
+        if (hero) {
+
+            /*
+               Only apply the effect near the
+               beginning of the page.
+            */
+
+            const opacity =
+                Math.max(
+                    0,
+                    Math.min(
+                        1,
+                        1 - value / 900
+                    )
+                );
+
+            hero.style.opacity =
+                opacity;
+
+        }
+
+    },
+    { passive: true }
+);
+
+
+/* ==================================================
+   LOGO FLOAT
+================================================== */
+
+const logo =
+    document.querySelector(".velo-logo");
+
+
+if (logo) {
+
+    setInterval(
+        () => {
+
+            logo.classList.toggle(
+                "float"
+            );
+
+        },
+        2000
+    );
+
+}
+
+
+/* ==================================================
+   IMAGE FALLBACK
+================================================== */
+
+document
+    .querySelectorAll("img")
+    .forEach(img => {
+
+        img.addEventListener(
+            "error",
+            function() {
+
+                /*
+                   Prevent an infinite loop if the
+                   placeholder itself is missing.
                 */
 
                 if (
-                    sidebar &&
-                    sidebar.contains(event.target)
+                    this.dataset.fallbackApplied
                 ) {
 
                     return;
 
                 }
 
-                event.preventDefault();
+                this.dataset.fallbackApplied =
+                    "true";
+
+                this.src =
+                    "images/placeholder.jpg";
 
             }
-
-        },
-        { passive: false }
-    );
-
-
-    /* =====================================================
-       ACTIVE SIDEBAR PAGE
-       ===================================================== */
-
-    const currentPage =
-        window.location.pathname
-            .split("/")
-            .pop() || "index.html";
-
-
-    if (sidebar) {
-
-        sidebar.querySelectorAll("a").forEach(link => {
-
-            const href =
-                link.getAttribute("href");
-
-            if (!href) return;
-
-            const cleanHref =
-                href.split("#")[0];
-
-            if (
-                cleanHref === currentPage ||
-                (
-                    currentPage === "" &&
-                    cleanHref === "index.html"
-                )
-            ) {
-
-                link.classList.add("active");
-
-            }
-
-        });
-
-    }
-
-
-    /* =====================================================
-       SMOOTH PAGE TRANSITION
-       ===================================================== */
-
-    document.querySelectorAll("a").forEach(link => {
-
-        link.addEventListener("click", (event) => {
-
-            const href =
-                link.getAttribute("href");
-
-            if (!href) return;
-
-            /*
-               Do not interfere with:
-               - anchors
-               - external links
-               - new tabs
-               - javascript links
-               - cart interactions
-            */
-
-            if (
-                href.startsWith("#") ||
-                href.startsWith("http") ||
-                href.startsWith("mailto:") ||
-                href.startsWith("tel:") ||
-                link.target === "_blank"
-            ) {
-
-                return;
-
-            }
-
-            /*
-               Close the sidebar immediately.
-            */
-
-            window.closeMenu();
-
-        });
+        );
 
     });
 
 
-    /* =====================================================
-       EXPOSE POPUP FUNCTIONS IF NEEDED
-       ===================================================== */
+/* ==================================================
+   CARD DRAG SLIDER
+================================================== */
 
-    window.openVeloPopup = openVeloPopup;
-    window.closeVeloPopup = closeVeloPopup;
+const sliderContainer =
+    document.querySelector(
+        ".card-slider"
+    );
+
+
+if (sliderContainer) {
+
+    let isDown = false;
+
+    let startX;
+
+    let scrollLeft;
+
+
+    sliderContainer.addEventListener(
+        "mousedown",
+        (e) => {
+
+            isDown = true;
+
+            sliderIsBeingDragged =
+                true;
+
+            startX =
+                e.pageX -
+                sliderContainer.offsetLeft;
+
+            scrollLeft =
+                sliderContainer.scrollLeft;
+
+            sliderContainer.classList.add(
+                "dragging"
+            );
+
+        }
+    );
+
+
+    sliderContainer.addEventListener(
+        "mouseleave",
+        () => {
+
+            isDown = false;
+
+            sliderIsBeingDragged =
+                false;
+
+            sliderContainer.classList.remove(
+                "dragging"
+            );
+
+        }
+    );
+
+
+    sliderContainer.addEventListener(
+        "mouseup",
+        () => {
+
+            isDown = false;
+
+            sliderIsBeingDragged =
+                false;
+
+            sliderContainer.classList.remove(
+                "dragging"
+            );
+
+        }
+    );
+
+
+    sliderContainer.addEventListener(
+        "mousemove",
+        (e) => {
+
+            if (!isDown) return;
+
+            e.preventDefault();
+
+            const x =
+                e.pageX -
+                sliderContainer.offsetLeft;
+
+            const walk =
+                (x - startX) * 2;
+
+            sliderContainer.scrollLeft =
+                scrollLeft - walk;
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   PRODUCT CARD CLICK
+================================================== */
+
+document
+    .querySelectorAll(
+        ".product-card, .item-card, .shop-card, .drop-card, [data-product]"
+    )
+    .forEach(card => {
+
+        card.addEventListener(
+            "click",
+            function(e) {
+
+                /*
+                   Do not hijack clicks on buttons,
+                   links, save buttons or cart buttons.
+                */
+
+                if (
+                    e.target.closest(
+                        "a, button, input, select"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                const productLink =
+                    this.dataset.link ||
+                    this.getAttribute(
+                        "data-product-link"
+                    );
+
+
+                if (productLink) {
+
+                    window.location.href =
+                        productLink;
+
+                    return;
+
+                }
+
+
+                const existingLink =
+                    this.querySelector(
+                        "a"
+                    );
+
+
+                if (existingLink) {
+
+                    existingLink.click();
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* ==================================================
+   LOGIN / REGISTER POPUP
+================================================== */
+
+const loginPopup =
+    document.querySelector(
+        "#login-popup, .login-popup, #auth-popup, .auth-popup, [data-login-popup]"
+    );
+
+
+const loginOpenButtons =
+    document.querySelectorAll(
+        "#login-btn, #register-btn, .login-btn, .register-btn, [data-open-login], [data-open-register]"
+    );
+
+
+function openLoginPopup() {
+
+    if (!loginPopup) return;
+
+    closeMenu();
+
+    loginPopup.classList.add("active");
+
+    loginPopup.style.display =
+        "flex";
+
+    document.body.classList.add(
+        "popup-open"
+    );
+
+}
+
+
+function closeLoginPopup() {
+
+    if (!loginPopup) return;
+
+    loginPopup.classList.remove(
+        "active"
+    );
+
+    loginPopup.style.display =
+        "none";
+
+    document.body.classList.remove(
+        "popup-open"
+    );
+
+}
+
+
+loginOpenButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        function(e) {
+
+            e.preventDefault();
+
+            openLoginPopup();
+
+        }
+    );
 
 });
 
 
-/* =========================================================
-   IMPORTANT:
-   NO AUTO SLIDER
-   NO CARD DRAG SLIDER
-   NO 4-SECOND HORIZONTAL MOVEMENT
+const loginCloseButton =
+    document.querySelector(
+        "#login-popup-close, .login-popup-close, #auth-close, .auth-close, [data-close-login]"
+    );
 
-   The new VELO homepage uses a fixed product-card
-   showcase/grid. Products remain exactly where the
-   homepage layout places them.
-   ========================================================= */
+
+if (loginCloseButton) {
+
+    loginCloseButton.addEventListener(
+        "click",
+        function(e) {
+
+            e.preventDefault();
+
+            closeLoginPopup();
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   POPUP BACKDROP CLICK
+================================================== */
+
+if (loginPopup) {
+
+    loginPopup.addEventListener(
+        "click",
+        function(e) {
+
+            if (e.target === loginPopup) {
+
+                closeLoginPopup();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   ACTIVE PAGE HIGHLIGHT
+================================================== */
+
+const currentPage =
+    window.location.pathname
+        .split("/")
+        .pop();
+
+
+document
+    .querySelectorAll("a")
+    .forEach(link => {
+
+        const linkPage =
+            link.getAttribute(
+                "href"
+            );
+
+        if (!linkPage) return;
+
+        const cleanLinkPage =
+            linkPage
+                .split("?")[0]
+                .split("#")[0]
+                .split("/")
+                .pop();
+
+
+        if (
+            cleanLinkPage ===
+            currentPage
+        ) {
+
+            link.style.color =
+                "#d4af37";
+
+        }
+
+    });
+
+
+/* ==================================================
+   KEEP NOTIFICATION / CART / MENU INDEPENDENT
+================================================== */
+
+document.addEventListener(
+    "click",
+    function(e) {
+
+        /*
+           Clicking the notification should not
+           accidentally trigger cart/menu behaviour.
+        */
+
+        if (
+            e.target.closest(
+                "#notification-btn, .notification-btn, [data-notification-button]"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            e.target.closest(
+                "#cart-btn, .cart-btn, [data-cart-button]"
+            )
+        ) {
+
+            return;
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   INITIAL UI STATE
+================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        /*
+           Filters should begin closed.
+        */
+
+        if (filterPanel) {
+
+            filterPanel.classList.remove(
+                "active"
+            );
+
+            filterPanel.style.display =
+                "none";
+
+        }
+
+
+        /*
+           Notifications should begin closed.
+        */
+
+        if (notificationPanel) {
+
+            notificationPanel.classList.remove(
+                "active"
+            );
+
+            notificationPanel.style.display =
+                "none";
+
+        }
+
+
+        /*
+           Cart panel should begin closed
+           when it exists.
+        */
+
+        if (cartPanel) {
+
+            cartPanel.classList.remove(
+                "active"
+            );
+
+            cartPanel.style.display =
+                "none";
+
+        }
+
+    }
+);
