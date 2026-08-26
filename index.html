@@ -1,6 +1,8 @@
-<!DOCTYPE html>
+VELO Homepage — Final Prelaunch "index.html"
 
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,13 +12,17 @@
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<!-- ==================================================
-VELO HOMEPAGE — CINEMATIC ATMOSPHERE
-================================================== -->
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
 
 <style>
+
+/* ==================================================
+VELO HOMEPAGE — FINAL PRELAUNCH LAYER
+================================================== */
+
 
 /* ==================================================
 CINEMATIC VIDEO BACKGROUND
@@ -33,21 +39,22 @@ CINEMATIC VIDEO BACKGROUND
 
     object-fit:cover;
 
-    z-index:-3;
+    z-index:-5;
 
-    opacity:.42;
+    opacity:.40;
 
     filter:
-        brightness(.48)
+        brightness(.52)
         contrast(1.08)
         saturate(.72);
 
     pointer-events:none;
+
 }
 
 
 /* ==================================================
-CINEMATIC VIDEO OVERLAY
+VIDEO OVERLAY
 ================================================== */
 
 .homeVideoOverlay{
@@ -63,20 +70,21 @@ CINEMATIC VIDEO OVERLAY
 
         linear-gradient(
             180deg,
-            rgba(5,5,5,.72) 0%,
-            rgba(8,8,8,.48) 28%,
-            rgba(8,8,8,.66) 58%,
+            rgba(5,5,5,.68) 0%,
+            rgba(8,8,8,.42) 30%,
+            rgba(8,8,8,.64) 62%,
             rgba(5,5,5,.94) 100%
         );
 
-    z-index:-2;
+    z-index:-4;
 
     pointer-events:none;
+
 }
 
 
 /* ==================================================
-SOULFUL VELO ATMOSPHERE
+HOMEPAGE BASE
 ================================================== */
 
 body.homepage{
@@ -85,24 +93,19 @@ body.homepage{
 
         radial-gradient(
             circle at 50% 8%,
-            rgba(212,175,55,.10),
-            transparent 30%
+            rgba(212,175,55,.08),
+            transparent 32%
         ),
 
-        linear-gradient(
-            180deg,
-            rgba(8,8,8,.15),
-            rgba(7,7,7,.72)
-        );
+        #080808;
 
-    position:relative;
+    color:#fff;
 
-    color:var(--white);
 }
 
 
 /* ==================================================
-SUBTLE GOLD ATMOSPHERE
+SUBTLE ATMOSPHERE
 ================================================== */
 
 body.homepage::before{
@@ -122,7 +125,7 @@ body.homepage::before{
     background:
         radial-gradient(
             circle,
-            rgba(212,175,55,.09),
+            rgba(212,175,55,.075),
             transparent 68%
         );
 
@@ -130,12 +133,13 @@ body.homepage::before{
 
     pointer-events:none;
 
-    z-index:-1;
+    z-index:-3;
+
 }
 
 
 /* ==================================================
-HOMEPAGE CONTENT LAYER
+HOMEPAGE CONTENT
 ================================================== */
 
 body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
@@ -143,11 +147,189 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
     position:relative;
 
     z-index:1;
+
 }
 
 
 /* ==================================================
-HERO ATMOSPHERE
+HEADER / MENU / CART
+================================================== */
+
+.homepage .menu-btn{
+
+    position:fixed;
+
+    top:22px;
+    left:22px;
+
+    width:52px;
+    height:52px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:
+        rgba(10,10,10,.82);
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    color:#fff;
+
+    backdrop-filter:blur(14px);
+
+    z-index:3000;
+
+    cursor:pointer;
+
+    transition:
+        .35s ease;
+
+}
+
+
+.homepage .menu-btn:hover{
+
+    background:var(--gold);
+
+    color:#050505;
+
+    transform:scale(1.06);
+
+}
+
+
+/* ==================================================
+CART BUTTON
+================================================== */
+
+.homepage .cart-btn{
+
+    position:fixed;
+
+    top:22px;
+    left:88px;
+
+    min-width:58px;
+    height:52px;
+
+    padding:0 15px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:7px;
+
+    border-radius:14px;
+
+    background:
+        rgba(10,10,10,.88);
+
+    border:
+        1px solid
+        rgba(212,175,55,.40);
+
+    color:#fff;
+
+    backdrop-filter:blur(14px);
+
+    z-index:3000;
+
+    cursor:pointer;
+
+    font-size:21px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.35);
+
+    transition:
+        .35s ease;
+
+}
+
+
+.homepage .cart-btn:hover{
+
+    background:var(--gold);
+
+    color:#050505;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(212,175,55,.25);
+
+}
+
+
+.homepage #cart-count{
+
+    min-width:21px;
+    height:21px;
+
+    padding:0 5px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:var(--gold);
+
+    color:#050505;
+
+    font-size:11px;
+
+    font-weight:900;
+
+}
+
+
+/* ==================================================
+SIDEBAR
+================================================== */
+
+.homepage #sidebar{
+
+    z-index:4000;
+
+}
+
+
+.homepage .sidebar-links a{
+
+    transition:
+        .30s ease;
+
+}
+
+
+/* ==================================================
+OVERLAY
+================================================== */
+
+.homepage #overlay{
+
+    z-index:3500;
+
+}
+
+
+/* ==================================================
+HERO
 ================================================== */
 
 .homepage .hero{
@@ -160,15 +342,14 @@ HERO ATMOSPHERE
 
     flex-direction:column;
 
-    justify-content:center;
-
     align-items:center;
+    justify-content:center;
 
     text-align:center;
 
-    padding-top:140px;
-
-    padding-bottom:100px;
+    padding:
+        145px 7%
+        100px;
 
 }
 
@@ -182,57 +363,137 @@ VELO WORDMARK
     display:flex;
 
     align-items:center;
-
     justify-content:center;
 
-    gap:10px;
+    gap:11px;
 
     width:fit-content;
 
     margin:0 auto;
 
-    font-family:Arial, Helvetica, sans-serif;
+    color:#fff;
 
-    font-size:clamp(3.8rem, 12vw, 8.5rem);
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-    line-height:.82;
+    font-size:
+        clamp(
+            3.8rem,
+            12vw,
+            8.5rem
+        );
 
     font-weight:900;
 
-    letter-spacing:.08em;
+    letter-spacing:.06em;
 
-    color:#ffffff;
-
-    text-shadow:
-        0 15px 55px rgba(0,0,0,.85);
+    line-height:.82;
 
     white-space:nowrap;
+
+    text-shadow:
+        0 15px 55px
+        rgba(0,0,0,.85);
 
 }
 
 
-/* VELO SLASH */
+/* ==================================================
+VELO SIGNATURE SLASH
+================================================== */
 
 .homepage .veloSlash{
 
+    position:relative;
+
     display:inline-block;
 
-    width:.10em;
+    width:.11em;
 
     height:.82em;
 
-    background:#ffffff;
-
     transform:
-        skewX(-28deg)
+        skewX(-25deg)
         rotate(8deg);
 
-    transform-origin:center;
+    margin-right:.02em;
 
-    margin-right:.03em;
+}
 
-    box-shadow:
-        0 0 18px rgba(255,255,255,.08);
+
+/* TWO-PART SIGNATURE SLASH */
+
+.homepage .veloSlash::before,
+.homepage .veloSlash::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    background:#fff;
+
+    top:0;
+
+}
+
+
+.homepage .veloSlash::before{
+
+    left:-.075em;
+
+}
+
+
+.homepage .veloSlash::after{
+
+    left:.075em;
+
+}
+
+
+/* ==================================================
+CUSTOM VELO E
+THREE HORIZONTAL SLASHES
+================================================== */
+
+.homepage .veloE{
+
+    display:inline-flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:.075em;
+
+    width:.68em;
+
+    height:.78em;
+
+    margin-left:-.04em;
+
+}
+
+
+.homepage .veloE span{
+
+    display:block;
+
+    width:100%;
+
+    height:.075em;
+
+    min-height:3px;
+
+    background:#fff;
+
+    border-radius:2px;
 
 }
 
@@ -243,53 +504,68 @@ PRIMARY SLOGAN
 
 .homepage .primarySlogan{
 
-    margin-top:34px;
+    margin-top:35px;
 
-    color:#ffffff;
+    color:#fff;
 
-    font-size:clamp(1.35rem, 4vw, 2.7rem);
+    font-size:
+        clamp(
+            1.3rem,
+            4vw,
+            2.7rem
+        );
 
-    font-weight:800;
+    font-weight:900;
 
     letter-spacing:
-        clamp(3px, .8vw, 8px);
+        clamp(
+            3px,
+            .8vw,
+            8px
+        );
 
     line-height:1.1;
 
     text-transform:uppercase;
 
     text-shadow:
-        0 10px 35px rgba(0,0,0,.85);
+        0 10px 35px
+        rgba(0,0,0,.85);
 
 }
 
 
 /* ==================================================
-SECONDARY BRAND PHILOSOPHY
+VELO MOTTO
 ================================================== */
 
 .homepage .motto{
 
-    color:var(--gold2);
-
-    font-size:clamp(.78rem, 1.8vw, 1.15rem);
-
-    font-weight:600;
-
-    letter-spacing:
-        clamp(2px, .5vw, 5px);
-
     margin-top:15px;
 
-    line-height:1.5;
+    color:var(--gold2);
 
-    text-transform:none;
+    font-size:
+        clamp(
+            .78rem,
+            1.8vw,
+            1.15rem
+        );
+
+    font-weight:700;
+
+    letter-spacing:
+        clamp(
+            2px,
+            .5vw,
+            5px
+        );
 
 }
 
 
 /* ==================================================
-HERO SUBTEXT
+SUBTEXT
 ================================================== */
 
 .homepage .sub-text{
@@ -306,7 +582,28 @@ HERO SUBTEXT
 
 
 /* ==================================================
-SOULFUL BUTTONS
+EDITION BUTTON AREA
+================================================== */
+
+.homepage .hero-buttons{
+
+    width:min(1050px,100%);
+
+    margin-top:38px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:13px;
+
+}
+
+
+/* ==================================================
+EDITION BUTTONS
 ================================================== */
 
 .homepage .primary-btn,
@@ -314,247 +611,310 @@ SOULFUL BUTTONS
 
     position:relative;
 
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-height:48px;
+
+    padding:
+        13px 23px;
+
+    border-radius:50px;
+
     overflow:hidden;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid
+        rgba(212,175,55,.45);
+
+    color:#fff;
+
+    font-size:.78rem;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.22);
+
+    animation:
+        veloButtonLife
+        3.8s ease-in-out
+        infinite;
 
     transition:
         transform .35s ease,
-        box-shadow .35s ease,
-        background .35s ease;
+        background .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
 }
 
+
+/* STAGGERED LIFE EFFECT */
+
+.homepage .hero-buttons a:nth-child(2){
+    animation-delay:.35s;
+}
+
+.homepage .hero-buttons a:nth-child(3){
+    animation-delay:.70s;
+}
+
+.homepage .hero-buttons a:nth-child(4){
+    animation-delay:1.05s;
+}
+
+.homepage .hero-buttons a:nth-child(5){
+    animation-delay:1.40s;
+}
+
+.homepage .hero-buttons a:nth-child(6){
+    animation-delay:1.75s;
+}
+
+.homepage .hero-buttons a:nth-child(7){
+    animation-delay:2.10s;
+}
+
+
+/* BUTTON SHIMMER */
+
+.homepage .primary-btn::before,
+.homepage .secondary-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:80%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.16),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    animation:
+        veloButtonShimmer
+        4.5s ease-in-out
+        infinite;
+
+}
+
+
+/* BUTTON HOVER */
 
 .homepage .primary-btn:hover,
 .homepage .secondary-btn:hover{
 
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 12px 35px
-        rgba(212,175,55,.22);
-}
-
-
-/* ==================================================
-SECTIONS
-================================================== */
-
-.homepage section:not(.hero){
-
-    position:relative;
+    transform:
+        translateY(-5px)
+        scale(1.025);
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.035),
-            rgba(255,255,255,.012)
-        );
+        var(--gold);
 
-    border-top:
-        1px solid
-        rgba(212,175,55,.07);
+    color:#050505;
+
+    border-color:
+        var(--gold);
+
+    box-shadow:
+        0 15px 38px
+        rgba(212,175,55,.28);
+
+}
+
+
+/* BUTTON ANIMATION */
+
+@keyframes veloButtonLife{
+
+    0%,
+    100%{
+
+        box-shadow:
+            0 8px 25px
+            rgba(0,0,0,.22);
+
+    }
+
+    50%{
+
+        box-shadow:
+            0 10px 32px
+            rgba(212,175,55,.16);
+
+    }
+
+}
+
+
+@keyframes veloButtonShimmer{
+
+    0%{
+
+        left:-120%;
+
+    }
+
+    45%,
+    100%{
+
+        left:140%;
+
+    }
 
 }
 
 
 /* ==================================================
-SECTION HEADINGS
+PRODUCT CARD DISPLAY
 ================================================== */
 
-.homepage section h2{
+.homepage .product-display{
 
-    text-shadow:
-        0 8px 30px
-        rgba(0,0,0,.7);
-}
-
-
-/* ==================================================
-VELO SHOWROOM
-================================================== */
-
-.homepage .velo-showroom{
+    width:100%;
 
     padding:
-        95px
-        clamp(20px, 5vw, 70px)
+        95px 7%
         110px;
-
-    overflow:hidden;
 
     background:
         linear-gradient(
             180deg,
-            rgba(5,5,5,.94),
-            rgba(10,10,10,.84)
-        ) !important;
+            rgba(5,5,5,.72),
+            rgba(8,8,8,.90)
+        );
+
+    border-top:
+        1px solid
+        rgba(212,175,55,.08);
 
 }
 
 
-/* SHOWROOM INTRO */
+/* GRID */
 
-.homepage .showroom-intro{
+.homepage .product-grid{
 
-    max-width:850px;
-
-    margin:
-        0 auto 60px;
-
-    text-align:center;
-
-}
-
-
-.homepage .showroom-intro h2{
-
-    margin-bottom:15px;
-
-    font-size:
-        clamp(2rem, 5vw, 3.5rem);
-
-    letter-spacing:
-        clamp(2px, .4vw, 5px);
-
-}
-
-
-.homepage .showroom-intro p{
-
-    max-width:700px;
-
-    margin:auto;
-
-    color:#bdbdbd;
-
-    line-height:1.9;
-
-}
-
-
-/* SHOWROOM GRID */
-
-.homepage .showroom-grid{
-
-    width:100%;
-
-    max-width:1300px;
+    width:min(1300px,100%);
 
     margin:auto;
 
     display:grid;
 
     grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        repeat(3,minmax(0,1fr));
 
     gap:
-        clamp(18px, 3vw, 35px);
-
-    align-items:center;
+        clamp(
+            20px,
+            3vw,
+            35px
+        );
 
 }
 
 
-/* SHOWROOM CARD */
+/* CARD */
 
-.homepage .showroom-card{
-
-    display:block;
+.homepage .product-card{
 
     position:relative;
 
-    text-decoration:none;
-
-    color:#ffffff;
-
     min-width:0;
+
+    overflow:hidden;
 
     background:
         linear-gradient(
             145deg,
-            rgba(25,25,25,.95),
-            rgba(7,7,7,.97)
+            rgba(28,28,28,.96),
+            rgba(9,9,9,.98)
         );
 
     border:
         1px solid
-        rgba(255,255,255,.07);
+        rgba(255,255,255,.08);
 
-    border-radius:18px;
-
-    overflow:hidden;
+    border-radius:20px;
 
     box-shadow:
-        0 20px 55px rgba(0,0,0,.42);
+        0 18px 50px
+        rgba(0,0,0,.40);
 
     transition:
-        transform .45s ease,
-        border-color .45s ease,
-        box-shadow .45s ease;
+        transform .4s ease,
+        border-color .4s ease,
+        box-shadow .4s ease;
 
 }
 
 
-/* NATURAL EDITORIAL POSITIONING */
+/* CARD HOVER */
 
-.homepage .showroom-card:nth-child(2){
-
-    transform:translateY(18px) rotate(-1deg);
-
-}
-
-.homepage .showroom-card:nth-child(3){
-
-    transform:translateY(-12px) rotate(1deg);
-
-}
-
-.homepage .showroom-card:nth-child(4){
-
-    transform:translateY(-10px) rotate(-.8deg);
-
-}
-
-.homepage .showroom-card:nth-child(5){
-
-    transform:translateY(16px) rotate(.8deg);
-
-}
-
-
-/* HOVER */
-
-.homepage .showroom-card:hover{
+.homepage .product-card:hover{
 
     transform:
-        translateY(-8px)
-        scale(1.015);
+        translateY(-8px);
 
     border-color:
         rgba(212,175,55,.48);
 
     box-shadow:
-        0 30px 70px
-        rgba(0,0,0,.62);
+        0 28px 65px
+        rgba(0,0,0,.58);
 
 }
 
 
-/* SHOWROOM IMAGE */
+/* IMAGE HOLDER */
 
-.homepage .showroom-image{
+.homepage .product-image{
 
     width:100%;
 
-    aspect-ratio:1 / 1.08;
+    aspect-ratio:
+        4 / 5;
+
+    background:
+        linear-gradient(
+            145deg,
+            #202020,
+            #0d0d0d
+        );
 
     overflow:hidden;
-
-    background:#111;
 
 }
 
 
-.homepage .showroom-image img{
+/* IMAGE */
+
+.homepage .product-image img{
 
     width:100%;
 
@@ -565,70 +925,72 @@ VELO SHOWROOM
     display:block;
 
     transition:
-        transform .65s ease;
+        transform .6s ease;
 
 }
 
 
-.homepage .showroom-card:hover
-.showroom-image img{
+.homepage .product-card:hover
+.product-image img{
 
-    transform:scale(1.045);
+    transform:
+        scale(1.045);
 
 }
 
 
-/* SHOWROOM INFO */
+/* CARD INFO */
 
-.homepage .showroom-info{
+.homepage .product-card-info{
 
     padding:
-        20px
-        20px
-        23px;
+        18px 19px 21px;
 
 }
 
 
-.homepage .showroom-label{
+.homepage .product-card-info span{
 
-    display:inline-block;
+    display:block;
+
+    margin-bottom:7px;
 
     color:var(--gold2);
 
-    font-size:.68rem;
+    font-size:.66rem;
 
-    font-weight:700;
+    font-weight:800;
 
-    letter-spacing:3px;
+    letter-spacing:2.5px;
 
     text-transform:uppercase;
 
-    margin-bottom:8px;
-
 }
 
 
-.homepage .showroom-info h3{
-
-    margin:
-        0 0 7px;
-
-    font-size:
-        clamp(1rem, 2vw, 1.4rem);
-
-    letter-spacing:1px;
-
-}
-
-
-.homepage .showroom-info p{
+.homepage .product-card-info h3{
 
     margin:0;
 
+    color:#fff;
+
+    font-size:
+        clamp(
+            1rem,
+            2vw,
+            1.3rem
+        );
+
+}
+
+
+.homepage .product-card-info p{
+
+    margin-top:7px;
+
     color:#a9a9a9;
 
-    font-size:.88rem;
+    font-size:.84rem;
 
     line-height:1.6;
 
@@ -636,45 +998,38 @@ VELO SHOWROOM
 
 
 /* ==================================================
-DROP CARDS
-================================================== */
-
-.homepage .drop-card{
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(24,24,24,.94),
-            rgba(10,10,10,.94)
-        );
-
-    border:
-        1px solid
-        rgba(212,175,55,.10);
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,.35);
-
-}
-
-
-.homepage .drop-card:hover{
-
-    border-color:
-        rgba(212,175,55,.55);
-
-    box-shadow:
-        0 22px 55px
-        rgba(0,0,0,.55);
-}
-
-
-/* ==================================================
 WHY VELO
 ================================================== */
 
+.homepage .why-velo{
+
+    padding:
+        90px 7%
+        100px;
+
+}
+
+
+.homepage .why-grid{
+
+    width:min(1150px,100%);
+
+    margin:
+        35px auto 0;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:20px;
+
+}
+
+
 .homepage .why-box{
+
+    padding:28px 23px;
 
     background:
         linear-gradient(
@@ -689,38 +1044,55 @@ WHY VELO
 
     border-radius:20px;
 
-    transition:.35s ease;
+    transition:
+        .35s ease;
+
 }
 
 
 .homepage .why-box:hover{
 
-    transform:translateY(-6px);
+    transform:
+        translateY(-6px);
 
     border-color:
         rgba(212,175,55,.35);
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(212,175,55,.07),
-            rgba(255,255,255,.018)
-        );
 }
 
 
 /* ==================================================
-MEMBERSHIP ATMOSPHERE
+MEMBERSHIP PREVIEW
 ================================================== */
 
 .homepage .membership-preview{
 
+    padding:
+        105px 7%;
+
+    text-align:center;
+
     background:
         radial-gradient(
             circle at center,
-            rgba(212,175,55,.07),
-            transparent 60%
+            rgba(212,175,55,.08),
+            transparent 62%
         );
+
+}
+
+
+.homepage .membership-preview p{
+
+    max-width:680px;
+
+    margin:
+        0 auto 28px;
+
+    color:#c7c7c7;
+
+    line-height:1.9;
+
 }
 
 
@@ -730,28 +1102,314 @@ FOOTER
 
 .homepage footer{
 
-    position:relative;
+    padding:
+        55px 7%;
+
+    text-align:center;
 
     background:
         linear-gradient(
             180deg,
-            rgba(7,7,7,.85),
+            rgba(7,7,7,.90),
             #050505
         );
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+}
+
+
+.homepage .footer-links{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:22px;
+
+    margin:
+        22px 0;
+
+}
+
+
+.homepage .footer-links a:hover{
+
+    color:var(--gold);
 
 }
 
 
 /* ==================================================
-MOBILE
+REGISTER / SIGN-IN POPUP
 ================================================== */
 
-@media(max-width:900px){
+.velo-entry-popup{
 
-    .homepage .showroom-grid{
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.72);
+
+    backdrop-filter:
+        blur(10px);
+
+    z-index:8000;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+
+}
+
+
+.velo-entry-popup.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+.velo-popup-card{
+
+    position:relative;
+
+    width:min(460px,100%);
+
+    padding:
+        40px 30px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a1a1a,
+            #090909
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.35);
+
+    border-radius:25px;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.72);
+
+    transform:
+        translateY(20px)
+        scale(.97);
+
+    transition:
+        transform .4s ease;
+
+}
+
+
+.velo-entry-popup.active
+.velo-popup-card{
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+.velo-popup-close{
+
+    position:absolute;
+
+    top:14px;
+    right:16px;
+
+    width:36px;
+    height:36px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.06);
+
+    color:#fff;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.velo-popup-close:hover{
+
+    background:var(--gold);
+
+    color:#050505;
+
+}
+
+
+.velo-popup-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    margin-bottom:18px;
+
+    color:#fff;
+
+    font-size:34px;
+
+    font-weight:900;
+
+    letter-spacing:3px;
+
+}
+
+
+.velo-popup-card h2{
+
+    margin-bottom:10px;
+
+}
+
+
+.velo-popup-card p{
+
+    color:#aaa;
+
+    line-height:1.7;
+
+}
+
+
+.velo-popup-actions{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin-top:25px;
+
+}
+
+
+.velo-popup-actions a{
+
+    padding:14px 20px;
+
+    border-radius:50px;
+
+    font-weight:800;
+
+    border:
+        1px solid
+        rgba(212,175,55,.35);
+
+}
+
+
+.velo-popup-actions .popup-primary{
+
+    background:var(--gold);
+
+    color:#050505;
+
+}
+
+
+.velo-popup-actions .popup-secondary{
+
+    background:
+        rgba(255,255,255,.04);
+
+    color:#fff;
+
+}
+
+
+.velo-popup-continue{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    color:#888;
+
+    font-size:.82rem;
+
+    cursor:pointer;
+
+}
+
+
+.velo-popup-continue:hover{
+
+    color:#fff;
+
+}
+
+
+/* ==================================================
+RESPONSIVE
+================================================== */
+
+@media(max-width:1000px){
+
+    .homepage .why-grid{
 
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2,minmax(0,1fr));
+
+    }
+
+}
+
+
+@media(max-width:850px){
+
+    .homepage .product-grid{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
 
     }
 
@@ -760,23 +1418,20 @@ MOBILE
 
 @media(max-width:768px){
 
-    .homeVideoBackground{
+    .homepage .cart-btn{
 
-        opacity:.34;
-
-        filter:
-            brightness(.42)
-            contrast(1.05)
-            saturate(.65);
+        left:84px;
 
     }
 
 
     .homepage .hero{
 
-        padding-top:120px;
-
         min-height:92vh;
+
+        padding:
+            125px 20px
+            75px;
 
     }
 
@@ -784,11 +1439,20 @@ MOBILE
     .homepage .veloWordmark{
 
         font-size:
-            clamp(3rem, 16vw, 5rem);
+            clamp(
+                3rem,
+                16vw,
+                5rem
+            );
 
         gap:7px;
 
-        letter-spacing:.06em;
+    }
+
+
+    .homepage .veloSlash{
+
+        height:.78em;
 
     }
 
@@ -798,7 +1462,11 @@ MOBILE
         margin-top:28px;
 
         font-size:
-            clamp(1.15rem, 5vw, 1.65rem);
+            clamp(
+                1.1rem,
+                5vw,
+                1.65rem
+            );
 
         letter-spacing:3px;
 
@@ -814,43 +1482,71 @@ MOBILE
     }
 
 
-    .homepage .velo-showroom{
+    .homepage .sub-text{
 
-        padding-top:75px;
-
-        padding-bottom:80px;
+        font-size:.9rem;
 
     }
 
 
-    .homepage .showroom-intro{
+    .homepage .hero-buttons{
 
-        margin-bottom:40px;
-
-    }
-
-
-    .homepage .showroom-grid{
-
-        grid-template-columns:1fr;
-
-        gap:25px;
+        gap:10px;
 
     }
 
 
-    .homepage .showroom-card:nth-child(n){
+    .homepage .primary-btn,
+    .homepage .secondary-btn{
 
-        transform:none;
+        padding:
+            12px 17px;
+
+        font-size:.68rem;
 
     }
 
 
-    .homepage .showroom-card:hover{
+    .homepage .product-display{
 
-        transform:
-            translateY(-5px)
-            scale(1.01);
+        padding:
+            70px 18px
+            80px;
+
+    }
+
+
+    .homepage .product-grid{
+
+        grid-template-columns:
+            1fr;
+
+        gap:22px;
+
+    }
+
+
+    .homepage .why-velo{
+
+        padding:
+            70px 18px
+            80px;
+
+    }
+
+
+    .homepage .why-grid{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .velo-popup-card{
+
+        padding:
+            35px 22px;
 
     }
 
@@ -859,25 +1555,62 @@ MOBILE
 
 @media(max-width:420px){
 
-    .homepage .veloWordmark{
+    .homepage .menu-btn{
 
-        font-size:3.15rem;
+        left:14px;
+
+        width:47px;
+        height:47px;
 
     }
 
 
-    .homepage .veloSlash{
+    .homepage .cart-btn{
 
-        height:.78em;
+        left:70px;
+
+        height:47px;
+
+        min-width:52px;
+
+    }
+
+
+    .homepage .veloWordmark{
+
+        font-size:3.05rem;
 
     }
 
 
     .homepage .primarySlogan{
 
-        font-size:1.05rem;
+        font-size:1rem;
 
-        letter-spacing:2.5px;
+        letter-spacing:2px;
+
+    }
+
+}
+
+
+/* ==================================================
+REDUCED MOTION
+================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+    .homepage *,
+    .homepage *::before,
+    .homepage *::after{
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        scroll-behavior:auto !important;
+
+        transition-duration:.01ms !important;
 
     }
 
@@ -892,7 +1625,7 @@ MOBILE
 
 
 <!-- ==================================================
-CINEMATIC VIDEO BACKGROUND
+CINEMATIC VIDEO
 ================================================== -->
 
 <video
@@ -920,18 +1653,34 @@ CINEMATIC VIDEO BACKGROUND
 MENU BUTTON
 ================================================== -->
 
-<div class="menu-btn" onclick="openMenu()">
-☰
+<div
+    class="menu-btn"
+    onclick="openMenu()"
+    aria-label="Open menu"
+    role="button"
+    tabindex="0"
+>
+
+    ☰
+
 </div>
 
 
-<div class="cart-btn">
+<!-- ==================================================
+CART BUTTON
+================================================== -->
 
-🛒
+<a
+    href="cart.html"
+    class="cart-btn"
+    aria-label="Shopping cart"
+>
 
-<span id="cart-count">0</span>
+    🛒
 
-</div>
+    <span id="cart-count">0</span>
+
+</a>
 
 
 <!-- ==================================================
@@ -940,77 +1689,58 @@ SIDEBAR
 
 <div id="sidebar">
 
+
 <div class="sidebar-header">
 
-<img
-src="Screenshot_20260623-092953.jpg"
-alt="Velo logo"
->
+    <img
+        src="Screenshot_20260623-092953.jpg"
+        alt="VELO logo"
+    >
 
-<h2>VELO</h2>
+    <h2>VELO</h2>
 
-<div
-class="close-btn"
-onclick="closeMenu()"
->
-✕
+    <div
+        class="close-btn"
+        onclick="closeMenu()"
+    >
+        ✕
+    </div>
+
 </div>
 
-</div>
 
 <nav class="sidebar-links">
 
+
 <a href="index.html">
-Home
+    Home
 </a>
+
+
+<a href="cart.html">
+    Cart
+</a>
+
 
 <a href="nightshift.html">
-Nightshift Collection
+    Night Shift
 </a>
 
-<a href="entry.html">
-Entry Edition
-</a>
-
-<a href="premium.html">
-Premium Edition
-</a>
-
-<a href="Premium sports edition.html">
-Premium Sport+
-</a>
-
-<a href="founders.html">
-Founder's Genesis
-</a>
 
 <a href="membership.html">
-Membership
+    Membership
 </a>
+
 
 <a href="register.html">
-Register / Sign In
+    Register / Sign In
 </a>
 
-<a href="wait-list.html">
-Waitlist
+
+<a href="faqs.html">
+    FAQs
 </a>
 
-<a href="#">
-About VELO
-</a>
-
-<a href="#">
-Size Guide
-</a>
-
-<a href="#">
-FAQs
-</a>
-
-<a href="#">
-Contact
-</a>
 
 </nav>
 
@@ -1022,8 +1752,8 @@ OVERLAY
 ================================================== -->
 
 <div
-id="overlay"
-onclick="closeMenu()"
+    id="overlay"
+    onclick="closeMenu()"
 ></div>
 
 
@@ -1036,11 +1766,48 @@ HERO
 
 <!-- VELO WORDMARK -->
 
-<div class="veloWordmark" aria-label="VELO">
+<div
+    class="veloWordmark"
+    aria-label="VELO"
+>
 
-<span class="veloSlash"></span>
 
-<span>VELO</span>
+    <!-- SIGNATURE SLASH -->
+
+    <span
+        class="veloSlash"
+        aria-hidden="true"
+    ></span>
+
+
+    <!-- V -->
+
+    <span>V</span>
+
+
+    <!-- CUSTOM E -->
+
+    <span
+        class="veloE"
+        aria-label="E"
+    >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </span>
+
+
+    <!-- L -->
+
+    <span>L</span>
+
+
+    <!-- O -->
+
+    <span>O</span>
+
 
 </div>
 
@@ -1049,96 +1816,100 @@ HERO
 
 <div class="primarySlogan">
 
-MOVE DIFFERENT.
+    MOVE DIFFERENT.
 
 </div>
 
 
-<!-- SECONDARY BRAND PHILOSOPHY -->
+<!-- MOTTO -->
 
 <p class="motto">
 
-Velocity. Vision. Victory.
+    Velocity. Vision. Victory.
 
 </p>
 
 
 <p class="sub-text">
 
-Premium Nigerian Streetwear Built For The Ones Moving Different.
+    Premium Nigerian Streetwear Built For The Ones Moving Different.
 
 </p>
 
+
+<!-- ==================================================
+EDITION BUTTONS
+================================================== -->
 
 <div class="hero-buttons">
 
 
 <a
-href="nightshift.html"
-class="primary-btn"
+    href="nightshift.html"
+    class="primary-btn"
 >
 
-SHOP NIGHTSHIFT
+    SHOP NIGHTSHIFT
 
 </a>
 
 
 <a
-href="entry.html"
-class="primary-btn"
+    href="entry.html"
+    class="primary-btn"
 >
 
-SHOP ENTRY EDITION
+    SHOP ENTRY EDITION
 
 </a>
 
 
 <a
-href="premium.html"
-class="primary-btn"
+    href="premium.html"
+    class="primary-btn"
 >
 
-SHOP PREMIUM EDITION
+    SHOP PREMIUM EDITION
 
 </a>
 
 
 <a
-href="premium+.html"
-class="primary-btn"
+    href="premium+.html"
+    class="primary-btn"
 >
 
-SHOP PREMIUM+ SPORTS EDITION
+    SHOP PREMIUM+ SPORTS EDITION
 
 </a>
 
 
 <a
-href="founders.html"
-class="primary-btn"
+    href="founders.html"
+    class="primary-btn"
 >
 
-SHOP FOUNDER'S EDITION
+    SHOP FOUNDER'S EDITION
 
 </a>
 
 
 <a
-href="waitlist.html"
-class="secondary-btn"
+    href="wait-list.html"
+    class="secondary-btn"
 >
 
-JOIN WAITLIST
+    JOIN WAITLIST
 
 </a>
 
 
 <a
-href="register.html"
-class="primary-btn"
+    href="register.html"
+    class="primary-btn"
 >
 
-BECOME A MEMBER
+    BECOME A MEMBER
 
 </a>
 
@@ -1150,371 +1921,277 @@ BECOME A MEMBER
 
 
 <!-- ==================================================
-VELO SHOWROOM
+VELO PRODUCT DISPLAY
+Three columns.
+Independent cards.
+Images can be replaced later.
 ================================================== -->
 
-<section class="velo-showroom">
+<section class="product-display">
 
 
-<div class="showroom-intro">
+<div class="product-grid">
 
-<h2>
-THE VELO SHOWROOM
-</h2>
 
-<p>
-Different chapters. One movement.
-Explore the pieces built around the VELO identity.
-</p>
+<!-- CARD 01 -->
+
+<div class="product-card">
+
+    <div class="product-image">
+
+        <img
+            src="Screenshot_20260623-091910.jpg"
+            alt="VELO Night Shift product"
+            loading="lazy"
+        >
+
+    </div>
+
+    <div class="product-card-info">
+
+        <span>Night Shift</span>
+
+        <h3>VELO Night Shift</h3>
+
+        <p>
+            Built for the ones still moving while the world sleeps.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- CARD 02 -->
+
+<div class="product-card">
+
+    <div class="product-image">
+
+        <img
+            src="1782202333116.jpg"
+            alt="VELO Entry Edition product"
+            loading="lazy"
+        >
+
+    </div>
+
+    <div class="product-card-info">
+
+        <span>Entry Edition</span>
+
+        <h3>VELO Entry</h3>
+
+        <p>
+            The beginning of the movement.
+        </p>
+
+    </div>
 
 </div>
 
 
-<div class="showroom-grid">
+<!-- CARD 03 -->
 
+<div class="product-card">
 
-<!-- NIGHTSHIFT -->
+    <div class="product-image">
 
-<a
-href="nightshift.html"
-class="showroom-card"
->
+        <img
+            src="1782202425163.jpg"
+            alt="VELO Premium Edition product"
+            loading="lazy"
+        >
 
-<div class="showroom-image">
+    </div>
 
-<img
-src="Screenshot_20260623-091910.jpg"
-alt="VELO NIGHTSHIFT Collection"
-loading="lazy"
->
+    <div class="product-card-info">
 
-</div>
+        <span>Premium Edition</span>
 
-<div class="showroom-info">
+        <h3>VELO Premium</h3>
 
-<span class="showroom-label">
-NIGHTSHIFT
-</span>
+        <p>
+            Elevated construction and stronger presence.
+        </p>
 
-<h3>
-NIGHTSHIFT COLLECTION
-</h3>
-
-<p>
-The first statement. Built for the ones still moving when the city sleeps.
-</p>
+    </div>
 
 </div>
 
-</a>
 
+<!-- CARD 04 -->
 
-<!-- ENTRY -->
+<div class="product-card">
 
-<a
-href="entry.html"
-class="showroom-card"
->
+    <div class="product-image">
 
-<div class="showroom-image">
+        <img
+            src="1782202486288.jpg"
+            alt="VELO Founder's Genesis product"
+            loading="lazy"
+        >
 
-<img
-src="1782202333116.jpg"
-alt="VELO Entry Edition"
-loading="lazy"
->
+    </div>
 
-</div>
+    <div class="product-card-info">
 
-<div class="showroom-info">
+        <span>Founder's Genesis</span>
 
-<span class="showroom-label">
-ENTRY EDITION
-</span>
+        <h3>Genesis 20</h3>
 
-<h3>
-ENTRY
-</h3>
+        <p>
+            Twenty pieces. One beginning.
+        </p>
 
-<p>
-Clean. Heavy. Purpose-built for everyday movement.
-</p>
-
-</div>
-
-</a>
-
-
-<!-- PREMIUM -->
-
-<a
-href="premium.html"
-class="showroom-card"
->
-
-<div class="showroom-image">
-
-<img
-src="1782202425163.jpg"
-alt="VELO Premium Edition"
-loading="lazy"
->
-
-</div>
-
-<div class="showroom-info">
-
-<span class="showroom-label">
-PREMIUM EDITION
-</span>
-
-<h3>
-PREMIUM
-</h3>
-
-<p>
-Elevated construction. Stronger presence. Premium identity.
-</p>
-
-</div>
-
-</a>
-
-
-<!-- SPORT+ -->
-
-<a
-href="premium+.html"
-class="showroom-card"
->
-
-<div class="showroom-image">
-
-<img
-src="1782202425163.jpg"
-alt="VELO Premium Sport+ Edition"
-loading="lazy"
->
-
-</div>
-
-<div class="showroom-info">
-
-<span class="showroom-label">
-SPORT+
-</span>
-
-<h3>
-PREMIUM SPORT+
-</h3>
-
-<p>
-Performance meets streetwear without losing the VELO silhouette.
-</p>
-
-</div>
-
-</a>
-
-
-<!-- FOUNDER'S GENESIS -->
-
-<a
-href="founders.html"
-class="showroom-card"
->
-
-<div class="showroom-image">
-
-<img
-src="1782202486288.jpg"
-alt="VELO Founder's Genesis"
-loading="lazy"
->
-
-</div>
-
-<div class="showroom-info">
-
-<span class="showroom-label">
-FOUNDER'S GENESIS
-</span>
-
-<h3>
-GENESIS 20
-</h3>
-
-<p>
-Twenty pieces. One beginning. Never restocked.
-</p>
-
-</div>
-
-</a>
-
-
-</div>
-
-</section>
-
-
-<!-- ==================================================
-SLIDER
-================================================== -->
-
-<section class="slider-section">
-
-
-<h2>
-Current Drop
-</h2>
-
-
-<div class="card-slider">
-
-
-<a
-href="nightshift.html"
-class="drop-card"
->
-
-
-<img
-src="Screenshot_20260623-091910.jpg"
-alt="Nightshift"
->
-
-
-<div class="drop-content">
-
-<h3>
-NIGHTSHIFT
-</h3>
-
-<p>
-Explore The Entire Collection
-</p>
+    </div>
 
 </div>
 
 
-</a>
+<!-- CARD 05 -->
 
+<div class="product-card">
 
-<a
-href="entry.html"
-class="drop-card"
->
+    <div class="product-image">
 
+        <img
+            src="1782202425163.jpg"
+            alt="VELO Premium Sport product"
+            loading="lazy"
+        >
 
-<img
-src="1782202333116.jpg"
-alt="Entry"
->
+    </div>
 
+    <div class="product-card-info">
 
-<div class="drop-content">
+        <span>Premium Sport+</span>
 
-<h3>
-ENTRY
-</h3>
+        <h3>VELO Sport+</h3>
 
-<p>
-Built For Everyday Movement
-</p>
+        <p>
+            Performance meets the VELO silhouette.
+        </p>
 
-</div>
-
-
-</a>
-
-
-<a
-href="premium.html"
-class="drop-card"
->
-
-
-<img
-src="1782202425163.jpg"
-alt="Premium"
->
-
-
-<div class="drop-content">
-
-<h3>
-PREMIUM
-</h3>
-
-<p>
-Luxury Street Essentials
-</p>
+    </div>
 
 </div>
 
 
-</a>
+<!-- CARD 06 -->
 
+<div class="product-card">
 
-<a
-href="premium+.html"
-class="drop-card"
->
+    <div class="product-image">
 
-<h3>
-SPORT+
-</h3>
+        <img
+            src="Screenshot_20260623-091910.jpg"
+            alt="VELO streetwear product"
+            loading="lazy"
+        >
 
-<p>
-Performance Meets Streetwear
-</p>
+    </div>
 
-</a>
+    <div class="product-card-info">
 
+        <span>VELO</span>
 
-<a
-href="founders.html"
-class="drop-card"
->
+        <h3>Move Different.</h3>
 
+        <p>
+            Designed for movement, ambition and progress.
+        </p>
 
-<img
-src="1782202486288.jpg"
-alt="Founder"
->
-
-
-<div class="drop-content">
-
-<h3>
-FOUNDERS
-</h3>
-
-<p>
-Genesis 20 Collection
-</p>
+    </div>
 
 </div>
 
 
-</a>
+<!-- CARD 07 -->
+
+<div class="product-card">
+
+    <div class="product-image">
+
+        <img
+            src="1782202333116.jpg"
+            alt="VELO streetwear collection"
+            loading="lazy"
+        >
+
+    </div>
+
+    <div class="product-card-info">
+
+        <span>VELO Collection</span>
+
+        <h3>Built Different.</h3>
+
+        <p>
+            Premium pieces from the VELO movement.
+        </p>
+
+    </div>
+
+</div>
 
 
-<a
-href="nightshift.html"
-class="drop-card"
->
+<!-- CARD 08 -->
 
-<h3>
-DROP 01
-</h3>
+<div class="product-card">
 
-<p>
-130 Pieces Only
-</p>
+    <div class="product-image">
 
-</a>
+        <img
+            src="1782202425163.jpg"
+            alt="VELO premium clothing"
+            loading="lazy"
+        >
+
+    </div>
+
+    <div class="product-card-info">
+
+        <span>Premium</span>
+
+        <h3>Precision</h3>
+
+        <p>
+            Details designed with purpose.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- CARD 09 -->
+
+<div class="product-card">
+
+    <div class="product-image">
+
+        <img
+            src="1782202486288.jpg"
+            alt="VELO Genesis collection"
+            loading="lazy"
+        >
+
+    </div>
+
+    <div class="product-card-info">
+
+        <span>Genesis</span>
+
+        <h3>The Beginning</h3>
+
+        <p>
+            The first chapter of something bigger.
+        </p>
+
+    </div>
+
+</div>
 
 
 </div>
@@ -1530,7 +2207,7 @@ WHY VELO
 
 
 <h2>
-Why VELO
+    Why VELO
 </h2>
 
 
@@ -1539,76 +2216,56 @@ Why VELO
 
 <div class="why-box">
 
+    <h3>
+        Premium Quality
+    </h3>
 
-<h3>
-Premium Quality
-</h3>
-
-
-<p>
-
-Heavyweight fabrics.
-Built to last.
-
-</p>
-
+    <p>
+        Heavyweight fabrics.
+        Built to last.
+    </p>
 
 </div>
 
 
 <div class="why-box">
 
+    <h3>
+        Limited Drops
+    </h3>
 
-<h3>
-Limited Drops
-</h3>
-
-
-<p>
-
-No endless restocks.
-When it's gone, it's gone.
-
-</p>
-
+    <p>
+        No endless restocks.
+        When it's gone, it's gone.
+    </p>
 
 </div>
 
 
 <div class="why-box">
 
+    <h3>
+        Nigerian Made
+    </h3>
 
-<h3>
-Nigerian Made
-</h3>
-
-
-<p>
-
-Designed for our culture.
-Built for the world.
-
-</p>
-
+    <p>
+        Designed for our culture.
+        Built for the world.
+    </p>
 
 </div>
 
 
 <div class="why-box">
 
+    <h3>
+        Future Focused
+    </h3>
 
-<h3>
-Future Focused
-</h3>
-
-
-<p>
-
-Not trends.
-Legacy.
-
-</p>
-
+    <p>
+        Not trends.
+        Legacy.
+    </p>
 
 </div>
 
@@ -1626,26 +2283,26 @@ MEMBERSHIP
 
 
 <h2>
-Become A VELO Member
+    Become A VELO Member
 </h2>
 
 
 <p>
 
-Get Early Access To Drops,
-Special Pricing,
-Priority Releases,
-And Community Rewards.
+    Get early access to drops,
+    special pricing,
+    priority releases,
+    and community rewards.
 
 </p>
 
 
 <a
-href="membership.html"
-class="primary-btn"
+    href="membership.html"
+    class="primary-btn"
 >
 
-Explore Membership
+    Explore Membership
 
 </a>
 
@@ -1661,14 +2318,12 @@ FOOTER
 
 
 <h2>
-VELO
+    VELO
 </h2>
 
 
 <p>
-
-MOVE DIFFERENT.
-
+    MOVE DIFFERENT.
 </p>
 
 
@@ -1676,17 +2331,17 @@ MOVE DIFFERENT.
 
 
 <a href="#">
-Instagram
+    Instagram
 </a>
 
 
 <a href="#">
-TikTok
+    TikTok
 </a>
 
 
 <a href="#">
-WhatsApp
+    WhatsApp
 </a>
 
 
@@ -1695,7 +2350,7 @@ WhatsApp
 
 <p class="copyright">
 
-© 2026 VELO
+    © 2026 VELO
 
 </p>
 
@@ -1703,7 +2358,256 @@ WhatsApp
 </footer>
 
 
+<!-- ==================================================
+REGISTER / SIGN-IN POPUP
+================================================== -->
+
+<div
+    class="velo-entry-popup"
+    id="veloEntryPopup"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="veloPopupTitle"
+>
+
+
+<div class="velo-popup-card">
+
+
+<button
+    class="velo-popup-close"
+    id="veloPopupClose"
+    aria-label="Close"
+>
+
+    ×
+
+</button>
+
+
+<div class="velo-popup-logo">
+
+    <span>V</span>
+
+    <span
+        class="veloE"
+        aria-hidden="true"
+    >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </span>
+
+    <span>L</span>
+    <span>O</span>
+
+</div>
+
+
+<h2 id="veloPopupTitle">
+
+    ENTER THE MOVEMENT
+
+</h2>
+
+
+<p>
+
+    Sign in or create your VELO account
+    to unlock your membership experience,
+    track orders and access future releases.
+
+</p>
+
+
+<div class="velo-popup-actions">
+
+
+<a
+    href="register.html"
+    class="popup-primary"
+>
+
+    REGISTER / SIGN IN
+
+</a>
+
+
+<a
+    href="membership.html"
+    class="popup-secondary"
+>
+
+    EXPLORE MEMBERSHIP
+
+</a>
+
+
+</div>
+
+
+<span
+    class="velo-popup-continue"
+    id="veloPopupContinue"
+>
+
+    Continue browsing
+
+</span>
+
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+SCRIPTS
+================================================== -->
+
 <script src="script.js"></script>
+
+
+<script>
+
+/* ==================================================
+VELO ENTRY POPUP
+================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        const popup =
+            document.getElementById(
+                "veloEntryPopup"
+            );
+
+        const closeButton =
+            document.getElementById(
+                "veloPopupClose"
+            );
+
+        const continueButton =
+            document.getElementById(
+                "veloPopupContinue"
+            );
+
+
+        if(!popup) return;
+
+
+        function openVeloPopup(){
+
+            popup.classList.add(
+                "active"
+            );
+
+        }
+
+
+        function closeVeloPopup(){
+
+            popup.classList.remove(
+                "active"
+            );
+
+        }
+
+
+        closeButton.addEventListener(
+            "click",
+            closeVeloPopup
+        );
+
+
+        continueButton.addEventListener(
+            "click",
+            closeVeloPopup
+        );
+
+
+        popup.addEventListener(
+            "click",
+            function(event){
+
+                if(
+                    event.target === popup
+                ){
+
+                    closeVeloPopup();
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function(event){
+
+                if(
+                    event.key === "Escape"
+                ){
+
+                    closeVeloPopup();
+
+                }
+
+            }
+        );
+
+
+        /*
+        Popup appears when the
+        homepage is entered.
+        It does NOT block browsing.
+        */
+
+        setTimeout(
+            openVeloPopup,
+            650
+        );
+
+    }
+);
+
+
+/* ==================================================
+MENU KEYBOARD ACCESSIBILITY
+================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        const menuButton =
+            document.querySelector(
+                ".menu-btn"
+            );
+
+        if(
+            event.key === "Enter" &&
+            document.activeElement === menuButton
+        ){
+
+            if(
+                typeof openMenu === "function"
+            ){
+
+                openMenu();
+
+            }
+
+        }
+
+    }
+);
+
+</script>
 
 
 </body>
