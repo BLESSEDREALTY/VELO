@@ -1145,3 +1145,1377 @@
     }
 
 }
+
+
+/* =========================================================
+   VELO — FINAL CINEMATIC STOREFRONT OVERRIDE
+   DO NOT DELETE THE ORIGINAL CSS ABOVE.
+   This layer intentionally overrides only the VELO storefront UI.
+   ========================================================= */
+
+
+/* =========================================================
+   1. GLOBAL VELO STOREFRONT VARIABLES
+   ========================================================= */
+
+:root{
+    --velo-white:#ffffff;
+    --velo-cream:#f7f4ec;
+
+    --velo-glass:rgba(255,255,255,.16);
+    --velo-glass-strong:rgba(255,255,255,.25);
+    --velo-glass-border:rgba(255,255,255,.38);
+
+    --velo-dark-glass:rgba(8,8,8,.42);
+
+    --velo-shadow:
+        0 25px 80px rgba(0,0,0,.28);
+
+    --velo-soft-shadow:
+        0 12px 40px rgba(0,0,0,.18);
+
+    --velo-radius:28px;
+}
+
+
+/* =========================================================
+   2. BODY / PAGE FOUNDATION
+   ========================================================= */
+
+body.homepage{
+    min-height:100vh;
+    background:#111;
+    color:#fff;
+}
+
+
+/*
+   All VELO pages should inherit the same visual language.
+*/
+
+body.velo-page,
+body.homepage{
+    font-family:'Montserrat',sans-serif;
+}
+
+
+/* =========================================================
+   3. CINEMATIC VIDEO
+   ========================================================= */
+
+.homeVideoBackground{
+    position:fixed;
+    inset:0;
+
+    width:100vw;
+    height:100vh;
+
+    object-fit:cover;
+    object-position:center;
+
+    z-index:-20;
+
+    opacity:.58;
+
+    filter:
+        brightness(.72)
+        contrast(1.02)
+        saturate(.72);
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   4. WHITE / CREAM GLASS COVERAGE
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   This replaces the old heavy black overlay.
+
+   The video remains visible underneath.
+   The white/cream layer makes text readable without
+   turning the entire page grey.
+*/
+
+.homeVideoOverlay{
+    position:fixed;
+    inset:0;
+
+    width:100vw;
+    height:100vh;
+
+    z-index:-19;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(247,244,236,.20) 0%,
+            rgba(247,244,236,.34) 35%,
+            rgba(247,244,236,.27) 68%,
+            rgba(247,244,236,.48) 100%
+        );
+}
+
+
+/*
+   Soft darkening directly behind the most important
+   text without destroying the white atmosphere.
+*/
+
+.homepage .hero::before{
+    content:"";
+
+    position:absolute;
+
+    inset:8% 4%;
+
+    border-radius:36px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.19),
+            rgba(255,255,255,.08)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.32);
+
+    box-shadow:
+        0 25px 90px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.28);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    z-index:-1;
+}
+
+
+/* =========================================================
+   5. CONTENT LAYER
+   ========================================================= */
+
+body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
+    position:relative;
+    z-index:1;
+}
+
+
+/* =========================================================
+   6. TOP CONTROLS
+   ========================================================= */
+
+.homepage .menu-btn,
+.homepage .notification-btn,
+.homepage .cart-btn{
+
+    position:fixed;
+
+    top:22px;
+
+    width:52px;
+    height:52px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:16px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.42);
+
+    background:
+        rgba(255,255,255,.22);
+
+    color:#111;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.16);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    z-index:5000;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+
+/* =========================================================
+   MENU — FAR LEFT
+   ========================================================= */
+
+.homepage .menu-btn{
+
+    left:22px;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    user-select:none;
+}
+
+.homepage .menu-btn:hover{
+
+    background:
+        rgba(255,255,255,.42);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 40px rgba(0,0,0,.22);
+}
+
+
+/* =========================================================
+   NOTIFICATION — BESIDE CART
+   ========================================================= */
+
+.homepage .notification-btn{
+
+    right:92px;
+
+    cursor:pointer;
+
+    font-size:20px;
+}
+
+
+/*
+   Actual bell icon.
+
+   If HTML contains:
+   <span class="notification-icon">♧</span>
+
+   replace that character with:
+   🔔
+
+   Better still, use an SVG/icon in the HTML.
+*/
+
+.homepage .notification-btn:hover{
+
+    background:
+        rgba(255,255,255,.42);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* REMOVE ANY OLD RATING/DIAMOND DISPLAY */
+
+.homepage .rating-notification,
+.homepage .rating-badge,
+.homepage .notification-rating,
+.homepage .notification-diamond,
+.homepage .diamond-rating{
+
+    display:none !important;
+}
+
+
+/* =========================================================
+   CART — FAR RIGHT
+   ========================================================= */
+
+.homepage .cart-btn{
+
+    right:22px;
+    left:auto;
+
+    width:58px;
+
+    background:
+        rgba(10,10,10,.62);
+
+    color:#fff;
+
+    border-color:
+        rgba(255,255,255,.24);
+
+    font-size:21px;
+}
+
+
+.homepage .cart-btn:hover{
+
+    background:
+        rgba(255,255,255,.28);
+
+    color:#111;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   CART COUNT
+   ========================================================= */
+
+.homepage #cart-count{
+
+    position:absolute;
+
+    top:-7px;
+    right:-7px;
+
+    min-width:21px;
+    height:21px;
+
+    padding:0 5px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    color:#111;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    border:
+        1px solid
+        rgba(0,0,0,.12);
+}
+
+
+/* =========================================================
+   7. SIDEBAR
+   ========================================================= */
+
+.homepage #sidebar{
+
+    position:fixed;
+
+    top:0;
+    left:-340px;
+
+    width:320px;
+    height:100vh;
+
+    padding:28px 22px;
+
+    background:
+        rgba(20,20,20,.88);
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.18);
+
+    box-shadow:
+        20px 0 70px rgba(0,0,0,.35);
+
+    backdrop-filter:
+        blur(24px);
+
+    -webkit-backdrop-filter:
+        blur(24px);
+
+    overflow-y:auto;
+
+    z-index:6000;
+
+    transition:
+        left .42s cubic-bezier(.22,.61,.36,1);
+}
+
+
+/*
+   JS opens this class instead of depending only on inline
+   positioning.
+*/
+
+.homepage #sidebar.open{
+    left:0;
+}
+
+
+/* =========================================================
+   SIDEBAR HEADER
+   ========================================================= */
+
+.homepage .sidebar-header{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding-bottom:25px;
+
+    margin-bottom:20px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
+}
+
+
+.homepage .sidebar-header img{
+
+    width:48px;
+    height:48px;
+
+    object-fit:contain;
+
+    border-radius:10px;
+}
+
+
+.homepage .sidebar-header h2{
+
+    margin:0;
+
+    font-size:21px;
+
+    letter-spacing:2px;
+
+    color:#fff;
+}
+
+
+.homepage .sidebar-header .close-btn{
+
+    position:absolute;
+
+    right:0;
+    top:0;
+
+    margin:0;
+
+    width:38px;
+    height:38px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+
+.homepage .sidebar-header .close-btn:hover{
+
+    background:#fff;
+
+    color:#111;
+
+    transform:none;
+}
+
+
+/* =========================================================
+   SIDEBAR LINKS
+   ========================================================= */
+
+.homepage .sidebar-links a{
+
+    display:flex;
+
+    align-items:center;
+
+    min-height:48px;
+
+    padding:13px 15px;
+
+    margin-bottom:9px;
+
+    border-radius:13px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    color:#fff;
+
+    font-size:.84rem;
+
+    font-weight:600;
+
+    transition:
+        background .3s ease,
+        transform .3s ease,
+        color .3s ease;
+}
+
+
+.homepage .sidebar-links a:hover{
+
+    background:
+        rgba(255,255,255,.18);
+
+    color:#fff;
+
+    padding-left:18px;
+
+    transform:translateX(3px);
+}
+
+
+/* =========================================================
+   SIDEBAR OVERLAY
+   ========================================================= */
+
+.homepage #overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    display:block;
+
+    background:
+        rgba(0,0,0,.38);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+    z-index:5500;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
+
+
+.homepage #overlay.open,
+.homepage #overlay.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+    pointer-events:auto;
+}
+
+
+/* =========================================================
+   8. HERO
+   ========================================================= */
+
+.homepage .hero{
+
+    min-height:100vh;
+
+    padding:
+        125px 5% 90px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+
+/* =========================================================
+   VELO WORDMARK
+   ========================================================= */
+
+/*
+   SINGLE SLASH ONLY.
+
+   The slash is intentionally separate from the letters.
+*/
+
+.homepage .veloWordmark{
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:0;
+
+    width:auto;
+
+    margin:0 auto;
+
+    color:#fff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        clamp(4rem,11vw,8rem);
+
+    font-weight:900;
+
+    letter-spacing:-.075em;
+
+    line-height:.85;
+
+    white-space:nowrap;
+
+    text-shadow:
+        0 12px 40px rgba(0,0,0,.32);
+}
+
+
+/*
+   SINGLE VELO SLASH
+*/
+
+.homepage .veloSlash{
+
+    display:inline-block;
+
+    width:.075em;
+    height:.82em;
+
+    margin-right:.11em;
+
+    background:#fff;
+
+    transform:
+        skewX(-24deg)
+        rotate(8deg);
+
+    border-radius:1px;
+}
+
+
+/*
+   IMPORTANT:
+   Remove the previous double-slash pseudo-elements.
+*/
+
+.homepage .veloSlash::before,
+.homepage .veloSlash::after{
+
+    display:none !important;
+
+    content:none !important;
+}
+
+
+/*
+   Tight joined lettering.
+*/
+
+.homepage .veloWordmark > span:not(.veloSlash){
+
+    margin-left:-.035em;
+}
+
+
+/* =========================================================
+   CUSTOM E — CLEAN, NOT CHILDISH
+   ========================================================= */
+
+.homepage .veloE{
+
+    display:inline-block;
+
+    position:relative;
+
+    width:.63em;
+    height:.75em;
+
+    margin-left:-.045em;
+
+    flex:none;
+}
+
+
+.homepage .veloE span{
+
+    position:absolute;
+
+    left:0;
+
+    width:100%;
+
+    height:.105em;
+
+    min-height:4px;
+
+    background:#fff;
+
+    border-radius:1px;
+}
+
+
+.homepage .veloE span:nth-child(1){
+    top:0;
+}
+
+.homepage .veloE span:nth-child(2){
+    top:50%;
+
+    transform:
+        translateY(-50%);
+}
+
+.homepage .veloE span:nth-child(3){
+    bottom:0;
+}
+
+
+/* =========================================================
+   9. HERO TEXT
+   ========================================================= */
+
+.homepage .primarySlogan{
+
+    margin-top:30px;
+
+    color:#fff;
+
+    font-size:
+        clamp(
+            1.25rem,
+            3.2vw,
+            2.25rem
+        );
+
+    font-weight:900;
+
+    letter-spacing:
+        clamp(
+            2px,
+            .55vw,
+            6px
+        );
+
+    text-shadow:
+        0 8px 30px rgba(0,0,0,.30);
+}
+
+
+.homepage .motto{
+
+    margin-top:12px;
+
+    color:
+        #f1d879;
+
+    font-size:
+        clamp(
+            .75rem,
+            1.6vw,
+            1rem
+        );
+
+    font-weight:700;
+
+    letter-spacing:
+        2px;
+}
+
+
+/*
+   Remove the old gold decorative line.
+*/
+
+.homepage .motto::after{
+
+    display:none !important;
+
+    content:none !important;
+}
+
+
+.homepage .sub-text{
+
+    max-width:650px;
+
+    margin-top:17px;
+
+    color:
+        rgba(255,255,255,.90);
+
+    font-size:
+        clamp(.82rem,1.6vw,1rem);
+
+    line-height:1.8;
+
+    text-shadow:
+        0 5px 20px rgba(0,0,0,.28);
+}
+
+
+/* =========================================================
+   10. SEARCH AREA
+   ========================================================= */
+
+.homepage .velo-search-area{
+
+    width:
+        min(680px,100%);
+
+    margin-top:32px;
+
+    padding:
+        24px;
+
+    border-radius:
+        var(--velo-radius);
+
+    background:
+        rgba(255,255,255,.18);
+
+    border:
+        1px solid
+        rgba(255,255,255,.36);
+
+    box-shadow:
+        var(--velo-shadow);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+
+.homepage .velo-search-label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:#fff;
+
+    font-size:.9rem;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+}
+
+
+.homepage .velo-search-row{
+
+    display:flex;
+
+    gap:8px;
+
+    width:100%;
+}
+
+
+.homepage .velo-search-row input{
+
+    flex:1;
+
+    min-width:0;
+
+    height:50px;
+
+    padding:
+        0 16px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.42);
+
+    border-radius:13px;
+
+    background:
+        rgba(255,255,255,.80);
+
+    color:#111;
+
+    outline:none;
+
+    font-family:inherit;
+
+    font-size:.88rem;
+}
+
+
+.homepage .velo-search-row button{
+
+    width:52px;
+    height:50px;
+
+    border:0;
+
+    border-radius:13px;
+
+    background:#111;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+
+.homepage .velo-search-row button:hover{
+
+    background:#fff;
+
+    color:#111;
+}
+
+
+/* =========================================================
+   11. FILTER TRIGGER
+   ========================================================= */
+
+.homepage .filter-trigger{
+
+    width:100%;
+
+    margin-top:12px;
+
+    min-height:46px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    border-radius:13px;
+
+    background:
+        rgba(255,255,255,.22);
+
+    color:#fff;
+
+    font-family:inherit;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+
+.homepage .filter-trigger:hover{
+
+    background:
+        rgba(255,255,255,.38);
+}
+
+
+/* =========================================================
+   12. FILTER PANEL
+   HIDDEN UNTIL USER TAPS FILTER
+   ========================================================= */
+
+.homepage .filter-panel{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+    margin-top:12px;
+
+    max-height:0;
+
+    opacity:0;
+
+    overflow:hidden;
+
+    visibility:hidden;
+
+    transition:
+        max-height .45s ease,
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+
+.homepage .filter-panel.open,
+.homepage .filter-panel.active{
+
+    max-height:700px;
+
+    opacity:1;
+
+    visibility:visible;
+}
+
+
+.homepage .filter-panel select{
+
+    width:100%;
+
+    min-height:44px;
+
+    padding:
+        0 12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.28);
+
+    border-radius:11px;
+
+    background:
+        rgba(255,255,255,.82);
+
+    color:#111;
+
+    font-family:inherit;
+
+    font-size:.78rem;
+
+    outline:none;
+}
+
+
+/* =========================================================
+   13. PRODUCT DISPLAY
+   ========================================================= */
+
+.homepage .product-display{
+
+    width:100%;
+
+    padding:
+        75px 5% 100px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.22);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+
+/*
+   TWO-COLUMN STORE GRID
+*/
+
+.homepage .product-grid{
+
+    width:
+        min(1250px,100%);
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:
+        24px;
+
+    align-items:start;
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+   ========================================================= */
+
+.homepage .product-card{
+
+    position:relative;
+
+    min-width:0;
+
+    overflow:hidden;
+
+    cursor:pointer;
+
+    border:
+        1px solid
+        rgba(255,255,255,.30);
+
+    border-radius:
+        22px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    box-shadow:
+        0 18px 55px rgba(0,0,0,.18);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+
+.homepage .product-card:hover{
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(255,255,255,.60);
+
+    box-shadow:
+        0 28px 70px rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+   ========================================================= */
+
+.homepage .product-image{
+
+    width:100%;
+
+    aspect-ratio:
+        1 / 1.08;
+
+    overflow:hidden;
+
+    background:
+        rgba(255,255,255,.14);
+}
+
+
+.homepage .product-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:
+        transform .55s ease;
+}
+
+
+.homepage .product-card:hover
+.product-image img{
+
+    transform:
+        scale(1.035);
+}
+
+
+/* =========================================================
+   PRODUCT PEEK DETAILS
+   ========================================================= */
+
+.homepage .product-card-info{
+
+    padding:
+        17px 18px 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(20,20,20,.12),
+            rgba(8,8,8,.58)
+        );
+}
+
+
+.homepage .product-card-info span{
+
+    display:block;
+
+    margin-bottom:5px;
+
+    color:
+        #f0d77b;
+
+    font-size:
+        .62rem;
+
+    font-weight:800;
+
+    letter-spacing:
+        1.7px;
+
+    text-transform:uppercase;
+}
+
+
+.homepage .product-card-info h3{
+
+    margin:0;
+
+    color:#fff;
+
+    font-size:
+        clamp(
+            .95rem,
+            1.7vw,
+            1.2rem
+        );
+
+    font-weight:800;
+}
+
+
+.homepage .product-card-info p{
+
+    margin-top:5px;
+
+    color:
+        rgba(255,255,255,.72);
+
+    font-size:.76rem;
+
+    line-height:1.5;
+}
+
+
+/*
+   NO CARD NUMBERING.
+*/
+
+.homepage .product-card::before{
+
+    display:none !important;
+
+    content:none !important;
+}
+
+
+/* =========================================================
+   14. MEMBERSHIP / PERSUASION
+   ========================================================= */
+
+.homepage .membership-preview{
+
+    padding:
+        90px 7%;
+
+    text-align:center;
+
+    background:
+        rgba(255,255,255,.16);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.25);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+}
+
+
+.homepage .membership-preview p{
+
+    max-width:650px;
+
+    margin:
+        0 auto 25px;
+
+    color:
+        rgba(255,255,255,.82);
+
+    line-height:1.8;
+}
+
+
+/* =========================================================
+   15. REGISTER / SIGN-IN POPUP
+   KEEP IT — JUST MAKE IT PREMIUM
+   ========================================================= */
+
+.velo-entry-popup{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(15,15,15,.48);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    z-index:9000;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
+
+
+.velo-ent
