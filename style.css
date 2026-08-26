@@ -2519,3 +2519,1292 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
 
 
 .velo-ent
+
+/* =========================================================
+   VELO — FINAL VISUAL CORRECTION LAYER
+   Append AFTER the existing style.css
+   Does NOT replace unrelated existing styles.
+   ========================================================= */
+
+
+/* =========================================================
+   1. GLOBAL PAGE FOUNDATION
+   ========================================================= */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #0a0a0a;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   2. HEADER / TOP CONTROL BAR
+   MENU — NOTIFICATION — CART
+   ========================================================= */
+
+header {
+    height: 78px;
+    padding: 0 24px;
+    background: rgba(7, 7, 7, 0.86);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+/* Menu stays completely left */
+
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: rgba(12, 12, 12, 0.90);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: #fff;
+
+    z-index: 3000;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35);
+
+    transform: none;
+}
+
+/* Do NOT rotate the menu simply because it is hovered */
+
+.menu-btn:hover {
+    background: rgba(212, 175, 55, 0.95);
+    color: #050505;
+    transform: none;
+}
+
+
+/* =========================================================
+   3. NOTIFICATION BELL
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   The notification control should be a BELL.
+   There must NOT be a random diamond/rating indicator
+   occupying this position.
+*/
+
+.notification-btn,
+.notifications-btn,
+#notification-btn,
+#notifications-btn {
+
+    position: fixed;
+
+    top: 20px;
+    right: 88px;
+
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: rgba(12, 12, 12, 0.90);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    z-index: 3000;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35);
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
+
+.notification-btn:hover,
+.notifications-btn:hover,
+#notification-btn:hover,
+#notifications-btn:hover {
+
+    background: var(--gold);
+    color: #050505;
+
+    transform: translateY(-2px);
+}
+
+
+/* Bell icon */
+
+.notification-btn i,
+.notifications-btn i,
+#notification-btn i,
+#notifications-btn i {
+
+    font-size: 21px;
+}
+
+
+/* Notification count */
+
+.notification-count,
+#notification-count {
+
+    position: absolute;
+
+    top: -6px;
+    right: -6px;
+
+    min-width: 19px;
+    height: 19px;
+
+    padding: 0 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    color: #050505;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    border: 2px solid #0a0a0a;
+}
+
+
+/* =========================================================
+   4. CART
+   ========================================================= */
+
+.cart-btn {
+
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    width: 54px;
+    height: 54px;
+
+    border-radius: 16px;
+
+    background: rgba(12, 12, 12, 0.90);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    z-index: 3000;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.cart-btn:hover {
+
+    background: var(--gold);
+    color: #050505;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   5. REMOVE THE OLD RANDOM / RATING INDICATOR
+   ========================================================= */
+
+/*
+   If the old diamond/rating control uses any of these
+   selectors, hide it.
+
+   This does NOT hide the notification bell.
+*/
+
+.rating-notification,
+.rating-badge,
+.rating-btn,
+.diamond-notification,
+#rating-notification,
+#rating-badge {
+
+    display: none !important;
+}
+
+
+/* =========================================================
+   6. SIDEBAR
+   ========================================================= */
+
+#sidebar {
+
+    position: fixed;
+
+    top: 0;
+    left: -340px;
+
+    width: min(320px, 86vw);
+    height: 100vh;
+
+    padding: 32px 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18, 18, 18, 0.98),
+            rgba(7, 7, 7, 0.99)
+        );
+
+    border-right: 1px solid rgba(212, 175, 55, 0.12);
+
+    box-shadow:
+        20px 0 60px rgba(0, 0, 0, 0.55);
+
+    overflow-y: auto;
+
+    z-index: 2500;
+
+    transition:
+        left .4s cubic-bezier(.77,0,.18,1);
+}
+
+
+/* =========================================================
+   7. OVERLAY
+   ========================================================= */
+
+#overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+
+    background:
+        rgba(0, 0, 0, 0.64);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    opacity: 0;
+
+    z-index: 2400;
+
+    transition: opacity .35s ease;
+}
+
+
+/* =========================================================
+   8. CRITICAL:
+   PREVENT HOMEPAGE VIDEO/ATMOSPHERE FROM LEAKING
+   INTO OTHER PAGES
+   ========================================================= */
+
+/*
+   The cinematic video system belongs ONLY to body.homepage.
+*/
+
+body:not(.homepage) .homeVideoBackground,
+body:not(.homepage) .homeVideoOverlay {
+
+    display: none !important;
+}
+
+
+/* Remove homepage atmosphere from non-home pages */
+
+body:not(.homepage)::before {
+
+    display: none !important;
+}
+
+
+/*
+   Most importantly, homepage stacking rules must NEVER
+   affect ordinary pages.
+*/
+
+body:not(.homepage) > * {
+
+    position: static;
+}
+
+
+/* =========================================================
+   9. HOMEPAGE CINEMATIC COVER
+   ========================================================= */
+
+body.homepage {
+
+    background: #070707;
+
+    min-height: 100vh;
+
+    position: relative;
+}
+
+
+/* Keep cinematic video ONLY here */
+
+body.homepage .homeVideoBackground {
+
+    display: block;
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    object-fit: cover;
+
+    z-index: -10;
+
+    opacity: .30;
+
+    filter:
+        brightness(.58)
+        contrast(1.08)
+        saturate(.68);
+}
+
+
+/* Soft cream/white visual coverage */
+
+body.homepage .homeVideoOverlay {
+
+    display: block;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -9;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(250,250,248,.25) 0%,
+            rgba(244,244,240,.32) 38%,
+            rgba(225,225,220,.38) 66%,
+            rgba(12,12,12,.88) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   10. SAME VISUAL LANGUAGE FOR ALL PAGES
+   ========================================================= */
+
+body:not(.homepage) main {
+
+    position: relative;
+
+    min-height: calc(100vh - 78px);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(246,246,242,.90),
+            rgba(225,225,220,.84)
+        );
+
+    color: #111;
+}
+
+
+/*
+   Individual page sections receive the same refined
+   translucent white/cream treatment.
+*/
+
+body:not(.homepage) main section {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.84),
+            rgba(240,240,235,.76)
+        );
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.55);
+
+    color: #111;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   11. PAGE TEXT
+   ========================================================= */
+
+body:not(.homepage) main h1,
+body:not(.homepage) main h2,
+body:not(.homepage) main h3 {
+
+    color: #111;
+
+    letter-spacing: 1px;
+}
+
+body:not(.homepage) main p {
+
+    color: #3e3e3e;
+}
+
+
+/* =========================================================
+   12. HOMEPAGE HERO
+   ========================================================= */
+
+body.homepage .hero {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    padding:
+        130px 7%
+        90px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background: transparent;
+
+    overflow: hidden;
+}
+
+
+/* Hero glass panel */
+
+body.homepage .hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: min(92%, 1100px);
+
+    height: 88%;
+
+    border-radius: 42px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.17),
+            rgba(255,255,255,.055)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.30);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.20),
+
+        inset 0 1px 0
+        rgba(255,255,255,.22);
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* =========================================================
+   13. VELO WORDMARK
+   ========================================================= */
+
+/*
+   IMPORTANT:
+
+   If the slash and VELO are separate HTML elements,
+   these rules create the exact spacing you requested.
+
+   The slash stays visually taller.
+   VELO becomes slightly shorter and sits lower.
+*/
+
+.velo-mark {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    line-height: 1;
+
+    margin: 0 auto;
+}
+
+.velo-mark .slash {
+
+    display: inline-block;
+
+    font-size: 1.18em;
+
+    line-height: .82;
+
+    transform: translateY(-4px);
+
+    color: #fff;
+}
+
+.velo-mark .wordmark,
+.velo-mark .velo-wordmark {
+
+    display: inline-block;
+
+    font-size: .88em;
+
+    line-height: .9;
+
+    letter-spacing: .13em;
+
+    transform: translateY(7px);
+
+    color: #fff;
+
+    font-weight: 800;
+
+    text-shadow:
+        0 4px 18px rgba(0,0,0,.32);
+}
+
+
+/* Hero logo version */
+
+.homepage .hero-image {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 5px;
+}
+
+.homepage .hero-image .velo-mark {
+
+    font-size:
+        clamp(3.2rem, 10vw, 7rem);
+}
+
+
+/*
+   If VELO is a text element inside the existing logo
+   wrapper, give the lettering more character.
+*/
+
+.brand-name {
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-weight: 800;
+
+    letter-spacing: 6px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 4px 18px
+        rgba(0,0,0,.35);
+
+    transform: scaleX(.94);
+
+}
+
+
+/* =========================================================
+   14. HERO LETTERING
+   ========================================================= */
+
+.homepage .hero h1 {
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-weight: 800;
+
+    letter-spacing:
+        clamp(4px, 1.1vw, 12px);
+
+    text-transform: uppercase;
+
+    color: #fff;
+
+    text-shadow:
+        0 8px 35px
+        rgba(0,0,0,.65);
+}
+
+
+/* Main motto */
+
+.homepage .hero .motto {
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-weight: 800;
+
+    letter-spacing:
+        clamp(3px, .7vw, 7px);
+
+    text-transform: uppercase;
+
+    color: #fff;
+
+    text-shadow:
+        0 5px 25px
+        rgba(0,0,0,.65);
+}
+
+
+/* Secondary motto */
+
+.homepage .hero .sub-text {
+
+    font-family:
+        'Montserrat',
+        sans-serif;
+
+    font-weight: 500;
+
+    letter-spacing: .7px;
+
+    color: rgba(255,255,255,.88);
+
+    text-shadow:
+        0 5px 22px
+        rgba(0,0,0,.65);
+}
+
+
+/* =========================================================
+   15. SEARCH BAR
+   ========================================================= */
+
+.homepage .search-section,
+.homepage .product-search,
+.homepage .search-container {
+
+    width: min(760px, 92%);
+
+    margin:
+        35px auto
+        0;
+}
+
+.homepage input[type="search"],
+.homepage input[type="text"] {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 18px;
+
+    border-radius: 14px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.30);
+
+    background:
+        rgba(255,255,255,.72);
+
+    color: #111;
+
+    outline: none;
+
+    font-family: inherit;
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.15);
+}
+
+.homepage input:focus {
+
+    border-color:
+        var(--gold);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(212,175,55,.18);
+}
+
+
+/* =========================================================
+   16. FILTER PANEL
+   ========================================================= */
+
+/*
+   FILTER DETAILS ARE HIDDEN UNTIL FILTER IS TAPPED.
+*/
+
+.filter-panel,
+.filters-panel,
+#filter-panel,
+#filters-panel {
+
+    display: none;
+
+    width: min(850px, 94%);
+
+    margin: 18px auto 0;
+
+    padding: 22px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,.76);
+
+    border:
+        1px solid
+        rgba(255,255,255,.55);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.18);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+
+/* JS-added open state */
+
+.filter-panel.active,
+.filters-panel.active,
+#filter-panel.active,
+#filters-panel.active {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   17. PRODUCT DISPLAY
+   ========================================================= */
+
+.product-grid,
+.products-grid,
+#product-grid {
+
+    width: min(1200px, 94%);
+
+    margin:
+        40px auto
+        80px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* Product card */
+
+.product-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255,255,255,.76);
+
+    border:
+        1px solid
+        rgba(255,255,255,.60);
+
+    color: #111;
+
+    box-shadow:
+        0 16px 45px
+        rgba(0,0,0,.14);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+
+    cursor: pointer;
+}
+
+.product-card:hover {
+
+    transform: translateY(-7px);
+
+    border-color:
+        rgba(212,175,55,.55);
+
+    box-shadow:
+        0 25px 60px
+        rgba(0,0,0,.22);
+}
+
+.product-card img {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1.08;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.product-card .product-info {
+
+    padding: 17px 18px 20px;
+}
+
+.product-card h3 {
+
+    margin-bottom: 5px;
+
+    font-size: 1.05rem;
+
+    letter-spacing: 1px;
+
+    color: #111;
+}
+
+.product-card p {
+
+    color: #555;
+
+    font-size: .88rem;
+}
+
+
+/* =========================================================
+   18. MEMBERSHIP / ACCOUNT AREA
+   ========================================================= */
+
+.membership,
+.account-section,
+.signin-section {
+
+    position: relative;
+
+    background:
+        rgba(255,255,255,.78);
+
+    color: #111;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.14);
+}
+
+
+/* =========================================================
+   19. POPUP
+   ========================================================= */
+
+#membership-popup,
+.membership-popup,
+.popup {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0,0,0,.72);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    z-index: 5000;
+}
+
+
+/* Active popup */
+
+#membership-popup.active,
+.membership-popup.active,
+.popup.active {
+
+    display: flex;
+}
+
+
+/* Popup card */
+
+.popup-content,
+.membership-popup-content {
+
+    width: min(620px, 92vw);
+
+    padding: 42px;
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(250,249,243,.98),
+            rgba(232,231,224,.96)
+        );
+
+    color: #111;
+
+    border:
+        1px solid
+        rgba(255,255,255,.75);
+
+    box-shadow:
+        0 35px 100px
+        rgba(0,0,0,.45);
+
+    animation:
+        veloPopupIn .45s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes veloPopupIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(25px)
+            scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   20. NOTIFICATIONS PAGE — IMPORTANT
+   ========================================================= */
+
+/*
+   The screenshot showed the Notifications heading
+   appearing above the homepage hero.
+
+   This happens when the page content is positioned
+   incorrectly against the homepage layers.
+
+   Give the notifications page its own normal document
+   flow.
+*/
+
+body.notifications-page main,
+body.page-notifications main,
+main.notifications-page {
+
+    position: relative;
+
+    z-index: 1;
+
+    min-height: 100vh;
+
+    padding-top: 105px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(245,245,241,.94),
+            rgba(225,225,220,.88)
+        );
+
+    color: #111;
+}
+
+
+/* Notification content */
+
+.notifications-container,
+.notifications-page .notifications {
+
+    width: min(1000px, 92%);
+
+    margin: 0 auto;
+
+    padding: 50px 0 100px;
+}
+
+
+/* =========================================================
+   21. FOOTER
+   ========================================================= */
+
+footer {
+
+    position: relative;
+
+    margin-top: 0;
+
+    padding:
+        55px 8%
+        35px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(12,12,12,.96),
+            rgba(5,5,5,1)
+        );
+
+    border-top:
+        1px solid
+        rgba(212,175,55,.14);
+
+    color: #aaa;
+
+    z-index: 2;
+}
+
+footer h2,
+footer h3 {
+
+    color: #fff;
+}
+
+footer a {
+
+    color: #aaa;
+}
+
+footer a:hover {
+
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   22. MOBILE — OFFICIAL WEBSITE FINISH
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    header {
+        height: 72px;
+    }
+
+    .menu-btn,
+    .notification-btn,
+    .notifications-btn,
+    #notification-btn,
+    #notifications-btn,
+    .cart-btn {
+
+        top: 14px;
+
+        width: 52px;
+        height: 52px;
+
+        border-radius: 15px;
+    }
+
+    .menu-btn {
+        left: 14px;
+    }
+
+    .cart-btn {
+        right: 14px;
+    }
+
+    .notification-btn,
+    .notifications-btn,
+    #notification-btn,
+    #notifications-btn {
+
+        right: 76px;
+    }
+
+
+    /* Hero */
+
+    body.homepage .hero {
+
+        min-height: 100svh;
+
+        padding:
+            105px 18px
+            70px;
+    }
+
+    body.homepage .hero::before {
+
+        width: 94%;
+
+        height: 82%;
+
+        border-radius: 34px;
+    }
+
+
+    /* Product grid remains exactly two columns */
+
+    .product-grid,
+    .products-grid,
+    #product-grid {
+
+        width: 94%;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+
+        margin-top: 28px;
+    }
+
+
+    .product-card {
+
+        border-radius: 18px;
+    }
+
+    .product-card .product-info {
+
+        padding:
+            12px 12px 15px;
+    }
+
+    .product-card h3 {
+
+        font-size: .86rem;
+
+        letter-spacing: .6px;
+    }
+
+    .product-card p {
+
+        font-size: .76rem;
+    }
+
+
+    /* Filters stack on mobile */
+
+    .filter-panel.active,
+    .filters-panel.active,
+    #filter-panel.active,
+    #filters-panel.active {
+
+        grid-template-columns: 1fr;
+
+        padding: 16px;
+    }
+
+
+    /* Popup */
+
+    .popup-content,
+    .membership-popup-content {
+
+        width: 94vw;
+
+        padding: 30px 24px;
+
+        border-radius: 28px;
+    }
+
+
+    /* Footer */
+
+    footer {
+
+        padding:
+            45px 20px
+            30px;
+    }
+
+}
+
+
+/* =========================================================
+   23
