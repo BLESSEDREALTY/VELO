@@ -1,267 +1,120 @@
-/* =========================================================
-   VELO — FINAL PRELAUNCH STYLE SYSTEM
-   Designed for the corrected index.html
+   HEADER CONTROLS
+   MENU — LEFT
+   NOTIFICATION — BETWEEN MENU/CART
+   CART — FAR RIGHT
    ========================================================= */
 
+.homepage .menu-btn {
+    position: fixed !important;
+    top: 22px !important;
+    left: 22px !important;
 
-/* =========================================================
-   RESET
-   ========================================================= */
+    width: 52px !important;
+    height: 52px !important;
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-html{
-    scroll-behavior:smooth;
-}
+    margin: 0 !important;
 
-:root{
+    background: rgba(10, 10, 10, .72) !important;
+    border: 1px solid rgba(255, 255, 255, .14) !important;
 
-    --gold:#D4AF37;
-    --gold2:#FFD86A;
+    border-radius: 13px !important;
 
-    --black:#070707;
-    --black2:#0D0D0D;
-    --black3:#161616;
+    color: #fff !important;
 
-    --white:#FFFFFF;
-    --cream:#F4F0E7;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
 
-    --grey:#B8B8B8;
-    --grey2:#888888;
+    z-index: 9000 !important;
 
-    --transition:.35s ease;
-
-    --shadow:
-        0 25px 70px rgba(0,0,0,.45);
-
-    --glass:
-        rgba(255,255,255,.055);
-}
-
-body{
-
-    font-family:'Montserrat',sans-serif;
-
-    background:var(--black);
-
-    color:var(--white);
-
-    overflow-x:hidden;
-
-    line-height:1.7;
-
-    -webkit-font-smoothing:antialiased;
-}
-
-body.homepage{
-    min-height:100vh;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-button{
-    font:inherit;
-}
-
-img{
-    display:block;
-    max-width:100%;
-}
-
-section{
-    width:100%;
-}
-
-::selection{
-    background:var(--gold);
-    color:#050505;
-}
-
-
-/* =========================================================
-   SCROLLBAR
-   ========================================================= */
-
-::-webkit-scrollbar{
-    width:8px;
-}
-
-::-webkit-scrollbar-track{
-    background:#080808;
-}
-
-::-webkit-scrollbar-thumb{
-    background:var(--gold);
-    border-radius:50px;
-}
-
-::-webkit-scrollbar-thumb:hover{
-    background:var(--gold2);
-}
-
-
-/* =========================================================
-   CINEMATIC VIDEO
-   ========================================================= */
-
-.homeVideoBackground{
-
-    position:fixed;
-
-    inset:0;
-
-    width:100vw;
-    height:100vh;
-
-    object-fit:cover;
-
-    object-position:center;
-
-    z-index:-20;
-
-    opacity:.48;
-
-    filter:
-        brightness(.62)
-        contrast(1.04)
-        saturate(.68);
-
-    pointer-events:none;
-}
-
-
-/* =========================================================
-   VIDEO DARK PROTECTION
-   ========================================================= */
-
-.homeVideoOverlay{
-
-    position:fixed;
-
-    inset:0;
-
-    width:100vw;
-    height:100vh;
-
-    z-index:-19;
-
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,.38) 0%,
-            rgba(0,0,0,.16) 35%,
-            rgba(0,0,0,.46) 72%,
-            rgba(0,0,0,.88) 100%
-        );
-}
-
-
-/* =========================================================
-   SUBTLE ATMOSPHERE
-   ========================================================= */
-
-body.homepage::before{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:-18;
-
-    pointer-events:none;
-
-    background:
-        radial-gradient(
-            circle at 50% 5%,
-            rgba(212,175,55,.07),
-            transparent 32%
-        );
-}
-
-
-/* =========================================================
-   CONTENT LAYER
-   ========================================================= */
-
-body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
-
-    position:relative;
-
-    z-index:1;
-}
-
-
-/* =========================================================
-   MENU BUTTON
-   ========================================================= */
-
-.homepage .menu-btn{
-
-    position:fixed;
-
-    top:24px;
-    left:24px;
-
-    width:52px;
-    height:52px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid rgba(255,255,255,.16);
-
-    border-radius:14px;
-
-    background:
-        rgba(10,10,10,.58);
-
-    color:#fff;
-
-    backdrop-filter:blur(18px);
-
-    -webkit-backdrop-filter:blur(18px);
-
-    box-shadow:
-        0 12px 35px rgba(0,0,0,.28);
-
-    cursor:pointer;
-
-    z-index:5000;
+    cursor: pointer !important;
 
     transition:
-        transform .35s ease,
-        background .35s ease,
-        color .35s ease,
-        border-color .35s ease;
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease !important;
 }
 
-.homepage .menu-btn span{
-    font-size:25px;
-    line-height:1;
+.homepage .menu-btn:hover {
+    background: rgba(255, 255, 255, .14) !important;
+    color: #fff !important;
+    transform: scale(1.04) !important;
 }
 
-.homepage .menu-btn:hover{
 
-    background:var(--gold);
+/* =========================================================
+   TOP-RIGHT CONTROL GROUP
+   ========================================================= */
 
-    color:#050505;
+.homepage .notification-btn {
+    position: fixed !important;
 
-    border-color:var(--gold);
+    top: 22px !important;
+    right: 92px !important;
 
-    transform:scale(1.06);
+    width: 52px !important;
+    height: 52px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: rgba(10, 10, 10, .72) !important;
+
+    border: 1px solid rgba(255, 255, 255, .14) !important;
+
+    border-radius: 13px !important;
+
+    color: #fff !important;
+
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+
+    z-index: 9000 !important;
+
+    cursor: pointer !important;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease !important;
+}
+
+.homepage .notification-btn:hover {
+    background: rgba(255, 255, 255, .14) !important;
+    transform: scale(1.04) !important;
+}
+
+
+/* =========================================================
+   NOTIFICATION COUNT
+   ========================================================= */
+
+.homepage .notification-count {
+    position: absolute !important;
+
+    top: -5px !important;
+    right: -5px !important;
+
+    min-width: 19px !important;
+    height: 19px !important;
+
+    padding: 0 5px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 50% !important;
+
+    background: #fff !important;
+    color: #080808 !important;
+
+    font-size: 10px !important;
+    font-weight: 800 !important;
 }
 
 
@@ -269,146 +122,134 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
    CART — FAR RIGHT
    ========================================================= */
 
-.homepage .cart-btn{
+.homepage .cart-btn {
+    position: fixed !important;
 
-    position:fixed;
+    top: 22px !important;
+    right: 22px !important;
+    left: auto !important;
 
-    top:24px;
+    width: 52px !important;
+    min-width: 52px !important;
+    height: 52px !important;
 
-    right:24px;
+    padding: 0 !important;
 
-    left:auto;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-    width:58px;
-    height:52px;
+    gap: 0 !important;
 
-    display:flex;
+    background: rgba(10, 10, 10, .72) !important;
 
-    align-items:center;
-    justify-content:center;
+    border: 1px solid rgba(255, 255, 255, .14) !important;
 
-    border:1px solid rgba(255,255,255,.16);
+    border-radius: 13px !important;
 
-    border-radius:14px;
+    color: #fff !important;
 
-    background:
-        rgba(10,10,10,.58);
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
 
-    color:#fff;
+    z-index: 9000 !important;
 
-    backdrop-filter:blur(18px);
-
-    -webkit-backdrop-filter:blur(18px);
-
-    box-shadow:
-        0 12px 35px rgba(0,0,0,.28);
-
-    cursor:pointer;
-
-    z-index:5000;
+    cursor: pointer !important;
 
     transition:
-        transform .35s ease,
-        background .35s ease,
-        color .35s ease,
-        border-color .35s ease;
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease !important;
 }
 
-.homepage .cart-btn:hover{
+.homepage .cart-btn:hover {
+    background: rgba(255, 255, 255, .14) !important;
+    color: #fff !important;
 
-    background:var(--gold);
-
-    color:#050505;
-
-    border-color:var(--gold);
-
-    transform:translateY(-3px);
+    transform: scale(1.04) !important;
 }
 
-.cart-icon{
-    font-size:21px;
-    line-height:1;
-}
 
-.homepage #cart-count{
+/* =========================================================
+   CART COUNT
+   ========================================================= */
 
-    position:absolute;
+.homepage #cart-count {
+    position: absolute !important;
 
-    top:-7px;
-    right:-7px;
+    top: -5px !important;
+    right: -5px !important;
 
-    min-width:21px;
-    height:21px;
+    min-width: 19px !important;
+    height: 19px !important;
 
-    padding:0 5px;
+    padding: 0 5px !important;
 
-    display:flex;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-    align-items:center;
-    justify-content:center;
+    border-radius: 50% !important;
 
-    border-radius:50%;
+    background: var(--gold) !important;
+    color: #050505 !important;
 
-    background:var(--gold);
-
-    color:#050505;
-
-    border:2px solid #080808;
-
-    font-size:10px;
-
-    font-weight:900;
-
-    line-height:1;
+    font-size: 10px !important;
+    font-weight: 900 !important;
 }
 
 
 /* =========================================================
    SIDEBAR
+   IMPORTANT:
+   Do NOT leave the sidebar statically visible.
    ========================================================= */
 
-#sidebar{
+.homepage #sidebar {
+    position: fixed !important;
 
-    position:fixed;
+    top: 0 !important;
+    left: -340px !important;
 
-    top:0;
-    left:0;
+    width: 320px !important;
+    height: 100vh !important;
 
-    width:min(350px,88vw);
+    z-index: 10000 !important;
 
-    height:100vh;
-
-    padding:28px 24px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(20,20,20,.98),
-            rgba(7,7,7,.99)
-        );
-
-    border-right:1px solid rgba(255,255,255,.08);
-
-    box-shadow:
-        20px 0 70px rgba(0,0,0,.55);
-
-    overflow-y:auto;
-
-    transform:translateX(-105%);
-
-    transition:
-        transform .45s cubic-bezier(.22,.61,.36,1);
-
-    z-index:6000;
-
-    visibility:hidden;
+    transition: left .4s cubic-bezier(.4, 0, .2, 1) !important;
 }
 
-#sidebar.open{
+.homepage #sidebar.open {
+    left: 0 !important;
+}
 
-    transform:translateX(0);
 
-    visibility:visible;
+/* =========================================================
+   SIDEBAR OVERLAY
+   ========================================================= */
+
+.homepage #overlay {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    display: none !important;
+
+    opacity: 0 !important;
+
+    background: rgba(0, 0, 0, .58) !important;
+
+    backdrop-filter: blur(3px) !important;
+    -webkit-backdrop-filter: blur(3px) !important;
+
+    z-index: 9999 !important;
+
+    transition: opacity .35s ease !important;
+}
+
+.homepage #overlay.active {
+    display: block !important;
+    opacity: 1 !important;
 }
 
 
@@ -416,288 +257,96 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
    SIDEBAR HEADER
    ========================================================= */
 
-.sidebar-header{
+.homepage #sidebar .sidebar-header {
+    position: relative !important;
 
-    min-height:70px;
+    display: flex !important;
+    align-items: center !important;
 
-    display:flex;
+    min-height: 55px !important;
 
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    padding-bottom:25px;
-
-    margin-bottom:20px;
-
-    border-bottom:1px solid rgba(255,255,255,.08);
+    margin-bottom: 30px !important;
 }
 
-.sidebar-brand{
+.homepage #sidebar .sidebar-header img {
+    width: 48px !important;
+    height: 48px !important;
 
-    display:flex;
+    object-fit: contain !important;
 
-    align-items:center;
-
-    gap:8px;
-
-    white-space:nowrap;
+    margin-right: 12px !important;
 }
 
+.homepage #sidebar .sidebar-header h2 {
+    margin: 0 !important;
 
-/* =========================================================
-   UNIVERSAL VELO MARK
-   SINGLE SLASH
-   ========================================================= */
+    font-size: 23px !important;
+    letter-spacing: 2px !important;
+}
 
-.velo-mark,
-.veloSlash{
+.homepage #sidebar .close-btn {
+    position: absolute !important;
 
-    display:inline-block;
+    top: 0 !important;
+    right: 0 !important;
 
-    color:#fff;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    font-weight:900;
-
-    line-height:.8;
-
-    transform:
-        skewX(-12deg);
-
-    transform-origin:center;
+    margin: 0 !important;
 }
 
 
 /* =========================================================
-   UNIVERSAL VELO WORD
-   SLIGHTLY JOINED LETTERING
+   CINEMATIC VIDEO
    ========================================================= */
 
-.velo-word,
-.veloLetters{
+.homepage .homeVideoBackground {
+    position: fixed !important;
 
-    display:inline-flex;
+    inset: 0 !important;
 
-    align-items:center;
+    width: 100vw !important;
+    height: 100vh !important;
 
-    color:#fff;
+    object-fit: cover !important;
+    object-position: center !important;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    opacity: .42 !important;
 
-    font-weight:900;
+    filter:
+        brightness(.55)
+        contrast(1.03)
+        saturate(.68) !important;
 
-    letter-spacing:-.065em;
+    z-index: -20 !important;
 
-    line-height:.82;
-
-    white-space:nowrap;
-
-    transform:scaleX(.98);
-
-    transform-origin:center;
-}
-
-.veloLetters span{
-
-    display:inline-block;
-
-    margin-left:-.035em;
+    pointer-events: none !important;
 }
 
 
 /* =========================================================
-   SIDEBAR BRAND SIZE
+   WHITE / CREAM CINEMATIC COVER
+   This is the layer beneath the hero text.
    ========================================================= */
 
-.sidebar-brand .velo-mark{
-    font-size:30px;
-}
+.homepage .homeVideoOverlay {
+    position: fixed !important;
 
-.sidebar-brand .velo-word{
-    font-size:28px;
-}
+    inset: 0 !important;
 
-
-/* =========================================================
-   CLOSE BUTTON
-   ========================================================= */
-
-.close-btn{
-
-    width:42px;
-    height:42px;
-
-    flex:0 0 auto;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid rgba(255,255,255,.10);
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.05);
-
-    color:#fff;
-
-    cursor:pointer;
-
-    font-size:25px;
-
-    line-height:1;
-
-    transition:
-        .3s ease;
-}
-
-.close-btn:hover{
-
-    background:var(--gold);
-
-    color:#050505;
-
-    transform:rotate(90deg);
-}
-
-
-/* =========================================================
-   SIDEBAR LINKS
-   ========================================================= */
-
-.sidebar-links{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-}
-
-.sidebar-links a{
-
-    position:relative;
-
-    display:flex;
-
-    align-items:center;
-
-    min-height:55px;
-
-    padding:0 18px;
-
-    border:1px solid rgba(255,255,255,.055);
-
-    border-radius:14px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    color:#eee;
-
-    font-size:.88rem;
-
-    font-weight:600;
-
-    letter-spacing:.3px;
-
-    transition:
-        .3s ease;
-}
-
-.sidebar-links a::after{
-
-    content:"→";
-
-    position:absolute;
-
-    right:18px;
-
-    opacity:0;
-
-    transform:translateX(-8px);
-
-    transition:.3s ease;
-}
-
-.sidebar-links a:hover{
+    width: 100vw !important;
+    height: 100vh !important;
 
     background:
         linear-gradient(
-            90deg,
-            rgba(212,175,55,.18),
-            rgba(212,175,55,.05)
-        );
+            180deg,
+            rgba(247, 244, 235, .08) 0%,
+            rgba(247, 244, 235, .20) 28%,
+            rgba(247, 244, 235, .16) 58%,
+            rgba(8, 8, 8, .82) 100%
+        ) !important;
 
-    border-color:
-        rgba(212,175,55,.38);
+    z-index: -19 !important;
 
-    color:#fff;
-
-    padding-left:23px;
-}
-
-.sidebar-links a:hover::after{
-
-    opacity:1;
-
-    transform:translateX(0);
-
-    color:var(--gold);
-}
-
-
-/* =========================================================
-   OVERLAY
-   ========================================================= */
-
-#overlay{
-
-    position:fixed;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    background:
-        rgba(0,0,0,.62);
-
-    backdrop-filter:blur(4px);
-
-    -webkit-backdrop-filter:blur(4px);
-
-    opacity:0;
-
-    visibility:hidden;
-
-    pointer-events:none;
-
-    transition:
-        opacity .35s ease,
-        visibility .35s ease;
-
-    z-index:5500;
-}
-
-#overlay.open{
-
-    opacity:1;
-
-    visibility:visible;
-
-    pointer-events:auto;
+    pointer-events: none !important;
 }
 
 
@@ -705,211 +354,174 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
    HERO
    ========================================================= */
 
-.homepage .hero{
-
-    position:relative;
-
-    min-height:100vh;
-
-    width:100%;
+.homepage .hero {
+    min-height: 100vh !important;
 
     padding:
-        135px 7%
-        95px;
+        135px 7% 85px !important;
 
-    display:flex;
+    display: flex !important;
 
-    align-items:center;
+    flex-direction: column !important;
 
-    justify-content:center;
+    align-items: center !important;
+    justify-content: center !important;
 
-    text-align:center;
+    text-align: center !important;
 
-    overflow:hidden;
+    position: relative !important;
 
-    isolation:isolate;
+    background: transparent !important;
+
+    overflow: hidden !important;
 }
 
 
 /* =========================================================
-   CREAM / WHITE TRANSLUCENT HERO SURFACE
-
-   This is the layer you specifically requested:
-   video underneath,
-   cream/white slightly transparent coverage,
-   text above it.
+   HERO TEXT GLASS / CREAM BACKPLATE
+   Gives the text a readable premium surface without
+   turning the entire page white.
    ========================================================= */
 
-.hero-editorial-layer{
+.homepage .hero::before {
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    inset:5.5% 4.5% 6%;
+    width: min(900px, 94%);
 
-    border-radius:38px;
+    height: min(600px, 70%);
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
 
     background:
         linear-gradient(
-            135deg,
-            rgba(250,247,239,.82),
-            rgba(242,238,228,.58)
+            145deg,
+            rgba(255, 252, 244, .30),
+            rgba(255, 252, 244, .12)
         );
 
     border:
-        1px solid
-        rgba(255,255,255,.38);
+        1px solid rgba(255, 255, 255, .18);
+
+    border-radius: 35px;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 
     box-shadow:
-        0 35px 100px
-        rgba(0,0,0,.32),
+        0 30px 100px rgba(0, 0, 0, .18);
 
-        inset 0 1px 0
-        rgba(255,255,255,.55);
+    z-index: -1;
 
-    backdrop-filter:
-        blur(9px);
-
-    -webkit-backdrop-filter:
-        blur(9px);
-
-    z-index:-1;
-
-    overflow:hidden;
-}
-
-.hero-editorial-layer::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        linear-gradient(
-            120deg,
-            rgba(255,255,255,.20),
-            transparent 38%,
-            rgba(255,255,255,.08)
-        );
-
-    pointer-events:none;
+    pointer-events: none;
 }
 
 
 /* =========================================================
-   HERO CONTENT
+   VELO WORDMARK
+   SINGLE SLASH + SLIGHTLY JOINED LETTERING
    ========================================================= */
 
-.hero-content{
+.homepage .veloWordmark {
+    display: inline-flex !important;
 
-    position:relative;
+    align-items: center !important;
+    justify-content: center !important;
 
-    z-index:2;
+    gap: 0 !important;
 
-    width:min(1150px,100%);
+    margin: 0 auto !important;
 
-    display:flex;
+    color: #fff !important;
 
-    flex-direction:column;
-
-    align-items:center;
-}
-
-
-/* =========================================================
-   HERO VELO WORDMARK
-   ========================================================= */
-
-.homepage .veloWordmark{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:clamp(7px,1vw,14px);
-
-    color:#111;
-
-    text-shadow:
-        0 8px 30px
-        rgba(0,0,0,.14);
-
-    margin:0 auto;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif !important;
 
     font-size:
-        clamp(
-            4rem,
-            12vw,
-            9rem
-        );
+        clamp(3.8rem, 12vw, 8.5rem) !important;
 
-    line-height:.78;
+    font-weight: 900 !important;
+
+    letter-spacing: -.075em !important;
+
+    line-height: .82 !important;
+
+    white-space: nowrap !important;
+
+    text-shadow:
+        0 12px 40px rgba(0, 0, 0, .65) !important;
 }
 
-.homepage .veloWordmark .veloSlash{
 
-    font-size:1em;
+/* =========================================================
+   SINGLE VELO SLASH
+   ========================================================= */
 
-    color:#111;
+.homepage .veloSlash {
+    display: inline-block !important;
 
-    margin-right:-.04em;
+    position: relative !important;
+
+    width: .12em !important;
+    height: .82em !important;
+
+    margin-right: .10em !important;
+
+    background: #fff !important;
 
     transform:
-        skewX(-12deg)
-        rotate(-1deg);
+        skewX(-18deg)
+        rotate(8deg) !important;
+
+    border-radius: 1px !important;
 }
 
-.homepage .veloWordmark .veloLetters{
 
-    color:#111;
+/* REMOVE THE OLD DOUBLE-SLASH CONSTRUCTION */
 
-    font-size:1em;
+.homepage .veloSlash::before,
+.homepage .veloSlash::after {
+    display: none !important;
 
-    letter-spacing:-.075em;
-
-    transform:scaleX(.985);
-}
-
-.homepage .veloWordmark .veloLetters span{
-
-    margin-left:-.045em;
+    content: none !important;
 }
 
 
 /* =========================================================
-   PRIMARY SLOGAN
+   NATURAL VELO LETTERING
+   No custom fake E.
    ========================================================= */
 
-.homepage .primarySlogan{
+.homepage .veloWordmark > span:not(.veloSlash) {
+    display: inline-block !important;
 
-    margin-top:32px;
+    margin-left: -.045em !important;
+}
 
-    color:#111;
 
-    font-size:
-        clamp(
-            1.25rem,
-            3.4vw,
-            2.5rem
-        );
+/* =========================================================
+   DISABLE THE OLD FAKE E
+   ========================================================= */
 
-    font-weight:900;
+.homepage .veloE {
+    display: inline-block !important;
 
-    letter-spacing:
-        clamp(
-            3px,
-            .65vw,
-            7px
-        );
+    width: auto !important;
+    height: auto !important;
 
-    line-height:1.05;
+    margin: 0 -.045em !important;
 
-    text-shadow:
-        0 4px 20px
-        rgba(255,255,255,.25);
+    font: inherit !important;
+}
+
+.homepage .veloE span {
+    display: none !important;
 }
 
 
@@ -917,29 +529,42 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
    MOTTO
    ========================================================= */
 
-.homepage .motto{
+.homepage .primarySlogan {
+    margin-top: 32px !important;
 
-    margin-top:15px;
-
-    color:#343434;
+    color: #fff !important;
 
     font-size:
-        clamp(
-            .78rem,
-            1.6vw,
-            1rem
-        );
+        clamp(1.2rem, 3.5vw, 2.4rem) !important;
 
-    font-weight:800;
+    font-weight: 900 !important;
 
     letter-spacing:
-        clamp(
-            2px,
-            .45vw,
-            4px
-        );
+        clamp(2px, .6vw, 7px) !important;
 
-    text-transform:uppercase;
+    text-transform: uppercase !important;
+
+    text-shadow:
+        0 8px 30px rgba(0, 0, 0, .70) !important;
+}
+
+
+/* =========================================================
+   VELOCITY / VISION / VICTORY
+   ========================================================= */
+
+.homepage .motto {
+    margin-top: 13px !important;
+
+    color: #f1d778 !important;
+
+    font-size:
+        clamp(.75rem, 1.7vw, 1.05rem) !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing:
+        clamp(1.5px, .45vw, 4px) !important;
 }
 
 
@@ -947,231 +572,162 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
    SUBTEXT
    ========================================================= */
 
-.homepage .sub-text{
+.homepage .sub-text {
+    max-width: 680px !important;
 
-    max-width:680px;
+    margin-top: 16px !important;
 
-    margin-top:17px;
+    color: rgba(255, 255, 255, .86) !important;
 
-    color:#4b4b4b;
+    line-height: 1.8 !important;
 
-    font-size:
-        clamp(
-            .84rem,
-            1.5vw,
-            1rem
-        );
-
-    line-height:1.85;
-
-    font-weight:500;
+    text-shadow:
+        0 5px 22px rgba(0, 0, 0, .65) !important;
 }
 
 
 /* =========================================================
-   HERO BUTTONS
+   SEARCH BAR
    ========================================================= */
 
-.homepage .hero-buttons{
+.homepage .velo-search {
+    width: min(720px, 94%);
 
-    width:min(1100px,100%);
+    margin-top: 28px;
 
-    margin-top:36px;
+    position: relative;
 
-    display:flex;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:11px;
-}
-
-.homepage .primary-btn,
-.homepage .secondary-btn{
-
-    position:relative;
-
-    min-height:48px;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:
-        13px 21px;
-
-    border-radius:50px;
-
-    overflow:hidden;
-
-    font-size:.72rem;
-
-    font-weight:900;
-
-    letter-spacing:1px;
-
-    text-transform:uppercase;
-
-    transition:
-        transform .3s ease,
-        box-shadow .3s ease,
-        background .3s ease,
-        color .3s ease,
-        border-color .3s ease;
-}
-
-
-/* GOLD BUTTON */
-
-.homepage .primary-btn{
-
-    background:#111;
-
-    color:#fff;
-
-    border:
-        1px solid
-        rgba(0,0,0,.18);
-
-    box-shadow:
-        0 8px 25px
-        rgba(0,0,0,.18);
-}
-
-.homepage .primary-btn:hover{
-
-    background:var(--gold);
-
-    color:#050505;
-
-    border-color:var(--gold);
-
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 15px 35px
-        rgba(0,0,0,.24);
-}
-
-
-/* SECONDARY */
-
-.homepage .secondary-btn{
+    display: flex;
+    align-items: center;
 
     background:
-        rgba(255,255,255,.42);
-
-    color:#111;
+        rgba(255, 255, 255, .82);
 
     border:
-        1px solid
-        rgba(0,0,0,.18);
+        1px solid rgba(255, 255, 255, .72);
 
-    backdrop-filter:blur(10px);
-}
-
-.homepage .secondary-btn:hover{
-
-    background:#111;
-
-    color:#fff;
-
-    border-color:#111;
-
-    transform:translateY(-4px);
+    border-radius: 50px;
 
     box-shadow:
-        0 15px 35px
-        rgba(0,0,0,.20);
+        0 15px 45px rgba(0, 0, 0, .18);
+
+    overflow: hidden;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.homepage .velo-search input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 54px;
+
+    padding: 0 20px;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    color: #111;
+
+    font-family: inherit;
+    font-size: .92rem;
+}
+
+.homepage .velo-search input::placeholder {
+    color: #555;
+}
+
+.homepage .velo-search button {
+    width: 54px;
+    height: 54px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #111;
+
+    cursor: pointer;
+
+    font-size: 18px;
 }
 
 
 /* =========================================================
-   PRODUCT SHOWCASE
+   FILTER AREA
    ========================================================= */
 
-.product-display{
+.homepage .velo-filters {
+    width: min(1050px, 94%);
 
-    position:relative;
+    margin-top: 16px;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 9px;
+}
+
+.homepage .velo-filter {
+    position: relative;
+}
+
+.homepage .velo-filter select {
+    min-height: 42px;
 
     padding:
-        105px 6%
-        120px;
+        9px 34px 9px 14px;
+
+    border:
+        1px solid rgba(255, 255, 255, .30);
+
+    border-radius: 30px;
+
+    outline: 0;
 
     background:
-        linear-gradient(
-            180deg,
-            rgba(5,5,5,.76),
-            rgba(5,5,5,.94)
-        );
+        rgba(255, 255, 255, .72);
+
+    color: #111;
+
+    font-family: inherit;
+
+    font-size: .73rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   PRODUCT DISPLAY
+   TWO COLUMNS
+   ENDLESS ROWS
+   NO NUMBERING
+   ========================================================= */
+
+.homepage .product-display {
+    width: 100% !important;
+
+    padding:
+        80px 6% 100px !important;
+
+    background:
+        rgba(8, 8, 8, .72) !important;
 
     border-top:
-        1px solid
-        rgba(255,255,255,.08);
-}
-
-
-/* =========================================================
-   SECTION HEADING
-   ========================================================= */
-
-.section-heading{
-
-    width:min(850px,100%);
-
-    margin:
-        0 auto 48px;
-
-    text-align:center;
-}
-
-.section-eyebrow{
-
-    margin-bottom:10px;
-
-    color:var(--gold);
-
-    font-size:.68rem;
-
-    font-weight:900;
-
-    letter-spacing:3px;
-
-    text-transform:uppercase;
-}
-
-.section-heading h2{
-
-    color:#fff;
-
-    font-size:
-        clamp(
-            2rem,
-            5vw,
-            3.5rem
-        );
-
-    font-weight:800;
-
-    letter-spacing:-.04em;
-
-    line-height:1.05;
-
-    margin-bottom:13px;
-}
-
-.section-heading > p:last-child{
-
-    color:#aaa;
-
-    font-size:.9rem;
-
-    line-height:1.7;
+        1px solid rgba(255, 255, 255, .08) !important;
 }
 
 
@@ -1179,176 +735,237 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay){
    PRODUCT GRID
    ========================================================= */
 
-.product-grid{
+.homepage .product-grid {
+    width: min(1250px, 100%) !important;
 
-    width:min(1380px,100%);
+    margin: 0 auto !important;
 
-    margin:auto;
-
-    display:grid;
+    display: grid !important;
 
     grid-template-columns:
-        repeat(3,minmax(0,1fr));
+        repeat(2, minmax(0, 1fr)) !important;
 
     gap:
-        clamp(
-            18px,
-            2.5vw,
-            30px
-        );
+        26px !important;
 }
 
 
 /* =========================================================
    PRODUCT CARD
+   CLICKABLE PRODUCT PREVIEW
    ========================================================= */
 
-.product-card{
+.homepage .product-card {
+    position: relative !important;
 
-    position:relative;
+    min-width: 0 !important;
 
-    min-width:0;
-
-    overflow:hidden;
-
-    border:
-        1px solid
-        rgba(255,255,255,.09);
-
-    border-radius:24px;
+    overflow: hidden !important;
 
     background:
-        linear-gradient(
-            145deg,
-            #1a1a1a,
-            #090909
-        );
+        rgba(15, 15, 15, .82) !important;
+
+    border:
+        1px solid rgba(255, 255, 255, .10) !important;
+
+    border-radius: 18px !important;
 
     box-shadow:
-        0 20px 55px
-        rgba(0,0,0,.42);
+        0 15px 45px rgba(0, 0, 0, .38) !important;
+
+    cursor: pointer !important;
 
     transition:
-        transform .45s ease,
-        border-color .45s ease,
-        box-shadow .45s ease;
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease !important;
 }
 
-.product-card:hover{
-
-    transform:translateY(-9px);
+.homepage .product-card:hover {
+    transform: translateY(-5px) !important;
 
     border-color:
-        rgba(212,175,55,.48);
+        rgba(255, 255, 255, .26) !important;
 
     box-shadow:
-        0 30px 75px
-        rgba(0,0,0,.60);
-}
-
-.product-card-link{
-
-    display:block;
-
-    height:100%;
+        0 25px 60px rgba(0, 0, 0, .52) !important;
 }
 
 
 /* =========================================================
    PRODUCT IMAGE
+   SQUARE / VERTICAL RECTANGLE
    ========================================================= */
 
-.product-image{
+.homepage .product-image {
+    width: 100% !important;
 
-    position:relative;
+    aspect-ratio: 1 / 1.12 !important;
 
-    width:100%;
+    overflow: hidden !important;
 
-    aspect-ratio:4 / 5;
-
-    overflow:hidden;
-
-    background:#151515;
+    background: #151515 !important;
 }
 
-.product-image img{
+.homepage .product-image img {
+    width: 100% !important;
+    height: 100% !important;
 
-    width:100%;
-    height:100%;
+    object-fit: cover !important;
 
-    object-fit:cover;
+    display: block !important;
 
     transition:
-        transform .7s cubic-bezier(.2,.7,.2,1),
-        filter .7s ease;
+        transform .55s ease !important;
 }
 
-.product-card:hover .product-image img{
-
-    transform:scale(1.055);
-
-    filter:
-        brightness(.88)
-        contrast(1.04);
+.homepage .product-card:hover .product-image img {
+    transform: scale(1.035) !important;
 }
 
 
 /* =========================================================
-   PRODUCT IMAGE OVERLAY
+   PRODUCT PEEK DETAILS
    ========================================================= */
 
-.product-image-overlay{
-
-    position:absolute;
-
-    inset:0;
+.homepage .product-card-info {
+    padding:
+        15px 16px 18px !important;
 
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,.02),
-            rgba(0,0,0,.05) 50%,
-            rgba(0,0,0,.65)
-        );
+            rgba(12, 12, 12, .82),
+            rgba(7, 7, 7, .98)
+        ) !important;
+}
 
-    pointer-events:none;
+.homepage .product-card-info span {
+    display: block !important;
+
+    margin-bottom: 5px !important;
+
+    color:
+        rgba(255, 255, 255, .58) !important;
+
+    font-size:
+        .61rem !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing:
+        1.7px !important;
+
+    text-transform: uppercase !important;
+}
+
+.homepage .product-card-info h3 {
+    margin: 0 !important;
+
+    color: #fff !important;
+
+    font-size:
+        clamp(.95rem, 1.8vw, 1.2rem) !important;
+
+    font-weight: 700 !important;
+}
+
+.homepage .product-card-info p {
+    margin-top: 5px !important;
+
+    color: #a9a9a9 !important;
+
+    font-size: .77rem !important;
+
+    line-height: 1.5 !important;
 }
 
 
 /* =========================================================
-   PRODUCT NUMBER
+   REMOVE ANY NUMBERING / COUNTERS
    ========================================================= */
 
-.product-number{
+.homepage .product-grid,
+.homepage .product-card {
+    counter-reset: none !important;
+}
 
-    position:absolute;
+.homepage .product-card::before,
+.homepage .product-card::after {
+    content: none !important;
+}
 
-    top:18px;
-    left:18px;
 
-    display:flex;
+/* =========================================================
+   MEMBERSHIP PREVIEW
+   ========================================================= */
 
-    align-items:center;
-    justify-content:center;
+.homepage .membership-preview {
+    padding:
+        95px 7% !important;
 
-    width:39px;
-    height:39px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.28);
-
-    border-radius:50%;
+    text-align: center !important;
 
     background:
-        rgba(0,0,0,.30);
+        rgba(255, 255, 255, .025) !important;
+}
 
-    color:#fff;
 
-    backdrop-filter:blur(10px);
+/* =========================================================
+   ENTRY POPUP
+   KEEP IT.
+   HIDDEN UNTIL .active.
+   ========================================================= */
 
-    font-size:.65rem;
+.homepage .velo-entry-popup {
+    position: fixed !important;
 
-    font-weight:800;
+    inset: 0 !important;
 
-    letter-spacing:
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 20px !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+
+    pointer-events: none !important;
+
+    background:
+        rgba(0, 0, 0, .58) !important;
+
+    backdrop-filter: blur(9px) !important;
+    -webkit-backdrop-filter: blur(9px) !important;
+
+    z-index: 20000 !important;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease !important;
+}
+
+.homepage .velo-entry-popup.active {
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    pointer-events: auto !important;
+}
+
+.homepage .velo-popup-card {
+    width: min(460px, 100%) !important;
+
+    padding:
+        38px 28px !important;
+
+    border-radius: 22px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(250, 248, 240, .96),
+            rgba(224, 220, 208, .94)
+        ) !im
