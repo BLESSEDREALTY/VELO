@@ -1,473 +1,654 @@
-/* =========================================================
-   VELO™ — FINAL PRELAUNCH CSS SYSTEM
-   =========================================================
-   PURPOSE:
-   - Preserve existing VELO structure/classes
-   - Implement the requested final visual direction
-   - Cinematic homepage
-   - Cream/white translucent hero surface
-   - Single VELO slash
-   - Functional-looking header controls
-   - Hidden slide-out sidebar
-   - Large search
-   - Filter controls
-   - 2-column product presentation
-   - Premium product cards
-   - Membership section
-   - Entry popup
-   - Full responsive behavior
+/*==================================================
+VELO™ v2.1
+FINAL PRELAUNCH STYLE SYSTEM
+Designed by Gamer-X + ChatGPT
 
-   IMPORTANT:
-   JavaScript functionality for menu, notifications, cart,
-   search, filters and popup should be added separately.
-   ========================================================= */
+IMPORTANT:
+This is the complete VELO stylesheet.
+Homepage corrections are integrated directly.
+==================================================*/
 
 
-/* =========================================================
-   RESET
-   ========================================================= */
+/*==================================================
+RESET
+==================================================*/
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-    background: #070707;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-    background: #070707;
-    color: #fff;
-    line-height: 1.7;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-}
+:root{
 
-body.homepage {
-    min-height: 100vh;
-}
+    --gold:#D4AF37;
+    --gold2:#FFD86A;
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+    --black:#0A0A0A;
+    --black2:#111111;
+    --black3:#1B1B1B;
 
-button,
-input,
-select {
-    font: inherit;
-}
+    --white:#FFFFFF;
 
-button {
-    border: 0;
-}
+    --cream:#F4F0E7;
+    --grey:#B8B8B8;
+    --grey2:#888888;
 
-img {
-    display: block;
-    max-width: 100%;
-}
-
-section {
-    width: 100%;
-}
-
-::selection {
-    background: #D4AF37;
-    color: #050505;
-}
-
-
-/* =========================================================
-   VELO VARIABLES
-   ========================================================= */
-
-:root {
-
-    --gold: #D4AF37;
-    --gold2: #F4D66D;
-
-    --black: #070707;
-    --black2: #0D0D0D;
-    --black3: #161616;
-    --black4: #202020;
-
-    --white: #FFFFFF;
-    --cream: #F5F1E8;
-    --cream2: #EAE4D8;
-
-    --grey: #B8B8B8;
-    --grey2: #858585;
-    --grey3: #555555;
-
-    --glass-dark: rgba(10,10,10,.68);
-    --glass-light: rgba(255,255,255,.68);
-
-    --border-light: rgba(255,255,255,.12);
-    --border-dark: rgba(0,0,0,.14);
+    --transition:.35s ease;
 
     --shadow:
         0 25px 70px rgba(0,0,0,.45);
 
-    --transition: .35s ease;
+    --glass:
+        rgba(255,255,255,.055);
 }
 
 
-/* =========================================================
-   SCROLLBAR
-   ========================================================= */
+/*==================================================
+BODY
+==================================================*/
 
-::-webkit-scrollbar {
-    width: 8px;
+body{
+
+    font-family:'Montserrat',sans-serif;
+
+    background:var(--black);
+
+    color:var(--white);
+
+    overflow-x:hidden;
+
+    line-height:1.7;
+
+    -webkit-font-smoothing:antialiased;
+
+    transition:.4s;
 }
 
-::-webkit-scrollbar-track {
-    background: #080808;
+body.homepage{
+    min-height:100vh;
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 50px;
+a{
+    text-decoration:none;
+    color:white;
+    transition:var(--transition);
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--gold2);
+ul{
+    list-style:none;
+}
+
+button{
+    font:inherit;
+}
+
+img{
+    display:block;
+    max-width:100%;
+    height:auto;
+}
+
+section{
+    width:100%;
+    padding:90px 8%;
+}
+
+.container{
+    width:min(1200px,100%);
+    margin:auto;
 }
 
 
-/* =========================================================
-   CINEMATIC VIDEO BACKGROUND
-   ========================================================= */
+/*==================================================
+HEADINGS
+==================================================*/
 
-.homepage .homeVideoBackground,
-.homeVideoBackground {
+h1{
+    font-size:5rem;
+    font-weight:800;
+    letter-spacing:5px;
+}
 
-    position: fixed;
+h2{
+    font-size:2.7rem;
+    font-weight:700;
+    margin-bottom:20px;
+}
 
-    inset: 0;
+h3{
+    font-size:1.5rem;
+}
 
-    width: 100vw;
-    height: 100vh;
+p{
+    font-size:1rem;
+    color:var(--grey);
+}
 
-    object-fit: cover;
-    object-position: center;
+.gold{
+    color:var(--gold);
+}
 
-    opacity: .44;
+::selection{
+    background:var(--gold);
+    color:#050505;
+}
+
+
+/*==================================================
+SCROLLBAR
+==================================================*/
+
+::-webkit-scrollbar{
+    width:9px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111;
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--gold);
+    border-radius:50px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:var(--gold2);
+}
+
+
+/*==================================================
+GLOBAL HEADER
+==================================================*/
+
+header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:85px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:0 40px;
+
+    background:
+        rgba(8,8,8,.88);
+
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.05);
+
+    z-index:999;
+
+    transition:.35s ease;
+}
+
+header.scrolled{
+
+    background:#0b0b0b;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.45);
+}
+
+.logo-wrapper{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.velo-logo{
+
+    height:60px;
+
+    transition:.4s;
+
+    cursor:pointer;
+}
+
+.velo-logo:hover{
+    transform:scale(1.05);
+}
+
+.brand-name{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    letter-spacing:4px;
+
+    color:white;
+}
+
+
+/*==================================================
+HOMEPAGE CINEMATIC VIDEO
+==================================================*/
+
+.homepage .homeVideoBackground{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100vw;
+    height:100vh;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    z-index:-20;
+
+    opacity:.42;
 
     filter:
-        brightness(.60)
-        contrast(1.05)
+        brightness(.55)
+        contrast(1.03)
         saturate(.68);
 
-    z-index: -30;
-
-    pointer-events: none;
+    pointer-events:none;
 }
 
 
-/* =========================================================
-   CINEMATIC VIDEO OVERLAY
-   ========================================================= */
+/*==================================================
+HOMEPAGE CINEMATIC VIDEO OVERLAY
+==================================================*/
 
-.homepage .homeVideoOverlay,
-.homeVideoOverlay {
+.homepage .homeVideoOverlay{
 
-    position: fixed;
+    position:fixed;
 
-    inset: 0;
+    inset:0;
 
-    width: 100vw;
-    height: 100vh;
+    width:100vw;
+    height:100vh;
 
-    pointer-events: none;
+    z-index:-19;
 
-    z-index: -29;
+    pointer-events:none;
 
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,.28) 0%,
-            rgba(0,0,0,.08) 30%,
-            rgba(0,0,0,.40) 68%,
-            rgba(0,0,0,.92) 100%
+            rgba(247,244,235,.08) 0%,
+            rgba(247,244,235,.20) 28%,
+            rgba(247,244,235,.16) 58%,
+            rgba(8,8,8,.82) 100%
         );
 }
 
 
-/* =========================================================
-   HOMEPAGE ATMOSPHERE
-   ========================================================= */
+/*==================================================
+HOMEPAGE ATMOSPHERE
+==================================================*/
 
-body.homepage::before {
+body.homepage::before{
 
-    content: "";
+    content:"";
 
-    position: fixed;
+    position:fixed;
 
-    inset: 0;
+    inset:0;
 
-    z-index: -28;
+    z-index:-18;
 
-    pointer-events: none;
+    pointer-events:none;
 
     background:
         radial-gradient(
             circle at 50% 8%,
-            rgba(212,175,55,.08),
+            rgba(255,255,255,.07),
             transparent 34%
         );
 }
 
 
-/* =========================================================
-   CONTENT LAYER
-   ========================================================= */
+/*==================================================
+HOMEPAGE CONTENT LAYER
+==================================================*/
 
-body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay) {
-    position: relative;
-    z-index: 1;
+body.homepage >
+*:not(.homeVideoBackground):not(.homeVideoOverlay){
+
+    position:relative;
+
+    z-index:1;
 }
 
 
-/* =========================================================
-   HEADER CONTROL BASE
-   ========================================================= */
+/*==================================================
+HOMEPAGE MENU BUTTON
+TOP LEFT
+==================================================*/
 
-.homepage .menu-btn,
-.homepage .notification-btn,
-.homepage .cart-btn {
+.homepage .menu-btn{
 
-    position: fixed;
+    position:fixed;
 
-    top: 22px;
+    top:22px;
+    left:22px;
 
-    width: 52px;
-    height: 52px;
+    width:52px;
+    height:52px;
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:center;
+    justify-content:center;
+
+    margin:0;
 
     border:
         1px solid
-        rgba(255,255,255,.16);
+        rgba(255,255,255,.14);
 
-    border-radius: 14px;
+    border-radius:13px;
 
     background:
-        rgba(8,8,8,.72);
+        rgba(10,10,10,.72);
 
-    color: #fff;
+    color:#fff;
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
 
     box-shadow:
-        0 12px 35px rgba(0,0,0,.30);
+        0 12px 35px
+        rgba(0,0,0,.28);
 
-    cursor: pointer;
+    cursor:pointer;
 
-    z-index: 9000;
+    z-index:9000;
 
     transition:
-        transform .3s ease,
         background .3s ease,
         color .3s ease,
+        transform .3s ease,
         border-color .3s ease;
 }
 
-
-/* =========================================================
-   MENU — FAR LEFT
-   ========================================================= */
-
-.homepage .menu-btn {
-
-    left: 22px;
-
-    font-size: 24px;
-
-    line-height: 1;
+.homepage .menu-btn span{
+    font-size:25px;
+    line-height:1;
 }
 
-.homepage .menu-btn:hover {
+.homepage .menu-btn:hover{
 
-    background: var(--gold);
+    background:
+        rgba(255,255,255,.14);
 
-    color: #050505;
+    color:#fff;
 
-    border-color: var(--gold);
+    border-color:
+        rgba(255,255,255,.25);
 
-    transform: scale(1.04);
+    transform:scale(1.04);
 }
 
 
-/* =========================================================
-   NOTIFICATION — BESIDE CART
-   ========================================================= */
+/*==================================================
+HOMEPAGE NOTIFICATION BUTTON
+BETWEEN MENU/CART
+==================================================*/
 
-.homepage .notification-btn {
+.homepage .notification-btn{
 
-    right: 88px;
+    position:fixed;
 
-    font-size: 21px;
+    top:22px;
+    right:92px;
 
-    line-height: 1;
+    width:52px;
+    height:52px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    margin:0;
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    border-radius:13px;
+
+    background:
+        rgba(10,10,10,.72);
+
+    color:#fff;
+
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.28);
+
+    cursor:pointer;
+
+    z-index:9000;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease,
+        border-color .3s ease;
 }
 
-.homepage .notification-btn:hover {
+.homepage .notification-btn:hover{
 
-    background: var(--gold);
+    background:
+        rgba(255,255,255,.14);
 
-    color: #050505;
+    color:#fff;
 
-    border-color: var(--gold);
+    border-color:
+        rgba(255,255,255,.25);
 
-    transform: scale(1.04);
+    transform:scale(1.04);
 }
 
 
-/* =========================================================
-   NOTIFICATION COUNT
-   ========================================================= */
+/*==================================================
+NOTIFICATION COUNT
+==================================================*/
 
-.homepage .notification-count {
+.homepage .notification-count{
 
-    position: absolute;
+    position:absolute;
 
-    top: -6px;
-    right: -6px;
+    top:-5px;
+    right:-5px;
 
-    min-width: 19px;
-    height: 19px;
+    min-width:19px;
+    height:19px;
 
-    padding: 0 5px;
+    padding:0 5px;
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:center;
+    justify-content:center;
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    background: #fff;
+    background:#fff;
 
-    color: #050505;
+    color:#080808;
 
     border:
         2px solid
         #080808;
 
-    font-size: 9px;
+    font-size:10px;
 
-    font-weight: 900;
+    font-weight:800;
 
-    line-height: 1;
+    line-height:1;
 }
 
 
-/* =========================================================
-   CART — FAR RIGHT
-   ========================================================= */
+/*==================================================
+HOMEPAGE CART
+FAR RIGHT
+==================================================*/
 
-.homepage .cart-btn {
+.homepage .cart-btn{
 
-    right: 22px;
+    position:fixed;
 
-    width: 52px;
+    top:22px;
+    right:22px;
 
-    min-width: 52px;
+    left:auto;
 
-    padding: 0;
+    width:52px;
+    min-width:52px;
+    height:52px;
 
-    gap: 0;
+    padding:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:0;
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    border-radius:13px;
+
+    background:
+        rgba(10,10,10,.72);
+
+    color:#fff;
+
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.28);
+
+    cursor:pointer;
+
+    z-index:9000;
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease,
+        border-color .3s ease;
 }
 
-.homepage .cart-btn:hover {
+.homepage .cart-btn:hover{
 
-    background: var(--gold);
+    background:
+        rgba(255,255,255,.14);
 
-    color: #050505;
+    color:#fff;
 
-    border-color: var(--gold);
+    border-color:
+        rgba(255,255,255,.25);
 
-    transform: translateY(-2px);
+    transform:scale(1.04);
 }
 
-.homepage .cart-icon {
+.homepage .cart-icon{
 
-    font-size: 21px;
+    font-size:21px;
 
-    line-height: 1;
+    line-height:1;
 }
 
 
-/* =========================================================
-   CART COUNT
-   ========================================================= */
+/*==================================================
+CART COUNT
+==================================================*/
 
-.homepage #cart-count {
+.homepage #cart-count{
 
-    position: absolute;
+    position:absolute;
 
-    top: -6px;
-    right: -6px;
+    top:-5px;
+    right:-5px;
 
-    min-width: 20px;
-    height: 20px;
+    min-width:19px;
+    height:19px;
 
-    padding: 0 5px;
+    padding:0 5px;
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:center;
+    justify-content:center;
 
-    border-radius: 50%;
+    border-radius:50%;
 
-    background: var(--gold);
+    background:var(--gold);
 
-    color: #050505;
+    color:#050505;
 
     border:
         2px solid
         #080808;
 
-    font-size: 9px;
+    font-size:10px;
 
-    font-weight: 900;
+    font-weight:900;
 
-    line-height: 1;
+    line-height:1;
 }
 
 
-/* =========================================================
-   SIDEBAR
-   ========================================================= */
+/*==================================================
+HOMEPAGE SIDEBAR
+FULLY HIDDEN UNTIL OPEN
+==================================================*/
 
-#sidebar {
+.homepage #sidebar{
 
-    position: fixed;
+    position:fixed;
 
-    top: 0;
-    left: 0;
+    top:0;
+    left:0;
 
-    width: min(350px, 88vw);
+    width:min(340px,88vw);
 
-    height: 100vh;
+    height:100vh;
 
-    padding: 28px 24px;
+    padding:28px 24px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(22,22,22,.99),
-            rgba(5,5,5,.99)
+            rgba(20,20,20,.98),
+            rgba(7,7,7,.99)
         );
 
     border-right:
@@ -475,454 +656,651 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay) {
         rgba(255,255,255,.08);
 
     box-shadow:
-        20px 0 75px rgba(0,0,0,.60);
+        20px 0 70px
+        rgba(0,0,0,.55);
 
-    overflow-y: auto;
+    overflow-y:auto;
 
     transform:
         translateX(-105%);
 
-    visibility: hidden;
+    visibility:hidden;
+
+    opacity:0;
 
     transition:
-        transform .45s cubic-bezier(.22,.61,.36,1),
+        transform .45s
+        cubic-bezier(.22,.61,.36,1),
+        opacity .35s ease,
         visibility .45s ease;
 
-    z-index: 10000;
+    z-index:10000;
 }
 
-#sidebar.open {
+.homepage #sidebar.open{
 
     transform:
         translateX(0);
 
-    visibility: visible;
+    visibility:visible;
+
+    opacity:1;
 }
 
 
-/* =========================================================
-   SIDEBAR HEADER
-   ========================================================= */
+/*==================================================
+SIDEBAR HEADER
+==================================================*/
 
-.sidebar-header {
+.homepage #sidebar .sidebar-header{
 
-    min-height: 70px;
+    min-height:65px;
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
-    justify-content: space-between;
+    align-items:center;
 
-    gap: 15px;
+    justify-content:space-between;
 
-    padding-bottom: 24px;
+    gap:14px;
 
-    margin-bottom: 22px;
+    padding-bottom:22px;
+
+    margin-bottom:20px;
 
     border-bottom:
         1px solid
         rgba(255,255,255,.08);
 }
 
-.sidebar-brand {
+.homepage #sidebar .sidebar-header img{
 
-    display: flex;
+    width:48px;
+    height:48px;
 
-    align-items: center;
+    object-fit:contain;
 
-    gap: 8px;
+    flex:0 0 auto;
+}
 
-    white-space: nowrap;
+.homepage #sidebar .sidebar-header h2{
+
+    margin:0;
+
+    flex:1;
+
+    font-size:23px;
+
+    letter-spacing:2px;
+
+    color:#fff;
+}
+
+.homepage #sidebar .sidebar-header .close-btn{
+
+    margin:0;
+
+    flex:0 0 auto;
 }
 
 
-/* =========================================================
-   VELO MARK
-   ========================================================= */
+/*==================================================
+SIDEBAR BRAND
+==================================================*/
+
+.homepage .sidebar-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    white-space:nowrap;
+}
+
+
+/*==================================================
+UNIVERSAL VELO MARK
+SINGLE SLASH
+==================================================*/
 
 .velo-mark,
-.veloSlash {
+.veloSlash{
 
-    display: inline-block;
+    display:inline-block;
 
-    color: #fff;
+    color:#fff;
 
     font-family:
         Arial,
         Helvetica,
         sans-serif;
 
-    font-weight: 900;
+    font-weight:900;
 
-    line-height: .8;
+    line-height:.8;
 
     transform:
-        skewX(-15deg);
+        skewX(-12deg);
 
-    transform-origin: center;
+    transform-origin:center;
 }
 
 
-/* =========================================================
-   VELO WORD
-   ========================================================= */
+/*==================================================
+UNIVERSAL VELO WORD
+==================================================*/
 
 .velo-word,
-.veloLetters {
+.veloLetters{
 
-    display: inline-flex;
+    display:inline-flex;
 
-    align-items: center;
+    align-items:center;
 
-    color: #fff;
+    color:#fff;
 
     font-family:
         Arial,
         Helvetica,
         sans-serif;
 
-    font-weight: 900;
+    font-weight:900;
 
-    letter-spacing: -.072em;
+    letter-spacing:-.065em;
 
-    line-height: .82;
+    line-height:.82;
 
-    white-space: nowrap;
+    white-space:nowrap;
 
-    transform: scaleX(.985);
+    transform:scaleX(.98);
 
-    transform-origin: center;
+    transform-origin:center;
 }
 
-.veloLetters span {
+.veloLetters span{
 
-    display: inline-block;
+    display:inline-block;
 
-    margin-left: -.04em;
-}
-
-
-/* =========================================================
-   SIDEBAR BRAND SIZE
-   ========================================================= */
-
-.sidebar-brand .velo-mark {
-    font-size: 30px;
-}
-
-.sidebar-brand .velo-word {
-    font-size: 28px;
+    margin-left:-.035em;
 }
 
 
-/* =========================================================
-   CLOSE BUTTON
-   ========================================================= */
+/*==================================================
+SIDEBAR BRAND SIZE
+==================================================*/
 
-.close-btn {
+.sidebar-brand .velo-mark{
+    font-size:30px;
+}
 
-    width: 42px;
-    height: 42px;
+.sidebar-brand .velo-word{
+    font-size:28px;
+}
 
-    flex: 0 0 auto;
 
-    display: flex;
+/*==================================================
+SIDEBAR CLOSE BUTTON
+==================================================*/
 
-    align-items: center;
-    justify-content: center;
+.homepage #sidebar .close-btn,
+.close-btn{
+
+    width:42px;
+    height:42px;
+
+    flex:0 0 auto;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
 
     border:
         1px solid
         rgba(255,255,255,.10);
 
-    border-radius: 50%;
+    border-radius:50%;
 
     background:
         rgba(255,255,255,.05);
 
-    color: #fff;
+    color:#fff;
 
-    cursor: pointer;
+    cursor:pointer;
 
-    font-size: 25px;
+    font-size:25px;
 
-    line-height: 1;
+    line-height:1;
 
-    transition: .3s ease;
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
 }
 
-.close-btn:hover {
+.homepage #sidebar .close-btn:hover,
+.close-btn:hover{
 
-    background: var(--gold);
+    background:var(--gold);
 
-    color: #050505;
+    color:#050505;
 
-    transform: rotate(90deg);
+    transform:rotate(90deg);
 }
 
 
-/* =========================================================
-   SIDEBAR LINKS
-   ========================================================= */
+/*==================================================
+ORIGINAL SIDEBAR LOGO SUPPORT
+==================================================*/
 
-.sidebar-links {
+.sidebar-logo{
 
-    display: flex;
+    text-align:center;
 
-    flex-direction: column;
-
-    gap: 9px;
+    margin-bottom:30px;
 }
 
-.sidebar-links a {
+.sidebar-logo img{
 
-    position: relative;
+    width:70px;
 
-    min-height: 54px;
+    margin:auto;
 
-    display: flex;
+    margin-bottom:10px;
+}
 
-    align-items: center;
+.sidebar-logo h2{
 
-    padding: 0 18px;
+    font-size:26px;
+
+    letter-spacing:3px;
+
+    margin:0;
+}
+
+.sidebar-logo p{
+
+    font-size:13px;
+
+    color:var(--grey);
+}
+
+
+/*==================================================
+HOMEPAGE SIDEBAR LINKS
+==================================================*/
+
+.homepage #sidebar .sidebar-links{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.homepage #sidebar a{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    min-height:55px;
+
+    padding:0 18px;
+
+    margin-bottom:0;
 
     border:
         1px solid
         rgba(255,255,255,.055);
 
-    border-radius: 14px;
+    border-radius:14px;
 
     background:
         rgba(255,255,255,.035);
 
-    color: #eee;
+    color:#eee;
 
-    font-size: .86rem;
+    font-size:.88rem;
 
-    font-weight: 600;
+    font-weight:600;
 
-    transition: .3s ease;
+    letter-spacing:.3px;
+
+    transition:
+        background .3s ease,
+        border-color .3s ease,
+        color .3s ease,
+        padding-left .3s ease;
 }
 
-.sidebar-links a::after {
+.homepage #sidebar a::after{
 
-    content: "→";
+    content:"→";
 
-    position: absolute;
+    position:absolute;
 
-    right: 18px;
+    right:18px;
 
-    opacity: 0;
+    opacity:0;
 
-    transform: translateX(-8px);
+    transform:translateX(-8px);
 
-    transition: .3s ease;
+    transition:.3s ease;
 }
 
-.sidebar-links a:hover {
-
-    padding-left: 23px;
+.homepage #sidebar a:hover{
 
     background:
         linear-gradient(
             90deg,
             rgba(212,175,55,.18),
-            rgba(212,175,55,.04)
+            rgba(212,175,55,.05)
         );
 
     border-color:
         rgba(212,175,55,.38);
 
-    color: #fff;
+    color:#fff;
+
+    padding-left:23px;
 }
 
-.sidebar-links a:hover::after {
+.homepage #sidebar a:hover::after{
 
-    opacity: 1;
+    opacity:1;
 
-    transform: translateX(0);
+    transform:translateX(0);
 
-    color: var(--gold);
+    color:var(--gold);
 }
 
 
-/* =========================================================
-   OVERLAY
-   ========================================================= */
+/*==================================================
+SIDEBAR SCROLLBAR
+==================================================*/
 
-#overlay {
+.homepage #sidebar::-webkit-scrollbar,
+#sidebar::-webkit-scrollbar{
 
-    position: fixed;
+    width:5px;
+}
 
-    inset: 0;
+.homepage #sidebar::-webkit-scrollbar-thumb,
+#sidebar::-webkit-scrollbar-thumb{
 
-    width: 100%;
-    height: 100%;
+    background:var(--gold);
+
+    border-radius:30px;
+}
+
+
+/*==================================================
+HOMEPAGE OVERLAY
+==================================================*/
+
+.homepage #overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
 
     background:
-        rgba(0,0,0,.64);
+        rgba(0,0,0,.58);
 
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter:blur(3px);
 
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
+    -webkit-backdrop-filter:blur(3px);
 
     transition:
         opacity .35s ease,
         visibility .35s ease;
 
-    z-index: 9999;
+    z-index:9999;
 }
 
-#overlay.active,
-#overlay.open {
+.homepage #overlay.active,
+.homepage #overlay.open{
 
-    opacity: 1;
+    opacity:1;
 
-    visibility: visible;
+    visibility:visible;
 
-    pointer-events: auto;
+    pointer-events:auto;
 }
 
 
-/* =========================================================
-   HERO
-   ========================================================= */
+/*==================================================
+ORIGINAL GLOBAL OVERLAY SUPPORT
+==================================================*/
 
-.homepage .hero {
+#overlay{
 
-    position: relative;
+    position:fixed;
 
-    width: 100%;
+    top:0;
+    left:0;
 
-    min-height: 100vh;
+    width:100%;
+    height:100%;
+
+    background:
+        rgba(0,0,0,.65);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+    transition:.35s;
+
+    z-index:1499;
+}
+
+
+/*==================================================
+HOMEPAGE HERO
+==================================================*/
+
+.homepage .hero{
+
+    position:relative;
+
+    min-height:100vh;
+
+    width:100%;
 
     padding:
         135px 7%
-        95px;
+        85px;
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    flex-direction:column;
 
-    justify-content: center;
+    align-items:center;
 
-    text-align: center;
+    justify-content:center;
 
-    overflow: hidden;
+    text-align:center;
 
-    isolation: isolate;
+    background:transparent;
+
+    overflow:hidden;
+
+    isolation:isolate;
 }
 
 
-/* =========================================================
-   HERO EDITORIAL SURFACE
-   ========================================================= */
+/*==================================================
+HERO EDITORIAL GLASS / CREAM SURFACE
+==================================================*/
 
-.homepage .hero-editorial-layer {
+.homepage .hero-editorial-layer{
 
-    position: absolute;
+    position:absolute;
 
     inset:
-        5.5%
-        4.5%
-        6%;
+        5.5% 4.5% 6%;
 
-    border-radius: 38px;
+    border-radius:38px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(250,247,239,.82),
-            rgba(242,238,228,.58)
+            rgba(250,247,239,.78),
+            rgba(242,238,228,.52)
         );
 
     border:
         1px solid
-        rgba(255,255,255,.40);
+        rgba(255,255,255,.38);
 
     box-shadow:
-
         0 35px 100px
-        rgba(0,0,0,.34),
+        rgba(0,0,0,.30),
 
         inset 0 1px 0
         rgba(255,255,255,.55);
 
     backdrop-filter:
-        blur(10px);
+        blur(9px);
 
     -webkit-backdrop-filter:
-        blur(10px);
+        blur(9px);
 
-    z-index: -1;
+    z-index:-1;
 
-    overflow: hidden;
-
-    pointer-events: none;
+    overflow:hidden;
 }
 
-.homepage .hero-editorial-layer::after {
+.homepage .hero-editorial-layer::after{
 
-    content: "";
+    content:"";
 
-    position: absolute;
+    position:absolute;
 
-    inset: 0;
+    inset:0;
 
     background:
         linear-gradient(
             120deg,
-            rgba(255,255,255,.24),
+            rgba(255,255,255,.22),
             transparent 38%,
             rgba(255,255,255,.08)
         );
 
-    pointer-events: none;
+    pointer-events:none;
 }
 
 
-/* =========================================================
-   HERO CONTENT
-   ========================================================= */
+/*==================================================
+FALLBACK HERO GLASS
+If HTML does not contain editorial layer,
+hero itself still gets a subtle premium surface.
+==================================================*/
 
-.hero-content {
+.homepage .hero::before{
 
-    position: relative;
+    content:"";
 
-    z-index: 3;
+    position:absolute;
 
-    width: min(1180px,100%);
+    width:min(900px,94%);
 
-    display: flex;
+    height:min(600px,70%);
 
-    flex-direction: column;
+    left:50%;
+    top:50%;
 
-    align-items: center;
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,252,244,.20),
+            rgba(255,252,244,.06)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.18);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+
+    z-index:-2;
+
+    pointer-events:none;
 }
 
 
-/* =========================================================
-   HERO VELO WORDMARK
-   ========================================================= */
+/*==================================================
+HERO CONTENT
+==================================================*/
 
-.homepage .veloWordmark {
+.homepage .hero-content{
 
-    display: inline-flex;
+    position:relative;
 
-    align-items: center;
+    z-index:2;
 
-    justify-content: center;
+    width:min(1150px,100%);
 
-    gap: 0;
+    display:flex;
 
-    color: #111;
+    flex-direction:column;
 
-    margin: 0 auto;
+    align-items:center;
+}
+
+
+/*==================================================
+VELO HERO WORDMARK
+SINGLE SLASH
+NATURAL LETTERING
+==================================================*/
+
+.homepage .veloWordmark{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:0;
+
+    margin:0 auto;
+
+    color:#111;
 
     font-family:
         Arial,
@@ -931,18 +1309,18 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay) {
 
     font-size:
         clamp(
-            4rem,
+            3.8rem,
             12vw,
-            9rem
+            8.5rem
         );
 
-    font-weight: 900;
+    font-weight:900;
 
-    letter-spacing: -.078em;
+    letter-spacing:-.075em;
 
-    line-height: .78;
+    line-height:.82;
 
-    white-space: nowrap;
+    white-space:nowrap;
 
     text-shadow:
         0 8px 30px
@@ -950,166 +1328,181 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay) {
 }
 
 
-/* =========================================================
-   SINGLE HERO SLASH
-   ========================================================= */
+/*==================================================
+SINGLE HERO SLASH
+==================================================*/
 
-.homepage .veloWordmark .veloSlash {
+.homepage .veloWordmark .veloSlash{
 
-    width: .11em;
+    display:inline-block;
 
-    height: .82em;
+    position:relative;
 
-    margin-right: .095em;
+    width:.12em;
 
-    background: #111;
+    height:.82em;
 
-    color: transparent;
+    margin-right:.10em;
+
+    background:#111;
+
+    color:#111;
+
+    font-size:1em;
 
     transform:
         skewX(-18deg)
-        rotate(7deg);
+        rotate(8deg);
 
-    border-radius: 1px;
-
-    flex: 0 0 auto;
+    border-radius:1px;
 }
 
 
-/* REMOVE OLD DOUBLE-SLASH EFFECTS */
+/*==================================================
+REMOVE OLD DOUBLE SLASH
+==================================================*/
 
 .homepage .veloWordmark .veloSlash::before,
-.homepage .veloWordmark .veloSlash::after {
+.homepage .veloWordmark .veloSlash::after{
 
-    content: none !important;
+    display:none;
 
-    display: none !important;
+    content:none;
 }
 
 
-/* =========================================================
-   WORDMARK LETTERS
-   ========================================================= */
+/*==================================================
+HERO WORD LETTERS
+==================================================*/
 
-.homepage .veloWordmark .veloLetters {
+.homepage .veloWordmark .veloLetters{
 
-    color: #111;
+    display:inline-flex;
 
-    font-size: 1em;
+    align-items:center;
 
-    letter-spacing: -.078em;
+    color:#111;
 
-    transform: scaleX(.985);
+    font-size:1em;
+
+    letter-spacing:-.075em;
+
+    line-height:.82;
+
+    transform:scaleX(.985);
 }
 
-.homepage .veloWordmark .veloLetters span {
+.homepage .veloWordmark .veloLetters span{
 
-    margin-left: -.045em;
-}
+    display:inline-block;
 
-
-/* =========================================================
-   OLD FAKE E PROTECTION
-   ========================================================= */
-
-.homepage .veloE {
-
-    width: auto;
-
-    height: auto;
-
-    margin: 0 -.045em;
-
-    display: inline-block;
-
-    font: inherit;
-
-    color: inherit;
-}
-
-.homepage .veloE span {
-
-    display: none;
+    margin-left:-.045em;
 }
 
 
-/* =========================================================
-   PRIMARY SLOGAN
-   ========================================================= */
+/*==================================================
+OLD FAKE E DISABLED
+==================================================*/
 
-.homepage .primarySlogan {
+.homepage .veloE{
 
-    margin-top: 32px;
+    display:inline-block;
 
-    color: #111;
+    width:auto;
+
+    height:auto;
+
+    margin:
+        0 -.045em;
+
+    font:inherit;
+
+    color:inherit;
+}
+
+.homepage .veloE span{
+
+    display:none;
+}
+
+
+/*==================================================
+PRIMARY SLOGAN
+==================================================*/
+
+.homepage .primarySlogan{
+
+    margin-top:32px;
+
+    color:#111;
 
     font-size:
         clamp(
-            1.25rem,
-            3.4vw,
-            2.5rem
+            1.2rem,
+            3.5vw,
+            2.4rem
         );
 
-    font-weight: 900;
-
-    letter-spacing:
-        clamp(
-            3px,
-            .65vw,
-            7px
-        );
-
-    line-height: 1.05;
-
-    text-transform: uppercase;
-
-    text-shadow:
-        0 4px 20px
-        rgba(255,255,255,.28);
-}
-
-
-/* =========================================================
-   MOTTO
-   ========================================================= */
-
-.homepage .motto {
-
-    margin-top: 14px;
-
-    color: #3a3a3a;
-
-    font-size:
-        clamp(
-            .75rem,
-            1.6vw,
-            1rem
-        );
-
-    font-weight: 800;
+    font-weight:900;
 
     letter-spacing:
         clamp(
             2px,
+            .6vw,
+            7px
+        );
+
+    line-height:1.05;
+
+    text-transform:uppercase;
+
+    text-shadow:
+        0 4px 20px
+        rgba(255,255,255,.25);
+}
+
+
+/*==================================================
+VELO MOTTO
+==================================================*/
+
+.homepage .motto{
+
+    margin-top:13px;
+
+    color:#343434;
+
+    font-size:
+        clamp(
+            .75rem,
+            1.7vw,
+            1.05rem
+        );
+
+    font-weight:800;
+
+    letter-spacing:
+        clamp(
+            1.5px,
             .45vw,
             4px
         );
 
-    text-transform: uppercase;
+    text-transform:uppercase;
 }
 
 
-/* =========================================================
-   SUBTEXT
-   ========================================================= */
+/*==================================================
+HERO SUBTEXT
+==================================================*/
 
-.homepage .sub-text {
+.homepage .sub-text{
 
-    max-width: 700px;
+    max-width:680px;
 
-    margin-top: 17px;
+    margin-top:16px;
 
-    color: #4b4b4b;
+    color:#4b4b4b;
 
     font-size:
         clamp(
@@ -1118,437 +1511,299 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay) {
             1rem
         );
 
-    line-height: 1.85;
+    line-height:1.8;
 
-    font-weight: 500;
+    font-weight:500;
+
+    text-shadow:
+        0 2px 10px
+        rgba(255,255,255,.25);
 }
 
 
-/* =========================================================
-   HERO BUTTONS
-   ========================================================= */
+/*==================================================
+HERO BUTTONS
+==================================================*/
 
-.homepage .hero-buttons {
+.homepage .hero-buttons{
 
-    width: min(1100px,100%);
+    width:min(1100px,100%);
 
-    margin-top: 35px;
+    margin-top:36px;
 
-    display: flex;
+    display:flex;
 
-    flex-wrap: wrap;
+    flex-wrap:wrap;
 
-    align-items: center;
+    justify-content:center;
 
-    justify-content: center;
+    align-items:center;
 
-    gap: 11px;
+    gap:11px;
 }
 
 .homepage .primary-btn,
-.homepage .secondary-btn {
+.homepage .secondary-btn{
 
-    min-height: 49px;
+    position:relative;
 
-    display: inline-flex;
+    min-height:48px;
 
-    align-items: center;
+    display:inline-flex;
 
-    justify-content: center;
+    align-items:center;
+
+    justify-content:center;
 
     padding:
-        13px 23px;
+        13px 21px;
 
-    border-radius: 50px;
+    border-radius:50px;
 
-    font-size: .72rem;
+    overflow:hidden;
 
-    font-weight: 900;
+    font-size:.72rem;
 
-    letter-spacing: 1px;
+    font-weight:900;
 
-    text-transform: uppercase;
+    letter-spacing:1px;
 
-    cursor: pointer;
+    text-transform:uppercase;
 
-    transition: .3s ease;
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
 }
 
-.homepage .primary-btn {
 
-    background: #111;
+/* PRIMARY */
 
-    color: #fff;
+.homepage .primary-btn{
+
+    background:#111;
+
+    color:#fff;
 
     border:
         1px solid
-        #111;
+        rgba(0,0,0,.18);
 
     box-shadow:
         0 8px 25px
         rgba(0,0,0,.18);
 }
 
-.homepage .primary-btn:hover {
+.homepage .primary-btn:hover{
 
-    background: var(--gold);
+    background:var(--gold);
 
-    color: #050505;
+    color:#050505;
 
-    border-color: var(--gold);
+    border-color:var(--gold);
 
-    transform: translateY(-4px);
+    transform:translateY(-4px);
 
     box-shadow:
         0 15px 35px
         rgba(0,0,0,.24);
 }
 
-.homepage .secondary-btn {
+
+/* SECONDARY */
+
+.homepage .secondary-btn{
 
     background:
-        rgba(255,255,255,.46);
+        rgba(255,255,255,.42);
 
-    color: #111;
+    color:#111;
 
     border:
         1px solid
         rgba(0,0,0,.18);
 
-    backdrop-filter: blur(10px);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
 }
 
-.homepage .secondary-btn:hover {
+.homepage .secondary-btn:hover{
 
-    background: #111;
+    background:#111;
 
-    color: #fff;
+    color:#fff;
 
-    border-color: #111;
+    border-color:#111;
 
-    transform: translateY(-4px);
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.20);
 }
 
 
-/* =========================================================
-   SEARCH AREA
-   BIGGER + LONGER + WIDER
-   ========================================================= */
+/*==================================================
+HOMEPAGE SEARCH
+==================================================*/
 
-.homepage .velo-search {
+.homepage .velo-search{
 
-    width:
-        min(900px, 94%);
+    width:min(720px,94%);
 
-    min-height: 66px;
+    margin-top:28px;
 
-    margin-top: 34px;
+    position:relative;
 
-    position: relative;
+    display:flex;
 
-    display: flex;
-
-    align-items: center;
+    align-items:center;
 
     background:
-        rgba(255,255,255,.84);
+        rgba(255,255,255,.82);
 
     border:
         1px solid
-        rgba(255,255,255,.78);
+        rgba(255,255,255,.72);
 
-    border-radius: 50px;
-
-    box-shadow:
-        0 18px 50px
-        rgba(0,0,0,.20);
-
-    overflow: hidden;
-
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-
-    transition:
-        box-shadow .3s ease,
-        transform .3s ease;
-}
-
-.homepage .velo-search:focus-within {
+    border-radius:50px;
 
     box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.28);
+        0 15px 45px
+        rgba(0,0,0,.18);
 
-    transform: translateY(-2px);
+    overflow:hidden;
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
 }
 
-.homepage .velo-search input {
+.homepage .velo-search input{
 
-    flex: 1;
+    flex:1;
 
-    min-width: 0;
+    min-width:0;
 
-    height: 66px;
+    height:54px;
 
     padding:
-        0 26px;
+        0 20px;
 
-    border: 0;
+    border:0;
 
-    outline: 0;
+    outline:0;
 
-    background: transparent;
+    background:transparent;
 
-    color: #111;
+    color:#111;
 
-    font-family: inherit;
+    font-family:inherit;
 
-    font-size: .95rem;
+    font-size:.92rem;
 }
 
-.homepage .velo-search input::placeholder {
-
-    color: #555;
+.homepage .velo-search input::placeholder{
+    color:#555;
 }
 
-.homepage .velo-search button {
+.homepage .velo-search button{
 
-    width: 66px;
+    width:54px;
+    height:54px;
 
-    height: 66px;
+    flex:0 0 auto;
 
-    flex: 0 0 66px;
+    border:0;
 
-    display: flex;
+    background:transparent;
 
-    align-items: center;
-    justify-content: center;
+    color:#111;
 
-    border: 0;
+    cursor:pointer;
 
-    background: transparent;
-
-    color: #111;
-
-    cursor: pointer;
-
-    font-size: 20px;
-
-    transition: .3s ease;
-}
-
-.homepage .velo-search button:hover {
-
-    color: var(--gold);
+    font-size:18px;
 }
 
 
-/* =========================================================
-   FILTER AREA
-   ========================================================= */
+/*==================================================
+HOMEPAGE FILTERS
+==================================================*/
 
-.homepage .velo-filters {
+.homepage .velo-filters{
 
-    width:
-        min(1100px, 94%);
+    width:min(1050px,94%);
 
-    margin-top: 17px;
+    margin-top:16px;
 
-    display: flex;
+    display:flex;
 
-    flex-wrap: wrap;
+    flex-wrap:wrap;
 
-    justify-content: center;
+    justify-content:center;
 
-    gap: 9px;
+    gap:9px;
 }
 
+.homepage .velo-filter{
 
-/* =========================================================
-   FILTER BUTTON / SELECT
-   ========================================================= */
-
-.homepage .velo-filter {
-
-    position: relative;
-
-    flex: 0 0 auto;
+    position:relative;
 }
 
-.homepage .velo-filter select {
+.homepage .velo-filter select{
 
-    min-height: 44px;
-
-    max-width: 230px;
+    min-height:42px;
 
     padding:
-        9px 39px 9px 15px;
+        9px 34px
+        9px 14px;
 
     border:
         1px solid
-        rgba(0,0,0,.14);
+        rgba(255,255,255,.30);
 
-    border-radius: 30px;
+    border-radius:30px;
 
-    outline: 0;
+    outline:0;
 
     background:
         rgba(255,255,255,.72);
 
-    color: #111;
+    color:#111;
 
-    font-family: inherit;
+    font-family:inherit;
 
-    font-size: .70rem;
+    font-size:.73rem;
 
-    font-weight: 700;
+    font-weight:600;
 
-    cursor: pointer;
+    cursor:pointer;
 
-    backdrop-filter: blur(9px);
-
-    transition:
-        background .3s ease,
-        border-color .3s ease,
-        transform .3s ease;
-}
-
-.homepage .velo-filter select:hover,
-.homepage .velo-filter select:focus {
-
-    background: #fff;
-
-    border-color:
-        rgba(212,175,55,.65);
-
-    transform: translateY(-1px);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
 }
 
 
-/* =========================================================
-   FILTER SUGGESTIONS
-   These are styling hooks for the filter menu generated
-   by JavaScript / HTML options.
-   ========================================================= */
+/*==================================================
+HOMEPAGE PRODUCT DISPLAY
+==================================================*/
 
-.homepage .filter-menu,
-.homepage .filter-dropdown {
+.homepage .product-display{
 
-    position: absolute;
+    position:relative;
 
-    top: calc(100% + 9px);
-
-    left: 50%;
-
-    transform:
-        translateX(-50%)
-        translateY(-8px);
-
-    width: 250px;
-
-    max-height: 340px;
-
-    overflow-y: auto;
-
-    padding: 8px;
-
-    border:
-        1px solid
-        rgba(0,0,0,.12);
-
-    border-radius: 18px;
-
-    background:
-        rgba(250,248,242,.97);
-
-    box-shadow:
-        0 25px 65px
-        rgba(0,0,0,.28);
-
-    backdrop-filter: blur(16px);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    z-index: 5000;
-
-    transition:
-        opacity .25s ease,
-        visibility .25s ease,
-        transform .25s ease;
-}
-
-.homepage .filter-menu.open,
-.homepage .filter-dropdown.open {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform:
-        translateX(-50%)
-        translateY(0);
-}
-
-.homepage .filter-menu button,
-.homepage .filter-dropdown button {
-
-    width: 100%;
-
-    min-height: 42px;
+    width:100%;
 
     padding:
-        9px 12px;
-
-    border-radius: 11px;
-
-    background: transparent;
-
-    color: #171717;
-
-    text-align: left;
-
-    cursor: pointer;
-
-    font-size: .72rem;
-
-    font-weight: 650;
-
-    transition: .25s ease;
-}
-
-.homepage .filter-menu button:hover,
-.homepage .filter-dropdown button:hover {
-
-    background:
-        rgba(212,175,55,.15);
-
-    color: #111;
-}
-
-
-/* =========================================================
-   PRODUCT DISPLAY
-   ========================================================= */
-
-.homepage .product-display {
-
-    position: relative;
-
-    padding:
-        105px 6%
-        125px;
+        80px 6%
+        100px;
 
     background:
         linear-gradient(
             180deg,
             rgba(5,5,5,.76),
-            rgba(5,5,5,.96)
+            rgba(5,5,5,.94)
         );
 
     border-top:
@@ -1557,41 +1812,38 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay) {
 }
 
 
-/* =========================================================
-   SECTION HEADING
-   ========================================================= */
+/*==================================================
+PRODUCT SECTION HEADING
+==================================================*/
 
-.homepage .section-heading {
+.homepage .section-heading{
 
-    width:
-        min(850px,100%);
+    width:min(850px,100%);
 
     margin:
         0 auto 48px;
 
-    text-align: center;
+    text-align:center;
 }
 
-.homepage .section-eyebrow {
+.homepage .section-eyebrow{
 
-    margin-bottom: 10px;
+    margin-bottom:10px;
 
-    color: var(--gold);
+    color:var(--gold);
 
-    font-size: .68rem;
+    font-size:.68rem;
 
-    font-weight: 900;
+    font-weight:900;
 
-    letter-spacing: 3px;
+    letter-spacing:3px;
 
-    text-transform: uppercase;
+    text-transform:uppercase;
 }
 
-.homepage .section-heading h2 {
+.homepage .section-heading h2{
 
-    margin-bottom: 13px;
-
-    color: #fff;
+    color:#fff;
 
     font-size:
         clamp(
@@ -1600,899 +1852,2075 @@ body.homepage > *:not(.homeVideoBackground):not(.homeVideoOverlay) {
             3.5rem
         );
 
-    font-weight: 800;
+    font-weight:800;
 
-    letter-spacing: -.04em;
+    letter-spacing:-.04em;
 
-    line-height: 1.05;
+    line-height:1.05;
+
+    margin-bottom:13px;
 }
 
-.homepage .section-heading > p:last-child {
+.homepage .section-heading > p:last-child{
 
-    color: #aaa;
+    color:#aaa;
 
-    font-size: .9rem;
+    font-size:.9rem;
 
-    line-height: 1.7;
+    line-height:1.7;
 }
 
 
-/* =========================================================
-   PRODUCT GRID
-   TWO COLUMNS
-   ========================================================= */
+/*==================================================
+HOMEPAGE PRODUCT GRID
+TWO COLUMNS
+==================================================*/
 
-.homepage .product-grid {
+.homepage .product-grid{
 
-    width:
-        min(1300px,100%);
+    width:min(1250px,100%);
 
-    margin: 0 auto;
+    margin:0 auto;
 
-    display: grid;
+    display:grid;
 
     grid-template-columns:
         repeat(2,minmax(0,1fr));
 
-    gap:
-        clamp(
-            18px,
-            2.5vw,
-            30px
-        );
+    gap:26px;
 }
 
 
-/* =========================================================
-   PRODUCT CARD
-   ========================================================= */
+/*==================================================
+HOMEPAGE PRODUCT CARD
+==================================================*/
 
-.homepage .product-card {
+.homepage .product-card{
 
-    position: relative;
+    position:relative;
 
-    min-width: 0;
+    min-width:0;
 
-    overflow: hidden;
-
-    border:
-        1px solid
-        rgba(255,255,255,.09);
-
-    border-radius: 22px;
+    overflow:hidden;
 
     background:
         linear-gradient(
             145deg,
-            #1a1a1a,
+            #171717,
             #090909
         );
 
-    box-shadow:
-        0 20px 55px
-        rgba(0,0,0,.42);
+    border:
+        1px solid
+        rgba(255,255,255,.10);
 
-    cursor: pointer;
+    border-radius:18px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.38);
+
+    cursor:pointer;
 
     transition:
-        transform .45s ease,
-        border-color .45s ease,
-        box-shadow .45s ease;
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
 }
 
-.homepage .product-card:hover {
+.homepage .product-card:hover{
 
     transform:
-        translateY(-8px);
+        translateY(-5px);
 
     border-color:
-        rgba(212,175,55,.48);
+        rgba(255,255,255,.26);
 
     box-shadow:
-        0 30px 75px
-        rgba(0,0,0,.60);
+        0 25px 60px
+        rgba(0,0,0,.52);
 }
 
-.homepage .product-card-link {
+.homepage .product-card-link{
 
-    display: block;
+    display:block;
 
-    height: 100%;
+    height:100%;
+
+    color:inherit;
 }
 
 
-/* =========================================================
-   PRODUCT IMAGE
-   ========================================================= */
+/*==================================================
+PRODUCT IMAGE
+SQUARE / VERTICAL
+==================================================*/
 
-.homepage .product-image {
+.homepage .product-image{
 
-    position: relative;
+    position:relative;
 
-    width: 100%;
+    width:100%;
 
-    aspect-ratio: 1 / 1.12;
+    aspect-ratio:
+        1 / 1.12;
 
-    overflow: hidden;
+    overflow:hidden;
 
-    background: #151515;
+    background:#151515;
 }
 
-.homepage .product-image img {
+.homepage .product-image img{
 
-    width: 100%;
+    width:100%;
+    height:100%;
 
-    height: 100%;
+    object-fit:cover;
 
-    object-fit: cover;
+    display:block;
 
     transition:
-        transform .7s cubic-bezier(.2,.7,.2,1),
-        filter .7s ease;
+        transform .55s ease,
+        filter .55s ease;
 }
 
 .homepage .product-card:hover
-.product-image img {
+.product-image img{
 
-    transform: scale(1.055);
+    transform:
+        scale(1.035);
 
     filter:
-        brightness(.88)
-        contrast(1.04);
+        brightness(.92)
+        contrast(1.03);
 }
 
 
-/* =========================================================
-   PRODUCT IMAGE OVERLAY
-   ========================================================= */
+/*==================================================
+PRODUCT IMAGE OVERLAY
+==================================================*/
 
-.homepage .product-image-overlay {
+.homepage .product-image-overlay{
 
-    position: absolute;
+    position:absolute;
 
-    inset: 0;
+    inset:0;
 
     background:
         linear-gradient(
             180deg,
             rgba(0,0,0,.02),
-            rgba(0,0,0,.04) 48%,
-            rgba(0,0,0,.68) 100%
+            rgba(0,0,0,.05) 50%,
+            rgba(0,0,0,.65)
         );
 
-    pointer-events: none;
+    pointer-events:none;
 }
 
 
-/* =========================================================
-   REMOVE PRODUCT NUMBERING
-   ========================================================= */
+/*==================================================
+REMOVE ALL PRODUCT NUMBERING
+==================================================*/
 
-.homepage .product-number {
+.homepage .product-number{
 
-    display: none !important;
+    display:none !important;
 }
 
-.homepage .product-card::before {
+.homepage .product-grid,
+.homepage .product-card{
 
-    content: none !important;
+    counter-reset:none !important;
+}
+
+.homepage .product-card::before,
+.homepage .product-card::after{
+
+    content:none !important;
 }
 
 
-/* =========================================================
-   PRODUCT CARD INFO
-   ========================================================= */
+/*==================================================
+PRODUCT PEEK DETAILS
+==================================================*/
 
-.homepage .product-card-info {
+.homepage .product-card-info{
 
     padding:
-        17px 18px 20px;
+        15px 16px 18px;
 
     background:
         linear-gradient(
             180deg,
-            rgba(14,14,14,.86),
-            rgba(6,6,6,.99)
+            rgba(12,12,12,.82),
+            rgba(7,7,7,.98)
         );
 }
 
-.homepage .product-card-info span {
+.homepage .product-card-info span{
 
-    display: block;
+    display:block;
 
-    margin-bottom: 6px;
+    margin-bottom:5px;
 
     color:
-        rgba(255,255,255,.55);
+        rgba(255,255,255,.58);
 
-    font-size: .61rem;
+    font-size:.61rem;
 
-    font-weight: 800;
+    font-weight:700;
 
-    letter-spacing: 1.7px;
+    letter-spacing:1.7px;
 
-    text-transform: uppercase;
+    text-transform:uppercase;
 }
 
-.homepage .product-card-info h3 {
+.homepage .product-card-info h3{
 
-    margin: 0;
+    margin:0;
 
-    color: #fff;
+    color:#fff;
 
     font-size:
         clamp(
-            1rem,
+            .95rem,
             1.8vw,
-            1.25rem
+            1.2rem
         );
 
-    font-weight: 750;
+    font-weight:700;
 }
 
-.homepage .product-card-info p {
+.homepage .product-card-info p{
 
-    margin-top: 6px;
+    margin-top:5px;
 
-    color: #a9a9a9;
+    color:#a9a9a9;
 
-    font-size: .77rem;
+    font-size:.77rem;
 
-    line-height: 1.55;
-}
-
-
-/* =========================================================
-   PRODUCT PRICE / EXTRA DETAILS
-   ========================================================= */
-
-.homepage .product-card-info .price,
-.homepage .product-price {
-
-    margin-top: 9px;
-
-    color: var(--gold);
-
-    font-size: .82rem;
-
-    font-weight: 800;
-
-    letter-spacing: .5px;
+    line-height:1.5;
 }
 
 
-/* =========================================================
-   MEMBERSHIP PREVIEW
-   ========================================================= */
+/*==================================================
+HOMEPAGE MEMBERSHIP PREVIEW
+==================================================*/
 
-.homepage .membership-preview {
+.homepage .membership-preview{
 
     padding:
-        100px 7%;
+        95px 7%;
 
-    text-align: center;
+    text-align:center;
 
     background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.025),
-            rgba(255,255,255,.045)
-        );
+        rgba(255,255,255,.025);
 
     border-top:
         1px solid
-        rgba(255,255,255,.06);
+        rgba(255,255,255,.04);
 }
 
 
-/* =========================================================
-   MEMBERSHIP CARDS
-   ========================================================= */
+/*==================================================
+ENTRY POPUP
+HOMEPAGE
+==================================================*/
 
-.homepage .membership-grid {
+.homepage .velo-entry-popup{
 
-    width:
-        min(1100px,100%);
+    position:fixed;
 
-    margin:
-        45px auto 0;
+    inset:0;
 
-    display: grid;
+    display:flex;
 
-    grid-template-columns:
-        repeat(3,minmax(0,1fr));
+    align-items:center;
+    justify-content:center;
 
-    gap: 18px;
-}
+    padding:20px;
 
-.homepage .membership-card {
+    opacity:0;
 
-    padding: 28px 22px;
+    visibility:hidden;
 
-    border:
-        1px solid
-        rgba(255,255,255,.09);
-
-    border-radius: 20px;
+    pointer-events:none;
 
     background:
-        rgba(255,255,255,.035);
+        rgba(0,0,0,.58);
 
-    transition: .35s ease;
-}
+    backdrop-filter:blur(9px);
+    -webkit-backdrop-filter:blur(9px);
 
-.homepage .membership-card:hover {
-
-    transform: translateY(-6px);
-
-    border-color:
-        rgba(212,175,55,.40);
-
-    background:
-        rgba(255,255,255,.055);
-}
-
-
-/* =========================================================
-   ENTRY POPUP
-   ========================================================= */
-
-.homepage .velo-entry-popup {
-
-    position: fixed;
-
-    inset: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-
-    background:
-        rgba(0,0,0,.65);
-
-    backdrop-filter: blur(10px);
-
-    -webkit-backdrop-filter: blur(10px);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    z-index: 20000;
+    z-index:20000;
 
     transition:
         opacity .35s ease,
         visibility .35s ease;
 }
 
-.homepage .velo-entry-popup.active {
+.homepage .velo-entry-popup.active{
 
-    opacity: 1;
+    opacity:1;
 
-    visibility: visible;
+    visibility:visible;
 
-    pointer-events: auto;
+    pointer-events:auto;
 }
 
+.homepage .velo-popup-card{
 
-/* =========================================================
-   POPUP CARD
-   ========================================================= */
-
-.homepage .velo-popup-card {
-
-    width:
-        min(470px,100%);
-
-    max-height:
-        min(90vh,700px);
-
-    overflow-y: auto;
+    width:min(460px,100%);
 
     padding:
-        40px 30px;
+        38px 28px;
 
-    border-radius: 23px;
+    border-radius:22px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(250,248,240,.98),
-            rgba(226,222,211,.96)
+            rgba(250,248,240,.96),
+            rgba(224,220,208,.94)
         );
 
-    color: #0a0a0a;
+    color:#0a0a0a;
 
     border:
         1px solid
-        rgba(255,255,255,.70);
+        rgba(255,255,255,.65);
 
     box-shadow:
         0 35px 100px
-        rgba(0,0,0,.70);
+        rgba(0,0,0,.65);
 
     transform:
-        translateY(22px)
-        scale(.96);
+        translateY(18px)
+        scale(.97);
 
     transition:
-        transform .4s cubic-bezier(.2,.8,.2,1);
+        transform .4s ease;
 }
 
 .homepage .velo-entry-popup.active
-.velo-popup-card {
+.velo-popup-card{
 
     transform:
         translateY(0)
         scale(1);
 }
 
-.homepage .velo-popup-card h2 {
-
-    color: #111;
-
-    line-height: 1.2;
+.homepage .velo-popup-card h2{
+    color:#111;
 }
 
-.homepage .velo-popup-card p {
-
-    color: #555;
-
-    line-height: 1.7;
+.homepage .velo-popup-card p{
+    color:#555;
 }
 
-.homepage .velo-popup-close {
-
-    color: #111;
-
-    cursor: pointer;
+.homepage .velo-popup-close{
+    color:#111;
 }
 
-.homepage .velo-popup-logo {
+.homepage .velo-popup-logo{
 
-    color: #111;
+    color:#111;
 
-    gap: 0;
+    letter-spacing:-1px;
 
-    letter-spacing: -.06em;
+    gap:0;
 }
 
 
-/* =========================================================
-   GENERAL DARK SECTIONS
-   ========================================================= */
+/*==================================================
+ORIGINAL HERO
+NON-HOMEPAGE FALLBACK
+==================================================*/
 
-.homepage footer {
+body:not(.homepage) .hero{
 
-    position: relative;
+    padding-top:140px;
+
+    padding-bottom:90px;
+
+    text-align:center;
+
+    width:100%;
+}
+
+body:not(.homepage) .hero h1{
+
+    font-size:80px;
+
+    font-weight:800;
+
+    letter-spacing:5px;
+
+    color:white;
+}
+
+body:not(.homepage) .hero h1 span{
+    color:#d4af37;
+}
+
+body:not(.homepage) .hero p{
+
+    max-width:700px;
+
+    margin:auto;
+
+    margin-top:20px;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    color:#bfbfbf;
+}
+
+body:not(.homepage) .hero-btn{
+
+    display:inline-block;
+
+    margin-top:35px;
 
     padding:
-        70px 6%;
+        14px 32px;
 
-    background: #050505;
+    background:#d4af37;
+
+    color:black;
+
+    font-weight:700;
+
+    border-radius:50px;
+
+    transition:.3s;
+}
+
+body:not(.homepage) .hero-btn:hover{
+    transform:translateY(-3px);
+}
+
+
+/*==================================================
+NIGHTSHIFT CARDS
+==================================================*/
+
+.slider-section{
+
+    padding:
+        40px 0;
+}
+
+.slider-title{
+
+    text-align:center;
+
+    font-size:38px;
+
+    margin-bottom:25px;
+}
+
+.slider-title span{
+    color:#d4af37;
+}
+
+.card-slider{
+
+    display:flex;
+
+    gap:20px;
+
+    overflow-x:auto;
+
+    scrollbar-width:none;
+
+    padding:20px;
+}
+
+.card-slider::-webkit-scrollbar{
+    display:none;
+}
+
+.drop-card{
+
+    min-width:300px;
+
+    background:#111;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(255,215,0,.1);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.3);
+
+    transition:.35s;
+
+    cursor:pointer;
+}
+
+.drop-card:hover{
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        #d4af37;
+}
+
+.drop-card img{
+
+    width:100%;
+
+    height:280px;
+
+    object-fit:cover;
+}
+
+.drop-content{
+
+    padding:20px;
+}
+
+.drop-content h3{
+
+    font-size:24px;
+
+    margin-bottom:10px;
+}
+
+.drop-content p{
+
+    color:#c9c9c9;
+
+    line-height:1.7;
+}
+
+.drop-btn{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:
+        10px 18px;
+
+    border-radius:30px;
+
+    background:#d4af37;
+
+    color:black;
+
+    font-weight:700;
+}
+
+
+/*==================================================
+MEMBERSHIP SECTION
+==================================================*/
+
+.membership{
+
+    padding:
+        90px 20px;
+
+    text-align:center;
+}
+
+.membership h2{
+
+    font-size:50px;
+
+    margin-bottom:15px;
+}
+
+.membership h2 span{
+    color:#d4af37;
+}
+
+.membership p{
+
+    max-width:700px;
+
+    margin:auto;
+
+    color:#c4c4c4;
+
+    line-height:1.8;
+}
+
+.membership-btn{
+
+    margin-top:30px;
+
+    display:inline-block;
+
+    padding:
+        15px 35px;
+
+    background:#d4af37;
+
+    color:black;
+
+    font-weight:700;
+
+    border-radius:50px;
+}
+
+
+/*==================================================
+GLOBAL BUTTON EFFECTS
+==================================================*/
+
+.hero-btn,
+.drop-btn,
+.membership-btn{
+
+    transition:
+        all .3s ease;
+}
+
+.hero-btn:hover,
+.drop-btn:hover,
+.membership-btn:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(212,175,55,.35);
+}
+
+
+/*==================================================
+FOOTER
+==================================================*/
+
+footer{
+
+    margin-top:80px;
+
+    padding:40px;
+
+    text-align:center;
 
     border-top:
         1px solid
         rgba(255,255,255,.08);
 
-    color: #aaa;
-
-    text-align: center;
-}
-
-.homepage footer a {
-
-    transition: color .25s ease;
-}
-
-.homepage footer a:hover {
-
-    color: var(--gold);
+    color:#888;
 }
 
 
-/* =========================================================
-   MOBILE — 700PX
-   ========================================================= */
+/*==================================================
+SMOOTH PAGE LOAD
+==================================================*/
 
-@media (max-width: 700px) {
+body.loaded{
 
-    .homepage .menu-btn,
-    .homepage .notification-btn,
-    .homepage .cart-btn {
+    animation:
+        fadeIn .7s ease;
+}
 
-        top: 14px;
+@keyframes fadeIn{
 
-        width: 46px;
-        height: 46px;
+    from{
 
-        border-radius: 12px;
+        opacity:0;
+
+        transform:
+            translateY(10px);
     }
 
-    .homepage .menu-btn {
-        left: 14px;
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/*==================================================
+==================================================
+VELO ENTRY EDITION™
+CINEMATIC PRODUCT PAGE
+==================================================
+==================================================*/
+
+
+/*==================================================
+ENTRY PAGE
+==================================================*/
+
+body.entryPage{
+
+    background:
+
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(212,175,55,.08),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            180deg,
+            #080808 0%,
+            #0d0d0d 45%,
+            #070707 100%
+        );
+
+    color:var(--white);
+}
+
+
+/*==================================================
+ENTRY VIDEO BACKGROUND
+==================================================*/
+
+.entryVideoBackground{
+
+    position:fixed;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    z-index:-3;
+
+    opacity:.48;
+
+    filter:
+        brightness(.55)
+        contrast(1.08)
+        saturate(.75);
+
+    pointer-events:none;
+}
+
+
+/*==================================================
+ENTRY VIDEO OVERLAY
+==================================================*/
+
+.entryVideoOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(5,5,5,.68) 0%,
+            rgba(8,8,8,.48) 35%,
+            rgba(8,8,8,.72) 75%,
+            rgba(5,5,5,.94) 100%
+        );
+
+    z-index:-2;
+
+    pointer-events:none;
+}
+
+
+/*==================================================
+ENTRY GOLD ATMOSPHERE
+==================================================*/
+
+.entryPage::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:600px;
+    height:600px;
+
+    top:-250px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(212,175,55,.10),
+            transparent 68%
+        );
+
+    filter:blur(30px);
+
+    pointer-events:none;
+
+    z-index:-1;
+}
+
+
+/*==================================================
+ENTRY HERO
+==================================================*/
+
+.entryHero{
+
+    position:relative;
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:
+        140px 8%
+        100px;
+
+    overflow:hidden;
+}
+
+.entryHeroContent{
+
+    width:min(850px,100%);
+
+    position:relative;
+
+    z-index:2;
+
+    animation:
+        entryHeroReveal
+        1s ease both;
+}
+
+.entryHeroContent h1{
+
+    font-size:
+        clamp(
+            3rem,
+            8vw,
+            6.5rem
+        );
+
+    letter-spacing:
+        clamp(
+            3px,
+            1vw,
+            9px
+        );
+
+    line-height:1;
+
+    margin-bottom:25px;
+
+    text-shadow:
+        0 10px 50px
+        rgba(0,0,0,.8);
+}
+
+.entryHeroContent h3{
+
+    color:var(--gold2);
+
+    font-size:
+        clamp(
+            1.1rem,
+            2vw,
+            1.6rem
+        );
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+    margin-bottom:25px;
+}
+
+.entryHeroContent p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:1.9;
+
+    color:#d0d0d0;
+}
+
+
+/*==================================================
+ENTRY GOLD BUTTON
+==================================================*/
+
+.entryPage .buyBtn{
+
+    display:inline-block;
+
+    margin-top:35px;
+
+    padding:
+        15px 34px;
+
+    border-radius:50px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--gold2),
+            var(--gold)
+        );
+
+    color:#080808;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(212,175,55,.20);
+
+    transition:
+        all .35s ease;
+}
+
+.entryPage .buyBtn:hover{
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 18px 45px
+        rgba(212,175,55,.38);
+}
+
+
+/*==================================================
+ENTRY PRODUCT SHOWCASE
+==================================================*/
+
+.entryPage .productShowcase{
+
+    position:relative;
+
+    max-width:1100px;
+
+    margin:auto;
+
+    text-align:center;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.015)
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.12);
+
+    border-radius:30px;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.45);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+.entryPage .productShowcase img{
+
+    width:100%;
+
+    max-height:700px;
+
+    object-fit:contain;
+
+    margin:auto;
+
+    border-radius:20px;
+}
+
+
+/*==================================================
+ENTRY STORY
+==================================================*/
+
+.entryPage .storySection{
+
+    max-width:950px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+.entryPage .storySection p{
+
+    font-size:1.08rem;
+
+    line-height:2;
+
+    color:#c6c6c6;
+}
+
+
+/*==================================================
+ENTRY COLOUR CARDS
+==================================================*/
+
+.entryPage .colorGrid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px,1fr)
+        );
+
+    gap:25px;
+
+    max-width:1100px;
+
+    margin:auto;
+}
+
+.entryPage .colorCard{
+
+    overflow:hidden;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #151515,
+            #0c0c0c
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.10);
+
+    border-radius:22px;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.entryPage .colorCard:hover{
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(212,175,55,.55);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.45);
+}
+
+.entryPage .colorCard img{
+
+    width:100%;
+
+    aspect-ratio:
+        1 / 1;
+
+    object-fit:cover;
+}
+
+.entryPage .colorCard h3{
+
+    padding:18px;
+
+    font-size:1.05rem;
+}
+
+
+/*==================================================
+ENTRY SPECIFICATIONS
+==================================================*/
+
+.entryPage .specBox{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px,1fr)
+        );
+
+    gap:15px;
+}
+
+.entryPage .specItem{
+
+    padding:22px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    border-radius:18px;
+
+    transition:.3s;
+}
+
+.entryPage .specItem:hover{
+
+    border-color:
+        rgba(212,175,55,.35);
+
+    background:
+        rgba(212,175,55,.045);
+}
+
+.entryPage .specItem span{
+
+    display:block;
+
+    color:#888;
+
+    font-size:.85rem;
+
+    margin-bottom:5px;
+}
+
+.entryPage .specItem strong{
+    color:white;
+}
+
+
+/*==================================================
+ENTRY SIZE GUIDE
+==================================================*/
+
+.entryPage .sizeSection{
+
+    max-width:900px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+.entryPage .sizeSection table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    background:#101010;
+}
+
+.entryPage .sizeSection th{
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--gold),
+            #b8941f
+        );
+
+    color:#050505;
+
+    padding:16px;
+
+    font-weight:800;
+}
+
+.entryPage .sizeSection td{
+
+    padding:16px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+
+    color:#d0d0d0;
+}
+
+.entryPage .sizeSection tr:hover td{
+
+    background:
+        rgba(212,175,55,.045);
+}
+
+
+/*==================================================
+ENTRY VIP PRICE
+==================================================*/
+
+.entryPage .priceSection{
+    text-align:center;
+}
+
+.entryPage .priceCard{
+
+    width:min(400px,100%);
+
+    margin:
+        35px auto 0;
+
+    padding:35px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #171717,
+            #0c0c0c
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.28);
+
+    border-radius:25px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.45);
+}
+
+.entryPage .old-price{
+
+    margin-top:15px;
+
+    color:#777;
+
+    font-size:1.1rem;
+}
+
+.entryPage .old-price s{
+
+    text-decoration:
+        line-through;
+
+    text-decoration-thickness:2px;
+
+    text-decoration-color:#999;
+}
+
+.entryPage .price{
+
+    color:var(--gold2);
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    margin-top:3px;
+}
+
+.entryPage .priceCard span{
+
+    display:block;
+
+    margin-top:8px;
+
+    color:white;
+
+    font-weight:800;
+
+    letter-spacing:.3px;
+}
+
+
+/*==================================================
+ENTRY RESERVE YOURS
+==================================================*/
+
+.entryPage .preOrderSection{
+
+    max-width:800px;
+
+    margin:auto;
+
+    text-align:center;
+
+    padding:
+        70px 30px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.015)
+        );
+
+    border:
+        1px solid
+        rgba(212,175,55,.15);
+
+    border-radius:30px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.4);
+}
+
+
+/*==================================================
+ENTRY PREORDER FORM
+==================================================*/
+
+.entryPage #entryPreorderForm{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:30px;
+}
+
+.entryPage #entryPreorderForm input,
+.entryPage #entryPreorderForm select,
+.entryPage #entryPreorderForm textarea{
+
+    width:100%;
+
+    padding:
+        16px 18px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:14px;
+
+    background:#0d0d0d;
+
+    color:white;
+
+    font-family:inherit;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+.entryPage #entryPreorderForm input:focus,
+.entryPage #entryPreorderForm select:focus,
+.entryPage #entryPreorderForm textarea:focus{
+
+    border-color:
+        var(--gold);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(212,175,55,.08);
+}
+
+
+/*==================================================
+FULFILMENT OPTIONS
+==================================================*/
+
+.fulfillment-section{
+
+    margin-top:10px;
+
+    text-align:left;
+}
+
+.fulfillment-section h3{
+
+    font-size:1rem;
+
+    color:#ddd;
+
+    margin-bottom:12px;
+}
+
+.fulfillment-options{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+}
+
+.fulfillment-option{
+
+    cursor:pointer;
+
+    padding:18px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:15px;
+
+    background:#0d0d0d;
+
+    transition:.3s;
+}
+
+.fulfillment-option:hover{
+
+    border-color:
+        rgba(212,175,55,.45);
+}
+
+.fulfillment-option input{
+    display:none;
+}
+
+.fulfillment-option:has(input:checked){
+
+    border-color:
+        var(--gold);
+
+    background:
+        rgba(212,175,55,.08);
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(212,175,55,.2);
+}
+
+.pickup-info,
+.delivery-location{
+
+    margin-top:15px;
+
+    padding:20px;
+
+    border-radius:16px;
+
+    background:
+        rgba(212,175,55,.055);
+
+    border:
+        1px solid
+        rgba(212,175,55,.16);
+
+    text-align:left;
+}
+
+.pickup-info h4{
+
+    color:var(--gold2);
+
+    margin-bottom:7px;
+}
+
+
+/*==================================================
+ENTRY RESERVE BUTTON
+==================================================*/
+
+.entryPage #entryPreorderForm button{
+
+    margin-top:10px;
+
+    padding:17px;
+
+    border:0;
+
+    border-radius:50px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--gold2),
+            var(--gold)
+        );
+
+    color:#080808;
+
+    font-family:inherit;
+
+    font-weight:800;
+
+    font-size:1rem;
+
+    cursor:pointer;
+
+    transition:.35s;
+}
+
+.entryPage #entryPreorderForm button:hover{
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(212,175,55,.28);
+}
+
+
+/*==================================================
+ENTRY CLOSING SECTION
+==================================================*/
+
+.entryPage .closingSection{
+
+    text-align:center;
+
+    padding:
+        130px 8%;
+}
+
+.entryPage .closingSection h2{
+
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            4rem
+        );
+
+    letter-spacing:3px;
+
+    color:white;
+}
+
+.entryPage .closingSection p{
+
+    color:var(--gold);
+
+    font-weight:700;
+
+    letter-spacing:4px;
+}
+
+
+/*==================================================
+ENTRY ANIMATION
+==================================================*/
+
+@keyframes entryHeroReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(25px);
     }
 
-    .homepage .notification-btn {
-        right: 70px;
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/*==================================================
+HOMEPAGE MOBILE
+==================================================*/
+
+@media(max-width:700px){
+
+    /* HEADER CONTROLS */
+
+    .homepage .menu-btn{
+
+        top:14px;
+        left:14px;
+
+        width:46px;
+        height:46px;
     }
 
-    .homepage .cart-btn {
-        right: 14px;
+    .homepage .notification-btn{
 
-        width: 46px;
-        min-width: 46px;
+        top:14px;
+        right:70px;
+
+        width:46px;
+        height:46px;
     }
 
-    .homepage .hero {
+    .homepage .cart-btn{
 
-        min-height: 100svh;
+        top:14px;
+        right:14px;
+
+        width:46px;
+        min-width:46px;
+        height:46px;
+    }
+
+
+    /* HERO */
+
+    .homepage .hero{
 
         padding:
-            100px 15px
+            105px 16px
             65px;
     }
 
-    .homepage .hero-editorial-layer {
+    .homepage .hero-editorial-layer{
 
         inset:
-            3.5%
-            3%
-            4%;
+            4% 3%
+            5%;
 
-        border-radius: 25px;
+        border-radius:24px;
     }
 
-    .homepage .veloWordmark {
+    .homepage .hero::before{
+
+        width:94%;
+
+        height:72%;
+
+        border-radius:24px;
+    }
+
+
+    /* WORDMARK */
+
+    .homepage .veloWordmark{
 
         font-size:
             clamp(
-                3.2rem,
-                17vw,
-                5.4rem
+                3rem,
+                16vw,
+                5rem
             );
 
-        letter-spacing: -.08em;
+        letter-spacing:
+            -.08em;
     }
 
-    .homepage .primarySlogan {
+    .homepage .veloWordmark .veloSlash{
 
-        margin-top: 25px;
+        width:.12em;
+
+        height:.82em;
+
+        margin-right:.09em;
+    }
+
+
+    /* HERO CONTENT */
+
+    .homepage .primarySlogan{
+
+        margin-top:25px;
 
         font-size:
             clamp(
                 1rem,
                 5vw,
-                1.45rem
+                1.5rem
             );
 
         letter-spacing:
-            2.5px;
+            2px;
     }
 
-    .homepage .motto {
+    .homepage .motto{
 
-        font-size: .66rem;
+        font-size:.68rem;
 
-        letter-spacing: 1.8px;
+        letter-spacing:
+            1.5px;
     }
 
-    .homepage .sub-text {
+    .homepage .sub-text{
 
-        max-width: 92%;
+        padding:
+            0 12px;
 
-        font-size: .78rem;
+        font-size:.78rem;
 
-        line-height: 1.7;
+        line-height:1.7;
     }
 
-    .homepage .hero-buttons {
 
-        margin-top: 27px;
+    /* HERO BUTTONS */
+
+    .homepage .hero-buttons{
+
+        width:100%;
+
+        gap:9px;
     }
 
     .homepage .primary-btn,
-    .homepage .secondary-btn {
+    .homepage .secondary-btn{
 
-        min-height: 45px;
+        min-height:45px;
 
         padding:
             11px 17px;
 
-        font-size: .65rem;
+        font-size:.65rem;
     }
 
-    .homepage .velo-search {
 
-        width: 96%;
+    /* SEARCH */
 
-        min-height: 59px;
+    .homepage .velo-search{
 
-        margin-top: 28px;
+        width:94%;
+
+        margin-top:23px;
     }
 
-    .homepage .velo-search input {
+    .homepage .velo-search input{
 
-        height: 59px;
+        height:50px;
+
+        font-size:.8rem;
 
         padding:
-            0 19px;
-
-        font-size: .78rem;
+            0 16px;
     }
 
-    .homepage .velo-search button {
+    .homepage .velo-search button{
 
-        width: 59px;
+        width:50px;
 
-        height: 59px;
-
-        flex-basis: 59px;
+        height:50px;
     }
 
-    .homepage .velo-filters {
 
-        width: 96%;
+    /* FILTERS */
 
-        justify-content: flex-start;
+    .homepage .velo-filters{
 
-        flex-wrap: nowrap;
+        justify-content:flex-start;
 
-        overflow-x: auto;
+        overflow-x:auto;
 
-        padding-bottom: 5px;
+        flex-wrap:nowrap;
 
-        scrollbar-width: none;
+        padding-bottom:5px;
+
+        scrollbar-width:none;
     }
 
-    .homepage .velo-filters::-webkit-scrollbar {
-
-        display: none;
+    .homepage .velo-filters::-webkit-scrollbar{
+        display:none;
     }
 
-    .homepage .velo-filter {
-
-        flex: 0 0 auto;
+    .homepage .velo-filter{
+        flex:0 0 auto;
     }
 
-    .homepage .velo-filter select {
 
-        max-width: 205px;
+    /* PRODUCT DISPLAY */
 
-        min-height: 41px;
-    }
-
-    .homepage .product-display {
+    .homepage .product-display{
 
         padding:
-            65px 13px
-            80px;
+            60px 14px
+            75px;
     }
 
-    .homepage .section-heading {
 
-        margin-bottom: 30px;
-    }
+    /* TWO COLUMNS */
 
-    .homepage .section-heading h2 {
+    .homepage .product-grid{
 
-        font-size:
-            clamp(
-                1.8rem,
-                9vw,
-                2.5rem
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0,1fr)
             );
+
+        gap:12px;
     }
 
-    .homepage .section-heading > p:last-child {
 
-        font-size: .77rem;
+    /* PRODUCT CARD */
+
+    .homepage .product-card{
+
+        border-radius:13px;
     }
 
-    .homepage .product-grid {
-
-        grid-template-columns:
-            repeat(2,minmax(0,1fr));
-
-        gap: 12px;
-    }
-
-    .homepage .product-card {
-
-        border-radius: 13px;
-    }
-
-    .homepage .product-image {
-
-        aspect-ratio: 1 / 1.16;
-    }
-
-    .homepage .product-card-info {
+    .homepage .product-card-info{
 
         padding:
-            11px 11px 13px;
+            11px 11px
+            13px;
     }
 
-    .homepage .product-card-info span {
+    .homepage .product-card-info span{
 
-        margin-bottom: 4px;
+        font-size:.53rem;
 
-        font-size: .50rem;
-
-        letter-spacing: 1.2px;
+        letter-spacing:1.3px;
     }
 
-    .homepage .product-card-info h3 {
+    .homepage .product-card-info h3{
 
-        font-size: .78rem;
+        font-size:.82rem;
     }
 
-    .homepage .product-card-info p {
+    .homepage .product-card-info p{
 
-        font-size: .61rem;
-
-        line-height: 1.45;
+        font-size:.66rem;
     }
 
-    .homepage .membership-preview {
+
+    /* MEMBERSHIP */
+
+    .homepage .membership-preview{
 
         padding:
-            70px 15px;
+            70px 20px;
     }
 
-    .homepage .membership-grid {
 
-        grid-template-columns:
-            1fr;
+    /* SIDEBAR */
 
-        gap: 12px;
-    }
+    .homepage #sidebar{
 
-    .homepage .membership-card {
-
-        padding:
-            23px 18px;
-    }
-
-    #sidebar {
-
-        width:
-            min(320px,88vw);
-
-        padding:
-            22px 17px;
+        width:min(
+            320px,
+            88vw
+        );
     }
 }
 
 
-/* =========================================================
-   VERY SMALL DEVICES — 380PX
-   ========================================================= */
+/*==================================================
+VERY SMALL HOMEPAGE SCREENS
+==================================================*/
 
-@media (max-width: 380px) {
+@media(max-width:380px){
 
-    .homepage .menu-btn,
-    .homepage .notification-btn,
-    .homepage .cart-btn {
+    .homepage .product-grid{
 
-        width: 43px;
-        height: 43px;
+        gap:9px;
     }
 
-    .homepage .notification-btn {
-        right: 63px;
+    .homepage .product-card-info span{
+
+        font-size:.50rem;
     }
 
-    .homepage .veloWordmark {
+    .homepage .product-card-info h3{
+
+        font-size:.74rem;
+    }
+
+    .homepage .product-card-info p{
+
+        font-size:.59rem;
+    }
+
+    .homepage .veloWordmark{
 
         font-size:
             clamp(
                 2.8rem,
-                16vw,
+                15vw,
                 4.5rem
             );
     }
 
-    .homepage .product-grid {
+    .homepage .primarySlogan{
 
-        gap: 9px;
-    }
+        font-size:.92rem;
 
-    .homepage .product-card-info {
-
-        padding:
-            9px 9px 11px;
-    }
-
-    .homepage .product-card-info span {
-
-        font-size: .46rem;
-    }
-
-    .homepage .product-card-info h3 {
-
-        font-size: .70rem;
-    }
-
-    .homepage .product-card-info p {
-
-        font-size: .56rem;
+        letter-spacing:1.5px;
     }
 }
 
 
-/* =========================================================
-   TABLET — 701PX TO 1050PX
-   ========================================================= */
+/*==================================================
+GLOBAL RESPONSIVE
+==================================================*/
 
-@media (min-width: 701px) and (max-width: 1050px) {
+@media(max-width:768px){
 
-    .homepage .hero {
+    section{
 
         padding:
-            125px 5%
-            85px;
+            70px 6%;
     }
 
-    .homepage .hero-editorial-layer {
+    body:not(.homepage) .hero h1{
+
+        font-size:48px;
+    }
+
+    body:not(.homepage) .hero p{
+
+        font-size:15px;
+
+        padding:
+            0 20px;
+    }
+
+    .brand-name{
+
+        font-size:20px;
+    }
+
+    .drop-card{
+
+        min-width:270px;
+    }
+
+    .membership h2{
+
+        font-size:34px;
+    }
+
+
+    /* ENTRY PAGE */
+
+    .entryHero{
+
+        min-height:90vh;
+
+        padding:
+            120px 22px
+            70px;
+    }
+
+    .entryPage .productShowcase{
+
+        border-radius:20px;
+    }
+
+    .entryPage .preOrderSection{
+
+        padding:
+            55px 18px;
+    }
+
+    .fulfillment-options{
+
+        grid-template-columns:1fr;
+    }
+
+    .entryPage .price{
+
+        font-size:2.5rem;
+    }
+
+    .entryPage .sizeSection{
+
+        overflow-x:auto;
+    }
+
+    .entryPage .sizeSection table{
+
+        min-width:600px;
+    }
+}
+
+
+/*==================================================
+TABLET / MEDIUM HOMEPAGE
+==================================================*/
+
+@media(
+    min-width:701px
+) and (
+    max-width:1050px
+){
+
+    .homepage .product-grid{
+
+        gap:20px;
+    }
+
+    .homepage .hero{
+
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .homepage .hero-editorial-layer{
 
         inset:
-            5%
-            4%
+            5% 3%
             5%;
-    }
-
-    .homepage .veloWordmark {
-
-        font-size:
-            clamp(
-                4.5rem,
-                13vw,
-                7rem
-            );
-    }
-
-    .homepage .product-display {
-
-        padding:
-            90px 4%
-            100px;
-    }
-
-    .homepage .product-grid {
-
-        gap: 18px;
     }
 }
 
 
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
+/*==================================================
+REDUCED MOTION
+ACCESSIBILITY
+==================================================*/
 
-@media (prefers-reduced-motion: reduce) {
+@media(
+    prefers-reduced-motion:reduce
+){
+
+    html{
+        scroll-behavior:auto;
+    }
 
     *,
     *::before,
-    *::after {
+    *::after{
 
-        scroll-behavior: auto !important;
+        animation-duration:.01ms !important;
 
-        transition-duration: .01ms !important;
+        animation-iteration-count:1 !important;
 
-        animation-duration: .01ms !important;
+        transition-duration:.01ms !important;
 
-        animation-iteration-count: 1 !important;
+        scroll-behavior:auto !important;
     }
 }
-
-
-/* =========================================================
-   END OF VELO™ FINAL CSS
-   ========================================================= */
