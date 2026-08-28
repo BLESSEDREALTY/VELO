@@ -3924,3 +3924,561 @@ ACCESSIBILITY
         scroll-behavior:auto !important;
     }
 }
+
+/==================================================
+VELO™ NOTIFICATIONS PAGE
+==================================================/
+
+body.notificationPage{
+
+background:
+    radial-gradient(
+        circle at 50% 0%,
+        rgba(212,175,55,.09),
+        transparent 35%
+    ),
+    linear-gradient(
+        180deg,
+        #080808 0%,
+        #0d0d0d 50%,
+        #070707 100%
+    );
+
+color:#fff;
+
+min-height:100vh;
+
+}
+
+/==================================================
+NOTIFICATION HEADER
+==================================================/
+
+.notification-header{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+
+height:85px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+padding:0 25px;
+
+background:
+    rgba(8,8,8,.88);
+
+backdrop-filter:blur(16px);
+
+-webkit-backdrop-filter:blur(16px);
+
+border-bottom:
+    1px solid
+    rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.notification-logo{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+color:#fff;
+
+}
+
+/==================================================
+NOTIFICATION MAIN
+==================================================/
+
+.notification-main{
+
+padding-top:85px;
+
+min-height:100vh;
+
+}
+
+/==================================================
+NOTIFICATION HERO
+==================================================/
+
+.notification-hero{
+
+width:min(850px,92%);
+
+margin:auto;
+
+padding:
+    110px 20px
+    65px;
+
+text-align:center;
+
+}
+
+.notification-eyebrow{
+
+margin-bottom:14px;
+
+color:var(--gold);
+
+font-size:.68rem;
+
+font-weight:900;
+
+letter-spacing:4px;
+
+text-transform:uppercase;
+
+}
+
+.notification-hero h1{
+
+color:#fff;
+
+font-size:
+    clamp(
+        2.8rem,
+        8vw,
+        5.5rem
+    );
+
+font-weight:900;
+
+letter-spacing:
+    clamp(
+        2px,
+        .7vw,
+        7px
+    );
+
+line-height:1;
+
+}
+
+.notification-hero p{
+
+max-width:650px;
+
+margin:
+    22px auto 0;
+
+color:#999;
+
+font-size:.9rem;
+
+line-height:1.8;
+
+}
+
+/==================================================
+NOTIFICATION LIST
+==================================================/
+
+.notifications-list{
+
+width:min(850px,92%);
+
+margin:
+    0 auto 100px;
+
+}
+
+/==================================================
+NOTIFICATION CARD
+==================================================/
+
+.notification-card{
+
+position:relative;
+
+display:flex;
+
+gap:17px;
+
+padding:25px;
+
+margin-bottom:14px;
+
+background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.015)
+    );
+
+border:
+    1px solid
+    rgba(255,255,255,.08);
+
+border-radius:20px;
+
+transition:
+    transform .3s ease,
+    border-color .3s ease,
+    background .3s ease;
+
+}
+
+.notification-card:hover{
+
+transform:translateY(-3px);
+
+border-color:
+    rgba(212,175,55,.32);
+
+background:
+    linear-gradient(
+        145deg,
+        rgba(212,175,55,.06),
+        rgba(255,255,255,.015)
+    );
+
+}
+
+/==================================================
+UNREAD NOTIFICATION
+==================================================/
+
+.notification-card.unread{
+
+border-color:
+    rgba(212,175,55,.28);
+
+}
+
+.notification-card.unread
+.notification-dot{
+
+background:var(--gold);
+
+box-shadow:
+    0 0 12px
+    rgba(212,175,55,.5);
+
+}
+
+/==================================================
+NOTIFICATION DOT
+==================================================/
+
+.notification-dot{
+
+width:9px;
+height:9px;
+
+flex:0 0 9px;
+
+margin-top:8px;
+
+border-radius:50%;
+
+background:#555;
+
+}
+
+/==================================================
+NOTIFICATION CONTENT
+==================================================/
+
+.notification-content{
+
+flex:1;
+
+min-width:0;
+
+}
+
+.notification-label{
+
+display:block;
+
+margin-bottom:7px;
+
+color:var(--gold);
+
+font-size:.6rem;
+
+font-weight:900;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+}
+
+.notification-content h2{
+
+margin:0;
+
+color:#fff;
+
+font-size:
+    clamp(
+        1rem,
+        2vw,
+        1.35rem
+    );
+
+font-weight:800;
+
+}
+
+.notification-content p{
+
+margin-top:8px;
+
+color:#999;
+
+font-size:.78rem;
+
+line-height:1.75;
+
+}
+
+.notification-time{
+
+display:block;
+
+margin-top:12px;
+
+color:#555;
+
+font-size:.62rem;
+
+font-weight:600;
+
+letter-spacing:.5px;
+
+}
+
+/==================================================
+EMPTY STATE
+==================================================/
+
+.notification-empty{
+
+margin-top:35px;
+
+padding:55px 25px;
+
+text-align:center;
+
+background:
+    rgba(255,255,255,.025);
+
+border:
+    1px solid
+    rgba(255,255,255,.06);
+
+border-radius:20px;
+
+}
+
+.notification-empty-icon{
+
+width:50px;
+height:50px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+margin:0 auto 18px;
+
+border:
+    1px solid
+    rgba(212,175,55,.3);
+
+border-radius:50%;
+
+color:var(--gold);
+
+font-size:20px;
+
+}
+
+.notification-empty h3{
+
+color:#fff;
+
+font-size:1.05rem;
+
+font-weight:800;
+
+}
+
+.notification-empty p{
+
+max-width:500px;
+
+margin:8px auto 0;
+
+color:#777;
+
+font-size:.75rem;
+
+line-height:1.7;
+
+}
+
+/==================================================
+BACK HOME
+==================================================/
+
+.notification-back{
+
+display:flex;
+
+justify-content:center;
+
+margin-top:45px;
+
+}
+
+.notification-back a{
+
+display:inline-flex;
+
+align-items:center;
+justify-content:center;
+
+min-height:48px;
+
+padding:
+    13px 25px;
+
+border:
+    1px solid
+    rgba(255,255,255,.13);
+
+border-radius:50px;
+
+background:
+    rgba(255,255,255,.04);
+
+color:#fff;
+
+font-size:.7rem;
+
+font-weight:800;
+
+letter-spacing:1px;
+
+text-transform:uppercase;
+
+transition:.3s ease;
+
+}
+
+.notification-back a:hover{
+
+background:var(--gold);
+
+border-color:var(--gold);
+
+color:#080808;
+
+transform:translateY(-3px);
+
+}
+
+/==================================================
+NOTIFICATION FOOTER
+==================================================/
+
+.notification-footer{
+
+padding:
+    45px 20px;
+
+text-align:center;
+
+border-top:
+    1px solid
+    rgba(255,255,255,.07);
+
+color:#555;
+
+font-size:.68rem;
+
+letter-spacing:1px;
+
+}
+
+/==================================================
+MOBILE
+==================================================/
+
+@media(max-width:600px){
+
+.notification-header{
+
+    height:72px;
+}
+
+.notification-main{
+
+    padding-top:72px;
+}
+
+.notification-hero{
+
+    padding:
+        90px 15px
+        50px;
+}
+
+.notification-hero h1{
+
+    font-size:
+        clamp(
+            2.4rem,
+            13vw,
+            4rem
+        );
+}
+
+.notification-hero p{
+
+    font-size:.75rem;
+}
+
+.notifications-list{
+
+    width:
+        calc(100% - 28px);
+}
+
+.notification-card{
+
+    padding:20px 17px;
+
+    border-radius:17px;
+}
+
+.notification-content h2{
+
+    font-size:.95rem;
+}
+
+.notification-content p{
+
+    font-size:.7rem;
+}
+
+}
