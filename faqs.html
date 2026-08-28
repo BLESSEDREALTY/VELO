@@ -1,0 +1,994 @@
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>VELO™ — FAQs</title>
+
+<!-- VELO MAIN STYLESHEET -->
+<link rel="stylesheet" href="style.css">
+
+<!-- GOOGLE FONT -->
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    /*==================================================
+    VELO™ FAQ PAGE
+    ==================================================*/
+
+    body.faqPage{
+        background:
+            radial-gradient(
+                circle at 50% 0%,
+                rgba(212,175,55,.10),
+                transparent 35%
+            ),
+            linear-gradient(
+                180deg,
+                #080808 0%,
+                #0d0d0d 50%,
+                #070707 100%
+            );
+
+        color:#fff;
+        min-height:100vh;
+    }
+
+
+    /*==================================================
+    FAQ HERO
+    ==================================================*/
+
+    .faq-hero{
+
+        min-height:48vh;
+
+        display:flex;
+
+        align-items:center;
+        justify-content:center;
+
+        text-align:center;
+
+        padding:
+            150px 20px
+            80px;
+    }
+
+    .faq-hero-content{
+
+        width:min(850px,100%);
+
+    }
+
+    .faq-eyebrow{
+
+        color:#D4AF37;
+
+        font-size:.7rem;
+
+        font-weight:900;
+
+        letter-spacing:4px;
+
+        text-transform:uppercase;
+
+        margin-bottom:18px;
+    }
+
+    .faq-hero h1{
+
+        font-size:
+            clamp(
+                3rem,
+                9vw,
+                6rem
+            );
+
+        font-weight:900;
+
+        letter-spacing:
+            clamp(
+                2px,
+                .8vw,
+                7px
+            );
+
+        line-height:1;
+
+        margin-bottom:20px;
+    }
+
+    .faq-hero h1 span{
+
+        color:#D4AF37;
+    }
+
+    .faq-hero p{
+
+        max-width:650px;
+
+        margin:auto;
+
+        color:#aaa;
+
+        font-size:.95rem;
+
+        line-height:1.8;
+    }
+
+
+    /*==================================================
+    FAQ SECTION
+    ==================================================*/
+
+    .faq-section{
+
+        width:min(950px,92%);
+
+        margin:
+            0 auto 100px;
+    }
+
+
+    /*==================================================
+    FAQ ITEM
+    ==================================================*/
+
+    .faq-item{
+
+        margin-bottom:12px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(255,255,255,.055),
+                rgba(255,255,255,.018)
+            );
+
+        border:
+            1px solid
+            rgba(255,255,255,.08);
+
+        border-radius:18px;
+
+        overflow:hidden;
+
+        transition:
+            border-color .3s ease,
+            background .3s ease;
+    }
+
+    .faq-item:hover{
+
+        border-color:
+            rgba(212,175,55,.28);
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(212,175,55,.06),
+                rgba(255,255,255,.018)
+            );
+    }
+
+
+    /*==================================================
+    FAQ QUESTION
+    ==================================================*/
+
+    .faq-question{
+
+        width:100%;
+
+        padding:
+            21px 24px;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:space-between;
+
+        gap:20px;
+
+        border:0;
+
+        background:transparent;
+
+        color:#fff;
+
+        text-align:left;
+
+        font-family:inherit;
+
+        font-size:.92rem;
+
+        font-weight:700;
+
+        cursor:pointer;
+    }
+
+    .faq-question span:first-child{
+
+        flex:1;
+    }
+
+    .faq-icon{
+
+        width:30px;
+        height:30px;
+
+        flex:0 0 30px;
+
+        display:flex;
+
+        align-items:center;
+        justify-content:center;
+
+        border:
+            1px solid
+            rgba(212,175,55,.35);
+
+        border-radius:50%;
+
+        color:#D4AF37;
+
+        font-size:18px;
+
+        line-height:1;
+
+        transition:
+            transform .3s ease,
+            background .3s ease,
+            color .3s ease;
+    }
+
+
+    /*==================================================
+    FAQ ANSWER
+    ==================================================*/
+
+    .faq-answer{
+
+        max-height:0;
+
+        overflow:hidden;
+
+        transition:
+            max-height .4s ease;
+    }
+
+    .faq-answer-inner{
+
+        padding:
+            0 24px 22px;
+
+        color:#aaa;
+
+        font-size:.82rem;
+
+        line-height:1.8;
+    }
+
+
+    /*==================================================
+    ACTIVE FAQ
+    ==================================================*/
+
+    .faq-item.active{
+
+        border-color:
+            rgba(212,175,55,.38);
+    }
+
+    .faq-item.active
+    .faq-icon{
+
+        transform:rotate(45deg);
+
+        background:#D4AF37;
+
+        color:#080808;
+    }
+
+
+    /*==================================================
+    BACK HOME
+    ==================================================*/
+
+    .faq-back{
+
+        display:flex;
+
+        justify-content:center;
+
+        margin-top:50px;
+    }
+
+    .faq-back a{
+
+        display:inline-flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        min-height:48px;
+
+        padding:
+            13px 25px;
+
+        border:
+            1px solid
+            rgba(255,255,255,.14);
+
+        border-radius:50px;
+
+        background:
+            rgba(255,255,255,.05);
+
+        color:#fff;
+
+        font-size:.72rem;
+
+        font-weight:800;
+
+        letter-spacing:1px;
+
+        text-transform:uppercase;
+
+        transition:.3s ease;
+    }
+
+    .faq-back a:hover{
+
+        background:#D4AF37;
+
+        border-color:#D4AF37;
+
+        color:#080808;
+
+        transform:translateY(-3px);
+    }
+
+
+    /*==================================================
+    FAQ FOOTER
+    ==================================================*/
+
+    .faq-footer{
+
+        padding:
+            45px 20px;
+
+        text-align:center;
+
+        border-top:
+            1px solid
+            rgba(255,255,255,.07);
+
+        color:#666;
+
+        font-size:.7rem;
+
+        letter-spacing:1px;
+    }
+
+
+    /*==================================================
+    MOBILE
+    ==================================================*/
+
+    @media(max-width:600px){
+
+        .faq-hero{
+
+            min-height:42vh;
+
+            padding:
+                125px 20px
+                60px;
+        }
+
+        .faq-hero h1{
+
+            font-size:
+                clamp(
+                    2.7rem,
+                    14vw,
+                    4.5rem
+                );
+        }
+
+        .faq-hero p{
+
+            font-size:.78rem;
+        }
+
+        .faq-section{
+
+            width:
+                calc(100% - 28px);
+
+            margin-bottom:70px;
+        }
+
+        .faq-question{
+
+            padding:
+                18px 16px;
+
+            font-size:.78rem;
+        }
+
+        .faq-answer-inner{
+
+            padding:
+                0 16px 18px;
+
+            font-size:.72rem;
+        }
+
+        .faq-icon{
+
+            width:27px;
+            height:27px;
+
+            flex-basis:27px;
+
+            font-size:16px;
+        }
+
+    }
+
+</style>
+
+</head><body class="faqPage"><!--==================================================
+HEADER
+==================================================-->
+
+<header>
+
+    <a
+        href="index.html"
+        class="logo-wrapper"
+    >
+
+        <div class="sidebar-brand">
+
+            <span class="velo-mark">
+                /
+            </span>
+
+            <span class="velo-word">
+                VELO
+            </span>
+
+        </div>
+
+    </a>
+
+</header>
+
+
+<!--==================================================
+FAQ HERO
+==================================================-->
+
+<main>
+
+    <section class="faq-hero">
+
+        <div class="faq-hero-content">
+
+            <div class="faq-eyebrow">
+                VELO™ INFORMATION
+            </div>
+
+            <h1>
+                FREQUENTLY
+                <span>ASKED.</span>
+            </h1>
+
+            <p>
+                Everything you need to know about VELO™,
+                our collections, orders, membership,
+                shipping, payments, and the movement.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!--==================================================
+    FAQ QUESTIONS
+    ==================================================-->
+
+    <section class="faq-section">
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    What is VELO™?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    VELO™ is a premium fashion and
+                    streetwear movement built around
+                    velocity, vision, victory, ambition,
+                    craftsmanship, and individuality.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    What collections does VELO™ offer?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    VELO™ features collections including
+                    Nightshift Collection, Entry Edition,
+                    Premium Edition, Premium Sport+,
+                    and Founder's Genesis.
+
+                    Availability may vary depending on
+                    each collection's release schedule.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    How do I place an order?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    Select the product you want,
+                    choose the available options,
+                    add it to your cart, and proceed
+                    through the checkout process.
+
+                    Follow the instructions displayed
+                    on the website to complete your order.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    Can I pre-order a VELO™ product?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    Selected VELO™ releases may be
+                    available for pre-order.
+
+                    When a product supports pre-order,
+                    the product page will clearly indicate
+                    the available pre-order option and
+                    instructions.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    What payment methods are available?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    Available payment methods will be
+                    displayed during the relevant
+                    purchasing or registration process.
+
+                    Payment instructions should always
+                    be followed exactly as displayed by
+                    VELO™.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    Does VELO™ offer delivery?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    Delivery availability depends on the
+                    product and delivery location.
+
+                    Any applicable delivery options,
+                    charges, and instructions will be
+                    provided during the order process.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    What is VELO™ Membership?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    VELO™ Membership is designed to give
+                    members access to selected benefits,
+                    experiences, releases, and other
+                    membership privileges.
+
+                    Membership details and applicable
+                    benefits are provided on the
+                    Membership page.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    How do I become a VELO™ member?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    Visit the VELO™ Membership or
+                    Registration page and follow the
+                    membership registration instructions.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    Can I return or exchange a product?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    Returns and exchanges are subject to
+                    the applicable VELO™ Terms of Sale
+                    and the conditions stated for the
+                    specific product or order.
+
+                    Please review the Terms of Sale before
+                    completing a purchase.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    Where can I find the Terms of Sale?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    You can view the complete VELO™
+                    Terms of Sale by selecting the
+                    Terms of Sale link on the website.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item">
+
+            <button
+                class="faq-question"
+                type="button"
+            >
+
+                <span>
+                    How can I contact VELO™?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <div class="faq-answer-inner">
+
+                    Use the official contact or customer
+                    support options provided on the VELO™
+                    website.
+
+                    For order-related questions, keep
+                    your order information available so
+                    your request can be handled more
+                    efficiently.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!--==================================================
+        BACK HOME
+        ==================================================-->
+
+        <div class="faq-back">
+
+            <a href="index.html">
+                ← Back to VELO™
+            </a>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<!--==================================================
+FOOTER
+==================================================-->
+
+<footer class="faq-footer">
+
+    VELO™ — VELOCITY. VISION. VICTORY.
+
+</footer>
+
+
+<!--==================================================
+FAQ JAVASCRIPT
+==================================================-->
+
+<script>
+
+    const faqItems =
+        document.querySelectorAll(".faq-item");
+
+
+    faqItems.forEach(function(item){
+
+        const question =
+            item.querySelector(".faq-question");
+
+        const answer =
+            item.querySelector(".faq-answer");
+
+
+        question.addEventListener(
+            "click",
+            function(){
+
+                const isOpen =
+                    item.classList.contains("active");
+
+
+                /* CLOSE ALL OTHER QUESTIONS */
+
+                faqItems.forEach(function(otherItem){
+
+                    otherItem.classList.remove("active");
+
+                    const otherAnswer =
+                        otherItem.querySelector(".faq-answer");
+
+                    otherAnswer.style.maxHeight = null;
+
+                });
+
+
+                /* OPEN SELECTED QUESTION */
+
+                if(!isOpen){
+
+                    item.classList.add("active");
+
+                    answer.style.maxHeight =
+                        answer.scrollHeight + "px";
+
+                }
+
+            }
+        );
+
+    });
+
+</script>
+
+</body>
+  </html>
