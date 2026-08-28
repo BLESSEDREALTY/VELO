@@ -19,14 +19,26 @@ function openMenu() {
     sidebar.style.left = "0";
 
     if (overlay) {
+
         overlay.style.display = "block";
 
         requestAnimationFrame(() => {
             overlay.style.opacity = "1";
         });
+
     }
 
     document.body.classList.add("menu-open");
+
+    const button =
+        document.querySelector(
+            ".menu-btn, #menu-btn, [data-menu-button]"
+        );
+
+    if (button) {
+        button.setAttribute("aria-expanded", "true");
+    }
+
 }
 
 
@@ -50,9 +62,20 @@ function closeMenu() {
             }
 
         }, 350);
+
     }
 
     document.body.classList.remove("menu-open");
+
+    const button =
+        document.querySelector(
+            ".menu-btn, #menu-btn, [data-menu-button]"
+        );
+
+    if (button) {
+        button.setAttribute("aria-expanded", "false");
+    }
+
 }
 
 
@@ -193,9 +216,18 @@ if (notificationButton) {
 
     notificationButton.addEventListener("click", function(e) {
 
-        e.preventDefault();
+        /*
+           IMPORTANT:
+           If the notification button is a normal link
+           to notifications.html and there is no panel
+           on this page, allow the link to work normally.
+        */
 
-        if (!notificationPanel) return;
+        if (!notificationPanel) {
+            return;
+        }
+
+        e.preventDefault();
 
         const isOpen =
             notificationPanel.classList.contains("active");
@@ -259,36 +291,37 @@ if (cartButton) {
 
     cartButton.addEventListener("click", function(e) {
 
-        e.preventDefault();
-
         /*
-           If a cart panel exists, open it.
-           If the cart is a separate page,
-           the HTML link continues to work normally.
+           If there is NO cart panel on the current page,
+           this is a normal link to cart.html.
+
+           DO NOT prevent the default action.
         */
 
-        if (cartPanel) {
+        if (!cartPanel) {
+            return;
+        }
 
-            const isOpen =
-                cartPanel.classList.contains("active");
+        e.preventDefault();
 
-            if (isOpen) {
+        const isOpen =
+            cartPanel.classList.contains("active");
 
-                cartPanel.classList.remove("active");
+        if (isOpen) {
 
-                cartPanel.style.display = "none";
+            cartPanel.classList.remove("active");
 
-            } else {
+            cartPanel.style.display = "none";
 
-                closeMenu();
+        } else {
 
-                closeNotifications();
+            closeMenu();
 
-                cartPanel.classList.add("active");
+            closeNotifications();
 
-                cartPanel.style.display = "block";
+            cartPanel.classList.add("active");
 
-            }
+            cartPanel.style.display = "block";
 
         }
 
@@ -388,13 +421,13 @@ if (filterClose) {
 
 const searchInput =
     document.querySelector(
-        "#product-search, #search-input, .search-input, [data-product-search]"
+        "#productSearch, #product-search, #search-input, .search-input, [data-product-search]"
     );
 
 
 const searchButton =
     document.querySelector(
-        "#search-btn, .search-btn, [data-search-button]"
+        "#searchButton, #search-btn, .search-btn, [data-search-button]"
     );
 
 
@@ -471,7 +504,7 @@ if (searchButton) {
 
 const filterSelects =
     document.querySelectorAll(
-        "#filter-panel select, .filter-panel select, [data-filter-panel] select"
+        "#filter-panel select, .filter-panel select, [data-filter-panel] select, .store-filters select"
     );
 
 
@@ -544,22 +577,145 @@ function applyProductFilters() {
             const filterValue =
                 selectedFilters[key];
 
+
             /*
-               Look first at matching data attributes.
-               If none exist, fall back to card text.
+               The homepage uses IDs such as:
+               editionFilter
+               priceFilter
+               genderFilter
+               shopPriceFilter
+               sizeFilter
+               colorFilter
+
+               Convert those IDs to the matching
+               data attribute names.
             */
+
+            let dataKey = key;
+
+            if (key === "editionfilter") {
+                dataKey = "edition";
+            }
+
+            if (key === "pricefilter") {
+                dataKey = "price";
+            }
+
+            if (key === "genderfilter") {
+                dataKey = "gender";
+            }
+
+            if (key === "shoppricefilter") {
+                dataKey = "price";
+            }
+
+            if (key === "sizefilter") {
+                dataKey = "size";
+            }
+
+            if (key === "colorfilter") {
+                dataKey = "color";
+            }
+
 
             const dataValue =
                 card.getAttribute(
-                    "data-" + key
+                    "data-" + dataKey
                 );
+
 
             if (dataValue) {
 
+                const normalizedData =
+                    dataValue.toLowerCase();
+
+                /*
+                   PRICE SORTING is handled separately.
+                   Do not treat high-low / low-high
+                   as an actual product price value.
+                */
+
                 if (
-                    !dataValue
-                        .toLowerCase()
-                        .includes(filterValue)
+                    key === "pricefilter" &&
+                    (
+                        filterValue === "high-low" ||
+                        filterValue === "low-high" ||
+                        filterValue === "default"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                /*
+                   Shop-by-price ranges.
+                */
+
+                if (key === "shoppricefilter") {
+
+                    const numericPrice =
+                        parseFloat(dataValue);
+
+                    if (!isNaN(numericPrice)) {
+
+                        if (filterValue === "0-50") {
+
+                            if (
+                                numericPrice < 0 ||
+                                numericPrice > 50
+                            ) {
+                                visible = false;
+                            }
+
+                        }
+
+                        if (filterValue === "50-100") {
+
+                            if (
+                                numericPrice < 50 ||
+                                numericPrice > 100
+                            ) {
+                                visible = false;
+                            }
+
+                        }
+
+                        if (filterValue === "100-200") {
+
+                            if (
+                                numericPrice < 100 ||
+                                numericPrice > 200
+                            ) {
+                                visible = false;
+                            }
+
+                        }
+
+                        if (filterValue === "200-500") {
+
+                            if (
+                                numericPrice < 200 ||
+                                numericPrice > 500
+                            ) {
+                                visible = false;
+                            }
+
+                        }
+
+                        if (filterValue === "500-plus") {
+
+                            if (numericPrice < 500) {
+                                visible = false;
+                            }
+
+                        }
+
+                    }
+
+                } else if (
+                    !normalizedData.includes(filterValue)
                 ) {
 
                     visible = false;
@@ -581,6 +737,74 @@ function applyProductFilters() {
             visible ? "" : "none";
 
     });
+
+
+    /*
+       PRICE SORT
+    */
+
+    const priceFilter =
+        document.getElementById("priceFilter");
+
+
+    if (priceFilter) {
+
+        const sortValue =
+            priceFilter.value;
+
+
+        if (
+            sortValue === "high-low" ||
+            sortValue === "low-high"
+        ) {
+
+            const productGrid =
+                document.getElementById("productGrid");
+
+
+            if (productGrid) {
+
+                const cardsArray =
+                    Array.from(
+                        productGrid.querySelectorAll(
+                            ".product-card"
+                        )
+                    );
+
+
+                cardsArray.sort((a, b) => {
+
+                    const priceA =
+                        parseFloat(
+                            a.getAttribute("data-price") || "0"
+                        );
+
+                    const priceB =
+                        parseFloat(
+                            b.getAttribute("data-price") || "0"
+                        );
+
+
+                    if (sortValue === "high-low") {
+                        return priceB - priceA;
+                    }
+
+                    return priceA - priceB;
+
+                });
+
+
+                cardsArray.forEach(card => {
+
+                    productGrid.appendChild(card);
+
+                });
+
+            }
+
+        }
+
+    }
 
 }
 
@@ -613,17 +837,8 @@ function autoSlide() {
 
     if (!slider) return;
 
-    /*
-       Do not fight the user while they are
-       manually dragging/swiping the cards.
-    */
-
     if (sliderIsBeingDragged) return;
 
-    /*
-       On the new homepage grid, there may be no
-       horizontal overflow. In that case, simply stop.
-    */
 
     if (
         slider.scrollWidth <=
@@ -798,11 +1013,6 @@ window.addEventListener(
 
         if (hero) {
 
-            /*
-               Only apply the effect near the
-               beginning of the page.
-            */
-
             const opacity =
                 Math.max(
                     0,
@@ -857,11 +1067,6 @@ document
         img.addEventListener(
             "error",
             function() {
-
-                /*
-                   Prevent an infinite loop if the
-                   placeholder itself is missing.
-                */
 
                 if (
                     this.dataset.fallbackApplied
@@ -998,11 +1203,6 @@ document
             "click",
             function(e) {
 
-                /*
-                   Do not hijack clicks on buttons,
-                   links, save buttons or cart buttons.
-                */
-
                 if (
                     e.target.closest(
                         "a, button, input, select"
@@ -1053,9 +1253,22 @@ document
    LOGIN / REGISTER POPUP
 ================================================== */
 
+/*
+   YOUR INDEX.HTML uses:
+
+   #veloEntryPopup
+
+   The previous script was looking for:
+   #login-popup
+   #auth-popup
+   etc.
+
+   That is why the popup could not be found.
+*/
+
 const loginPopup =
     document.querySelector(
-        "#login-popup, .login-popup, #auth-popup, .auth-popup, [data-login-popup]"
+        "#veloEntryPopup, #login-popup, .login-popup, #auth-popup, .auth-popup, [data-login-popup]"
     );
 
 
@@ -1076,6 +1289,11 @@ function openLoginPopup() {
     loginPopup.style.display =
         "flex";
 
+    loginPopup.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
     document.body.classList.add(
         "popup-open"
     );
@@ -1093,6 +1311,11 @@ function closeLoginPopup() {
 
     loginPopup.style.display =
         "none";
+
+    loginPopup.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
     document.body.classList.remove(
         "popup-open"
@@ -1117,15 +1340,85 @@ loginOpenButtons.forEach(button => {
 });
 
 
+/* ==================================================
+   REGISTER / SIGN-IN LINKS
+   OPEN POPUP FROM NORMAL ACCOUNT LINKS
+================================================== */
+
+document
+    .querySelectorAll(
+        'a[href="register.html"]'
+    )
+    .forEach(link => {
+
+        /*
+           Do not intercept the register link
+           INSIDE the popup itself.
+        */
+
+        if (
+            loginPopup &&
+            loginPopup.contains(link)
+        ) {
+
+            return;
+
+        }
+
+
+        link.addEventListener(
+            "click",
+            function(e) {
+
+                e.preventDefault();
+
+                openLoginPopup();
+
+            }
+        );
+
+    });
+
+
+/* ==================================================
+   POPUP CLOSE BUTTON
+================================================== */
+
 const loginCloseButton =
     document.querySelector(
-        "#login-popup-close, .login-popup-close, #auth-close, .auth-close, [data-close-login]"
+        "#veloPopupClose, #login-popup-close, .login-popup-close, #auth-close, .auth-close, [data-close-login]"
     );
 
 
 if (loginCloseButton) {
 
     loginCloseButton.addEventListener(
+        "click",
+        function(e) {
+
+            e.preventDefault();
+
+            closeLoginPopup();
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   POPUP CONTINUE BROWSING
+================================================== */
+
+const popupContinue =
+    document.getElementById(
+        "veloPopupContinue"
+    );
+
+
+if (popupContinue) {
+
+    popupContinue.addEventListener(
         "click",
         function(e) {
 
@@ -1157,6 +1450,41 @@ if (loginPopup) {
 
         }
     );
+
+}
+
+
+/* ==================================================
+   KEEP POPUP REGISTER BUTTON WORKING
+================================================== */
+
+if (loginPopup) {
+
+    const popupRegisterLink =
+        loginPopup.querySelector(
+            'a[href="register.html"]'
+        );
+
+
+    if (popupRegisterLink) {
+
+        popupRegisterLink.addEventListener(
+            "click",
+            function(e) {
+
+                /*
+                   This link should actually take the
+                   visitor to register.html.
+
+                   Do NOT prevent its default action.
+                */
+
+                closeLoginPopup();
+
+            }
+        );
+
+    }
 
 }
 
@@ -1212,25 +1540,39 @@ document.addEventListener(
     function(e) {
 
         /*
-           Clicking the notification should not
-           accidentally trigger cart/menu behaviour.
+           These are intentionally independent.
+           Do not add behaviour here that would
+           interfere with their normal links.
+        */
+
+        const notification =
+            e.target.closest(
+                "#notification-btn, .notification-btn, [data-notification-button]"
+            );
+
+
+        const cart =
+            e.target.closest(
+                "#cart-btn, .cart-btn, [data-cart-button]"
+            );
+
+
+        const menu =
+            e.target.closest(
+                ".menu-btn, #menu-btn, [data-menu-button]"
+            );
+
+
+        /*
+           Nothing else needs to happen here.
+           The individual handlers above manage
+           each control.
         */
 
         if (
-            e.target.closest(
-                "#notification-btn, .notification-btn, [data-notification-button]"
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            e.target.closest(
-                "#cart-btn, .cart-btn, [data-cart-button]"
-            )
+            notification ||
+            cart ||
+            menu
         ) {
 
             return;
@@ -1266,7 +1608,8 @@ document.addEventListener(
 
 
         /*
-           Notifications should begin closed.
+           Notifications should begin closed
+           ONLY if a notification panel exists.
         */
 
         if (notificationPanel) {
@@ -1283,7 +1626,7 @@ document.addEventListener(
 
         /*
            Cart panel should begin closed
-           when it exists.
+           ONLY when it exists.
         */
 
         if (cartPanel) {
@@ -1294,6 +1637,27 @@ document.addEventListener(
 
             cartPanel.style.display =
                 "none";
+
+        }
+
+
+        /*
+           Your popup should begin hidden.
+        */
+
+        if (loginPopup) {
+
+            loginPopup.classList.remove(
+                "active"
+            );
+
+            loginPopup.style.display =
+                "none";
+
+            loginPopup.setAttribute(
+                "aria-hidden",
+                "true"
+            );
 
         }
 
