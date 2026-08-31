@@ -2431,3 +2431,985 @@ if (addToCartButton) {
 /* =========================================================
    END PART 2
 ========================================================= */
+
+ /* =========================================================
+   VELO™ MAIN SCRIPT — PART 3
+   CART PANEL + CART ACTIONS + SEARCH
+========================================================= */
+
+
+/* =========================================================
+   CART PANEL
+========================================================= */
+
+const cartPanel =
+    qs(
+        "#cart-panel, .cart-panel, [data-cart-panel]"
+    );
+
+const cartButton =
+    qs(
+        "#cart-btn, .cart-btn, [data-cart-button]"
+    );
+
+
+/* =========================================================
+   CART RENDER
+========================================================= */
+
+function renderCartIfPresent() {
+
+    const container =
+        qs(
+            "#cartItems, .cart-items, [data-cart-items]"
+        );
+
+    if (!container) return;
+
+    if (!cart.length) {
+
+        container.innerHTML = `
+            <div class="empty-cart">
+                <h3>Your cart is empty.</h3>
+                <p>
+                    Start exploring VELO and add something you love.
+                </p>
+            </div>
+        `;
+
+        updateCartTotals();
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        cart.map(item => {
+
+            const image =
+                item.images &&
+                item.images.length
+                    ? item.images[0]
+                    : "images/placeholder.jpg";
+
+
+            return `
+
+                <article
+                    class="cart-item"
+                    data-cart-product-id="${escapeHTML(
+                        item.id
+                    )}"
+                >
+
+                    <div class="cart-item-image">
+
+                        <img
+                            src="${escapeHTML(image)}"
+                            alt="${escapeHTML(item.name)}"
+                        >
+
+                    </div>
+
+
+                    <div class="cart-item-details">
+
+                        <h3>
+                            ${escapeHTML(item.name)}
+                        </h3>
+
+                        ${
+                            item.edition
+                                ? `
+                                    <small>
+                                        ${escapeHTML(
+                                            item.edition
+                                        )}
+                                    </small>
+                                  `
+                                : ""
+                        }
+
+                        ${
+                            item.description
+                                ? `
+                                    <p>
+                                        ${escapeHTML(
+                                            item.description
+                                        )}
+                                    </p>
+                                  `
+                                : ""
+                        }
+
+
+                        <strong>
+                            ${formatMoney(item.price)}
+                        </strong>
+
+
+                        <div class="cart-item-controls">
+
+                            <button
+                                type="button"
+                                aria-label="Decrease quantity"
+                                data-cart-minus="${escapeHTML(
+                                    item.id
+                                )}"
+                            >
+                                −
+                            </button>
+
+
+                            <span
+                                class="cart-item-quantity"
+                            >
+                                ${Number(item.quantity) || 1}
+                            </span>
+
+
+                            <button
+                                type="button"
+                                aria-label="Increase quantity"
+                                data-cart-plus="${escapeHTML(
+                                    item.id
+                                )}"
+                            >
+                                +
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="cart-remove"
+                                data-cart-remove="${escapeHTML(
+                                    item.id
+                                )}"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
+
+
+    updateCartTotals();
+
+}
+
+
+/* =========================================================
+   CART TOTALS
+========================================================= */
+
+function updateCartTotals() {
+
+    const subtotalElement =
+        qs(
+            "#cartSubtotal, .cart-subtotal, [data-cart-subtotal]"
+        );
+
+    const totalElement =
+        qs(
+            "#cartTotal, .cart-total, [data-cart-total]"
+        );
+
+
+    const subtotal =
+        cart.reduce(
+            (
+                total,
+                item
+            ) => {
+
+                const price =
+                    Number(item.price) || 0;
+
+                const quantity =
+                    Number(item.quantity) || 0;
+
+                return total +
+                    (
+                        price *
+                        quantity
+                    );
+
+            },
+            0
+        );
+
+
+    if (subtotalElement) {
+
+        subtotalElement.textContent =
+            formatMoney(subtotal);
+
+    }
+
+
+    if (totalElement) {
+
+        totalElement.textContent =
+            formatMoney(subtotal);
+
+    }
+
+}
+
+
+/* =========================================================
+   CART ITEM CONTROLS
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const plus =
+            event.target.closest(
+                "[data-cart-plus]"
+            );
+
+        const minus =
+            event.target.closest(
+                "[data-cart-minus]"
+            );
+
+        const remove =
+            event.target.closest(
+                "[data-cart-remove]"
+            );
+
+
+        if (plus) {
+
+            event.preventDefault();
+
+            changeCartQuantity(
+                plus.dataset.cartPlus,
+                1
+            );
+
+            return;
+
+        }
+
+
+        if (minus) {
+
+            event.preventDefault();
+
+            changeCartQuantity(
+                minus.dataset.cartMinus,
+                -1
+            );
+
+            return;
+
+        }
+
+
+        if (remove) {
+
+            event.preventDefault();
+
+            removeFromCart(
+                remove.dataset.cartRemove
+            );
+
+            showToast(
+                "Item removed from cart."
+            );
+
+            return;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CART PANEL OPEN / CLOSE
+========================================================= */
+
+function openCartPanel() {
+
+    if (!cartPanel) return;
+
+    closeMenu();
+
+    closeNotifications();
+
+    closeFilter();
+
+    closeLoginPopup();
+
+    renderCartIfPresent();
+
+    cartPanel.classList.add("open");
+
+    cartPanel.classList.add("active");
+
+    cartPanel.style.display =
+        "block";
+
+    cartPanel.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+}
+
+
+function closeCartPanel() {
+
+    if (!cartPanel) return;
+
+    cartPanel.classList.remove("open");
+
+    cartPanel.classList.remove("active");
+
+    cartPanel.style.display =
+        "none";
+
+    cartPanel.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+}
+
+
+/* =========================================================
+   CART BUTTON
+========================================================= */
+
+if (cartButton) {
+
+    cartButton.addEventListener(
+        "click",
+        function(event) {
+
+            /*
+               If there is no cart panel,
+               let the normal cart.html link work.
+            */
+
+            if (!cartPanel) {
+
+                return;
+
+            }
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            if (
+                cartPanel.classList.contains("open") ||
+                cartPanel.classList.contains("active")
+            ) {
+
+                closeCartPanel();
+
+            } else {
+
+                openCartPanel();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CART CLOSE BUTTON
+========================================================= */
+
+const cartClose =
+    qs(
+        "#cart-close, .cart-close, [data-close-cart]"
+    );
+
+
+if (cartClose) {
+
+    cartClose.addEventListener(
+        "click",
+        function(event) {
+
+            event.preventDefault();
+
+            closeCartPanel();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CART OVERLAY
+========================================================= */
+
+const cartOverlay =
+    qs(
+        "#cart-overlay, .cart-overlay, [data-cart-overlay]"
+    );
+
+
+if (cartOverlay) {
+
+    cartOverlay.addEventListener(
+        "click",
+        function() {
+
+            closeCartPanel();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PRODUCT CARD QUICK ACTIONS
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const addButton =
+            event.target.closest(
+                "[data-product-add-to-cart]"
+            );
+
+
+        if (addButton) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            const card =
+                addButton.closest(
+                    ".product-card, .item-card, .shop-card, .drop-card, [data-product]"
+                );
+
+
+            if (!card) return;
+
+
+            const product =
+                getProductData(card);
+
+
+            if (!product) return;
+
+
+            const quantity =
+                Number(
+                    addButton.dataset.quantity
+                ) || 1;
+
+
+            addToCart(
+                product,
+                quantity
+            );
+
+
+            return;
+
+        }
+
+
+        const saveCardButton =
+            event.target.closest(
+                "[data-product-save]"
+            );
+
+
+        if (saveCardButton) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            const card =
+                saveCardButton.closest(
+                    ".product-card, .item-card, .shop-card, .drop-card, [data-product]"
+                );
+
+
+            if (!card) return;
+
+
+            const product =
+                getProductData(card);
+
+
+            if (!product) return;
+
+
+            let saved =
+                getSavedProducts();
+
+
+            const index =
+                saved.findIndex(
+                    item =>
+                        item.id ===
+                        product.id
+                );
+
+
+            if (index >= 0) {
+
+                saved.splice(
+                    index,
+                    1
+                );
+
+                showToast(
+                    "Removed from saved items."
+                );
+
+            } else {
+
+                saved.push({
+
+                    id:
+                        product.id,
+
+                    name:
+                        product.name,
+
+                    description:
+                        product.description,
+
+                    price:
+                        product.price,
+
+                    images:
+                        product.images,
+
+                    edition:
+                        product.edition
+
+                });
+
+
+                showToast(
+                    "Saved for later."
+                );
+
+            }
+
+
+            writeStorage(
+                VELO_STORAGE.saved,
+                saved
+            );
+
+
+            return;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SEARCH SYSTEM
+========================================================= */
+
+const searchInput =
+    qs(
+        "#productSearch, #product-search, #search-input, .search-input, [data-product-search]"
+    );
+
+
+const searchButton =
+    qs(
+        "#searchButton, #search-btn, .search-btn, .search-submit, [data-search-button]"
+    );
+
+
+const searchSuggestions =
+    qs(
+        ".search-suggestions, #searchSuggestions, [data-search-suggestions]"
+    );
+
+
+/* =========================================================
+   PRODUCT SEARCH TEXT
+========================================================= */
+
+function productSearchText(product) {
+
+    return normalize(
+        [
+            product.name,
+            product.description,
+            product.category,
+            product.edition,
+            product.gender,
+            product.weather,
+            product.item,
+            product.color
+        ].join(" ")
+    );
+
+}
+
+
+/* =========================================================
+   ALL PRODUCT DATA
+========================================================= */
+
+function getAllProductData() {
+
+    return getProductCards()
+        .map(
+            card =>
+                getProductData(card)
+        )
+        .filter(Boolean);
+
+}
+
+
+/* =========================================================
+   SEARCH SUGGESTIONS
+========================================================= */
+
+function showSearchSuggestions(value) {
+
+    if (!searchSuggestions) return;
+
+
+    const search =
+        normalize(value);
+
+
+    if (!search) {
+
+        searchSuggestions.classList.remove(
+            "active"
+        );
+
+        searchSuggestions.classList.remove(
+            "open"
+        );
+
+        searchSuggestions.innerHTML =
+            "";
+
+        return;
+
+    }
+
+
+    const products =
+        getAllProductData();
+
+
+    const matches =
+        products
+            .filter(
+                product =>
+                    productSearchText(
+                        product
+                    ).includes(search)
+            )
+            .slice(
+                0,
+                8
+            );
+
+
+    if (!matches.length) {
+
+        searchSuggestions.innerHTML = `
+
+            <div class="search-suggestion no-result">
+
+                <strong>
+                    No exact match
+                </strong>
+
+                <small>
+                    Try another term
+                </small>
+
+            </div>
+
+        `;
+
+    } else {
+
+        searchSuggestions.innerHTML =
+            matches.map(product => `
+
+                <button
+                    type="button"
+                    class="search-suggestion"
+                    data-search-product-id="${escapeHTML(
+                        product.id
+                    )}"
+                >
+
+                    <strong>
+                        ${escapeHTML(
+                            product.name
+                        )}
+                    </strong>
+
+                    <small>
+                        ${escapeHTML(
+                            product.edition ||
+                            product.category ||
+                            ""
+                        )}
+                    </small>
+
+                </button>
+
+            `).join("");
+
+    }
+
+
+    searchSuggestions.classList.add(
+        "active"
+    );
+
+    searchSuggestions.classList.add(
+        "open"
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH INPUT
+========================================================= */
+
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        function() {
+
+            showSearchSuggestions(
+                this.value
+            );
+
+            applyProductFilters();
+
+        }
+    );
+
+
+    searchInput.addEventListener(
+        "focus",
+        function() {
+
+            if (
+                this.value.trim()
+            ) {
+
+                showSearchSuggestions(
+                    this.value
+                );
+
+            }
+
+        }
+    );
+
+
+    searchInput.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                event.preventDefault();
+
+                applyProductFilters();
+
+                if (searchSuggestions) {
+
+                    searchSuggestions.classList.remove(
+                        "active"
+                    );
+
+                    searchSuggestions.classList.remove(
+                        "open"
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH BUTTON
+========================================================= */
+
+if (searchButton) {
+
+    searchButton.addEventListener(
+        "click",
+        function(event) {
+
+            event.preventDefault();
+
+            applyProductFilters();
+
+            if (searchSuggestions) {
+
+                searchSuggestions.classList.remove(
+                    "active"
+                );
+
+                searchSuggestions.classList.remove(
+                    "open"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH SUGGESTION CLICK
+========================================================= */
+
+if (searchSuggestions) {
+
+    searchSuggestions.addEventListener(
+        "click",
+        function(event) {
+
+            const suggestion =
+                event.target.closest(
+                    "[data-search-product-id]"
+                );
+
+
+            if (!suggestion) return;
+
+
+            const id =
+                suggestion.dataset
+                    .searchProductId;
+
+
+            const card =
+                getProductCards()
+                    .find(
+                        productCard =>
+                            getProductData(
+                                productCard
+                            ).id === id
+                    );
+
+
+            if (!card) return;
+
+
+            if (searchInput) {
+
+                searchInput.value =
+                    getProductData(
+                        card
+                    ).name;
+
+            }
+
+
+            searchSuggestions.classList.remove(
+                "active"
+            );
+
+            searchSuggestions.classList.remove(
+                "open"
+            );
+
+
+            openProductViewer(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH OUTSIDE CLICK
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            !searchSuggestions
+        ) return;
+
+
+        const searchArea =
+            event.target.closest(
+                ".search-container, .search-section, .search-wrapper"
+            );
+
+
+        if (!searchArea) {
+
+            searchSuggestions.classList.remove(
+                "active"
+            );
+
+            searchSuggestions.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   END PART 3
+========================================================= */
