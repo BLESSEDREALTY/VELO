@@ -1,37 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
+    <meta name="description" content="VELO — Premium Nigerian streetwear. Move Different.">
     <title>VELO | Move Different.</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
-
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-
 
 <body class="homepage">
 
-
 <!-- ==================================================
-     CINEMATIC VIDEO BACKGROUND
+     CINEMATIC HOME BACKGROUND
 ================================================== -->
-
 <video
     class="homeVideoBackground"
     autoplay
@@ -41,1156 +25,636 @@
     preload="auto"
     aria-hidden="true"
 >
-
-    <source
-        src="20260821_012137144.mp4"
-        type="video/mp4"
-    >
-
+    <source src="20260821_012137144.mp4" type="video/mp4">
 </video>
-
-
-<!-- ==================================================
-     LIGHT / CREAM VIDEO COVER
-     Keeps the dark video visible while creating a
-     slightly transparent premium surface beneath text.
-================================================== -->
-
-<div class="homeVideoOverlay"></div>
-
+<div class="homeVideoOverlay" aria-hidden="true"></div>
 
 <!-- ==================================================
-     TOP NAVIGATION
+     GLOBAL TOP BAR
+     Notification + Cart remain visible on the store
+     experience. They can be hidden by page-specific CSS
+     on FAQs / Registration pages if required.
 ================================================== -->
-
-<header class="velo-topbar">
-
-
-    <!-- MENU — FAR LEFT -->
-
+<header class="velo-topbar" id="veloTopbar">
     <button
         class="menu-btn"
         id="menuButton"
         type="button"
         onclick="openMenu()"
-        aria-label="Open menu"
+        aria-label="Open VELO menu"
         aria-controls="sidebar"
         aria-expanded="false"
     >
-        <span class="menu-icon">☰</span>
+        <span class="menu-icon" aria-hidden="true">☰</span>
     </button>
 
-
-    <!-- RIGHT SIDE CONTROLS -->
-
     <div class="topbar-right">
-
-
-        <!-- NOTIFICATION -->
-
-        <a href="notifications.html" class="notification-btn">
-
-    🔔
-
-    <span class="notification-count">
-        
-    </span>
-
-</a>
-
-
-        <!-- CART -->
-
-        <a
-            href="cart.html"
-            class="cart-btn"
-            aria-label="Shopping cart"
-        >
-
-            <span class="cart-icon">🛒</span>
-
-            <span id="cart-count">
-                0
-            </span>
-
+        <a href="notifications.html" class="notification-btn" id="notificationButton" aria-label="Notifications">
+            <span aria-hidden="true">🔔</span>
+            <span class="notification-count" id="notificationCount" aria-hidden="true"></span>
         </a>
 
+        <a href="cart.html" class="cart-btn" id="cartButton" aria-label="Shopping cart">
+            <span class="cart-icon" aria-hidden="true">🛒</span>
+            <span id="cart-count">0</span>
+        </a>
     </div>
-
 </header>
 
-
 <!-- ==================================================
-     SIDEBAR MENU
+     SLIDE-OUT MENU
 ================================================== -->
-
-<aside
-    id="sidebar"
-    aria-label="VELO navigation"
->
-
-
+<aside id="sidebar" aria-label="VELO navigation" aria-hidden="true">
     <div class="sidebar-header">
-
-
         <div class="sidebar-brand">
-
-
-            <div
-                class="sidebar-velo-mark"
-                aria-label="/VELO"
-            >
-
-                <span class="sidebar-slash"></span> 
-                
-                <span>/</span>
-                
-                <span>V</span>
-
-                <span>E</span>
-
-                <span>L</span>
-
-                <span>O</span>
-
+            <div class="sidebar-velo-mark" aria-label="/VELO">
+                <span class="sidebar-slash" aria-hidden="true"></span>
+                <span aria-hidden="true">V</span>
+                <span aria-hidden="true">E</span>
+                <span aria-hidden="true">L</span>
+                <span aria-hidden="true">O</span>
             </div>
-
-
         </div>
 
-
-        <button
-            class="close-btn"
-            type="button"
-            onclick="closeMenu()"
-            aria-label="Close menu"
-        >
-            ✕
-        </button>
-
+        <button class="close-btn" type="button" onclick="closeMenu()" aria-label="Close menu">✕</button>
     </div>
-
 
     <nav class="sidebar-links">
-
-
-        <a href="index.html">
-            Home
-        </a>
-
-
-        <a href="cart.html">
-            Cart
-        </a>
-
-
-        <a
-            href="notifications.html"
-            onclick="openNotifications(); closeMenu(); return false;"
-        >
-            Notifications
-        </a>
-
-
-        <a href="nightshift.html">
-            Flagships / Nightshift
-        </a>
-
-
-        <a href="register.html">
-            Registration / Sign In
-        </a>
-
-
-        <a href="membership.html">
-            Membership
-        </a>
-
-
-        <a href="faqs.html">
-            FAQs
-        </a>
-
-
-        <a href="velo-ai.html">
-            VELO AI
-        </a>
-
-
+        <a href="index.html">Home</a>
+        <a href="nightshift.html">Nightshift Collection</a>
+        <a href="cart.html">Cart</a>
+        <a href="notifications.html" onclick="closeMenu()">Notifications</a>
+        <a href="register.html">Sign In / Create Account</a>
+        <a href="membership.html">Register as a VELO Member</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="velo-ai.html">VELO AI</a>
     </nav>
-
-
 </aside>
 
+<div id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
 
 <!-- ==================================================
-     SIDEBAR OVERLAY
+     HERO / STORE ENTRY
 ================================================== -->
-
-<div
-    id="overlay"
-    onclick="closeMenu()"
-></div>
-
-
-<!-- ==================================================
-     HERO
-================================================== -->
-
 <main>
+    <section class="hero" id="storeHero">
 
-
-<section class="hero">
-
-
-    <!-- ==================================================
-         HERO VELO WORDMARK
-         SINGLE SLASH ONLY
-    ================================================== -->
-
-    <div
-        class="veloWordmark"
-        aria-label="VELO"
-    >
-
-        <span
-            class="veloSlash"
-            aria-hidden="true"
-        ></span>
-
-        <span class="velo-letter">V</span>
-
-        <span class="velo-letter">E</span>
-
-        <span class="velo-letter">L</span>
-
-        <span class="velo-letter">O</span>
-
-    </div>
-
-
-    <!-- PRIMARY MOTTO -->
-
-    <div class="primarySlogan">
-
-        MOVE DIFFERENT.
-
-    </div>
-
-
-    <!-- BRAND MOTTO -->
-
-    <p class="motto">
-
-        Velocity. Vision. Victory.
-
-    </p>
-
-
-    <!-- SUBTEXT -->
-
-    <p class="sub-text">
-
-        Premium Nigerian Streetwear Built For The Ones Moving Different.
-
-    </p>
-
-
-    <!-- ==================================================
-         SEARCH
-    ================================================== -->
-
-    <div class="store-search">
-
-        <label
-            for="productSearch"
-            class="sr-only"
-        >
-            Search VELO products
-        </label>
-
-        <input
-            type="search"
-            id="productSearch"
-            placeholder="Search VELO products..."
-            autocomplete="off"
-        >
-
-        <button
-            type="button"
-            id="searchButton"
-            aria-label="Search"
-        >
-            🔍
-        </button>
-
-    </div>
-
-
-    <!-- ==================================================
-         FILTER / SORT
-    ================================================== -->
-
-    <div class="store-filters">
-
-
-        <!-- EDITION -->
-
-        <div class="filter-group">
-
-            <label for="editionFilter">
-                Edition
-            </label>
-
-            <select id="editionFilter">
-
-                <option value="all">
-                    All Editions
-                </option>
-
-                <option value="nightshift">
-                    Nightshift
-                </option>
-
-                <option value="entry">
-                    Entry Edition
-                </option>
-
-                <option value="premium">
-                    Premium Edition
-                </option>
-
-                <option value="premium-sport">
-                    Premium+ Sports Edition
-                </option>
-
-                <option value="founders">
-                    Founder's Genesis
-                </option>
-
-            </select>
-
+        <div class="veloWordmark" aria-label="VELO">
+            <span class="veloSlash" aria-hidden="true"></span>
+            <span class="velo-letter">V</span>
+            <span class="velo-letter">E</span>
+            <span class="velo-letter">L</span>
+            <span class="velo-letter">O</span>
         </div>
 
-
-        <!-- PRICE SORT -->
-
-        <div class="filter-group">
-
-            <label for="priceFilter">
-                Price
-            </label>
-
-            <select id="priceFilter">
-
-                <option value="default">
-                    Price
-                </option>
-
-                <option value="high-low">
-                    High - Low
-                </option>
-
-                <option value="low-high">
-                    Low - High
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- GENDER -->
-
-        <div class="filter-group">
-
-            <label for="genderFilter">
-                Gender
-            </label>
-
-            <select id="genderFilter">
-
-                <option value="all">
-                    All
-                </option>
-
-                <option value="men">
-                    Men
-                </option>
-
-                <option value="women">
-                    Women
-                </option>
-
-                <option value="unisex">
-                    Unisex
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- SHOP BY PRICE -->
-
-        <div class="filter-group">
-
-            <label for="shopPriceFilter">
-                Shop By Price
-            </label>
-
-            <select id="shopPriceFilter">
-
-                <option value="all">
-                    All Prices
-                </option>
-
-                <option value="0-50">
-                    ₦0 - ₦50
-                </option>
-
-                <option value="50-100">
-                    ₦50 - ₦100
-                </option>
-
-                <option value="100-200">
-                    ₦100 - ₦200
-                </option>
-
-                <option value="200-500">
-                    ₦200 - ₦500
-                </option>
-
-                <option value="500-plus">
-                    ₦500+
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- SIZE -->
-
-        <div class="filter-group">
-
-            <label for="sizeFilter">
-                Size
-            </label>
-
-            <select id="sizeFilter">
-
-                <option value="all">
-                    All Universal Sizes
-                </option>
-
-                <option value="xs">
-                    XS
-                </option>
-
-                <option value="s">
-                    S
-                </option>
-
-                <option value="m">
-                    M
-                </option>
-
-                <option value="l">
-                    L
-                </option>
-
-                <option value="xl">
-                    XL
-                </option>
-
-                <option value="xxl">
-                    XXL
-                </option>
-
-                <option value="3xl">
-                    3XL
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- COLOR -->
-
-        <div class="filter-group">
-
-            <label for="colorFilter">
-                Color
-            </label>
-
-            <select id="colorFilter">
-
-                <option value="all">
-                    All Colors
-                </option>
-
-                <option value="black">
-                    Black
-                </option>
-
-                <option value="white">
-                    White
-                </option>
-
-                <option value="grey">
-                    Grey
-                </option>
-
-                <option value="navy">
-                    Navy
-                </option>
-
-                <option value="cream">
-                    Cream
-                </option>
-
-                <option value="multi">
-                    Multi-Color
-                </option>
-
-            </select>
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-<!-- ==================================================
-     PRODUCT DISPLAY
-     
-     2 COLUMNS.
-     NO NUMBERING.
-     NO ARTIFICIAL PRODUCT LIMIT.
-     PRODUCTS CAN BE ADDED BY THE SITE MANAGER.
-================================================== -->
-
-<section
-    class="product-display"
-    id="products"
->
-
-
-    <div
-        class="product-grid"
-        id="productGrid"
-    >
-
+        <div class="primarySlogan">MOVE DIFFERENT.</div>
+        <p class="motto">Velocity. Vision. Victory.</p>
+        <p class="sub-text">Premium Nigerian Streetwear Built For The Ones Moving Different.</p>
 
         <!-- ==================================================
-             PRODUCT 01 — NIGHTSHIFT
+             SMART SEARCH
         ================================================== -->
+        <section class="store-search-area" aria-label="Search VELO products">
+            <div class="store-search" id="storeSearch">
+                <label for="productSearch" class="sr-only">Search VELO products</label>
+                <input
+                    type="search"
+                    id="productSearch"
+                    placeholder="Search products, editions, categories..."
+                    autocomplete="off"
+                    enterkeyhint="search"
+                    aria-controls="searchSuggestions"
+                    aria-expanded="false"
+                >
+                <button type="button" id="searchButton" aria-label="Search">⌕</button>
+            </div>
 
-        <article
-            class="product-card"
-            data-product="nightshift"
-            data-edition="nightshift"
-            data-price="0"
-            data-gender="unisex"
-            data-size="all"
-            data-color="black"
-            tabindex="0"
-        >
+            <!-- Suggestions are populated by script.js as the user types. -->
+            <div
+                class="search-suggestions"
+                id="searchSuggestions"
+                role="listbox"
+                aria-label="Search suggestions"
+                hidden
+            ></div>
 
-            <a
-                href="nightshift.html"
-                class="product-card-link"
-                aria-label="View VELO Night Shift"
-            >
+            <!-- ==================================================
+                 QUICK FILTER SUGGESTIONS
+            ================================================== -->
+            <div class="quick-filter-row" id="quickFilterRow" aria-label="Quick filters">
+                <button
+                    type="button"
+                    class="filter-trigger"
+                    id="filterButton"
+                    aria-controls="filterPanel"
+                    aria-expanded="false"
+                >
+                    <span aria-hidden="true">☷</span>
+                    <span>Filter</span>
+                </button>
 
+                <button type="button" class="quick-filter-chip" data-quick-filter="gender:men">Men</button>
+                <button type="button" class="quick-filter-chip" data-quick-filter="gender:women">Women</button>
+                <button type="button" class="quick-filter-chip" data-quick-filter="gender:kids">Kids</button>
+            </div>
 
-                <div class="product-image">
-
-                    <img
-                        src="file_00000000c1c081f48b67d84ac145a9ff.png"
-                        alt="VELO Night Shift"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="product-card-info">
-
-
-                    <span>
-                        Night Shift
-                    </span>
-
-
-                    <h3>
-                        VELO Night Shift
-                    </h3>
-
-
-                    <p>
-                        Built for the ones still moving while the world sleeps.
-                    </p>
-
-
-                    <span class="product-card-action">
-                        View Item
-                    </span>
-
-
-                </div>
-
-
-            </a>
-
-        </article>
-
-
-        <!-- ==================================================
-             PRODUCT 02 — ENTRY
-        ================================================== -->
-
-        <article
-            class="product-card"
-            data-product="entry"
-            data-edition="entry"
-            data-price="0"
-            data-gender="unisex"
-            data-size="all"
-            data-color="black"
-            tabindex="0"
-        >
-
-            <a
-                href="entry.html"
-                class="product-card-link"
-                aria-label="View VELO Entry Edition"
-            >
-
-
-                <div class="product-image">
-
-                    <img
-                        src="1782202333116.jpg"
-                        alt="VELO Entry Edition"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="product-card-info">
-
-
-                    <span>
-                        Entry Edition
-                    </span>
-
-
-                    <h3>
-                        VELO Entry
-                    </h3>
-
-
-                    <p>
-                        The beginning of the movement.
-                    </p>
-
-
-                    <span class="product-card-action">
-                        View Item
-                    </span>
-
-
-                </div>
-
-
-            </a>
-
-        </article>
-
-
-        <!-- ==================================================
-             PRODUCT 03 — PREMIUM
-        ================================================== -->
-
-        <article
-            class="product-card"
-            data-product="premium"
-            data-edition="premium"
-            data-price="$19.99"
-            data-gender="unisex"
-            data-size="all"
-            data-color="black"
-            tabindex="0"
-        >
-
-            <a
-                href="entry.html"
-                class="product-card-link"
-                aria-label="View VELO Entry Edition"
-            >
-
-
-                <div class="product-image">
-
-                    <img
-                        src="file_00000000c1c081f48b67d84ac145a9ff.png" 
-                        alt="VELO Entry Edition"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="product-card-info">
-
-
-                    <span>
-                        Entry Edition
-                    </span>
-
-                    
+            <!-- ==================================================
+                 EXPANDABLE FILTER PANEL
+                 JS reads these controls and applies them to cards.
+            ================================================== -->
+            <div class="filter-panel" id="filterPanel" hidden>
+                <div class="filter-panel-head">
                     <div>
-                        
-                    <h3>
-                        VELO Nightshift N.F.T.C 01.
-                    </h3>
-
-                        <h3>
-                        Entry Edition
-                        </h3>
-                        
-                        <h3> Price: $19.99</h3>
+                        <span class="filter-kicker">VELO STORE</span>
+                        <h2>Filter Products</h2>
                     </div>
-
-                    
-                    <p>
-                        •280 GSM heavyweight premium cotton. </p>
-
-                    <p> •Relaxed oversized streetwear fit. </p>
-
-                    <p> •Soft cream colourway. </p>
-
-                    <p> Signature VELO chest branding. </p>
-                        
-                    <p> •Minimal signature slash detailing, Premium construction with a structured, heavyweight feel. NOT FOR THE CROWD... </p>
-
-
-                    <span class="product-card-action">
-                        View Item
-                    </span>
-
-
+                    <button type="button" id="filterCloseButton" class="filter-close" aria-label="Close filters">✕</button>
                 </div>
 
+                <div class="filter-panel-grid">
+                    <!-- PRICE -->
+                    <fieldset class="filter-section filter-price-section">
+                        <legend>Price range</legend>
+                        <div class="price-range-row">
+                            <label>
+                                <span>Minimum</span>
+                                <input type="number" id="priceMin" min="0" max="250000" step="1" value="0" inputmode="decimal">
+                            </label>
+                            <span class="price-dash" aria-hidden="true">—</span>
+                            <label>
+                                <span>Maximum</span>
+                                <input type="number" id="priceMax" min="0" max="250000" step="1" value="250000" inputmode="decimal">
+                            </label>
+                        </div>
+                        <div class="currency-row">
+                            <span id="currencyLabel">USD</span>
+                            <button type="button" id="changeCurrencyButton" class="filter-secondary-btn">Change currency</button>
+                            <select id="currencyFilter" aria-label="Currency">
+                                <option value="USD">USD</option>
+                                <option value="NGN">NGN</option>
+                            </select>
+                        </div>
+                    </fieldset>
 
-            </a>
+                    <!-- EDITIONS -->
+                    <fieldset class="filter-section">
+                        <legend>Editions</legend>
+                        <div class="choice-grid" id="editionChoices">
+                            <label><input type="checkbox" name="edition" value="entry"> <span>Entry</span></label>
+                            <label><input type="checkbox" name="edition" value="premium"> <span>Premium</span></label>
+                            <label><input type="checkbox" name="edition" value="premium+"> <span>Premium+</span></label>
+                            <label><input type="checkbox" name="edition" value="founders"> <span>Founder's</span></label>
+                        </div>
+                        <p class="filter-note">Founder's products appear only in selected collections.</p>
+                    </fieldset>
 
-        </article>
+                    <!-- GENDER -->
+                    <fieldset class="filter-section">
+                        <legend>Audience</legend>
+                        <div class="choice-grid" id="genderChoices">
+                            <label><input type="checkbox" name="gender" value="men"> <span>Men</span></label>
+                            <label><input type="checkbox" name="gender" value="women"> <span>Women</span></label>
+                            <label><input type="checkbox" name="gender" value="kids"> <span>Kids</span></label>
+                        </div>
+                    </fieldset>
 
+                    <!-- WEATHER -->
+                    <fieldset class="filter-section">
+                        <legend>Weather</legend>
+                        <div class="choice-grid">
+                            <label><input type="checkbox" name="weather" value="summer"> <span>Summer</span></label>
+                            <label><input type="checkbox" name="weather" value="winter"> <span>Winter</span></label>
+                        </div>
+                    </fieldset>
 
-        <!-- ==================================================
-             PRODUCT 04 — FOUNDER'S GENESIS
-        ================================================== -->
+                    <!-- ITEM -->
+                    <fieldset class="filter-section filter-item-section">
+                        <legend>Item</legend>
 
-        <article
-            class="product-card"
-            data-product="founders"
-            data-edition="founders"
-            data-price="0"
-            data-gender="unisex"
-            data-size="all"
-            data-color="black"
-            tabindex="0"
-        >
+                        <div class="filter-subgroup">
+                            <h3>Underwear</h3>
+                            <label><input type="checkbox" name="item" value="underwear"> <span>Underwear</span></label>
+                        </div>
 
-            <a
-                href="premium.html"
-                class="product-card-link"
-                aria-label="View VELO Premium Edition"
+                        <div class="filter-subgroup">
+                            <h3>Accessories</h3>
+                            <div class="choice-grid">
+                                <label><input type="checkbox" name="item" value="gym-kits"> <span>Gym kits</span></label>
+                                <label><input type="checkbox" name="item" value="field-kits"> <span>Field kits</span></label>
+                                <label><input type="checkbox" name="item" value="yoga-mats"> <span>Yoga mats</span></label>
+                                <label><input type="checkbox" name="item" value="yoga-pants"> <span>Yoga pants</span></label>
+                                <label><input type="checkbox" name="item" value="compression-sleeves"> <span>Compression sleeves</span></label>
+                                <label><input type="checkbox" name="item" value="ring-kits"> <span>Ring kits</span></label>
+                            </div>
+                        </div>
+
+                        <div class="filter-subgroup">
+                            <h3>Casuals</h3>
+                            <div class="choice-grid">
+                                <label><input type="checkbox" name="item" value="tees"> <span>Tees</span></label>
+                                <label><input type="checkbox" name="item" value="polos"> <span>Polos</span></label>
+                                <label><input type="checkbox" name="item" value="cropped-tops"> <span>Cropped Tops</span></label>
+                                <label><input type="checkbox" name="item" value="shorts"> <span>Shorts</span></label>
+                                <label><input type="checkbox" name="item" value="drape-pants"> <span>Drape pants</span></label>
+                                <label><input type="checkbox" name="item" value="jeans"> <span>Jeans</span></label>
+                            </div>
+                        </div>
+
+                        <div class="filter-subgroup">
+                            <h3>Sports</h3>
+                            <div class="choice-grid">
+                                <label><input type="checkbox" name="item" value="joggers"> <span>Joggers</span></label>
+                                <label><input type="checkbox" name="item" value="cargo-pants"> <span>Cargo pants</span></label>
+                                <label><input type="checkbox" name="item" value="track-suits"> <span>Track suits</span></label>
+                                <label><input type="checkbox" name="item" value="yoga-pants-sports"> <span>Yoga pants</span></label>
+                            </div>
+                        </div>
+
+                        <div class="filter-subgroup">
+                            <h3>Corporates</h3>
+                            <div class="choice-grid">
+                                <label><input type="checkbox" name="item" value="suits"> <span>Suits</span></label>
+                                <label><input type="checkbox" name="item" value="coats"> <span>Coats</span></label>
+                                <label><input type="checkbox" name="item" value="belts"> <span>Belts</span></label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- COLOR -->
+                    <fieldset class="filter-section">
+                        <legend>Color</legend>
+                        <div class="choice-grid color-choice-grid">
+                            <label><input type="checkbox" name="color" value="red"> <span>Red</span></label>
+                            <label><input type="checkbox" name="color" value="black"> <span>Black</span></label>
+                            <label><input type="checkbox" name="color" value="white"> <span>White</span></label>
+                            <label><input type="checkbox" name="color" value="blue"> <span>Blue</span></label>
+                            <label><input type="checkbox" name="color" value="yellow"> <span>Yellow</span></label>
+                            <label><input type="checkbox" name="color" value="pink"> <span>Pink</span></label>
+                            <label><input type="checkbox" name="color" value="brown"> <span>Brown</span></label>
+                            <label><input type="checkbox" name="color" value="multi-color"> <span>Multi-color</span></label>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="filter-panel-actions">
+                    <button type="button" class="filter-clear-btn" id="clearFiltersButton">Clear all</button>
+                    <button type="button" class="filter-apply-btn" id="applyFiltersButton">Show products</button>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- ==================================================
+         PRODUCT STORE
+         Two-column storefront. Cards remain static while
+         their image tracks can move independently.
+    ================================================== -->
+    <section class="product-display" id="products" aria-label="VELO products">
+        <div class="store-heading">
+            <div>
+                <span class="section-kicker">THE STORE</span>
+                <h2>Move Different.</h2>
+            </div>
+            <span class="product-result-count" id="productResultCount" aria-live="polite"></span>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+
+            <!-- PRODUCT 01 — NIGHTSHIFT -->
+            <article
+                class="product-card"
+                data-product="nightshift"
+                data-edition="nightshift entry"
+                data-price="0"
+                data-price-usd="0"
+                data-gender="unisex"
+                data-size="all"
+                data-color="black"
+                data-weather="winter"
+                data-item="tees hoodies casuals"
+                data-keywords="nightshift collection nftc flagship streetwear"
+                tabindex="0"
             >
-
-
-                <div class="product-image">
-
-                    <img
-                        src="file_00000000e10881f496cccde14268e1f7.png"
-                        alt="VELO Premium Edition"
-                        loading="lazy"
-                    >
-
-                </div>
-
-
-                <div class="product-card-info">
-
-
-                    <span>
-                        Premium Edition 
-                    </span>
-
-
-                    <div> 
-                        
-                    <h3>
-                        VELO Nightshift N.F.T.C. 2.0.
-                    </h3>
-
-                        <h3>
-                        Premium Edition 
-                    </h3>
-                        
-                        <h3> Price: $40.00</h3>
+                <div class="product-card-link" role="button" tabindex="0" data-product-open aria-label="View VELO Nightshift product">
+                    <div class="product-image product-image-carousel" data-images="file_00000000c1c081f48b67d84ac145a9ff.png">
+                        <div class="product-image-track" data-image-track>
+                            <img src="file_00000000c1c081f48b67d84ac145a9ff.png" alt="VELO Nightshift" loading="lazy">
+                        </div>
+                        <button type="button" class="card-image-prev" data-image-prev aria-label="Previous product image">‹</button>
+                        <button type="button" class="card-image-next" data-image-next aria-label="Next product image">›</button>
+                        <div class="card-image-dots" data-image-dots aria-hidden="true"></div>
                     </div>
-                    
-
-                    <p>
-                        Twenty pieces. One beginning.
-                    </p>
-
-
-                    <span class="product-card-action">
-                        View Item
-                    </span>
-
-
+                    <div class="product-card-info">
+                        <span class="product-edition">Nightshift Collection</span>
+                        <h3>VELO Nightshift</h3>
+                        <p>Built for the ones still moving while the world sleeps.</p>
+                        <span class="product-card-action">View product</span>
+                    </div>
                 </div>
+            </article>
 
-
-            </a>
-
-        </article>
-
-
-        <!-- ==================================================
-             PRODUCT 05 — PREMIUM SPORT+
-        ================================================== -->
-
-        <article
-            class="product-card"
-            data-product="premium-sport"
-            data-edition="premium-sport"
-            data-price="0"
-            data-gender="unisex"
-            data-size="all"
-            data-color="black"
-            tabindex="0"
-        >
-
-            <a
-                href="premium+.html"
-                class="product-card-link"
-                aria-label="View VELO Premium Sport Plus Edition"
+            <!-- PRODUCT 02 — ENTRY -->
+            <article
+                class="product-card"
+                data-product="entry"
+                data-edition="entry"
+                data-price="0"
+                data-price-usd="0"
+                data-gender="unisex"
+                data-size="all"
+                data-color="black white cream"
+                data-weather="winter summer"
+                data-item="tees casuals"
+                data-keywords="entry edition beginner streetwear"
+                tabindex="0"
             >
-
-
-                <div class="product-image">
-
-                    <img
-                        src="1782202425163.jpg"
-                        alt="VELO Premium Sport Plus"
-                        loading="lazy"
-                    >
-
+                <div class="product-card-link" role="button" tabindex="0" data-product-open aria-label="View VELO Entry Edition product">
+                    <div class="product-image product-image-carousel" data-images="1782202333116.jpg">
+                        <div class="product-image-track" data-image-track>
+                            <img src="1782202333116.jpg" alt="VELO Entry Edition" loading="lazy">
+                        </div>
+                        <button type="button" class="card-image-prev" data-image-prev aria-label="Previous product image">‹</button>
+                        <button type="button" class="card-image-next" data-image-next aria-label="Next product image">›</button>
+                        <div class="card-image-dots" data-image-dots aria-hidden="true"></div>
+                    </div>
+                    <div class="product-card-info">
+                        <span class="product-edition">Entry Edition</span>
+                        <h3>VELO Entry</h3>
+                        <p>The beginning of the movement.</p>
+                        <span class="product-card-action">View product</span>
+                    </div>
                 </div>
+            </article>
 
-
-                <div class="product-card-info">
-
-
-                    <span>
-                        Premium Sport+
-                    </span>
-
-
-                    <h3>
-                        VELO Sport+
-                    </h3>
-
-
-                    <p>
-                        Performance meets the VELO silhouette.
-                    </p>
-
-
-                    <span class="product-card-action">
-                        View Item
-                    </span>
-
-
-                </div>
-
-
-            </a>
-
-        </article>
-
-
-        <!-- ==================================================
-             PRODUCT 06 — ADDITIONAL VELO PRODUCT
-        ================================================== -->
-
-        <article
-            class="product-card"
-            data-product="velo"
-            data-edition="all"
-            data-price="0"
-            data-gender="unisex"
-            data-size="all"
-            data-color="black"
-            tabindex="0"
-        >
-
-            <a
-                href="nightshift.html"
-                class="product-card-link"
-                aria-label="View VELO product"
+            <!-- PRODUCT 03 — PREMIUM -->
+            <article
+                class="product-card"
+                data-product="premium"
+                data-edition="premium"
+                data-price="19.99"
+                data-price-usd="19.99"
+                data-gender="unisex"
+                data-size="all"
+                data-color="black cream white"
+                data-weather="winter summer"
+                data-item="tees casuals"
+                data-keywords="premium edition nftc 01 heavyweight cotton cream oversized"
+                tabindex="0"
             >
-
-
-                <div class="product-image">
-
-                    <img
-                        src="Screenshot_20260830-011344.jpg"
-                        src="Screenshot_20260830-011314.jpg"
-                        alt="VELO streetwear"
-                        loading="lazy"
-                    >
-
+                <div class="product-card-link" role="button" tabindex="0" data-product-open aria-label="View VELO Premium Edition product">
+                    <div class="product-image product-image-carousel" data-images="file_00000000c1c081f48b67d84ac145a9ff.png">
+                        <div class="product-image-track" data-image-track>
+                            <img src="file_00000000c1c081f48b67d84ac145a9ff.png" alt="VELO Premium Edition" loading="lazy">
+                        </div>
+                        <button type="button" class="card-image-prev" data-image-prev aria-label="Previous product image">‹</button>
+                        <button type="button" class="card-image-next" data-image-next aria-label="Next product image">›</button>
+                        <div class="card-image-dots" data-image-dots aria-hidden="true"></div>
+                    </div>
+                    <div class="product-card-info">
+                        <span class="product-edition">Premium Edition</span>
+                        <h3>VELO Nightshift N.F.T.C. 01.</h3>
+                        <p>280 GSM heavyweight premium cotton. Relaxed oversized fit. Signature VELO construction.</p>
+                        <span class="product-price">$19.99</span>
+                        <span class="product-card-action">View product</span>
+                    </div>
                 </div>
+            </article>
 
-
-                <div class="product-card-info">
-
-
-                    <span>
-                        VELO
-                    </span>
-
-
-                    <h3>
-                        Move Different.
-                    </h3>
-
-
-                    <p>
-                        Designed for movement, ambition and progress.
-                    </p>
-
-
-                    <span class="product-card-action">
-                        View Item
-                    </span>
-
-
+            <!-- PRODUCT 04 — FOUNDER'S GENESIS -->
+            <article
+                class="product-card"
+                data-product="founders"
+                data-edition="founders"
+                data-price="40"
+                data-price-usd="40"
+                data-gender="unisex"
+                data-size="all"
+                data-color="black"
+                data-weather="winter"
+                data-item="tees casuals"
+                data-keywords="founders genesis nftc 2.0 exclusive"
+                tabindex="0"
+            >
+                <div class="product-card-link" role="button" tabindex="0" data-product-open aria-label="View VELO Founder's Genesis product">
+                    <div class="product-image product-image-carousel" data-images="file_00000000e10881f496cccde14268e1f7.png">
+                        <div class="product-image-track" data-image-track>
+                            <img src="file_00000000e10881f496cccde14268e1f7.png" alt="VELO Founder's Genesis" loading="lazy">
+                        </div>
+                        <button type="button" class="card-image-prev" data-image-prev aria-label="Previous product image">‹</button>
+                        <button type="button" class="card-image-next" data-image-next aria-label="Next product image">›</button>
+                        <div class="card-image-dots" data-image-dots aria-hidden="true"></div>
+                    </div>
+                    <div class="product-card-info">
+                        <span class="product-edition">Founder's Genesis</span>
+                        <h3>VELO Nightshift N.F.T.C. 2.0.</h3>
+                        <p>Twenty pieces. One beginning. An exclusive VELO release.</p>
+                        <span class="product-price">$40.00</span>
+                        <span class="product-card-action">View product</span>
+                    </div>
                 </div>
+            </article>
 
+            <!-- PRODUCT 05 — PREMIUM SPORT+ -->
+            <article
+                class="product-card"
+                data-product="premium-sport"
+                data-edition="premium+ premium-sport"
+                data-price="0"
+                data-price-usd="0"
+                data-gender="unisex"
+                data-size="all"
+                data-color="black"
+                data-weather="summer winter"
+                data-item="gym-kits field-kits compression-sleeves joggers cargo-pants track-suits sports"
+                data-keywords="premium sport sports performance training gym field"
+                tabindex="0"
+            >
+                <div class="product-card-link" role="button" tabindex="0" data-product-open aria-label="View VELO Premium Sport Plus product">
+                    <div class="product-image product-image-carousel" data-images="1782202425163.jpg">
+                        <div class="product-image-track" data-image-track>
+                            <img src="1782202425163.jpg" alt="VELO Premium Sport Plus" loading="lazy">
+                        </div>
+                        <button type="button" class="card-image-prev" data-image-prev aria-label="Previous product image">‹</button>
+                        <button type="button" class="card-image-next" data-image-next aria-label="Next product image">›</button>
+                        <div class="card-image-dots" data-image-dots aria-hidden="true"></div>
+                    </div>
+                    <div class="product-card-info">
+                        <span class="product-edition">Premium Sport+</span>
+                        <h3>VELO Sport+</h3>
+                        <p>Performance meets the VELO silhouette.</p>
+                        <span class="product-card-action">View product</span>
+                    </div>
+                </div>
+            </article>
 
-            </a>
+            <!-- PRODUCT 06 — ADDITIONAL NIGHTSHIFT PRODUCT -->
+            <article
+                class="product-card"
+                data-product="velo-signature"
+                data-edition="entry premium"
+                data-price="0"
+                data-price-usd="0"
+                data-gender="unisex"
+                data-size="all"
+                data-color="black white multi-color"
+                data-weather="summer winter"
+                data-item="tees casuals"
+                data-keywords="velo signature move different streetwear"
+                tabindex="0"
+            >
+                <div class="product-card-link" role="button" tabindex="0" data-product-open aria-label="View VELO signature product">
+                    <div class="product-image product-image-carousel" data-images="Screenshot_20260830-011344.jpg|Screenshot_20260830-011314.jpg">
+                        <div class="product-image-track" data-image-track>
+                            <img src="Screenshot_20260830-011344.jpg" alt="VELO signature streetwear" loading="lazy">
+                        </div>
+                        <button type="button" class="card-image-prev" data-image-prev aria-label="Previous product image">‹</button>
+                        <button type="button" class="card-image-next" data-image-next aria-label="Next product image">›</button>
+                        <div class="card-image-dots" data-image-dots aria-hidden="true"></div>
+                    </div>
+                    <div class="product-card-info">
+                        <span class="product-edition">VELO</span>
+                        <h3>Move Different.</h3>
+                        <p>Designed for movement, ambition and progress.</p>
+                        <span class="product-card-action">View product</span>
+                    </div>
+                </div>
+            </article>
 
-        </article>
+        </div>
 
+        <div class="product-empty" id="productEmpty" hidden>
+            <h3>No VELO products found.</h3>
+            <p>Try adjusting your search or filters.</p>
+            <button type="button" id="emptyStateClearFilters">Clear filters</button>
+        </div>
+    </section>
 
-    </div>
-
-
-    <!-- FILTER EMPTY STATE -->
-
+    <!-- ==================================================
+         FULL-SCREEN PRODUCT VIEWER
+         Cards open this viewer instead of navigating away
+         to separate edition pages.
+    ================================================== -->
     <div
-        class="product-empty"
-        id="productEmpty"
+        class="product-viewer"
+        id="productViewer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="viewerProductName"
+        aria-hidden="true"
         hidden
     >
+        <div class="product-viewer-shell">
+            <div class="product-viewer-topbar">
+                <button type="button" class="viewer-back" id="viewerClose" aria-label="Close product">←</button>
+                <span class="viewer-label">VELO STORE</span>
+                <div class="viewer-actions">
+                    <a href="notifications.html" class="notification-btn" aria-label="Notifications"><span aria-hidden="true">🔔</span><span class="notification-count"></span></a>
+                    <a href="cart.html" class="cart-btn" aria-label="Shopping cart"><span class="cart-icon" aria-hidden="true">🛒</span><span class="viewer-cart-count">0</span></a>
+                </div>
+            </div>
 
-        <h3>
-            No VELO products found.
-        </h3>
+            <div class="product-viewer-content">
+                <div class="viewer-image-area">
+                    <div class="viewer-image-frame" id="viewerImageFrame">
+                        <img id="viewerMainImage" src="" alt="" loading="eager">
+                        <button type="button" class="viewer-image-prev" id="viewerImagePrev" aria-label="Previous image">‹</button>
+                        <button type="button" class="viewer-image-next" id="viewerImageNext" aria-label="Next image">›</button>
+                        <div class="viewer-dots" id="viewerDots" aria-hidden="true"></div>
+                    </div>
+                </div>
 
-        <p>
-            Try adjusting your search or filters.
-        </p>
+                <div class="viewer-product-info">
+                    <span class="viewer-edition" id="viewerEdition"></span>
+                    <h1 id="viewerProductName"></h1>
+                    <p class="viewer-description" id="viewerDescription"></p>
+                    <div class="viewer-price" id="viewerPrice"></div>
 
+                    <div class="viewer-actions-row">
+                        <button type="button" class="save-product-btn" id="saveForLaterButton">Save for later</button>
+                        <button type="button" class="add-to-cart-btn" id="addToCartButton">Add to cart</button>
+                    </div>
+
+                    <!-- Related products carousel -->
+                    <section class="related-products" aria-label="Products related to this item">
+                        <div class="related-heading">
+                            <span>YOU MAY ALSO LIKE</span>
+                            <div class="related-controls">
+                                <button type="button" id="relatedPrev" aria-label="Previous related products">‹</button>
+                                <button type="button" id="relatedNext" aria-label="Next related products">›</button>
+                            </div>
+                        </div>
+                        <div class="related-products-track" id="relatedProductsTrack"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- ==================================================
+         MEMBERSHIP PREVIEW
+         Membership is deliberately separate from account
+         creation/sign-in.
+    ================================================== -->
+    <section class="membership-preview">
+        <span class="section-kicker">SEPARATE FROM YOUR ACCOUNT</span>
+        <h2>Register As A VELO Member</h2>
+        <p>Membership gives you early access to drops, special pricing, priority releases and community rewards. Creating an account does not automatically make you a VELO Member.</p>
+        <a href="membership.html" class="primary-btn">Explore Membership</a>
+    </section>
 
-</section>
-
-
-<!-- ==================================================
-     MEMBERSHIP PREVIEW / PERSUASION
-================================================== -->
-
-<section class="membership-preview">
-
-
-    <h2>
-        Become A VELO Member
-    </h2>
-
-
-    <p>
-        Get early access to drops,
-        special pricing,
-        priority releases,
-        and community rewards.
-    </p>
-
-
-    <a
-        href="membership.html"
-        class="primary-btn"
-    >
-        Explore Membership
-    </a>
-
-
-</section>
-
-
-<!-- ==================================================
-     OPTIONAL SIGN IN / REGISTER PRESENCE
-     Browsing remains completely available without
-     registration.
-================================================== -->
-
-<section class="account-preview">
-
-
-    <h2>
-        Enter The Movement
-    </h2>
-
-
-    <p>
-        Sign in or create your VELO account to track
-        orders, save products and access your membership
-        experience.
-    </p>
-
-
-    <div class="account-preview-actions">
-
-
-        <a
-            href="register.html"
-            class="primary-btn"
-        >
-            Register / Sign In
-        </a>
-
-
-        <a
-            href="membership.html"
-            class="secondary-btn"
-        >
-            Membership
-        </a>
-
-
-    </div>
-
-
-</section>
-
-
+    <!-- ==================================================
+         ACCOUNT PREVIEW
+    ================================================== -->
+    <section class="account-preview">
+        <span class="section-kicker">YOUR VELO ACCOUNT</span>
+        <h2>Enter The Movement</h2>
+        <p>Sign in or create a VELO account to track orders, save products and manage your shopping experience. This is separate from registering as a VELO Member.</p>
+        <div class="account-preview-actions">
+            <a href="register.html" class="primary-btn">Sign In / Create Account</a>
+            <a href="membership.html" class="secondary-btn">Register As A Member</a>
+        </div>
+    </section>
 </main>
-
 
 <!-- ==================================================
      FOOTER
 ================================================== -->
-
 <footer>
-
-
     <div class="footer-velo-logo">
-
-
-        <div
-            class="veloWordmark footer-wordmark"
-            aria-label="VELO"
-        >
-
-            <span
-                class="veloSlash"
-                aria-hidden="true"
-            ></span>
-
+        <div class="veloWordmark footer-wordmark" aria-label="VELO">
+            <span class="veloSlash" aria-hidden="true"></span>
             <span class="velo-letter">V</span>
-
             <span class="velo-letter">E</span>
-
             <span class="velo-letter">L</span>
-
             <span class="velo-letter">O</span>
-
         </div>
-
-
     </div>
 
-
-    <p class="footer-motto">
-        MOVE DIFFERENT.
-    </p>
-
-
-    <!-- PHONE — LEFT EMPTY UNTIL A REAL BUSINESS NUMBER
-         IS PROVIDED -->
-
-    <p class="footer-phone" id="veloPhone">
-        <!-- Business phone number can be added here later. -->
-    </p>
-
-
-    <!-- GENERAL LOCATION -->
-
-    <p class="footer-location">
-        Nigeria
-    </p>
-
-
-    <!-- TERMS -->
+    <p class="footer-motto">MOVE DIFFERENT.</p>
+    <p class="footer-phone" id="veloPhone"></p>
+    <p class="footer-location">Nigeria</p>
 
     <div class="footer-links">
-
-
-        <a href="terms.html">
-            Terms of Sale
-        </a>
-
-      <a href="faqs.html">
-            FAQs
-        </a>
-
-
-        <a href="register.html">
-            Registration / Sign In
-        </a>
-
-
+        <a href="terms.html">Terms of Sale</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="register.html">Sign In / Create Account</a>
+        <a href="membership.html">Register As A Member</a>
     </div>
 
-
-    <p class="copyright">
-        VELO™ since 2026.
-    </p>
-
-
+    <p class="copyright">VELO™ since 2026.</p>
 </footer>
 
-
 <!-- ==================================================
-     REGISTER / SIGN-IN POPUP
-     THIS IS A REAL CENTERED MODAL.
-================================================== -->
+     ACCOUNT ENTRY POPUP
+     IMPORTANT: this is for account access only.
+     It does NOT mean membership registration.
 
+     script.js should show it only when:
+     - no VELO account exists for the visitor, OR
+     - an existing user is currently signed out.
+
+     A signed-in user should never be shown this popup.
+================================================== -->
 <div
     class="velo-entry-popup"
     id="veloEntryPopup"
@@ -1198,101 +662,33 @@
     aria-modal="true"
     aria-labelledby="veloPopupTitle"
     aria-hidden="true"
+    hidden
 >
-
-
     <div class="velo-popup-card">
+        <button class="velo-popup-close" id="veloPopupClose" type="button" aria-label="Close">×</button>
 
-
-        <button
-            class="velo-popup-close"
-            id="veloPopupClose"
-            type="button"
-            aria-label="Close"
-        >
-            ×
-        </button>
-
-
-        <!-- SINGLE-SLASH POPUP WORDMARK -->
-
-        <div
-            class="velo-popup-logo"
-            aria-label="VELO"
-        >
-
-            <span
-                class="veloSlash"
-                aria-hidden="true"
-            ></span>
-
-            <span>V</span>
-
-            <span>E</span>
-
-            <span>L</span>
-
-            <span>O</span>
-
+        <div class="velo-popup-logo" aria-label="VELO">
+            <span class="veloSlash" aria-hidden="true"></span>
+            <span>V</span><span>E</span><span>L</span><span>O</span>
         </div>
 
-
-        <h2 id="veloPopupTitle">
-            ENTER THE MOVEMENT
-        </h2>
-
-
-        <p>
-            Sign in or create your VELO account
-            to unlock your membership experience,
-            track orders and access future releases.
-        </p>
-
+        <span class="popup-kicker">ACCOUNT ACCESS</span>
+        <h2 id="veloPopupTitle">ENTER THE MOVEMENT</h2>
+        <p id="veloPopupMessage">Sign in or create your VELO account to save products, track orders and manage your shopping experience.</p>
 
         <div class="velo-popup-actions">
-
-
-            <a
-                href="register.html"
-                class="popup-primary"
-            >
-                REGISTER / SIGN IN
-            </a>
-
-
-            <a
-                href="membership.html"
-                class="popup-secondary"
-            >
-                EXPLORE MEMBERSHIP
-            </a>
-
-
+            <a href="register.html" class="popup-primary">SIGN IN / CREATE ACCOUNT</a>
+            <a href="membership.html" class="popup-secondary">REGISTER AS A MEMBER</a>
         </div>
 
-
-        <button
-            class="velo-popup-continue"
-            id="veloPopupContinue"
-            type="button"
-        >
-            Continue browsing
-        </button>
-
-
+        <button class="velo-popup-continue" id="veloPopupContinue" type="button">Continue browsing</button>
     </div>
-
-
 </div>
-
 
 <!-- ==================================================
      SCRIPTS
 ================================================== -->
-
 <script src="script.js"></script>
 
-
 </body>
-
 </html>
