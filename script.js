@@ -7662,3 +7662,997 @@ document.addEventListener(
 
     }
 );
+
+/* =========================================================
+   PART 8 / 8
+   VELO™ — FINAL INITIALIZATION + GLOBAL API
+========================================================= */
+
+
+/* =========================================================
+   INITIALIZE EVERYTHING
+========================================================= */
+
+function initializeVELO() {
+
+    /*
+       SIDEBAR
+    */
+
+    if (sidebar) {
+
+        sidebar.classList.remove("open");
+        sidebar.classList.remove("active");
+
+        sidebar.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
+    if (sidebarOverlay) {
+
+        sidebarOverlay.classList.remove("active");
+
+        sidebarOverlay.style.display =
+            "none";
+
+    }
+
+
+    /*
+       FILTER
+    */
+
+    closeFilter();
+
+
+    /*
+       NOTIFICATIONS
+    */
+
+    closeNotifications();
+
+
+    /*
+       PRODUCT VIEWER
+    */
+
+    if (productViewer) {
+
+        productViewer.classList.remove("open");
+        productViewer.classList.remove("active");
+
+        productViewer.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
+    /*
+       ACCOUNT POPUP
+    */
+
+    if (loginPopup) {
+
+        loginPopup.classList.remove("active");
+        loginPopup.classList.remove("open");
+
+        loginPopup.style.display =
+            "none";
+
+        loginPopup.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
+    /*
+       CART
+    */
+
+    cart =
+        readStorage(
+            VELO_STORAGE.cart,
+            []
+        );
+
+    updateCartCount();
+
+    renderCartIfPresent();
+
+
+    /*
+       FILTER STATES
+    */
+
+    updateFilterButtonStates();
+
+
+    /*
+       NOTIFICATION COUNT
+    */
+
+    updateNotificationCount();
+
+
+    /*
+       PRODUCT CAROUSELS
+
+       Initialize again safely in case
+       cards were rendered dynamically.
+    */
+
+    getProductCards()
+        .forEach(
+            card => {
+
+                if (
+                    !cardCarouselStates.has(card)
+                ) {
+
+                    createCardImageCarousel(
+                        card
+                    );
+
+                }
+
+            }
+        );
+
+
+    /*
+       IMAGE FALLBACKS
+    */
+
+    qsa("img")
+        .forEach(
+            img => {
+
+                if (
+                    img.dataset.veloFallbackListener
+                ) {
+
+                    return;
+
+                }
+
+                img.dataset.veloFallbackListener =
+                    "true";
+
+                img.addEventListener(
+                    "error",
+                    function() {
+
+                        if (
+                            this.dataset
+                                .fallbackApplied
+                        ) {
+
+                            return;
+
+                        }
+
+                        this.dataset
+                            .fallbackApplied =
+                            "true";
+
+                        this.src =
+                            "images/placeholder.jpg";
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   AUTOMATIC ACCOUNT POPUP
+========================================================= */
+
+function initializeAccountAccess() {
+
+    if (!loginPopup) {
+
+        return;
+
+    }
+
+
+    /*
+       Wait briefly so the page can finish
+       rendering before showing the popup.
+    */
+
+    setTimeout(
+        function() {
+
+            if (
+                shouldShowAccountPopup()
+            ) {
+
+                openLoginPopup();
+
+            }
+
+        },
+        700
+    );
+
+}
+
+
+/* =========================================================
+   DOM READY
+========================================================= */
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            initializeVELO();
+
+        }
+    );
+
+} else {
+
+    initializeVELO();
+
+}
+
+
+/* =========================================================
+   PAGE LOAD
+========================================================= */
+
+window.addEventListener(
+    "load",
+    function() {
+
+        document.body.classList.add(
+            "loaded"
+        );
+
+        updateCartCount();
+
+        renderCartIfPresent();
+
+        updateNotificationCount();
+
+        updateFilterButtonStates();
+
+        initializeAccountAccess();
+
+    }
+);
+
+
+/* =========================================================
+   BEFORE PAGE UNLOAD
+========================================================= */
+
+window.addEventListener(
+    "beforeunload",
+    function() {
+
+        /*
+           Save all important state before
+           the browser leaves the page.
+        */
+
+        saveCart();
+
+        writeStorage(
+            VELO_STORAGE.saved,
+            getSavedProducts()
+        );
+
+    }
+);
+
+
+/* =========================================================
+   VISIBILITY CHANGE
+========================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    function() {
+
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
+
+            /*
+               Re-sync persistent information
+               whenever the user returns to the tab.
+            */
+
+            cart =
+                readStorage(
+                    VELO_STORAGE.cart,
+                    []
+                );
+
+            updateCartCount();
+
+            updateNotificationCount();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   WINDOW RESIZE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        /*
+           Keep carousel positions stable after
+           responsive layout changes.
+        */
+
+        getProductCards()
+            .forEach(
+                card => {
+
+                    const state =
+                        cardCarouselStates.get(
+                            card
+                        );
+
+                    if (!state) return;
+
+                    const frame =
+                        qs(
+                            ".product-image-frame, .product-image",
+                            card
+                        );
+
+                    const track =
+                        qs(
+                            ".product-image-track",
+                            frame
+                        );
+
+                    if (!track) return;
+
+                    track.style.transform =
+                        `translateX(-${state.index * 100}%)`;
+
+                }
+            );
+
+    }
+);
+
+
+/* =========================================================
+   GLOBAL CLICK SAFETY
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        /*
+           Clicking inside the sidebar should not
+           accidentally close it.
+        */
+
+        if (
+            sidebar &&
+            sidebar.classList.contains("open") &&
+            event.target.closest("#sidebar")
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+           Clicking inside the product viewer should
+           not close it unless it is the backdrop.
+        */
+
+        if (
+            productViewer &&
+            productViewer.classList.contains("open") &&
+            event.target.closest(
+                ".product-viewer-content, .viewer-content"
+            )
+        ) {
+
+            return;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ACCESSIBILITY — ENTER / SPACE SUPPORT
+========================================================= */
+
+qsa(
+    ".product-card, .item-card, .shop-card, .drop-card"
+).forEach(
+    card => {
+
+        /*
+           Make cards keyboard-accessible without
+           changing the visual design.
+        */
+
+        if (
+            !card.hasAttribute(
+                "tabindex"
+            )
+        ) {
+
+            card.setAttribute(
+                "tabindex",
+                "0"
+            );
+
+        }
+
+
+        card.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    openProductViewer(
+                        card
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   PREVENT DOUBLE-SUBMISSION OF BUTTONS
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const button =
+            event.target.closest(
+                "button[data-loading]"
+            );
+
+        if (!button) return;
+
+        if (
+            button.dataset.loadingActive ===
+            "true"
+        ) {
+
+            event.preventDefault();
+
+            return;
+
+        }
+
+        button.dataset.loadingActive =
+            "true";
+
+        setTimeout(
+            function() {
+
+                delete button.dataset.loadingActive;
+
+            },
+            800
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ACCOUNT STATE HELPERS
+========================================================= */
+
+function setWebsiteAccount(
+    account
+) {
+
+    if (!account) {
+
+        removeStorage(
+            VELO_STORAGE.account
+        );
+
+        localStorage.setItem(
+            VELO_STORAGE.loggedIn,
+            "false"
+        );
+
+        return;
+
+    }
+
+
+    writeStorage(
+        VELO_STORAGE.account,
+        account
+    );
+
+    localStorage.setItem(
+        VELO_STORAGE.loggedIn,
+        "true"
+    );
+
+}
+
+
+function logoutWebsiteAccount() {
+
+    localStorage.setItem(
+        VELO_STORAGE.loggedIn,
+        "false"
+    );
+
+    /*
+       The account itself remains stored.
+
+       This means the user still has an account;
+       they are simply logged out.
+    */
+
+    openLoginPopup();
+
+}
+
+
+function clearWebsiteAccount() {
+
+    removeStorage(
+        VELO_STORAGE.account
+    );
+
+    localStorage.setItem(
+        VELO_STORAGE.loggedIn,
+        "false"
+    );
+
+    openLoginPopup();
+
+}
+
+
+/* =========================================================
+   NOTIFICATION HELPERS
+========================================================= */
+
+function addNotification(
+    notification
+) {
+
+    const notifications =
+        readStorage(
+            VELO_STORAGE.notifications,
+            []
+        );
+
+
+    notifications.unshift({
+
+        id:
+            notification.id ||
+            Date.now().toString(),
+
+        title:
+            notification.title ||
+            "VELO",
+
+        message:
+            notification.message ||
+            "",
+
+        read:
+            false,
+
+        createdAt:
+            notification.createdAt ||
+            new Date().toISOString()
+
+    });
+
+
+    writeStorage(
+        VELO_STORAGE.notifications,
+        notifications
+    );
+
+
+    updateNotificationCount();
+
+}
+
+
+/* =========================================================
+   MARK NOTIFICATIONS READ
+========================================================= */
+
+function markNotificationsRead() {
+
+    const notifications =
+        readStorage(
+            VELO_STORAGE.notifications,
+            []
+        );
+
+
+    notifications.forEach(
+        notification => {
+
+            notification.read =
+                true;
+
+        }
+    );
+
+
+    writeStorage(
+        VELO_STORAGE.notifications,
+        notifications
+    );
+
+
+    updateNotificationCount();
+
+}
+
+
+/* =========================================================
+   NOTIFICATION PANEL AUTO-READ
+========================================================= */
+
+if (notificationPanel) {
+
+    notificationPanel.addEventListener(
+        "click",
+        function() {
+
+            /*
+               Opening/using the notification panel
+               marks displayed notifications as read.
+            */
+
+            markNotificationsRead();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CART PANEL OUTSIDE CLICK
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (!cartPanel) return;
+
+        if (
+            !cartPanel.classList.contains("open") &&
+            !cartPanel.classList.contains("active")
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.target.closest(
+                "#cart-panel, .cart-panel"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.target.closest(
+                "#cart-btn, .cart-btn, [data-cart-button]"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        cartPanel.classList.remove(
+            "open"
+        );
+
+        cartPanel.classList.remove(
+            "active"
+        );
+
+        cartPanel.style.display =
+            "none";
+
+    }
+);
+
+
+/* =========================================================
+   PRODUCT VIEWER — RELATED PRODUCT SAFETY
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const related =
+            event.target.closest(
+                ".related-product-card"
+            );
+
+        if (!related) return;
+
+        const id =
+            related.dataset
+                .relatedProductId;
+
+        if (!id) return;
+
+        const card =
+            getProductCards()
+                .find(
+                    productCard =>
+                        getProductData(
+                            productCard
+                        ).id === id
+                );
+
+        if (!card) return;
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+        renderViewerProduct(
+            getProductData(
+                card
+            )
+        );
+
+        if (productViewer) {
+
+            productViewer.classList.add(
+                "open"
+            );
+
+            productViewer.classList.add(
+                "active"
+            );
+
+            productViewer.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.classList.add(
+                "product-viewer-open"
+            );
+
+            lockBody();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PRODUCT VIEWER — ESCAPE SAFETY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key !== "Escape"
+        ) {
+
+            return;
+
+        }
+
+        if (
+            productViewer &&
+            (
+                productViewer.classList.contains(
+                    "open"
+                ) ||
+                productViewer.classList.contains(
+                    "active"
+                )
+            )
+        ) {
+
+            closeProductViewer();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   EXPOSE VELO API
+========================================================= */
+
+window.VELO = {
+
+    /*
+       MENU
+    */
+
+    openMenu,
+
+    closeMenu,
+
+
+    /*
+       NOTIFICATIONS
+    */
+
+    openNotifications,
+
+    closeNotifications,
+
+    addNotification,
+
+    markNotificationsRead,
+
+
+    /*
+       ACCOUNT
+    */
+
+    openLoginPopup,
+
+    closeLoginPopup,
+
+    setWebsiteAccount,
+
+    logoutWebsiteAccount,
+
+    clearWebsiteAccount,
+
+    hasWebsiteAccount,
+
+    isWebsiteLoggedIn,
+
+
+    /*
+       FILTER
+    */
+
+    openFilter,
+
+    closeFilter,
+
+    applyProductFilters,
+
+
+    /*
+       PRODUCTS
+    */
+
+    getProductCards,
+
+    getProductData,
+
+    getAllProductData,
+
+    openProductViewer,
+
+    closeProductViewer,
+
+    renderViewerProduct,
+
+    changeViewerImage,
+
+
+    /*
+       CART
+    */
+
+    addToCart,
+
+    removeFromCart,
+
+    changeCartQuantity,
+
+    getCartQuantity,
+
+    renderCartIfPresent,
+
+
+    /*
+       SAVED
+    */
+
+    getSavedProducts,
+
+    isProductSaved,
+
+
+    /*
+       UTILITIES
+    */
+
+    showToast,
+
+    formatMoney
+
+};
+
+
+/* =========================================================
+   FINAL CONSOLE MESSAGE
+========================================================= */
+
+console.info(
+    "VELO™ Main Script loaded successfully."
+);
+
+console.info(
+    "VELO™ interaction systems initialized."
+);
+
+
+/* =========================================================
+   END OF SCRIPT.JS
+========================================================= */
