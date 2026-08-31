@@ -3413,3 +3413,433 @@ document.addEventListener(
 /* =========================================================
    END PART 3
 ========================================================= */
+
+   /* ---------------- FILTERS ---------------- */
+  const filterPanel = $("#filterPanel");
+  const filterButton = $("#filterButton");
+  const filterClose = $("#filterCloseButton");
+  const clearFilters = $("#clearFiltersButton");
+  const applyFiltersButton = $("#applyFiltersButton");
+  const emptyState = $("#productEmpty");
+  const resultCount = $("#productResultCount");
+  const currencyLabel = $("#currencyLabel");
+  const currencySelect = $("#currencyFilter");
+  const currencyChange = $("#changeCurrencyButton");
+
+  function openFilter() {
+    if (!filterPanel) return;
+
+    filterPanel.hidden = false;
+    filterPanel.classList.add("open", "active");
+    filterPanel.setAttribute("aria-hidden", "false");
+    filterButton?.setAttribute("aria-expanded", "true");
+  }
+
+  function closeFilter() {
+    if (!filterPanel) return;
+
+    filterPanel.classList.remove("open", "active");
+    filterPanel.hidden = true;
+    filterPanel.setAttribute("aria-hidden", "true");
+    filterButton?.setAttribute("aria-expanded", "false");
+
+    unlockBody();
+  }
+
+  filterButton?.addEventListener("click", e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (filterPanel?.hidden) {
+      openFilter();
+    } else {
+      closeFilter();
+    }
+  });
+
+  filterClose?.addEventListener("click", e => {
+    e.preventDefault();
+    closeFilter();
+  });
+
+  function readCheckboxes() {
+    const names = [
+      "edition",
+      "gender",
+      "weather",
+      "item",
+      "color"
+    ];
+
+    names.forEach(name => {
+      state.filters[name + "s"] =
+        new Set(
+          $$(`#filterPanel input[name="${name}"]:checked`)
+            .map(input => norm(input.value))
+        );
+    });
+
+    const min =
+      usdFromDisplayed(
+        $("#priceMin")?.value
+      );
+
+    const max =
+      usdFromDisplayed(
+        $("#priceMax")?.value
+      );
+
+    state.filters.minUSD =
+      min === null
+        ? 0
+        : Math.max(0, min);
+
+    state.filters.maxUSD =
+      max === null
+        ? 250000
+        : Math.min(250000, max);
+  }
+
+  function checkboxMatches(value, selected) {
+    if (!selected.size) return true;
+
+    const normalized =
+      norm(value);
+
+    const parts =
+      normalized
+        .split(/\s+/)
+        .filter(Boolean);
+
+    return [...selected].some(
+      choice =>
+        parts.includes(choice) ||
+        normalized.includes(choice)
+    );
+  }
+
+  function applyFilters() {
+    readCheckboxes();
+
+    const query =
+      norm(
+        searchInput?.value
+      );
+
+    let visible = 0;
+
+    productCards().forEach(card => {
+
+      const product =
+        getProduct(card);
+
+      if (!product) return;
+
+      let matches = true;
+
+      if (
+        query &&
+        !searchText(product).includes(query)
+      ) {
+        matches = false;
+      }
+
+      if (
+        matches &&
+        !checkboxMatches(
+          product.edition,
+          state.filters.editions
+        )
+      ) {
+        matches = false;
+      }
+
+      if (
+        matches &&
+        !checkboxMatches(
+          product.gender,
+          state.filters.genders
+        )
+      ) {
+        matches = false;
+      }
+
+      if (
+        matches &&
+        !checkboxMatches(
+          product.weather,
+          state.filters.weather
+        )
+      ) {
+        matches = false;
+      }
+
+      if (
+        matches &&
+        !checkboxMatches(
+          product.item,
+          state.filters.items
+        )
+      ) {
+        matches = false;
+      }
+
+      if (
+        matches &&
+        !checkboxMatches(
+          product.color,
+          state.filters.colors
+        )
+      ) {
+        matches = false;
+      }
+
+      if (
+        matches &&
+        product.priceUSD <
+        state.filters.minUSD
+      ) {
+        matches = false;
+      }
+
+      if (
+        matches &&
+        product.priceUSD >
+        state.filters.maxUSD
+      ) {
+        matches = false;
+      }
+
+      card.hidden =
+        !matches;
+
+      card.style.display =
+        matches
+          ? ""
+          : "none";
+
+      if (matches) {
+        visible++;
+      }
+
+    });
+
+    if (emptyState) {
+      emptyState.hidden =
+        visible !== 0;
+    }
+
+    if (resultCount) {
+      resultCount.textContent =
+        `${visible} product${visible === 1 ? "" : "s"}`;
+    }
+
+    updateFilterUI();
+  }
+
+  function updateFilterUI() {
+
+    const active =
+      Object.values(
+        state.filters
+      ).some(
+        value =>
+          value instanceof Set
+            ? value.size > 0
+            : false
+      );
+
+    filterButton?.classList.toggle(
+      "active",
+      !!active
+    );
+
+    $$("[data-quick-filter]")
+      .forEach(chip => {
+
+        const [
+          type,
+          valueRaw
+        ] =
+          (
+            chip.dataset.quickFilter ||
+            ""
+          ).split(":");
+
+        chip.classList.toggle(
+          "active",
+          type === "gender" &&
+          state.filters.genders.has(
+            norm(valueRaw)
+          )
+        );
+
+      });
+
+    if (currencyLabel) {
+      currencyLabel.textContent =
+        state.currency;
+    }
+
+    if (currencySelect) {
+      currencySelect.value =
+        state.currency;
+    }
+  }
+
+  $$("#filterPanel input[type='checkbox']")
+    .forEach(
+      input =>
+        input.addEventListener(
+          "change",
+          applyFilters
+        )
+    );
+
+  $$("#priceMin, #priceMax")
+    .forEach(
+      input =>
+        input.addEventListener(
+          "input",
+          applyFilters
+        )
+    );
+
+  applyFiltersButton?.addEventListener(
+    "click",
+    e => {
+      e.preventDefault();
+
+      applyFilters();
+      closeFilter();
+    }
+  );
+
+  clearFilters?.addEventListener(
+    "click",
+    e => {
+
+      e.preventDefault();
+
+      $$("#filterPanel input[type='checkbox']")
+        .forEach(
+          input =>
+            input.checked = false
+        );
+
+      const min =
+        $("#priceMin");
+
+      const max =
+        $("#priceMax");
+
+      if (min) {
+        min.value = 0;
+      }
+
+      if (max) {
+        max.value = 250000;
+      }
+
+      if (searchInput) {
+        searchInput.value = "";
+      }
+
+      state.filters.editions.clear();
+      state.filters.genders.clear();
+      state.filters.weather.clear();
+      state.filters.items.clear();
+      state.filters.colors.clear();
+
+      applyFilters();
+
+    }
+  );
+
+  $("#emptyStateClearFilters")
+    ?.addEventListener(
+      "click",
+      () =>
+        clearFilters?.click()
+    );
+
+  currencyChange?.addEventListener(
+    "click",
+    e => {
+
+      e.preventDefault();
+
+      currencySelect?.focus();
+
+    }
+  );
+
+  currencySelect?.addEventListener(
+    "change",
+    () => {
+
+      const previousCurrency =
+        state.currency;
+
+      const nextCurrency =
+        currencySelect.value === "NGN"
+          ? "NGN"
+          : "USD";
+
+      const previousRate =
+        rates[previousCurrency] || 1;
+
+      const nextRate =
+        rates[nextCurrency] || 1;
+
+      const min =
+        $("#priceMin");
+
+      const max =
+        $("#priceMax");
+
+      const minUSD =
+        (Number(min?.value) || 0) /
+        previousRate;
+
+      const maxUSD =
+        (Number(max?.value) || 250000 * previousRate) /
+        previousRate;
+
+      state.currency =
+        nextCurrency;
+
+      localStorage.setItem(
+        STORAGE.currency,
+        state.currency
+      );
+
+      if (min) {
+        min.value =
+          Math.round(
+            minUSD * nextRate
+          );
+      }
+
+      if (max) {
+        max.value =
+          Math.round(
+            maxUSD * nextRate
+          );
+      }
+
+      applyFilters();
+      renderCartIfPresent();
+
+      if (
+        state.activeProduct &&
+        viewerPrice
+      ) {
+        viewerPrice.textContent =
+          money(
+            state.activeProduct.priceUSD
+          );
+      }
+
+    }
+  );
