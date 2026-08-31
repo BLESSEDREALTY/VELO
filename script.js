@@ -4819,3 +4819,1642 @@ document.addEventListener(
 
       }
     );
+
+   /* =========================================================
+     PRODUCT VIEWER
+  ========================================================= */
+
+  const productViewer =
+    $("#productViewer, .product-viewer");
+
+  const viewerImage =
+    $("#viewerProductImage, .viewer-product-image");
+
+  const viewerName =
+    $("#viewerProductName, .viewer-product-name, .viewer-product-title");
+
+  const viewerDescription =
+    $("#viewerProductDescription, .viewer-product-description, .viewer-description");
+
+  const viewerCategory =
+    $("#viewerProductCategory, .viewer-product-category");
+
+  const viewerEdition =
+    $("#viewerProductEdition, .viewer-product-edition");
+
+  const viewerPrice =
+    $("#viewerProductPrice, .viewer-product-price");
+
+  const viewerClose =
+    $("#viewerClose, #closeProductViewer, [data-close-viewer], .product-viewer-close, .viewer-back");
+
+  const viewerPrevious =
+    $("#viewerPrevious, .viewer-image-prev, [data-viewer-prev]");
+
+  const viewerNext =
+    $("#viewerNext, .viewer-image-next, [data-viewer-next]");
+
+  const viewerSave =
+    $("#viewerSave, #saveProductBtn, .save-product-btn, [data-save-product]");
+
+  const viewerAddToCart =
+    $("#viewerAddToCart, #addToCartBtn, .add-to-cart-btn, .add-to-cart, [data-add-to-cart]");
+
+  const viewerRelated =
+    $("#relatedProducts, .related-products-track, .related-track");
+
+
+  let viewerTimer =
+    null;
+
+  let viewerIndex =
+    0;
+
+
+  function openProductViewer(
+    product
+  ) {
+
+    if (
+      !productViewer ||
+      !product
+    ) {
+      return;
+    }
+
+    state.activeProduct =
+      product;
+
+    viewerIndex =
+      0;
+
+    closeMenu();
+    closeFilter();
+    closeNotifications();
+    closeCart();
+
+    renderViewer();
+
+    productViewer.hidden =
+      false;
+
+    productViewer.classList.add(
+      "open",
+      "active"
+    );
+
+    productViewer.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    document.body.classList.add(
+      "product-viewer-open"
+    );
+
+    lockBody();
+
+    if (
+      typeof productViewer.scrollTo ===
+      "function"
+    ) {
+
+      productViewer.scrollTo({
+        top: 0,
+        behavior: "instant"
+      });
+
+    }
+
+    startViewerCarousel();
+
+  }
+
+
+  function closeProductViewer() {
+
+    if (!productViewer) {
+      return;
+    }
+
+    stopViewerCarousel();
+
+    productViewer.classList.remove(
+      "open",
+      "active"
+    );
+
+    productViewer.hidden =
+      true;
+
+    productViewer.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.classList.remove(
+      "product-viewer-open"
+    );
+
+    state.activeProduct =
+      null;
+
+    viewerIndex =
+      0;
+
+    unlockBody();
+
+  }
+
+
+  function renderViewer() {
+
+    const product =
+      state.activeProduct;
+
+    if (
+      !product
+    ) {
+      return;
+    }
+
+    const images =
+      product.images?.length
+        ? product.images
+        : [
+            "images/placeholder.jpg"
+          ];
+
+    viewerIndex =
+      Math.max(
+        0,
+        Math.min(
+          viewerIndex,
+          images.length - 1
+        )
+      );
+
+    if (viewerImage) {
+
+      viewerImage.src =
+        images[viewerIndex];
+
+      viewerImage.alt =
+        product.name;
+
+    }
+
+    if (viewerName) {
+
+      viewerName.textContent =
+        product.name;
+
+    }
+
+    if (viewerDescription) {
+
+      viewerDescription.textContent =
+        product.description ||
+        "Discover the details behind this VELO piece.";
+
+    }
+
+    if (viewerCategory) {
+
+      viewerCategory.textContent =
+        product.category ||
+        product.type ||
+        "VELO Collection";
+
+    }
+
+    if (viewerEdition) {
+
+      viewerEdition.textContent =
+        product.edition ||
+        "";
+
+    }
+
+    if (viewerPrice) {
+
+      viewerPrice.textContent =
+        money(
+          product.priceUSD
+        );
+
+    }
+
+    updateViewerControls();
+
+    renderViewerRelated();
+
+  }
+
+
+  function updateViewerControls() {
+
+    const product =
+      state.activeProduct;
+
+    const imageCount =
+      product?.images?.length ||
+      0;
+
+    const hasMultiple =
+      imageCount > 1;
+
+    if (viewerPrevious) {
+
+      viewerPrevious.hidden =
+        !hasMultiple;
+
+      viewerPrevious.disabled =
+        !hasMultiple;
+
+    }
+
+    if (viewerNext) {
+
+      viewerNext.hidden =
+        !hasMultiple;
+
+      viewerNext.disabled =
+        !hasMultiple;
+
+    }
+
+    if (viewerSave) {
+
+      const saved =
+        isSaved(
+          product?.id
+        );
+
+      viewerSave.classList.toggle(
+        "active",
+        saved
+      );
+
+      viewerSave.setAttribute(
+        "aria-pressed",
+        saved ? "true" : "false"
+      );
+
+      const saveText =
+        viewerSave.querySelector(
+          "[data-save-label]"
+        );
+
+      if (saveText) {
+
+        saveText.textContent =
+          saved
+            ? "Saved"
+            : "Save for Later";
+
+      } else {
+
+        viewerSave.textContent =
+          saved
+            ? "Saved"
+            : "Save for Later";
+
+      }
+
+    }
+
+  }
+
+
+  function changeViewerImage(
+    direction
+  ) {
+
+    const product =
+      state.activeProduct;
+
+    if (
+      !product ||
+      !product.images ||
+      product.images.length <= 1
+    ) {
+      return;
+    }
+
+    viewerIndex =
+      (
+        viewerIndex +
+        direction +
+        product.images.length
+      ) %
+      product.images.length;
+
+    renderViewer();
+
+    startViewerCarousel();
+
+  }
+
+
+  function startViewerCarousel() {
+
+    stopViewerCarousel();
+
+    const product =
+      state.activeProduct;
+
+    if (
+      !product ||
+      !product.images ||
+      product.images.length <= 1
+    ) {
+      return;
+    }
+
+    viewerTimer =
+      setInterval(
+        () => {
+
+          if (
+            state.activeProduct
+          ) {
+
+            changeViewerImage(
+              1
+            );
+
+          }
+
+        },
+        8000
+      );
+
+  }
+
+
+  function stopViewerCarousel() {
+
+    if (
+      viewerTimer
+    ) {
+
+      clearInterval(
+        viewerTimer
+      );
+
+      viewerTimer =
+        null;
+
+    }
+
+  }
+
+
+  viewerClose?.addEventListener(
+    "click",
+    event => {
+
+      event.preventDefault();
+
+      closeProductViewer();
+
+    }
+  );
+
+
+  viewerPrevious?.addEventListener(
+    "click",
+    event => {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      changeViewerImage(
+        -1
+      );
+
+    }
+  );
+
+
+  viewerNext?.addEventListener(
+    "click",
+    event => {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      changeViewerImage(
+        1
+      );
+
+    }
+  );
+
+
+  if (productViewer) {
+
+    productViewer.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target ===
+          productViewer
+        ) {
+
+          closeProductViewer();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     VIEWER TOUCH SWIPE
+  ========================================================= */
+
+  let viewerTouchStart =
+    null;
+
+
+  const viewerImageFrame =
+    $("#viewerImageFrame, .viewer-image-frame, .product-viewer-image-frame");
+
+
+  viewerImageFrame?.addEventListener(
+    "touchstart",
+    event => {
+
+      viewerTouchStart =
+        event.changedTouches[0].clientX;
+
+    },
+    {
+      passive: true
+    }
+  );
+
+
+  viewerImageFrame?.addEventListener(
+    "touchend",
+    event => {
+
+      if (
+        viewerTouchStart === null
+      ) {
+        return;
+      }
+
+      const end =
+        event.changedTouches[0].clientX;
+
+      const difference =
+        end -
+        viewerTouchStart;
+
+      viewerTouchStart =
+        null;
+
+      if (
+        Math.abs(
+          difference
+        ) < 45
+      ) {
+        return;
+      }
+
+      changeViewerImage(
+        difference < 0
+          ? 1
+          : -1
+      );
+
+    },
+    {
+      passive: true
+    }
+  );
+
+
+  /* =========================================================
+     SAVE PRODUCT
+  ========================================================= */
+
+  function savedProducts() {
+
+    return readStorage(
+      STORAGE.saved,
+      []
+    );
+
+  }
+
+
+  function saveSavedProducts(
+    products
+  ) {
+
+    writeStorage(
+      STORAGE.saved,
+      products
+    );
+
+  }
+
+
+  function isSaved(
+    productId
+  ) {
+
+    if (!productId) {
+      return false;
+    }
+
+    return savedProducts()
+      .some(
+        product =>
+          product.id ===
+          productId
+      );
+
+  }
+
+
+  function toggleSaved(
+    product
+  ) {
+
+    if (!product) {
+      return;
+    }
+
+    const saved =
+      savedProducts();
+
+    const existing =
+      saved.findIndex(
+        item =>
+          item.id ===
+          product.id
+      );
+
+    if (
+      existing >= 0
+    ) {
+
+      saved.splice(
+        existing,
+        1
+      );
+
+      showToast(
+        `${product.name} removed from saved items.`
+      );
+
+    } else {
+
+      saved.push({
+
+        id:
+          product.id,
+
+        name:
+          product.name,
+
+        description:
+          product.description,
+
+        category:
+          product.category,
+
+        edition:
+          product.edition,
+
+        priceUSD:
+          product.priceUSD,
+
+        images:
+          product.images.slice()
+
+      });
+
+      showToast(
+        `${product.name} saved for later.`
+      );
+
+    }
+
+    saveSavedProducts(
+      saved
+    );
+
+    updateViewerControls();
+
+  }
+
+
+  viewerSave?.addEventListener(
+    "click",
+    event => {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      toggleSaved(
+        state.activeProduct
+      );
+
+    }
+  );
+
+
+  /* =========================================================
+     ADD TO CART FROM VIEWER
+  ========================================================= */
+
+  viewerAddToCart?.addEventListener(
+    "click",
+    event => {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (
+        !state.activeProduct
+      ) {
+        return;
+      }
+
+      const quantityInput =
+        $("#viewerQuantity, #productQuantity, [data-product-quantity]");
+
+      const quantity =
+        Math.max(
+          1,
+          Number(
+            quantityInput?.value
+          ) || 1
+        );
+
+      addToCart(
+        state.activeProduct,
+        quantity
+      );
+
+    }
+  );
+
+
+  /* =========================================================
+     PRODUCT CARD → FULL PRODUCT VIEW
+  ========================================================= */
+
+  function attachProductCardActions() {
+
+    productCards()
+      .forEach(
+        card => {
+
+          if (
+            card.dataset
+              .veloViewerAttached ===
+            "true"
+          ) {
+            return;
+          }
+
+          card.dataset
+            .veloViewerAttached =
+            "true";
+
+
+          card.addEventListener(
+            "click",
+            event => {
+
+              const clickedButton =
+                event.target.closest(
+                  "button"
+                );
+
+              const clickedLink =
+                event.target.closest(
+                  "a"
+                );
+
+              const imageControl =
+                event.target.closest(
+                  ".card-image-prev, .card-image-next, .card-image-dot, [data-card-image-control]"
+                );
+
+              const actionControl =
+                event.target.closest(
+                  "[data-product-add-to-cart], [data-product-save]"
+                );
+
+              if (
+                clickedButton ||
+                clickedLink ||
+                imageControl ||
+                actionControl
+              ) {
+                return;
+              }
+
+              event.preventDefault();
+
+              const product =
+                getProduct(card);
+
+              if (
+                product
+              ) {
+
+                openProductViewer(
+                  product
+                );
+
+              }
+
+            }
+          );
+
+          card.style.cursor =
+            "pointer";
+
+          card.setAttribute(
+            "tabindex",
+            "0"
+          );
+
+          card.setAttribute(
+            "role",
+            "button"
+          );
+
+          card.addEventListener(
+            "keydown",
+            event => {
+
+              if (
+                event.key === "Enter" ||
+                event.key === " "
+              ) {
+
+                event.preventDefault();
+
+                const product =
+                  getProduct(card);
+
+                if (
+                  product
+                ) {
+
+                  openProductViewer(
+                    product
+                  );
+
+                }
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+  }
+
+
+  attachProductCardActions();
+
+
+  /* =========================================================
+     RELATED PRODUCTS
+  ========================================================= */
+
+  function renderViewerRelated() {
+
+    if (
+      !viewerRelated ||
+      !state.activeProduct
+    ) {
+      return;
+    }
+
+    const current =
+      state.activeProduct;
+
+    const related =
+      productCards()
+        .map(
+          card =>
+            getProduct(card)
+        )
+        .filter(Boolean)
+        .filter(
+          product =>
+            product.id !==
+            current.id
+        )
+        .sort(
+          (
+            a,
+            b
+          ) =>
+            relatedScore(
+              b,
+              current
+            ) -
+            relatedScore(
+              a,
+              current
+            )
+        )
+        .slice(
+          0,
+          8
+        );
+
+    viewerRelated.innerHTML =
+      related
+        .map(
+          product => `
+
+            <article
+              class="related-product-card"
+              data-related-product-id="${escapeHTML(product.id)}"
+              tabindex="0"
+              role="button"
+            >
+
+              <div class="related-product-image">
+                <img
+                  src="${escapeHTML(
+                    product.images?.[0] ||
+                    "images/placeholder.jpg"
+                  )}"
+                  alt="${escapeHTML(product.name)}"
+                >
+              </div>
+
+              <div class="related-product-info">
+
+                <strong>
+                  ${escapeHTML(product.name)}
+                </strong>
+
+                <span>
+                  ${escapeHTML(
+                    product.edition ||
+                    product.category ||
+                    "VELO"
+                  )}
+                </span>
+
+              </div>
+
+            </article>
+
+          `
+        )
+        .join("");
+
+  }
+
+
+  function relatedScore(
+    product,
+    current
+  ) {
+
+    let score =
+      0;
+
+    if (
+      product.edition &&
+      current.edition &&
+      norm(product.edition) ===
+      norm(current.edition)
+    ) {
+
+      score += 5;
+
+    }
+
+    if (
+      product.category &&
+      current.category &&
+      norm(product.category) ===
+      norm(current.category)
+    ) {
+
+      score += 4;
+
+    }
+
+    if (
+      product.gender &&
+      current.gender &&
+      norm(product.gender) ===
+      norm(current.gender)
+    ) {
+
+      score += 2;
+
+    }
+
+    if (
+      product.item &&
+      current.item &&
+      norm(product.item) ===
+      norm(current.item)
+    ) {
+
+      score += 2;
+
+    }
+
+    return score;
+
+  }
+
+
+  viewerRelated?.addEventListener(
+    "click",
+    event => {
+
+      const relatedCard =
+        event.target.closest(
+          "[data-related-product-id]"
+        );
+
+      if (
+        !relatedCard
+      ) {
+        return;
+      }
+
+      const id =
+        relatedCard.dataset
+          .relatedProductId;
+
+      const product =
+        productCards()
+          .map(
+            card =>
+              getProduct(card)
+          )
+          .find(
+            item =>
+              item?.id ===
+              id
+          );
+
+      if (
+        product
+      ) {
+
+        openProductViewer(
+          product
+        );
+
+      }
+
+    }
+  );
+
+
+  viewerRelated?.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        event.key !== "Enter" &&
+        event.key !== " "
+      ) {
+        return;
+      }
+
+      const relatedCard =
+        event.target.closest(
+          "[data-related-product-id]"
+        );
+
+      if (
+        !relatedCard
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const product =
+        productCards()
+          .map(
+            card =>
+              getProduct(card)
+          )
+          .find(
+            item =>
+              item?.id ===
+              relatedCard.dataset
+                .relatedProductId
+          );
+
+      if (
+        product
+      ) {
+
+        openProductViewer(
+          product
+        );
+
+      }
+
+    }
+  );
+
+
+  /* =========================================================
+     CARD ACTION BUTTONS
+  ========================================================= */
+
+  document.addEventListener(
+    "click",
+    event => {
+
+      const addButton =
+        event.target.closest(
+          "[data-product-add-to-cart]"
+        );
+
+      if (
+        addButton
+      ) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const card =
+          addButton.closest(
+            ".product-card, .item-card, .shop-card, .drop-card, [data-product]"
+          );
+
+        if (
+          card
+        ) {
+
+          const product =
+            getProduct(card);
+
+          const quantity =
+            Number(
+              addButton.dataset.quantity
+            ) || 1;
+
+          addToCart(
+            product,
+            quantity
+          );
+
+        }
+
+        return;
+
+      }
+
+
+      const saveButton =
+        event.target.closest(
+          "[data-product-save]"
+        );
+
+      if (
+        saveButton
+      ) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const card =
+          saveButton.closest(
+            ".product-card, .item-card, .shop-card, .drop-card, [data-product]"
+          );
+
+        if (
+          card
+        ) {
+
+          toggleSaved(
+            getProduct(card)
+          );
+
+        }
+
+        return;
+
+      }
+
+    }
+  );
+
+
+  /* =========================================================
+     CARD IMAGE CAROUSEL
+  ========================================================= */
+
+  const cardCarouselStates =
+    new WeakMap();
+
+
+  function setupCardCarousel(
+    card
+  ) {
+
+    const frame =
+      card.querySelector(
+        ".product-image-frame, .product-image"
+      );
+
+    if (
+      !frame
+    ) {
+      return;
+    }
+
+    const images =
+      getCardImages(
+        card
+      );
+
+    if (
+      images.length <= 1
+    ) {
+      return;
+    }
+
+    let track =
+      frame.querySelector(
+        ".product-image-track"
+      );
+
+    if (
+      !track
+    ) {
+
+      const originalImages =
+        Array.from(
+          frame.querySelectorAll(
+            "img"
+          )
+        );
+
+      frame.innerHTML =
+        "";
+
+      track =
+        document.createElement(
+          "div"
+        );
+
+      track.className =
+        "product-image-track";
+
+      originalImages.forEach(
+        img => {
+
+          const slide =
+            document.createElement(
+              "div"
+            );
+
+          slide.className =
+            "product-image-slide";
+
+          slide.appendChild(
+            img
+          );
+
+          track.appendChild(
+            slide
+          );
+
+        }
+      );
+
+      frame.appendChild(
+        track
+      );
+
+    }
+
+
+    let slides =
+      Array.from(
+        track.querySelectorAll(
+          ".product-image-slide"
+        )
+      );
+
+    if (
+      slides.length !==
+      images.length
+    ) {
+
+      track.innerHTML =
+        "";
+
+      images.forEach(
+        src => {
+
+          const slide =
+            document.createElement(
+              "div"
+            );
+
+          slide.className =
+            "product-image-slide";
+
+          const image =
+            document.createElement(
+              "img"
+            );
+
+          image.src =
+            src;
+
+          image.alt =
+            getProduct(card)?.name ||
+            "VELO Product";
+
+          slide.appendChild(
+            image
+          );
+
+          track.appendChild(
+            slide
+          );
+
+        }
+      );
+
+      slides =
+        Array.from(
+          track.querySelectorAll(
+            ".product-image-slide"
+          )
+        );
+
+    }
+
+
+    let dots =
+      frame.querySelector(
+        ".card-image-dots, .product-image-dots"
+      );
+
+    if (
+      !dots
+    ) {
+
+      dots =
+        document.createElement(
+          "div"
+        );
+
+      dots.className =
+        "card-image-dots";
+
+      frame.appendChild(
+        dots
+      );
+
+    }
+
+    dots.innerHTML =
+      "";
+
+    images.forEach(
+      (
+        _,
+        index
+      ) => {
+
+        const dot =
+          document.createElement(
+            "button"
+          );
+
+        dot.type =
+          "button";
+
+        dot.className =
+          "card-image-dot";
+
+        dot.dataset.index =
+          index;
+
+        dot.setAttribute(
+          "aria-label",
+          `View image ${index + 1}`
+        );
+
+        if (
+          index === 0
+        ) {
+
+          dot.classList.add(
+            "active"
+          );
+
+        }
+
+        dots.appendChild(
+          dot
+        );
+
+      }
+    );
+
+
+    let previous =
+      frame.querySelector(
+        ".card-image-prev"
+      );
+
+    let next =
+      frame.querySelector(
+        ".card-image-next"
+      );
+
+    if (!previous) {
+
+      previous =
+        document.createElement(
+          "button"
+        );
+
+      previous.type =
+        "button";
+
+      previous.className =
+        "card-image-prev";
+
+      previous.innerHTML =
+        "‹";
+
+      frame.appendChild(
+        previous
+      );
+
+    }
+
+    if (!next) {
+
+      next =
+        document.createElement(
+          "button"
+        );
+
+      next.type =
+        "button";
+
+      next.className =
+        "card-image-next";
+
+      next.innerHTML =
+        "›";
+
+      frame.appendChild(
+        next
+      );
+
+    }
+
+
+    const state =
+      {
+        index: 0,
+        timer: null
+      };
+
+    cardCarouselStates.set(
+      card,
+      state
+    );
+
+
+    function setImage(
+      index
+    ) {
+
+      const safe =
+        (
+          index +
+          images.length
+        ) %
+        images.length;
+
+      state.index =
+        safe;
+
+      track.style.transform =
+        `translateX(-${safe * 100}%)`;
+
+      $$(".card-image-dot, .product-image-dot", frame)
+        .forEach(
+          (
+            dot,
+            dotIndex
+          ) => {
+
+            dot.classList.toggle(
+              "active",
+              dotIndex === safe
+            );
+
+          }
+        );
+
+    }
+
+
+    previous.addEventListener(
+      "click",
+      event => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        setImage(
+          state.index - 1
+        );
+
+        restartCardCarousel(
+          card
+        );
+
+      }
+    );
+
+
+    next.addEventListener(
+      "click",
+      event => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        setImage(
+          state.index + 1
+        );
+
+        restartCardCarousel(
+          card
+        );
+
+      }
+    );
+
+
+    dots.addEventListener(
+      "click",
+      event => {
+
+        const dot =
+          event.target.closest(
+            ".card-image-dot, .product-image-dot"
+          );
+
+        if (
+          !dot
+        ) {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        setImage(
+          Number(
+            dot.dataset.index
+          ) || 0
+        );
+
+        restartCardCarousel(
+          card
+        );
+
+      }
+    );
+
+
+    function autoAdvance() {
+
+      setImage(
+        state.index + 1
+      );
+
+    }
+
+
+    state.timer =
+      setInterval(
+        autoAdvance,
+        8000
+      );
+
+  }
+
+
+  function restartCardCarousel(
+    card
+  ) {
+
+    const state =
+      cardCarouselStates.get(
+        card
+      );
+
+    if (!state) {
+      return;
+    }
+
+    clearInterval(
+      state.timer
+    );
+
+    state.timer =
+      setInterval(
+        () => {
+
+          const images =
+            getCardImages(
+              card
+            );
+
+          if (
+            images.length <= 1
+          ) {
+            return;
+          }
+
+          state.index =
+            (
+              state.index + 1
+            ) %
+            images.length;
+
+          const track =
+            card.querySelector(
+              ".product-image-track"
+            );
+
+          if (
+            track
+          ) {
+
+            track.style.transform =
+              `translateX(-${state.index * 100}%)`;
+
+          }
+
+          $$(".card-image-dot, .product-image-dot", card)
+            .forEach(
+              (
+                dot,
+                index
+              ) =>
+                dot.classList.toggle(
+                  "active",
+                  index ===
+                  state.index
+                )
+            );
+
+        },
+        8000
+      );
+
+  }
+
+
+  productCards()
+    .forEach(
+      card =>
+        setupCardCarousel(
+          card
+        )
+    );
+
+
+  /* =========================================================
+     END PART 6
+  ========================================================= */
