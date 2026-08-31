@@ -6458,3 +6458,1207 @@ document.addEventListener(
   /* =========================================================
      END PART 6
   ========================================================= */
+
+ /* =========================================================
+   PART 7 — VELO PRODUCT VIEWER
+========================================================= */
+
+const productViewer = qs(
+    ".product-viewer, #productViewer, [data-product-viewer]"
+);
+
+let activeProduct = null;
+let activeViewerImage = 0;
+let viewerTimer = null;
+
+
+/* ---------------------------------------------------------
+   VIEWER ELEMENT HELPERS
+--------------------------------------------------------- */
+
+function getViewerFrame() {
+    if (!productViewer) return null;
+
+    return qs(
+        ".viewer-image-frame, .product-viewer-image-frame, .viewer-image",
+        productViewer
+    );
+}
+
+
+function getViewerImageElement() {
+    const frame = getViewerFrame();
+
+    if (!frame) return null;
+
+    return qs("img", frame);
+}
+
+
+function getViewerNameElement() {
+    if (!productViewer) return null;
+
+    return qs(
+        "#viewerProductName, .viewer-product-name, .viewer-product-title, [data-viewer-name]",
+        productViewer
+    );
+}
+
+
+function getViewerDescriptionElement() {
+    if (!productViewer) return null;
+
+    return qs(
+        "#viewerProductDescription, .viewer-description, .viewer-product-description, [data-viewer-description]",
+        productViewer
+    );
+}
+
+
+function getViewerCategoryElement() {
+    if (!productViewer) return null;
+
+    return qs(
+        "#viewerProductCategory, .viewer-product-category, [data-viewer-category]",
+        productViewer
+    );
+}
+
+
+function getViewerPriceElement() {
+    if (!productViewer) return null;
+
+    return qs(
+        "#viewerProductPrice, .viewer-product-price, [data-viewer-price]",
+        productViewer
+    );
+}
+
+
+function getViewerEditionElement() {
+    if (!productViewer) return null;
+
+    return qs(
+        "#viewerProductEdition, .viewer-product-edition, [data-viewer-edition]",
+        productViewer
+    );
+}
+
+
+function getViewerGenderElement() {
+    if (!productViewer) return null;
+
+    return qs(
+        "#viewerProductGender, .viewer-product-gender, [data-viewer-gender]",
+        productViewer
+    );
+}
+
+
+function getViewerWeatherElement() {
+    if (!productViewer) return null;
+
+    return qs(
+        "#viewerProductWeather, .viewer-product-weather, [data-viewer-weather]",
+        productViewer
+    );
+}
+
+
+function getViewerItemElement() {
+    if (!productViewer) return null;
+
+    return qs(
+        "#viewerProductItem, .viewer-product-item, [data-viewer-item]",
+        productViewer
+    );
+}
+
+
+function getViewerColorElement() {
+    if (!productViewer) return null;
+
+    return qs(
+        "#viewerProductColor, .viewer-product-color, [data-viewer-color]",
+        productViewer
+    );
+}
+
+
+/* =========================================================
+   VIEWER PRODUCT RENDERING
+========================================================= */
+
+function renderViewerProduct(product) {
+
+    if (!productViewer || !product) return;
+
+    activeProduct = product;
+    activeViewerImage = 0;
+
+    const image = getViewerImageElement();
+    const name = getViewerNameElement();
+    const description = getViewerDescriptionElement();
+    const category = getViewerCategoryElement();
+    const price = getViewerPriceElement();
+    const edition = getViewerEditionElement();
+    const gender = getViewerGenderElement();
+    const weather = getViewerWeatherElement();
+    const item = getViewerItemElement();
+    const color = getViewerColorElement();
+
+
+    /* -----------------------------------------------------
+       MAIN IMAGE
+    ----------------------------------------------------- */
+
+    if (image) {
+
+        image.classList.remove("is-changing");
+
+        image.src =
+            product.images &&
+            product.images.length
+                ? product.images[0]
+                : "images/placeholder.jpg";
+
+        image.alt =
+            product.name || "VELO Product";
+
+    }
+
+
+    /* -----------------------------------------------------
+       PRODUCT INFORMATION
+    ----------------------------------------------------- */
+
+    if (name) {
+        name.textContent =
+            product.name || "VELO Product";
+    }
+
+
+    if (description) {
+
+        description.textContent =
+            product.description ||
+            "A VELO piece created with purpose, precision and direction.";
+
+    }
+
+
+    if (category) {
+        category.textContent =
+            product.category || "";
+    }
+
+
+    if (price) {
+
+        price.textContent =
+            formatMoney(product.price);
+
+    }
+
+
+    if (edition) {
+
+        edition.textContent =
+            product.edition || "";
+
+        edition.style.display =
+            product.edition ? "" : "none";
+
+    }
+
+
+    if (gender) {
+
+        gender.textContent =
+            product.gender || "";
+
+        gender.style.display =
+            product.gender ? "" : "none";
+
+    }
+
+
+    if (weather) {
+
+        weather.textContent =
+            product.weather || "";
+
+        weather.style.display =
+            product.weather ? "" : "none";
+
+    }
+
+
+    if (item) {
+
+        item.textContent =
+            product.item || "";
+
+        item.style.display =
+            product.item ? "" : "none";
+
+    }
+
+
+    if (color) {
+
+        color.textContent =
+            product.color || "";
+
+        color.style.display =
+            product.color ? "" : "none";
+
+    }
+
+
+    renderViewerImageControls();
+
+    renderRelatedProducts(product);
+
+    updateSaveButton();
+
+    updateViewerAddToCartButton();
+
+    startViewerAutoCarousel();
+
+}
+
+
+/* =========================================================
+   VIEWER IMAGE CONTROLS
+========================================================= */
+
+function renderViewerImageControls() {
+
+    if (!productViewer || !activeProduct) return;
+
+    const frame = getViewerFrame();
+
+    if (!frame) return;
+
+    const images =
+        activeProduct.images || [];
+
+
+    let previous =
+        qs(
+            ".viewer-image-prev",
+            frame
+        );
+
+    let next =
+        qs(
+            ".viewer-image-next",
+            frame
+        );
+
+
+    /*
+       Remove controls if there is only one image.
+    */
+
+    if (images.length <= 1) {
+
+        if (previous) {
+            previous.remove();
+        }
+
+        if (next) {
+            next.remove();
+        }
+
+        return;
+
+    }
+
+
+    /*
+       Previous button.
+    */
+
+    if (!previous) {
+
+        previous =
+            document.createElement("button");
+
+        previous.type =
+            "button";
+
+        previous.className =
+            "viewer-image-prev";
+
+        previous.setAttribute(
+            "aria-label",
+            "Previous product image"
+        );
+
+        previous.innerHTML =
+            "‹";
+
+        frame.appendChild(
+            previous
+        );
+
+    }
+
+
+    /*
+       Next button.
+    */
+
+    if (!next) {
+
+        next =
+            document.createElement("button");
+
+        next.type =
+            "button";
+
+        next.className =
+            "viewer-image-next";
+
+        next.setAttribute(
+            "aria-label",
+            "Next product image"
+        );
+
+        next.innerHTML =
+            "›";
+
+        frame.appendChild(
+            next
+        );
+
+    }
+
+
+    previous.onclick =
+        function(event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            changeViewerImage(
+                activeViewerImage - 1,
+                true
+            );
+
+        };
+
+
+    next.onclick =
+        function(event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+            changeViewerImage(
+                activeViewerImage + 1,
+                true
+            );
+
+        };
+
+}
+
+
+/* =========================================================
+   CHANGE VIEWER IMAGE
+========================================================= */
+
+function changeViewerImage(
+    index,
+    manual = false
+) {
+
+    if (
+        !activeProduct ||
+        !activeProduct.images ||
+        !activeProduct.images.length
+    ) {
+
+        return;
+
+    }
+
+
+    const images =
+        activeProduct.images;
+
+
+    activeViewerImage =
+        (
+            index +
+            images.length
+        ) %
+        images.length;
+
+
+    const image =
+        getViewerImageElement();
+
+
+    if (!image) return;
+
+
+    image.classList.add(
+        "is-changing"
+    );
+
+
+    const newSource =
+        images[
+            activeViewerImage
+        ];
+
+
+    setTimeout(
+        function() {
+
+            image.src =
+                newSource;
+
+            image.alt =
+                activeProduct.name;
+
+            image.onload =
+                function() {
+
+                    image.classList.remove(
+                        "is-changing"
+                    );
+
+                };
+
+            /*
+               Remove transition state even if
+               the image fails to load.
+            */
+
+            image.onerror =
+                function() {
+
+                    image.classList.remove(
+                        "is-changing"
+                    );
+
+                };
+
+        },
+        100
+    );
+
+
+    if (manual) {
+
+        startViewerAutoCarousel();
+
+    }
+
+}
+
+
+/* =========================================================
+   VIEWER AUTO CAROUSEL
+========================================================= */
+
+function startViewerAutoCarousel() {
+
+    stopViewerAutoCarousel();
+
+    if (
+        !activeProduct ||
+        !activeProduct.images ||
+        activeProduct.images.length <= 1
+    ) {
+
+        return;
+
+    }
+
+
+    viewerTimer =
+        setInterval(
+            function() {
+
+                if (!activeProduct) {
+
+                    stopViewerAutoCarousel();
+
+                    return;
+
+                }
+
+                changeViewerImage(
+                    activeViewerImage + 1,
+                    false
+                );
+
+            },
+            8000
+        );
+
+}
+
+
+function stopViewerAutoCarousel() {
+
+    if (viewerTimer) {
+
+        clearInterval(
+            viewerTimer
+        );
+
+    }
+
+    viewerTimer =
+        null;
+
+}
+
+
+/* =========================================================
+   OPEN PRODUCT VIEWER
+========================================================= */
+
+function openProductViewer(card) {
+
+    if (!productViewer || !card) return;
+
+    const product =
+        getProductData(card);
+
+
+    if (!product) return;
+
+
+    /*
+       Close competing overlays first.
+    */
+
+    closeMenu();
+
+    closeNotifications();
+
+    closeFilter();
+
+    closeLoginPopup();
+
+
+    renderViewerProduct(
+        product
+    );
+
+
+    productViewer.classList.add(
+        "open"
+    );
+
+    productViewer.classList.add(
+        "active"
+    );
+
+
+    productViewer.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    productViewer.style.display =
+        "flex";
+
+
+    document.body.classList.add(
+        "product-viewer-open"
+    );
+
+
+    lockBody();
+
+
+    productViewer.scrollTop =
+        0;
+
+
+    /*
+       Move focus into the viewer when possible.
+    */
+
+    const focusTarget =
+        qs(
+            ".product-viewer-close, .viewer-back, [data-close-viewer]",
+            productViewer
+        );
+
+
+    if (focusTarget) {
+
+        setTimeout(
+            function() {
+
+                try {
+
+                    focusTarget.focus();
+
+                } catch (error) {
+
+                    /* Ignore focus errors. */
+
+                }
+
+            },
+            50
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE PRODUCT VIEWER
+========================================================= */
+
+function closeProductViewer() {
+
+    if (!productViewer) return;
+
+    stopViewerAutoCarousel();
+
+
+    productViewer.classList.remove(
+        "open"
+    );
+
+    productViewer.classList.remove(
+        "active"
+    );
+
+
+    productViewer.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    productViewer.style.display =
+        "none";
+
+
+    document.body.classList.remove(
+        "product-viewer-open"
+    );
+
+
+    activeProduct =
+        null;
+
+
+    activeViewerImage =
+        0;
+
+
+    unlockBody();
+
+}
+
+
+/* =========================================================
+   VIEWER CLOSE BUTTONS
+========================================================= */
+
+qsa(
+    ".viewer-back, .product-viewer-close, [data-close-viewer], #viewerClose"
+).forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                closeProductViewer();
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CLICK VIEWER BACKDROP TO CLOSE
+========================================================= */
+
+if (productViewer) {
+
+    productViewer.addEventListener(
+        "click",
+        function(event) {
+
+            /*
+               Only close when the actual backdrop
+               itself was clicked.
+            */
+
+            if (
+                event.target ===
+                productViewer
+            ) {
+
+                closeProductViewer();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PRODUCT CARD OPENING
+========================================================= */
+
+/*
+   EVENT DELEGATION IS USED HERE.
+
+   This is important because it means dynamically
+   generated product cards can also open correctly.
+*/
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const card =
+            event.target.closest(
+                ".product-card, .item-card, .shop-card, .drop-card, [data-product]"
+            );
+
+
+        if (!card) return;
+
+
+        /*
+           Do not open viewer when the user is
+           interacting with a control inside the card.
+        */
+
+        if (
+            event.target.closest(
+                "button, a, input, select, textarea, label"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+           Some cards may explicitly request
+           navigation instead of the viewer.
+        */
+
+        const explicitLink =
+            card.dataset.openLink ===
+            "true";
+
+
+        const productLink =
+            card.dataset.link ||
+            card.dataset.productLink;
+
+
+        if (
+            explicitLink &&
+            productLink
+        ) {
+
+            window.location.href =
+                productLink;
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+        openProductViewer(
+            card
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SUPPORT "VIEW PRODUCT" BUTTONS
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const viewButton =
+            event.target.closest(
+                "[data-view-product], .view-product-btn, .product-view-btn"
+            );
+
+
+        if (!viewButton) return;
+
+
+        const card =
+            viewButton.closest(
+                ".product-card, .item-card, .shop-card, .drop-card, [data-product]"
+            );
+
+
+        if (!card) return;
+
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+
+        openProductViewer(
+            card
+        );
+
+    }
+);
+
+
+/* =========================================================
+   VIEWER QUANTITY
+========================================================= */
+
+function getViewerQuantity() {
+
+    if (!productViewer) return 1;
+
+
+    const quantityInput =
+        qs(
+            "#viewerQuantity, .viewer-quantity, [data-viewer-quantity]",
+            productViewer
+        );
+
+
+    if (!quantityInput) return 1;
+
+
+    const quantity =
+        parseInt(
+            quantityInput.value,
+            10
+        );
+
+
+    return Math.max(
+        1,
+        Number.isFinite(quantity)
+            ? quantity
+            : 1
+    );
+
+}
+
+
+/* =========================================================
+   VIEWER QUANTITY CONTROLS
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const plus =
+            event.target.closest(
+                "[data-viewer-plus], .viewer-quantity-plus"
+            );
+
+
+        const minus =
+            event.target.closest(
+                "[data-viewer-minus], .viewer-quantity-minus"
+            );
+
+
+        if (!plus && !minus) return;
+
+
+        if (
+            !productViewer ||
+            !activeProduct
+        ) {
+
+            return;
+
+        }
+
+
+        const quantityInput =
+            qs(
+                "#viewerQuantity, .viewer-quantity, [data-viewer-quantity]",
+                productViewer
+            );
+
+
+        if (!quantityInput) return;
+
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+
+        let quantity =
+            parseInt(
+                quantityInput.value,
+                10
+            );
+
+
+        if (
+            !Number.isFinite(quantity) ||
+            quantity < 1
+        ) {
+
+            quantity = 1;
+
+        }
+
+
+        if (plus) {
+
+            quantity += 1;
+
+        } else {
+
+            quantity =
+                Math.max(
+                    1,
+                    quantity - 1
+                );
+
+        }
+
+
+        quantityInput.value =
+            quantity;
+
+    }
+);
+
+
+/* =========================================================
+   VIEWER ADD TO CART
+========================================================= */
+
+const viewerAddToCartButton =
+    qs(
+        "#viewerAddToCart, #addToCartBtn, .viewer-add-to-cart, .add-to-cart-btn, [data-viewer-add-to-cart]"
+    );
+
+
+function updateViewerAddToCartButton() {
+
+    if (!viewerAddToCartButton) return;
+
+    viewerAddToCartButton.disabled =
+        !activeProduct;
+
+}
+
+
+if (viewerAddToCartButton) {
+
+    viewerAddToCartButton.addEventListener(
+        "click",
+        function(event) {
+
+            event.preventDefault();
+
+            event.stopPropagation();
+
+
+            if (!activeProduct) {
+
+                return;
+
+            }
+
+
+            const quantity =
+                getViewerQuantity();
+
+
+            addToCart(
+                activeProduct,
+                quantity
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   VIEWER IMAGE SWIPE
+========================================================= */
+
+if (productViewer) {
+
+    const frame =
+        getViewerFrame();
+
+
+    if (frame) {
+
+        let touchStartX =
+            null;
+
+
+        frame.addEventListener(
+            "touchstart",
+            function(event) {
+
+                if (
+                    !event.changedTouches ||
+                    !event.changedTouches.length
+                ) {
+
+                    return;
+
+                }
+
+
+                touchStartX =
+                    event.changedTouches[0]
+                        .screenX;
+
+            },
+            {
+                passive:true
+            }
+        );
+
+
+        frame.addEventListener(
+            "touchend",
+            function(event) {
+
+                if (
+                    touchStartX === null ||
+                    !event.changedTouches ||
+                    !event.changedTouches.length
+                ) {
+
+                    touchStartX =
+                        null;
+
+                    return;
+
+                }
+
+
+                const touchEndX =
+                    event.changedTouches[0]
+                        .screenX;
+
+
+                const difference =
+                    touchEndX -
+                    touchStartX;
+
+
+                touchStartX =
+                    null;
+
+
+                if (
+                    Math.abs(
+                        difference
+                    ) < 45
+                ) {
+
+                    return;
+
+                }
+
+
+                if (difference < 0) {
+
+                    changeViewerImage(
+                        activeViewerImage + 1,
+                        true
+                    );
+
+                } else {
+
+                    changeViewerImage(
+                        activeViewerImage - 1,
+                        true
+                    );
+
+                }
+
+            },
+            {
+                passive:true
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   VIEWER ESCAPE HANDLER
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key !== "Escape"
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            productViewer &&
+            (
+                productViewer.classList.contains("open") ||
+                productViewer.classList.contains("active")
+            )
+        ) {
+
+            closeProductViewer();
+
+        }
+
+    }
+);
