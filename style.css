@@ -6188,3 +6188,341 @@ body.viewer-open{
         transition:none !important;
     }
 }
+
+/* =========================================================
+   VELO™ — FINAL PRODUCT VIEWER RESPONSIVE FIX
+   Fits phones, tablets, iPads and desktops without
+   changing the existing VELO design.
+   ========================================================= */
+
+.homepage #productViewer,
+.homepage #productViewer *,
+.homepage .product-viewer,
+.homepage .product-viewer *{
+    box-sizing:border-box;
+}
+
+.homepage #productViewer{
+    width:100vw;
+    max-width:100vw;
+    height:100dvh;
+    max-height:100dvh;
+    overflow:hidden;
+}
+
+.homepage .product-viewer-shell{
+    width:100%;
+    max-width:100%;
+    height:100%;
+    min-width:0;
+    overflow:hidden;
+}
+
+.homepage .product-viewer-topbar{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+}
+
+.homepage .product-viewer-content{
+    width:100%;
+    max-width:1450px;
+    min-width:0;
+    margin:0 auto;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.homepage .viewer-image-area,
+.homepage .viewer-product-info{
+    min-width:0;
+    max-width:100%;
+}
+
+.homepage .viewer-image-frame{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow:hidden;
+}
+
+.homepage .viewer-image-frame img{
+    width:100%;
+    max-width:100%;
+    height:100%;
+    max-height:100%;
+    object-fit:contain;
+}
+
+.homepage .viewer-actions-row{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+}
+
+.homepage .viewer-actions-row button{
+    min-width:0;
+    max-width:100%;
+}
+
+.homepage .related-products{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow:hidden;
+}
+
+.homepage .related-products-track{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow-x:auto;
+    overflow-y:hidden;
+}
+
+/* =========================================================
+   PHONES
+   ========================================================= */
+
+@media(max-width:700px){
+
+    .homepage #productViewer{
+        width:100vw;
+        height:100dvh;
+        max-width:100vw;
+        max-height:100dvh;
+    }
+
+    .homepage .product-viewer-topbar{
+        flex:0 0 64px;
+        width:100%;
+        padding:0 10px;
+    }
+
+    .homepage .viewer-actions{
+        min-width:0;
+        max-width:45%;
+        gap:6px;
+    }
+
+    .homepage .product-viewer .notification-btn,
+    .homepage .product-viewer .cart-btn{
+        width:39px;
+        min-width:39px;
+        max-width:39px;
+        height:39px;
+        flex:0 0 39px;
+    }
+
+    .homepage .product-viewer-content{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        height:calc(100dvh - 64px);
+        padding:
+            14px
+            max(12px, env(safe-area-inset-right))
+            30px
+            max(12px, env(safe-area-inset-left));
+        gap:20px;
+        overflow-x:hidden;
+        overflow-y:auto;
+    }
+
+    .homepage .viewer-image-area{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        flex:0 0 auto;
+    }
+
+    .homepage .viewer-image-frame{
+        width:100%;
+        max-width:100%;
+        height:auto;
+        max-height:calc(100dvh - 120px);
+        aspect-ratio:1 / 1.05;
+        min-width:0;
+        border-radius:16px;
+    }
+
+    .homepage .viewer-product-info{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        padding:0 2px 20px;
+    }
+
+    .homepage #viewerProductName{
+        width:100%;
+        max-width:100%;
+        font-size:
+            clamp(
+                1.65rem,
+                8vw,
+                2.4rem
+            );
+        line-height:1.05;
+        overflow-wrap:anywhere;
+    }
+
+    .homepage .viewer-description{
+        width:100%;
+        max-width:100%;
+        font-size:
+            clamp(
+                .72rem,
+                3vw,
+                .9rem
+            );
+        line-height:1.65;
+        overflow-wrap:anywhere;
+    }
+
+    .homepage .viewer-price{
+        font-size:
+            clamp(
+                1.15rem,
+                5vw,
+                1.5rem
+            );
+    }
+
+    .homepage .viewer-actions-row{
+        display:grid;
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(0,1fr);
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        gap:8px;
+    }
+
+    .homepage .save-product-btn,
+    .homepage .add-to-cart-btn{
+        width:100%;
+        min-width:0;
+        max-width:100%;
+        min-height:47px;
+        padding:10px 8px;
+        font-size:.58rem;
+        white-space:normal;
+    }
+
+    .homepage .related-products{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+    }
+
+    .homepage .related-products-track{
+        display:flex;
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        overflow-x:auto;
+        overflow-y:hidden;
+        gap:10px;
+        padding-bottom:8px;
+        scrollbar-width:none;
+    }
+
+    .homepage .related-products-track::-webkit-scrollbar{
+        display:none;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media(max-width:380px){
+
+    .homepage .product-viewer-topbar{
+        padding:0 8px;
+    }
+
+    .homepage .viewer-label{
+        font-size:.48rem;
+        letter-spacing:1.5px;
+    }
+
+    .homepage .product-viewer-content{
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .homepage .viewer-image-frame{
+        aspect-ratio:1 / 1;
+        border-radius:14px;
+    }
+
+    .homepage .viewer-actions-row{
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(0,1fr);
+    }
+}
+
+/* =========================================================
+   TABLETS / IPADS
+   ========================================================= */
+
+@media(min-width:701px) and (max-width:1100px){
+
+    .homepage .product-viewer-content{
+        width:100%;
+        max-width:100%;
+        min-width:0;
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(280px,.72fr);
+        gap:24px;
+        padding:
+            24px
+            clamp(18px,4vw,45px);
+        overflow-x:hidden;
+    }
+
+    .homepage .viewer-image-frame{
+        width:100%;
+        max-width:100%;
+        max-height:
+            calc(100dvh - 125px);
+    }
+
+    .homepage .viewer-product-info{
+        min-width:0;
+        max-width:100%;
+    }
+
+    .homepage .viewer-actions-row{
+        grid-template-columns:
+            minmax(0,1fr)
+            minmax(0,1fr);
+    }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media(min-width:1101px){
+
+    .homepage .product-viewer-content{
+        width:
+            min(
+                1450px,
+                calc(100vw - 40px)
+            );
+        max-width:1450px;
+        min-width:0;
+    }
+
+    .homepage .viewer-image-frame{
+        max-width:100%;
+    }
+}
