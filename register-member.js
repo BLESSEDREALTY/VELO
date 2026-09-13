@@ -419,4 +419,28 @@
             function () {
 
                 this.classList.remove(
-                    "invalid
+                    "invalid"
+                );
+            }
+        );
+    });
+
+
+    /* =======================================================
+       PUBLIC VELO MEMBERSHIP API
+       ======================================================= */
+
+    window.VELO_MEMBERSHIP = {
+
+        get:
+            getStoredMembership,
+
+        register:
+            registerMember,
+
+        validate:
+            validate
+    };
+
+
+})();
