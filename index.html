@@ -979,6 +979,16 @@ Details.</p>
      SCRIPTS
 ================================================== -->
 <script src="script.js"></script>
+<script type="module">
+  import { app, auth, db, storage } from "./firebaseconfig.js";
 
+  window.VELO_FIREBASE = {
+    app,
+    auth,
+    db,
+    storage
+  };
+</script>
+    
 </body>
 </html>
