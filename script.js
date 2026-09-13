@@ -331,7 +331,7 @@
       id,
       name,
       edition,
-      description:card.dataset.fullDescription || card.dataset.description || ''
+      description:card.dataset.fullDescription || card.dataset.description || '',
       price,
       priceUSD: price,
       gender: norm(card.dataset.gender),
