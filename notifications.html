@@ -1,164 +1,124 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>VELO™ — Notifications</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
->
-
-</head><body class="notificationPage"><!-- HEADER -->
-
-<header class="notification-header">
-
-    <a
-        href="index.html"
-        class="notification-logo"
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
     >
-        <span class="velo-mark">/</span>
-        <span class="velo-word">VELO</span>
-    </a>
 
-</header>
+    <title>VELO™ — Notifications</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="notification.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body class="notificationPage">
+
+    <!-- HEADER -->
+
+    <header class="notification-header">
+
+        <a
+            href="index.html"
+            class="notification-logo"
+            aria-label="Return to VELO homepage"
+        >
+            <span class="velo-mark">/</span>
+            <span class="velo-word">VELO</span>
+        </a>
+
+        <a
+            href="index.html"
+            class="notification-home"
+        >
+            ← VELO
+        </a>
+
+    </header>
 
 
-<!-- NOTIFICATIONS -->
+    <!-- MAIN -->
 
-<main class="notification-main">
+    <main class="notification-main">
 
-    <section class="notification-hero">
+        <section class="notification-hero">
 
-        <div class="notification-eyebrow">
-            VELO™ MOVEMENT
-        </div>
+            <span class="notification-eyebrow">
+                VELO™ MOVEMENT
+            </span>
 
-        <h1>
-            NOTIFICATIONS
-        </h1>
+            <h1>NOTIFICATIONS</h1>
 
-        <p>
-            Stay updated with VELO™ releases,
-            announcements, drops, membership updates,
-            and important movement news.
-        </p>
+            <p>
+                Stay updated with VELO™ releases,
+                announcements, drops, membership updates,
+                and important movement news.
+            </p>
 
-    </section>
+        </section>
 
 
-    <section class="notifications-list">
+        <!-- NOTIFICATION CONTROLS -->
 
+        <section class="notification-controls">
 
-        <!-- NOTIFICATION 1 -->
-
-        <article class="notification-card unread">
-
-            <div class="notification-dot"></div>
-
-            <div class="notification-content">
-
-                <span class="notification-label">
-                    ANNOUNCEMENT
-                </span>
-
-                <h2>
-                    Welcome to VELO™.
-                </h2>
-
-                <p>
-                    You're now connected to the movement.
-                    Keep checking this space for important
-                    VELO™ announcements and updates.
-                </p>
-
-                <span class="notification-time">
-                    Just now
-                </span>
-
+            <div class="notification-status">
+                <span id="notificationCount">0</span>
+                <span>notifications</span>
             </div>
 
-        </article>
+            <button
+                type="button"
+                id="markAllReadButton"
+                class="notification-action"
+            >
+                Mark all as read
+            </button>
+
+            <button
+                type="button"
+                id="clearNotificationsButton"
+                class="notification-action danger"
+            >
+                Clear
+            </button>
+
+        </section>
 
 
-        <!-- NOTIFICATION 2 -->
+        <!-- NOTIFICATIONS -->
 
-        <article class="notification-card">
+        <section
+            id="notificationsList"
+            class="notifications-list"
+            aria-live="polite"
+        >
 
-            <div class="notification-dot"></div>
+            <!-- Notifications are rendered by notification.js -->
 
-            <div class="notification-content">
-
-                <span class="notification-label">
-                    COLLECTION
-                </span>
-
-                <h2>
-                    New releases are coming.
-                </h2>
-
-                <p>
-                    Stay ready for upcoming VELO™
-                    collections, limited releases,
-                    and exclusive drops.
-                </p>
-
-                <span class="notification-time">
-                    VELO™ Updates
-                </span>
-
-            </div>
-
-        </article>
-
-
-        <!-- NOTIFICATION 3 -->
-
-        <article class="notification-card">
-
-            <div class="notification-dot"></div>
-
-            <div class="notification-content">
-
-                <span class="notification-label">
-                    MEMBERSHIP
-                </span>
-
-                <h2>
-                    Membership updates.
-                </h2>
-
-                <p>
-                    Important membership announcements,
-                    benefits, and selected member
-                    opportunities will appear here.
-                </p>
-
-                <span class="notification-time">
-                    VELO™ Membership
-                </span>
-
-            </div>
-
-        </article>
+        </section>
 
 
         <!-- EMPTY STATE -->
 
-        <div class="notification-empty">
+        <section
+            id="notificationEmpty"
+            class="notification-empty"
+            hidden
+        >
 
             <div class="notification-empty-icon">
                 ✓
             </div>
 
-            <h3>
-                You're all caught up.
-            </h3>
+            <h2>You're all caught up.</h2>
 
             <p>
                 New notifications will appear here
@@ -166,7 +126,7 @@
                 to share.
             </p>
 
-        </div>
+        </section>
 
 
         <!-- BACK HOME -->
@@ -179,17 +139,27 @@
 
         </div>
 
-    </section>
-
-</main>
+    </main>
 
 
-<!-- FOOTER -->
+    <!-- FOOTER -->
 
-<footer class="notification-footer">
+    <footer class="notification-footer">
 
-    VELO™ — VELOCITY. VISION. VICTORY.
+        VELO™ — VELOCITY. VISION. VICTORY.
 
-</footer>
+    </footer>
 
-</body></html>
+
+    <div
+        id="notificationToast"
+        class="notification-toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <script src="notification.js"></script>
+
+</body>
+</html>
