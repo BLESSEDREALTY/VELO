@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELO™ — Register As A Member</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="register-member.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="memberPage">
+<header class="member-header">
+<a href="index.html" class="member-logo" aria-label="Return to VELO homepage"><span class="member-slash">/</span><span>VELO</span></a>
+<a href="index.html" class="member-back">← VELO</a>
+</header>
+
+<main class="member-main">
+<section class="member-hero">
+<span class="member-eyebrow">VELO™ MEMBERSHIP</span>
+<h1>JOIN THE <span>VELOVERSE.</span></h1>
+<p class="member-intro">Don't just watch the movement. Be part of it. Join the VELOVERSE and get closer to the releases, ideas, opportunities, and plans shaping VELO™.</p>
+<p class="member-manifesto"><strong>Velocity.</strong><strong>Vision.</strong><strong>Victory.</strong></p>
+</section>
+
+<section class="member-benefits-section">
+<div class="section-heading">
+<span>01</span>
+<h2>BE PART OF THE PLAN.</h2>
+<p>VELO™ Membership is built for people who want to experience the movement from closer than the outside.</p>
+</div>
+<div class="benefits-grid">
+<article class="benefit-card"><span class="benefit-number">01</span><div class="benefit-icon">↗</div><h3>Early Access</h3><p>Get access to selected VELO™ releases before they become available publicly.</p></article>
+<article class="benefit-card"><span class="benefit-number">02</span><div class="benefit-icon">◈</div><h3>Limited Drops</h3><p>Stay closer to limited releases, special pieces, and selected VELO™ drops.</p></article>
+<article class="benefit-card"><span class="benefit-number">03</span><div class="benefit-icon">✦</div><h3>Member Rewards</h3><p>Receive selected member rewards, offers, and opportunities as the VELOVERSE grows.</p></article>
+<article class="benefit-card"><span class="benefit-number">04</span><div class="benefit-icon">◉</div><h3>Priority Access</h3><p>Get priority consideration for selected releases, experiences, and member opportunities.</p></article>
+<article class="benefit-card"><span class="benefit-number">05</span><div class="benefit-icon">⌁</div><h3>Private Community</h3><p>Become part of a growing community connected by ambition, creativity, movement, and progress.</p></article>
+<article class="benefit-card"><span class="benefit-number">06</span><div class="benefit-icon">+</div><h3>Have A Say</h3><p>Selected members may participate in future VELO™ community decisions and voting opportunities.</p></article>
+</div>
+</section>
+
+<section class="member-story">
+<div class="story-card">
+<span class="story-eyebrow">THE VELOVERSE</span>
+<h2>THIS IS MORE THAN <span>A MEMBERSHIP.</span></h2>
+<p>VELO™ is being built with a long-term vision. The VELOVERSE is the community around that vision — the people who believe in movement, ambition, creativity, and building something different.</p>
+<p>As VELO™ evolves, membership benefits and opportunities may evolve with it.</p>
+</div>
+</section>
+
+<section class="member-registration" id="register">
+<div class="registration-heading">
+<span>02</span>
+<h2>REGISTER AS A MEMBER.</h2>
+<p>Create your VELOVERSE membership and become part of the movement.</p>
+</div>
+
+<form id="memberForm" class="member-form" novalidate>
+<div class="form-grid">
+<label><span>Full Name</span><input id="memberName" name="name" type="text" autocomplete="name" placeholder="Your full name" required></label>
+<label><span>Username</span><input id="memberUsername" name="username" type="text" autocomplete="username" placeholder="Choose a username" required></label>
+<label><span>Email Address</span><input id="memberEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+<label><span>Phone Number</span><input id="memberPhone" name="phone" type="tel" autocomplete="tel" placeholder="+234..." required></label>
+</div>
+<label class="full-field"><span>Password</span><input id="memberPassword" name="password" type="password" autocomplete="new-password" placeholder="Create a membership password" required></label>
+<label class="full-field"><span>Confirm Password</span><input id="memberConfirmPassword" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Confirm your password" required></label>
+
+<div class="membership-price">
+<div><span>VELOVERSE MEMBERSHIP</span><strong>₦5,000</strong></div>
+<p>Membership access • Early releases • Member benefits</p>
+</div>
+
+<div class="terms-box">
+<label class="check-row"><input id="memberTerms" type="checkbox" required><span>I agree to the VELO™ Membership Terms &amp; Conditions and understand that membership benefits may change as VELO™ evolves.</span></label>
+<a href="terms.html" class="terms-link">View Membership Terms →</a>
+</div>
+
+<button type="submit" class="member-submit">CONTINUE TO MEMBERSHIP</button>
+<p class="form-note">Membership registration and payment will be connected to the VELO™ backend/payment system during the final launch integration.</p>
+</form>
+</section>
+
+<section id="memberSuccess" class="member-success" hidden>
+<div class="success-mark">✓</div>
+<span>VELOVERSE MEMBERSHIP</span>
+<h2>YOU'RE ON YOUR WAY.</h2>
+<p>Your membership registration has been saved. Membership payment and final account activation will be completed through the official VELO™ system.</p>
+<a href="index.html">CONTINUE TO VELO™</a>
+</section>
+
+<section class="member-bottom-cta">
+<p>Already have a VELO™ account?</p>
+<a href="register.html">SIGN IN / CREATE ACCOUNT →</a>
+</section>
+</main>
+
+<footer class="member-footer">VELO™ — VELOCITY. VISION. VICTORY.</footer>
+<div id="memberToast" class="member-toast" role="status" aria-live="polite"></div>
+<script src="register-member.js">
+  
+</script>
+</body>
+                                                 </html>
