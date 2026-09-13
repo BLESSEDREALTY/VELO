@@ -1,6 +1,24 @@
 /* =========================================================
    VELO™ — REGISTER AS A MEMBER
+   FIREBASE BACKEND VERSION
    ========================================================= */
+
+import {
+    createUserWithEmailAndPassword,
+    updateProfile
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+    doc,
+    setDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+import {
+    auth,
+    db
+} from "./firebase-config.js";
+
 
 (function () {
     "use strict";
@@ -8,11 +26,17 @@
     const STORAGE_KEY = "velo_membership";
     const ACCOUNT_KEY = "velo_account";
 
-    const $ = (selector) => document.querySelector(selector);
+    const $ = (selector) =>
+        document.querySelector(selector);
 
-    const form = $("#memberForm");
-    const success = $("#memberSuccess");
-    const toast = $("#memberToast");
+    const form =
+        $("#memberForm");
+
+    const success =
+        $("#memberSuccess");
+
+    const toast =
+        $("#memberToast");
 
     let toastTimer = null;
 
@@ -26,12 +50,15 @@
         if (!toast) return;
 
         toast.textContent = message;
+
         toast.classList.add("show");
 
         clearTimeout(toastTimer);
 
         toastTimer = setTimeout(() => {
+
             toast.classList.remove("show");
+
         }, 2400);
     }
 
@@ -42,7 +69,8 @@
 
     function value(id) {
 
-        const element = document.getElementById(id);
+        const element =
+            document.getElementById(id);
 
         return element
             ? element.value.trim()
@@ -66,7 +94,9 @@
         try {
 
             const raw =
-                localStorage.getItem(STORAGE_KEY);
+                localStorage.getItem(
+                    STORAGE_KEY
+                );
 
             return raw
                 ? JSON.parse(raw)
@@ -135,7 +165,8 @@
 
 
         Object.values(fields).forEach(
-            field => markInvalid(field, false)
+            field =>
+                markInvalid(field, false)
         );
 
 
@@ -165,7 +196,8 @@
 
 
         if (
-            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                .test(email)
         ) {
 
             markInvalid(
@@ -199,7 +231,9 @@
         }
 
 
-        if (password !== confirmPassword) {
+        if (
+            password !== confirmPassword
+        ) {
 
             markInvalid(
                 fields.confirmPassword,
@@ -210,7 +244,10 @@
         }
 
 
-        if (terms && !terms.checked) {
+        if (
+            terms &&
+            !terms.checked
+        ) {
 
             valid = false;
         }
@@ -229,62 +266,198 @@
 
 
     /* =======================================================
-       MEMBERSHIP REGISTRATION
+       FIREBASE MEMBERSHIP REGISTRATION
        ======================================================= */
 
-    function registerMember() {
+    async function registerMember() {
 
         if (!validate()) return;
 
 
-        const member = {
+        const name =
+            value("memberName");
 
-            id:
-                "member-" +
-                Date.now(),
+        const username =
+            value("memberUsername");
 
-            name:
-                value("memberName"),
+        const email =
+            value("memberEmail")
+                .toLowerCase();
 
-            username:
-                value("memberUsername"),
+        const phone =
+            value("memberPhone");
 
-            email:
-                value("memberEmail")
-                    .toLowerCase(),
-
-            phone:
-                value("memberPhone"),
-
-            membership: {
-
-                status:
-                    "pending_payment",
-
-                priceNGN:
-                    5000,
-
-                currency:
-                    "NGN"
-            },
-
-            registeredAt:
-                new Date().toISOString()
-        };
-
-
-        /*
-         * IMPORTANT:
-         *
-         * Passwords are deliberately NOT
-         * stored in localStorage.
-         *
-         * Final authentication will be handled
-         * by Firebase/backend.
-         */
+        const password =
+            value("memberPassword");
 
 
         try {
+
+            showToast(
+                "Creating your VELOVERSE account..."
+            );
+
+
+            /*
+             * 1. CREATE FIREBASE AUTH ACCOUNT
+             */
+
+            const credential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user =
+                credential.user;
+
+
+            /*
+             * 2. ADD DISPLAY NAME
+             */
+
+            await updateProfile(
+                user,
+                {
+                    displayName: name
+                }
+            );
+
+
+            /*
+             * 3. CREATE CUSTOMER RECORD
+             */
+
+            await setDoc(
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                ),
+                {
+
+                    uid:
+                        user.uid,
+
+                    name:
+                        name,
+
+                    username:
+                        username,
+
+                    email:
+                        email,
+
+                    phone:
+                        phone,
+
+                    membershipStatus:
+                        "pending_payment",
+
+                    membershipPriceNGN:
+                        5000,
+
+                    membershipCurrency:
+                        "NGN",
+
+                    membershipRegisteredAt:
+                        serverTimestamp(),
+
+                    createdAt:
+                        serverTimestamp()
+                },
+                {
+                    merge: true
+                }
+            );
+
+
+            /*
+             * 4. CREATE MEMBERSHIP RECORD
+             */
+
+            await setDoc(
+                doc(
+                    db,
+                    "memberships",
+                    user.uid
+                ),
+                {
+
+                    userId:
+                        user.uid,
+
+                    name:
+                        name,
+
+                    username:
+                        username,
+
+                    email:
+                        email,
+
+                    phone:
+                        phone,
+
+                    status:
+                        "pending_payment",
+
+                    priceNGN:
+                        5000,
+
+                    currency:
+                        "NGN",
+
+                    registeredAt:
+                        serverTimestamp()
+                },
+                {
+                    merge: true
+                }
+            );
+
+
+            /*
+             * 5. KEEP A LIGHTWEIGHT LOCAL
+             *    MEMBERSHIP RECORD FOR
+             *    CURRENT FRONTEND COMPATIBILITY.
+             */
+
+            const member = {
+
+                id:
+                    user.uid,
+
+                name:
+                    name,
+
+                username:
+                    username,
+
+                email:
+                    email,
+
+                phone:
+                    phone,
+
+                membership: {
+
+                    status:
+                        "pending_payment",
+
+                    priceNGN:
+                        5000,
+
+                    currency:
+                        "NGN"
+                },
+
+                registeredAt:
+                    new Date().toISOString()
+            };
+
 
             localStorage.setItem(
                 STORAGE_KEY,
@@ -293,12 +466,8 @@
 
 
             /*
-             * If the visitor already has
-             * a VELO account, update its
-             * membership status.
-             *
-             * Membership remains separate
-             * from normal account creation.
+             * 6. UPDATE EXISTING LOCAL
+             *    ACCOUNT DATA IF PRESENT.
              */
 
             const existingAccount =
@@ -312,12 +481,16 @@
                 try {
 
                     const account =
-                        JSON.parse(existingAccount);
+                        JSON.parse(
+                            existingAccount
+                        );
 
+
+                    account.uid =
+                        user.uid;
 
                     account.membershipStatus =
                         "pending_payment";
-
 
                     account.membershipRegisteredAt =
                         member.registeredAt;
@@ -337,6 +510,10 @@
                 }
             }
 
+
+            /*
+             * 7. SHOW SUCCESS STATE
+             */
 
             if (form) {
 
@@ -360,17 +537,60 @@
 
 
             showToast(
-                "Membership registration saved."
+                "Welcome to the VELOVERSE."
             );
 
 
         } catch (error) {
 
-            console.error(error);
-
-            showToast(
-                "Unable to save your membership registration."
+            console.error(
+                "VELO membership registration failed:",
+                error
             );
+
+
+            /*
+             * Firebase-friendly messages
+             */
+
+            let message =
+                "Unable to complete registration.";
+
+            if (
+                error.code ===
+                "auth/email-already-in-use"
+            ) {
+
+                message =
+                    "An account already exists with this email.";
+
+            } else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                message =
+                    "Please enter a valid email address.";
+
+            } else if (
+                error.code ===
+                "auth/weak-password"
+            ) {
+
+                message =
+                    "Please choose a stronger password.";
+
+            } else if (
+                error.code ===
+                "auth/network-request-failed"
+            ) {
+
+                message =
+                    "Network error. Please check your connection and try again.";
+            }
+
+
+            showToast(message);
         }
     }
 
@@ -398,6 +618,7 @@
        ======================================================= */
 
     [
+
         "memberName",
         "memberUsername",
         "memberEmail",
