@@ -137,6 +137,7 @@
         const price =
             Number(
                 item.price ??
+                item.priceUSD ??
                 item.amount ??
                 0
             );
